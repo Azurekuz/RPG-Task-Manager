@@ -4,6 +4,9 @@ https://docs.google.com/document/d/1rHItcBlPBF3ayORcqcEG6Sk12qRUGAPmiRlVfsa_NYg/
 Use Case Diagram:
 https://drive.google.com/file/d/1Ij5CIg0CFksuCzDuWyRTCsgpB9HsbZ6j/view?usp=sharing
 
+Class Diagram:
+https://drive.google.com/file/d/140AbHzaxltgDzKVBUYyYfWc_1CIR4Ebh/view?usp=sharing
+
 Github Repo:
 https://github.com/Azurekuz/RPG-Task-Manager
 
