@@ -7,6 +7,8 @@ https://drive.google.com/file/d/1Ij5CIg0CFksuCzDuWyRTCsgpB9HsbZ6j/view?usp=shari
 Class Diagram:
 https://drive.google.com/file/d/140AbHzaxltgDzKVBUYyYfWc_1CIR4Ebh/view?usp=sharing
 
+State Diagram: [Link](https://drive.google.com/file/d/134E-9GA6rUwMoUZYmXNXvw5RGvk49CfN/view?usp=sharing)
+
 Github Repo:
 https://github.com/Azurekuz/RPG-Task-Manager
 
