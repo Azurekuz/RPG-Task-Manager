@@ -10,7 +10,7 @@ https://drive.google.com/file/d/140AbHzaxltgDzKVBUYyYfWc_1CIR4Ebh/view?usp=shari
 State Diagram: [Link](https://drive.google.com/file/d/134E-9GA6rUwMoUZYmXNXvw5RGvk49CfN/view?usp=sharing)
 
 Sequence Diagram(s):
-+ (Complete Task)[https://drive.google.com/file/d/12urRBzBuWt23uFDgzqaHYEAygWSiZ3w-/view?usp=sharing]
++ [Complete Task](https://drive.google.com/file/d/12urRBzBuWt23uFDgzqaHYEAygWSiZ3w-/view?usp=sharing)
 
 Github Repo:
 https://github.com/Azurekuz/RPG-Task-Manager
