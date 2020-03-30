@@ -55,6 +55,18 @@ public class TaskTest {
         testTask.complete();
         assertEquals(true, testTask.isComplete());
 
+        //default constructor - blank object created.
+        Task testTask2 = new Task();
+        assertEquals(null, testTask2.getID());
+        assertEquals(null, testTask2.getTitle());
+        assertEquals(null, testTask2.getDesc());
+        assertEquals(null, testTask2.getQuality());
+        assertEquals(null, testTask2.getTimeLimit());
+        assertEquals(false, testTask2.isTimed());
+        assertEquals(null, testTask2.getTypeInt());
+        assertEquals(null, testTask2.getTypeStr());
+        assertEquals(false, testTask2.isComplete());
+
 
     }
 }
