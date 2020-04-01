@@ -1,8 +1,12 @@
 import java.awt.*;
 import java.util.ArrayList;
 
-public class TaskList extends TaskManager{
-    ArrayList<Task> taskList =new ArrayList<Task>();
+public class TaskList{
+    private ArrayList<Task> taskList;
+
+    TaskList(){
+        taskList = new ArrayList<Task>();
+    }
 
     public void addTask(Task newTask){
         taskList.add(newTask);
@@ -28,4 +32,6 @@ public class TaskList extends TaskManager{
     public Task getTask(int id){
         return taskList.get(id);
     }
+
+    public int getSize(){return taskList.size();}
 }
