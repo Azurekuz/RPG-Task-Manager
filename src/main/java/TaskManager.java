@@ -1,7 +1,9 @@
 public class TaskManager {
-    private TaskList defaultTaskList;
+
+  private TaskList defaultTaskList;
     private TaskList currentTaskList;
     private TaskList completedTaskList;
+
 
     TaskManager(){
         defaultTaskList = new TaskList();
