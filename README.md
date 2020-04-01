@@ -20,3 +20,6 @@ https://app.zenhub.com/workspaces/rpg-tasks-5e5ff15b63c718891a5aacb2/board?repos
 
 Slack:
 https://app.slack.com/client/TUW2XG1KJ/CUY93TV9C
+
+Sprint 1 Review Meeting doc:
+https://docs.google.com/document/d/1pWe4r2CDPy9umHHfbNV3Shm50lXJQnb5Efa18UGlexk/edit?usp=sharing
