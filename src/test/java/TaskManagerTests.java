@@ -86,6 +86,15 @@ public class TaskManagerTests { //TODO test new tests added by Elias
 
     @Test
     public void viewDefaultTasksTest(){
+        TaskManager testManager = new TaskManager();
+        TaskList defaultTasks = testManager.getDefaultTasks();
+        String expected = "{id: Title | Description | Quality | TimeLimit | Type | Complete\n" +
+                "0: " + "Do the Dishes" +" "+ "Clean all your unwashed dishes." +" "+ 0 +" "+ 0 +" "+ "default" +" "+ false + "\n" +
+                "1: " + "Do your Laundry" +" "+ "Clean your clothes." +" "+ 0 +" "+ 0 +" "+ "default" +" "+ false + "\n" +
+                "2: " + "Clean your room" +" "+ "Organize and dust off your room." +" "+ 0 +" "+ 0 +" "+ "default" +" "+ false + "\n" +
+                "3: " + "Floss your teeth" +" "+ "Floss under your gums too." +" "+ 0 +" "+ 0 +" "+ "default" +" "+ false + "\n" + "}";
+
+        assertEquals(testManager.viewDefaultTasks(), expected);
 
     }
 }

@@ -11,6 +11,16 @@ public class TaskManager {
         currentTaskList = new TaskList();
         completedTaskList = new TaskList();
         customTaskList = new TaskList();
+
+        Task doDishes = new Task(0, "Do the Dishes", "Clean all your unwashed dishes.", 0, 0, 0, false);
+        Task doLaundry = new Task(0, "Do your Laundry", "Clean your clothes.", 0, 0, 0, false);
+        Task cleanRoom = new Task(0, "Clean your room", "Organize and dust off your room.", 0, 0, 0, false);
+        Task flossTeeth = new Task(0, "Floss your teeth", "Floss under your gums too.", 0, 0, 0, false);
+
+        defaultTaskList.addTask(doDishes);
+        defaultTaskList.addTask(doLaundry);
+        defaultTaskList.addTask(cleanRoom);
+        defaultTaskList.addTask(flossTeeth);
     }
     public Task findCurrentTask(int id){
         return currentTaskList.getTask(id);
@@ -132,6 +142,7 @@ public class TaskManager {
     public String viewDefaultTasks(){
         return defaultTaskList.toString();
     }
+
     public TaskList getDefaultTasks(){
         return defaultTaskList;
     }
