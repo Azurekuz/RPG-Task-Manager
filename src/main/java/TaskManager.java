@@ -1,29 +1,40 @@
 public class TaskManager {
-    private TaskList defaultTaskList = new TaskList();
-    private TaskList currentTaskList = new TaskList();
-    private TaskList completedTaskList = new TaskList();
-    public TaskList findCurrentTask(int id){
-        return currentTaskList;
+
+  private TaskList defaultTaskList;
+    private TaskList currentTaskList;
+    private TaskList completedTaskList;
+
+
+    TaskManager(){
+        defaultTaskList = new TaskList();
+        currentTaskList = new TaskList();
+        completedTaskList = new TaskList();
+    }
+
+    public Task findCurrentTask(int id){
+        return currentTaskList.getTask(id);
     }
 
     public void addCurrentTask(Task newTask){
-
+        currentTaskList.addTask(newTask);
     }
 
-    public void editCurrentTask(){
-
+    public void editCurrentTask(int id, Task newTask){
+        currentTaskList.editTask(id, newTask);
     }
 
-    public void completeCurrentTask(){
-
+    public void completeCurrentTask(int id){
+        currentTaskList.getTask(id).complete();
+        completedTaskList.addTask(currentTaskList.getTask(id));
+        currentTaskList.removeTask(id);
     }
 
-    public void getCurrentTasks(){
-
+    public TaskList getCurrentTasks(){
+        return currentTaskList;
     }
 
-    public void viewCompletedTasks(){
-
+    public TaskList viewCompletedTasks(){
+        return completedTaskList;
     }
 
     public void saveTasks(){

@@ -22,14 +22,14 @@ public class TaskListTest {
         testTaskList.removeTask(0);
         testTaskList.removeTask(0);
         testTaskList.removeTask(0);
-        testTaskList.editTask(0);
+        testTaskList.editTask(0, testTasks);
 
 
-        testTaskList.editTask(0);
-        testTaskList.editTask(0);
-        testTaskList.editTask(0);
-        testTaskList.editTask(0);
-        testTaskList.editTask(0);
+        testTaskList.editTask(0, testTasks);
+        testTaskList.editTask(0, testTasks);
+        testTaskList.editTask(0, testTasks);
+        testTaskList.editTask(0, testTasks);
+        testTaskList.editTask(0, testTasks);
 
         assertEquals(0, testTasks.getID());
         assertEquals("title1", testTasks.getTitle());
