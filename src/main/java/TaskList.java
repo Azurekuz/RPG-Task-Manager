@@ -1,3 +1,37 @@
-public class TaskList {
-    //Git, please commit and push this project.
+import java.awt.*;
+import java.util.ArrayList;
+
+public class TaskList{
+    private ArrayList<Task> taskList;
+
+    TaskList(){
+        taskList = new ArrayList<Task>();
+    }
+
+    public void addTask(Task newTask){
+        taskList.add(newTask);
+    }
+
+    public void removeTask(int id){
+        taskList.remove(taskList.get(id));
+    }
+
+    public void editTask(int id, Task updatedTask){
+        taskList.set(id, updatedTask);
+    }
+
+    public int findTask(String title){
+        for(int task = 0; task < taskList.size(); task++){
+            if(taskList.get(task).title.equals(title)){
+                return task;
+            }
+        }
+        return -1;
+    }
+
+    public Task getTask(int id){
+        return taskList.get(id);
+    }
+
+    public int getSize(){return taskList.size();}
 }
