@@ -11,10 +11,16 @@ public class TaskList extends TaskManager{
     public void removeTask(int id){
 
     }
+
     public void editTask(int id){
 
     }
+
     public void findTask(String title, int id){
 
+    }
+
+    public void getTask(){
+        
     }
 }

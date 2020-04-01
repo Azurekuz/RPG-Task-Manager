@@ -1,7 +1,19 @@
 import org.junit.jupiter.api.Test;
+import static org.junit.jupiter.api.Assertions.*;
+
 public class TaskManagerTests {
     @Test
+    public void findTaskTest(){
+
+    }
+
+    @Test
     public void addTaskTest(){
+        TaskManager testManager = new TaskManager();
+        Task testTask = new Task(0, "Test1", "A test task", 5, 20, 0, false);
+        testManager.addCurrentTask(testTask);
+
+        assertEquals("Test1", testManager.findCurrentTask(0));
 
     }
 
@@ -16,7 +28,7 @@ public class TaskManagerTests {
     }
 
     @Test
-    public void getCurrentTaskTest(){
+    public void getCurrentTasksTest(){
 
     }
 
