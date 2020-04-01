@@ -40,4 +40,23 @@ public class TaskList{
     }
 
     public int getSize(){return taskList.size();}
+
+    public String toString(){
+        String s = "{id: Title | Description | Quality | TimeLimit | Type | Complete\n";
+        Task task;
+
+        for (int i = 0; i < taskList.size(); i++){
+            s = s.concat(i +": ");
+            task = taskList.get(i);
+            s = s.concat(task.getTitle() +" "+ task.getDesc() +" "+ task.getQuality() +" "+ task.getTimeLimit() +" "+ task.getTypeStr() +" "+ task.isComplete());
+            s = s.concat("\n");
+
+        }
+        if (taskList.size() == 0){
+            s = s.concat("*No tasks.*\n");
+        }
+        s = s.concat("}");
+        return s;
+
+    }
 }

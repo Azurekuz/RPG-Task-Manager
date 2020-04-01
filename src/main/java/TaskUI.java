@@ -23,7 +23,7 @@ public class TaskUI {
                     System.out.println("'rpg'     : STARTS THE RPG GAME INTERFACE. You cannot access tasks from the game.");
                     System.out.println("'complete : Complete a task. You will be prompted for the task's title.");
                     System.out.println("'select   : Select a task. Shows available tasks and" +
-                            "\n prompts you for the title of the one you're picking");
+                            "\n prompts you for the title of the one you're picking"); //TODO show available tasks
                     System.out.println("'stop     : Stop working on a task. You lose all progress. Prompted for title.");
                     System.out.println("'custom   : Add a custom task. Several prompts for relevant info.");
                     System.out.println("'edit     : Edit a task. Prompted for it's title, then for things you want to change.");
@@ -34,6 +34,7 @@ public class TaskUI {
                     break;
 
                 case "rpg":
+                    System.out.println("Starting RPG interface...");
                     taskManager.startGame();
                     break;
 
@@ -41,18 +42,21 @@ public class TaskUI {
                     System.out.println("Which task would you like to complete?: ");
                     title = input.nextLine();
                     taskManager.complete(title);
+                    System.out.println("Task completed!");
                     break;
 
                 case "select":
                     System.out.println("Which task would you like to select & start?: ");
                     title = input.nextLine();
                     taskManager.selectTask(title);
+                    System.out.println("Task started!");
                     break;
 
                 case "stop":
                     System.out.println("Which task would you like to stop?: ");
                     title = input.nextLine();
                     taskManager.stopTask(title);
+                    System.out.println("Task stopped!");
                     break;
 
                 case "custom":
@@ -64,6 +68,7 @@ public class TaskUI {
                     System.out.println("Enter task type (0 for default, 1 for main, 2 for daily, 3 for weekly:"); type = input.nextInt();
 
                     taskManager.addCustomTask(title, desc, quality, timeLimit, type);
+                    System.out.println("Task created!");
                     break;
 
                 case "edit":
@@ -77,26 +82,27 @@ public class TaskUI {
                     System.out.println("Enter new type (0 for default, 1 for main, 2 for daily, 3 for weekly:"); type = input.nextInt();
 
                     taskManager.editTask(title, newTitle, desc, quality, timeLimit, type);
+                    System.out.println("Task edited!");
                     break;
 
                 case "viewdef":
                     System.out.println("***Default task pool:***");
-                    taskManager.viewDefaultTasks();
+                    System.out.println(taskManager.viewDefaultTasks());
                     break;
 
                 case "viewcust":
                     System.out.println("***Your custom tasks:***");
-                    taskManager.viewCustomTasks();
+                    System.out.println(taskManager.viewCustomTasks());
                     break;
 
                 case "viewcomp":
                     System.out.println("***Your completed tasks:***");
-                    taskManager.viewCompletedTasks();
+                    System.out.println(taskManager.viewCompletedTasks());
                     break;
 
                 case "viewcur":
                     System.out.println("***Your currently active tasks:***");
-                    taskManager.getCurrentTasks();
+                    System.out.println(taskManager.viewCurrentTasks());
                     break;
 
                 default:

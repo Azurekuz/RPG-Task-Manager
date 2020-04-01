@@ -4,6 +4,7 @@ public class TaskManager {
     private TaskList currentTaskList;
     private TaskList completedTaskList;
     private TaskList customTaskList;
+    //TODO tie in with User
 
   TaskManager(){
         defaultTaskList = new TaskList();
@@ -18,6 +19,12 @@ public class TaskManager {
     public void addCurrentTask(Task newTask){
         currentTaskList.addTask(newTask);
     }
+    public void addCustomTask(String title, String desc, int quality, int timeLimit, int type){
+        int id = customTaskList.getSize();
+        Task newTask = new Task(id, title, desc, quality, timeLimit, type, false);
+        customTaskList.addTask(newTask);
+    }
+
 
     public void selectTask(String title){
       Task task;
@@ -101,36 +108,44 @@ public class TaskManager {
       completeCurrentTask(id);
     }
 
+    public String viewCurrentTasks(){
+        return currentTaskList.toString();
+    }
     public TaskList getCurrentTasks(){
-        return currentTaskList;
+      return currentTaskList;
     }
 
-    public TaskList viewCompletedTasks(){
+    public String viewCompletedTasks(){
+        return completedTaskList.toString();
+    }
+    public TaskList getCompletedTasks(){
         return completedTaskList;
     }
 
-    public void save(){
+    public String viewCustomTasks(){
+        return customTaskList.toString();
+    }
+    public TaskList getCustomTasks(){
+        return customTaskList;
+    }
 
+    public String viewDefaultTasks(){
+        return defaultTaskList.toString();
+    }
+    public TaskList getDefaultTasks(){
+        return defaultTaskList;
+    }
+
+    public void save(){
+        //TODO (not sprint 1)
     }
 
     public void load(){
-
-
+        //TODO (not sprint 1)
     }
 
     public void startGame(){
-
+        //TODO (not sprint 1)
     }
 
-    public void addCustomTask(String title, String desc, int quality, int timeLimit, int type){
-
-    }
-
-    public void viewCustomTasks(){
-
-    }
-
-    public void viewDefaultTasks(){
-
-    }
 }
