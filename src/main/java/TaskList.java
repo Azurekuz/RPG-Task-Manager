@@ -4,7 +4,7 @@ import java.util.ArrayList;
 public class TaskList extends TaskManager{
     ArrayList<Task> taskList =new ArrayList<Task>();
 
-    public void addTask(){
+    public void addTask(Task newTask){
 
     }
 
