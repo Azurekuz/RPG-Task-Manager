@@ -1,7 +1,7 @@
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 
-public class TaskManagerTests {
+public class TaskManagerTests { //TODO test new tests added by Elias
     @Test
     public void findTaskTest(){
         TaskManager testManager = new TaskManager();
@@ -38,7 +38,7 @@ public class TaskManagerTests {
         Task testTask = new Task(0, "Test1", "A test task", 5, 20, 0, false);
         testManager.addCurrentTask(testTask);
         testManager.completeCurrentTask(0);
-        TaskList completedTasks = testManager.viewCompletedTasks();
+        TaskList completedTasks = testManager.getCompletedTasks();
         assertEquals("Test1",completedTasks.getTask(0).getTitle());
     }
 
@@ -86,6 +86,15 @@ public class TaskManagerTests {
 
     @Test
     public void viewDefaultTasksTest(){
+        TaskManager testManager = new TaskManager();
+        TaskList defaultTasks = testManager.getDefaultTasks();
+        String expected = "{id: Title | Description | Quality | TimeLimit | Type | Complete\n" +
+                "0: " + "Do the Dishes" +" "+ "Clean all your unwashed dishes." +" "+ 0 +" "+ 0 +" "+ "default" +" "+ false + "\n" +
+                "1: " + "Do your Laundry" +" "+ "Clean your clothes." +" "+ 0 +" "+ 0 +" "+ "default" +" "+ false + "\n" +
+                "2: " + "Clean your room" +" "+ "Organize and dust off your room." +" "+ 0 +" "+ 0 +" "+ "default" +" "+ false + "\n" +
+                "3: " + "Floss your teeth" +" "+ "Floss under your gums too." +" "+ 0 +" "+ 0 +" "+ "default" +" "+ false + "\n" + "}";
+
+        assertEquals(testManager.viewDefaultTasks(), expected);
 
     }
 }
