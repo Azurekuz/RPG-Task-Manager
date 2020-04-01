@@ -2,8 +2,8 @@ public class TaskManager {
     private TaskList defaultTaskList = new TaskList();
     private TaskList currentTaskList = new TaskList();
     private TaskList completedTaskList = new TaskList();
-    public void findCurrentTask(int id){
-        return currentTaskList
+    public TaskList findCurrentTask(int id){
+        return currentTaskList;
     }
 
     public void addCurrentTask(Task newTask){
