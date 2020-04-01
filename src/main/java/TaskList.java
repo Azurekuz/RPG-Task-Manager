@@ -2,13 +2,19 @@ import java.awt.*;
 import java.util.ArrayList;
 
 public class TaskList{
-    private ArrayList<Task> taskList;
+    public ArrayList<Task> taskList;
 
     TaskList(){
         taskList = new ArrayList<Task>();
     }
 
     public void addTask(Task newTask){
+        taskList.add(newTask);
+    }
+
+    public void addTask(String title, String desc, int quality, int timeLimit, int type){
+        int id = this.getSize();
+        Task newTask = new Task(id, title, desc, quality, timeLimit, type, false);
         taskList.add(newTask);
     }
 

@@ -10,11 +10,11 @@ public class TaskUI {
         taskManager.load();
 
         Scanner input = new Scanner(System.in);
-        String userStr = input.nextLine();
         System.out.println("***STARTING TASK INTERFACE***");
+        String userStr = "";
         while (!(userStr.equals("quit"))){
             System.out.println("Enter your command or 'help' to see a list of commands.");
-
+            userStr = input.nextLine();
             switch (userStr) {
                 case "help":
                     System.out.println("***AVAILABLE COMMANDS***");
@@ -76,7 +76,7 @@ public class TaskUI {
                     System.out.println("Enter new time limit (0 for not timed):"); timeLimit = input.nextInt();
                     System.out.println("Enter new type (0 for default, 1 for main, 2 for daily, 3 for weekly:"); type = input.nextInt();
 
-                    taskManager.addEditTask(title, newTitle desc, quality, timeLimit, type);
+                    taskManager.editTask(title, newTitle, desc, quality, timeLimit, type);
                     break;
 
                 case "viewdef":
@@ -104,11 +104,11 @@ public class TaskUI {
                     break;
             }
 
-            userStr = input.nextLine();
+            //userStr = input.nextLine();
         }
 
         System.out.println("Saving and quitting...");
-        //taskManager.save();
+        taskManager.save();
     }
 
     public static void main(String[] args){
