@@ -23,3 +23,6 @@ https://app.slack.com/client/TUW2XG1KJ/CUY93TV9C
 
 Sprint 1 Review Meeting doc:
 https://docs.google.com/document/d/1pWe4r2CDPy9umHHfbNV3Shm50lXJQnb5Efa18UGlexk/edit?usp=sharing
+
+Sprint 1 Retrospective:
+https://docs.google.com/document/d/1cPsGp3-SIhRzqITo2maJk-c2BELcKFjRlqQuBiZ-uhs/edit
