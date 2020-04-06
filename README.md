@@ -1,3 +1,5 @@
+An RPG Game where the user can input a ‘main task’ and ‘side tasks’. The side tasks will be weekly or daily tasks that the user needs to complete. Completing these tasks will give their rpg character experience points. The character can be used to play an RPG game, where the only way to level up is by completing tasks in real life.
+
 ## Documents & Links
 
 - Mutual Design Doc: [Link](https://docs.google.com/document/d/1rHItcBlPBF3ayORcqcEG6Sk12qRUGAPmiRlVfsa_NYg/edit)
