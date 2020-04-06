@@ -1,3 +1,5 @@
+#Documents & Links
+
 Mutual Design Doc:
 https://docs.google.com/document/d/1rHItcBlPBF3ayORcqcEG6Sk12qRUGAPmiRlVfsa_NYg/edit
 
@@ -18,11 +20,11 @@ https://github.com/Azurekuz/RPG-Task-Manager
 Zenhub:
 https://app.zenhub.com/workspaces/rpg-tasks-5e5ff15b63c718891a5aacb2/board?repos=244972518
 
-Slack:
-https://app.slack.com/client/TUW2XG1KJ/CUY93TV9C
-
+##Sprint 1:
 Sprint 1 Review Meeting doc:
 https://docs.google.com/document/d/1pWe4r2CDPy9umHHfbNV3Shm50lXJQnb5Efa18UGlexk/edit?usp=sharing
 
 Sprint 1 Retrospective:
 https://docs.google.com/document/d/1cPsGp3-SIhRzqITo2maJk-c2BELcKFjRlqQuBiZ-uhs/edit
+
+##Sprint 2:
