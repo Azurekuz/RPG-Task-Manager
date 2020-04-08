@@ -16,4 +16,5 @@ An RPG Game where the user can input a ‘main task’ and ‘side tasks’. The
 - Sprint 1 Retrospective: [Link](https://docs.google.com/document/d/1cPsGp3-SIhRzqITo2maJk-c2BELcKFjRlqQuBiZ-uhs/edit)
 
 ### Sprint 2:
+Sprint goal: Clean up and finalize Task Manager system(s).
 - Class Diagram: [Link](https://drive.google.com/file/d/1n96HxVm0xI9YWkNWJKUwhDT8Fjcp8JKs/view?usp=sharing)
