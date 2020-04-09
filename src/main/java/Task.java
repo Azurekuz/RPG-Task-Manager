@@ -1,9 +1,12 @@
+import java.util.Date;
+
 public class Task {
 
     public int id;
     public String title, desc;
     public int quality, timeLimit, type;
     public boolean complete;
+    private Date startTime;
 
     public Task(){ //default constructor = blank object created
         complete = false;
@@ -46,6 +49,8 @@ public class Task {
     }
     public void complete() { this.complete = true; }
 
+    public void startTime() { this.startTime = new Date(); }
+
     /** GETTERS **/
     public boolean isTimed(){ return timeLimit > 0; }
     public int getID() { return id; }
@@ -53,6 +58,7 @@ public class Task {
     public String getDesc() { return desc; }
     public int getQuality() { return quality; }
     public int getTimeLimit() { return timeLimit; }
+    public Date getStartTime() { return startTime; }
     public int getTypeInt() { return type; }
     public String getTypeStr() {
         switch(type){

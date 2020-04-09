@@ -1,9 +1,12 @@
+import java.util.Date;
 public class TaskManager {
 
     private TaskList defaultTaskList;
     private TaskList currentTaskList;
     private TaskList completedTaskList;
     private TaskList customTaskList;
+    private TaskList failedTaskList;
+    private Date startTime;
     //TODO tie in with User
 
   TaskManager(){
@@ -21,6 +24,7 @@ public class TaskManager {
         defaultTaskList.addTask(doLaundry);
         defaultTaskList.addTask(cleanRoom);
         defaultTaskList.addTask(flossTeeth);
+        startTime = new Date();
     }
     public Task findCurrentTask(int id){
         return currentTaskList.getTask(id);
@@ -142,9 +146,15 @@ public class TaskManager {
     public String viewDefaultTasks(){
         return defaultTaskList.toString();
     }
-
     public TaskList getDefaultTasks(){
         return defaultTaskList;
+    }
+
+    public String viewFailedTasks(){
+        return failedTaskList.toString();
+    }
+    public TaskList getFailedTasks(){
+        return failedTaskList;
     }
 
     public void save(){
@@ -157,6 +167,11 @@ public class TaskManager {
 
     public void startGame(){
         //TODO (not sprint 1)
+    }
+
+    public String checkTimedTasks(Date currentTime){
+
+        return "No tasks failed";
     }
 
 }

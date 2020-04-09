@@ -1,5 +1,6 @@
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
+import java.util.Date;
 
 public class TaskManagerTests { //TODO test new tests added by Elias
     @Test
@@ -95,6 +96,41 @@ public class TaskManagerTests { //TODO test new tests added by Elias
                 "3: " + "Floss your teeth" +" "+ "Floss under your gums too." +" "+ 0 +" "+ 0 +" "+ "default" +" "+ false + "\n" + "}";
 
         assertEquals(testManager.viewDefaultTasks(), expected);
+
+    }
+
+    @Test
+    public void timeTests(){
+        TaskManager testManager = new TaskManager();
+        //Testing one timed task
+        testManager.addCustomTask("Do Homework Before Class", "Due in an hour!", 10, 60, 0);
+        testManager.selectTask("Do Homework Before Class");
+
+        Date currentTime = new Date();
+        assertEquals(testManager.checkTimedTasks(currentTime),"No tasks failed.");
+
+        currentTime.setTime(currentTime.getTime() + 60*60000);
+
+        assertEquals(testManager.checkTimedTasks(currentTime),"FAILED: Do Homework Before Class");
+        assertTrue(testManager.viewDefaultTasks().contains("No tasks."));
+        assertTrue(testManager.viewFailedTasks().contains("Do Homework Before Class"));
+
+        TaskManager testManager2 = new TaskManager();
+
+        testManager2.addCustomTask("Do Homework Before Class", "Due in an hour!", 10, 60, 0);
+        testManager2.selectTask("Do Homework Before Class");
+        testManager2.addCustomTask("Email Teacher", "Before class!", 10, 30, 0);
+        testManager2.selectTask("Email Teacher");
+        currentTime = new Date();
+
+        assertEquals(testManager2.checkTimedTasks(currentTime),"No tasks failed.");
+        currentTime.setTime(currentTime.getTime() + 60*60000);
+
+        assertEquals(testManager2.checkTimedTasks(currentTime),"FAILED: Do Homework Before Class, Email Teacher");
+        assertTrue(testManager.viewDefaultTasks().contains("No tasks."));
+        assertTrue(testManager.viewFailedTasks().contains("Do Homework Before Class")
+                && testManager.viewFailedTasks().contains("Email Teacher"));
+
 
     }
 }
