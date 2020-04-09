@@ -79,7 +79,7 @@ public class TaskUI {
                     System.out.println("Enter task title:"); title = input.nextLine();
                     System.out.println("Enter task descriptipn:"); desc = input.nextLine();
                     System.out.println("Enter task quality (integer):"); quality = input.nextInt();
-                    System.out.println("Enter task time limit (0 for not timed):"); timeLimit = input.nextInt();
+                    System.out.println("Enter task time limit (in minutes, 0 for not timed):"); timeLimit = input.nextInt();
                     System.out.println("Enter task type (0 for default, 1 for main, 2 for daily, 3 for weekly:"); type = input.nextInt();
 
                     taskManager.addCustomTask(title, desc, quality, timeLimit, type);
