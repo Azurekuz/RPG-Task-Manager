@@ -41,22 +41,34 @@ public class TaskUI {
                 case "complete":
                     System.out.println("Which task would you like to complete?: ");
                     title = input.nextLine();
-                    taskManager.complete(title);
-                    System.out.println("Task completed!");
+                    try {
+                        taskManager.complete(title);
+                        System.out.println("Task completed!");
+                    }catch(NonExistentTaskException e){
+                        System.out.println("[ERROR][ " + e.getMessage() + "]");
+                    }
                     break;
 
                 case "select":
                     System.out.println("Which task would you like to select & start?: ");
                     title = input.nextLine();
-                    taskManager.selectTask(title);
-                    System.out.println("Task started!");
+                    try {
+                        taskManager.selectTask(title);
+                        System.out.println("Task started!");
+                    }catch(NonExistentTaskException e){
+                        System.out.println("[ERROR][ " + e.getMessage() + "]");
+                    }
                     break;
 
                 case "stop":
                     System.out.println("Which task would you like to stop?: ");
                     title = input.nextLine();
-                    taskManager.stopTask(title);
-                    System.out.println("Task stopped!");
+                    try {
+                        taskManager.stopTask(title);
+                        System.out.println("Task stopped!");
+                    }catch(NonExistentTaskException e){
+                        System.out.println("[ERROR][ " + e.getMessage() + "]");
+                    }
                     break;
 
                 case "custom":
@@ -81,8 +93,12 @@ public class TaskUI {
                     System.out.println("Enter new time limit (0 for not timed):"); timeLimit = input.nextInt();
                     System.out.println("Enter new type (0 for default, 1 for main, 2 for daily, 3 for weekly:"); type = input.nextInt();
 
-                    taskManager.editTask(title, newTitle, desc, quality, timeLimit, type);
-                    System.out.println("Task edited!");
+                    try {
+                        taskManager.editTask(title, newTitle, desc, quality, timeLimit, type);
+                        System.out.println("Task edited!");
+                    }catch(NonExistentTaskException e){
+                        System.out.println("[ERROR][ " + e.getMessage() + "]");
+                    }
                     break;
 
                 case "viewdef":

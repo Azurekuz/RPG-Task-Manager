@@ -18,11 +18,17 @@ public class TaskList{
         taskList.add(newTask);
     }
 
-    public void removeTask(int id){
+    public void removeTask(int id) throws NonExistentTaskException{
+        if(id > taskList.size() || id < 0){
+            throw new NonExistentTaskException("Nonexistent or Invalid Task Requested!");
+        }
         taskList.remove(taskList.get(id));
     }
 
-    public void editTask(int id, Task updatedTask){
+    public void editTask(int id, Task updatedTask) throws NonExistentTaskException{
+        if(id > taskList.size() || id < 0){
+            throw new NonExistentTaskException("Nonexistent or Invalid Task Requested!");
+        }
         taskList.set(id, updatedTask);
     }
 
@@ -35,7 +41,10 @@ public class TaskList{
         return -1;
     }
 
-    public Task getTask(int id){
+    public Task getTask(int id) throws NonExistentTaskException{
+        if(id >= taskList.size() || id < 0){
+            throw new NonExistentTaskException("Nonexistent or Invalid Task Requested!");
+        }
         return taskList.get(id);
     }
 
