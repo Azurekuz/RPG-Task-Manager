@@ -8,6 +8,7 @@ public class TaskList{
         taskList = new ArrayList<Task>();
     }
 
+
     public void addTask(Task newTask){
         taskList.add(newTask);
     }
@@ -38,6 +39,8 @@ public class TaskList{
     public Task getTask(int id){
         return taskList.get(id);
     }
+
+    public Task getTaskAt(int index) { return taskList.get(index); }
 
     public int getSize(){return taskList.size();}
 

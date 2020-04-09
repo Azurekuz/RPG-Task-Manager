@@ -170,8 +170,27 @@ public class TaskManager {
     }
 
     public String checkTimedTasks(Date currentTime){
+        String failedTasks="FAILED: ";  Task task;  Date time;
 
-        return "No tasks failed";
+        for (int i = 0; i < currentTaskList.getSize(); i++){
+            task = currentTaskList.getTaskAt(i);
+            if (task.isTimed()){
+                time = task.getStartTime();
+                if(currentTime.after(time)) {
+                    failedTasks= failedTasks.concat(task.getTitle());
+                    failedTasks = failedTasks.concat(", ");
+
+                    currentTaskList.removeTask(task.getID());
+                    failedTaskList.addTask(task);
+                }
+            }
+        }
+        if (failedTasks.equals("FAILED: ")) return "No tasks failed.";
+        else {
+            failedTasks = failedTasks.substring(0, failedTasks.length()-2); //removes ending ", "
+            return failedTasks;
+        }
+
     }
 
 }

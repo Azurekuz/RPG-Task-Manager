@@ -111,7 +111,6 @@ public class TaskUI {
                     break;
             }
 
-            //userStr = input.nextLine();
         }
 
         System.out.println("Saving and quitting...");
