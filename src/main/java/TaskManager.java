@@ -178,7 +178,7 @@ public class TaskManager {
         for (int i = 0; i < currentTaskList.getSize(); i++){
             task = currentTaskList.getTaskAt(i);
             if (task.isTimed()){
-                time = task.getStartTime();
+                time = new Date(task.getStartTime().getTime() + task.getTimeLimit()*60000); //time to finish task by
                 if(currentTime.after(time)) {
                     failedTasks= failedTasks.concat(task.getTitle());
                     failedTasks = failedTasks.concat(", ");

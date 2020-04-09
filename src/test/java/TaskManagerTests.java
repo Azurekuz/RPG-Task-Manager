@@ -109,7 +109,7 @@ public class TaskManagerTests { //TODO test new tests added by Elias
         Date currentTime = new Date();
         assertEquals(testManager.checkTimedTasks(currentTime),"No tasks failed.");
 
-        currentTime.setTime(currentTime.getTime() + 60*60000);
+        currentTime.setTime(currentTime.getTime() + 65*60000);
 
         assertEquals(testManager.checkTimedTasks(currentTime),"FAILED: Do Homework Before Class");
         assertTrue(testManager.viewCurrentTasks().contains("No tasks."));
@@ -125,7 +125,7 @@ public class TaskManagerTests { //TODO test new tests added by Elias
         currentTime = new Date();
 
         assertEquals(testManager2.checkTimedTasks(currentTime),"No tasks failed.");
-        currentTime.setTime(currentTime.getTime() + 60*60000);
+        currentTime.setTime(currentTime.getTime() + 65*60000); //faking time passage
 
         assertEquals(testManager2.checkTimedTasks(currentTime),"FAILED: Do Homework Before Class, Email Teacher");
         assertTrue(testManager2.viewCurrentTasks().contains("No tasks."));
