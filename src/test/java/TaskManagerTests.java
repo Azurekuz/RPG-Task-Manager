@@ -112,9 +112,10 @@ public class TaskManagerTests { //TODO test new tests added by Elias
         currentTime.setTime(currentTime.getTime() + 60*60000);
 
         assertEquals(testManager.checkTimedTasks(currentTime),"FAILED: Do Homework Before Class");
-        assertTrue(testManager.viewDefaultTasks().contains("No tasks."));
+        assertTrue(testManager.viewCurrentTasks().contains("No tasks."));
         assertTrue(testManager.viewFailedTasks().contains("Do Homework Before Class"));
 
+        //Testing two timed tasks
         TaskManager testManager2 = new TaskManager();
 
         testManager2.addCustomTask("Do Homework Before Class", "Due in an hour!", 10, 60, 0);
@@ -127,9 +128,9 @@ public class TaskManagerTests { //TODO test new tests added by Elias
         currentTime.setTime(currentTime.getTime() + 60*60000);
 
         assertEquals(testManager2.checkTimedTasks(currentTime),"FAILED: Do Homework Before Class, Email Teacher");
-        assertTrue(testManager.viewDefaultTasks().contains("No tasks."));
-        assertTrue(testManager.viewFailedTasks().contains("Do Homework Before Class")
-                && testManager.viewFailedTasks().contains("Email Teacher"));
+        assertTrue(testManager2.viewCurrentTasks().contains("No tasks."));
+        assertTrue(testManager2.viewFailedTasks().contains("Do Homework Before Class")
+                && testManager2.viewFailedTasks().contains("Email Teacher"));
 
 
     }

@@ -14,6 +14,7 @@ public class TaskManager {
         currentTaskList = new TaskList();
         completedTaskList = new TaskList();
         customTaskList = new TaskList();
+        failedTaskList = new TaskList();
 
         Task doDishes = new Task(0, "Do the Dishes", "Clean all your unwashed dishes.", 0, 0, 0, false);
         Task doLaundry = new Task(0, "Do your Laundry", "Clean your clothes.", 0, 0, 0, false);
@@ -46,11 +47,13 @@ public class TaskManager {
         if(defaultTaskList.findTask(title) != -1){
             id = defaultTaskList.findTask(title);
             task = defaultTaskList.getTask(id);
+            task.startTime();
             currentTaskList.addTask(task);
         }
         else if(customTaskList.findTask(title) != -1){
             id = customTaskList.findTask(title);
             task = customTaskList.getTask(id);
+            task.startTime();
             currentTaskList.addTask(task);
         }
         else{
@@ -179,12 +182,15 @@ public class TaskManager {
                 if(currentTime.after(time)) {
                     failedTasks= failedTasks.concat(task.getTitle());
                     failedTasks = failedTasks.concat(", ");
-
-                    currentTaskList.removeTask(task.getID());
                     failedTaskList.addTask(task);
                 }
             }
         }
+        for (int i = 0; i < failedTaskList.getSize(); i++){
+            task = failedTaskList.getTaskAt(i);
+            currentTaskList.removeTask(task.getID());
+        }
+
         if (failedTasks.equals("FAILED: ")) return "No tasks failed.";
         else {
             failedTasks = failedTasks.substring(0, failedTasks.length()-2); //removes ending ", "
