@@ -12,10 +12,12 @@ public class TaskUI {
         Scanner input = new Scanner(System.in);
         System.out.println("***STARTING TASK INTERFACE***");
         String userStr = "";
+        String numOnlyCheck = "0123456789";
+        boolean byID = true;
         while (!(userStr.equals("quit"))){
             System.out.println("Enter your command or 'help' to see a list of commands.");
             userStr = input.nextLine();
-            switch (userStr) {
+            switch (userStr.toLowerCase()) {
                 case "help":
                     System.out.println("***AVAILABLE COMMANDS***");
                     System.out.println("'help'    : Displays this");
@@ -42,7 +44,17 @@ public class TaskUI {
                     System.out.println("Which task would you like to complete?: ");
                     title = input.nextLine();
                     try {
-                        taskManager.complete(title);
+                        for(int curChar = 0; curChar < title.length(); curChar++){
+                            if(numOnlyCheck.indexOf(title.charAt(curChar)) == -1){
+                                byID = false;
+                                break;
+                            }
+                        }
+                        if(byID){
+                            taskManager.complete(Integer.parseInt(title));
+                        }else {
+                            taskManager.complete(title);
+                        }
                         System.out.println("Task completed!");
                     }catch(NonExistentTaskException e){
                         System.out.println("[ERROR][ " + e.getMessage() + "]");
@@ -53,7 +65,17 @@ public class TaskUI {
                     System.out.println("Which task would you like to select & start?: ");
                     title = input.nextLine();
                     try {
-                        taskManager.selectTask(title);
+                        for(int curChar = 0; curChar < title.length(); curChar++){
+                            if(numOnlyCheck.indexOf(title.charAt(curChar)) == -1){
+                                byID = false;
+                                break;
+                            }
+                        }
+                        if(byID){
+                            selectListPrompt(Integer.parseInt(title), input);
+                        }else {
+                            taskManager.selectTask(title);
+                        }
                         System.out.println("Task started!");
                     }catch(NonExistentTaskException e){
                         System.out.println("[ERROR][ " + e.getMessage() + "]");
@@ -64,7 +86,17 @@ public class TaskUI {
                     System.out.println("Which task would you like to stop?: ");
                     title = input.nextLine();
                     try {
-                        taskManager.stopTask(title);
+                        for(int curChar = 0; curChar < title.length(); curChar++){
+                            if(numOnlyCheck.indexOf(title.charAt(curChar)) == -1){
+                                byID = false;
+                                break;
+                            }
+                        }
+                        if(byID) {
+                            taskManager.stopTask(Integer.parseInt(title));
+                        }else{
+                            taskManager.stopTask(title);
+                        }
                         System.out.println("Task stopped!");
                     }catch(NonExistentTaskException e){
                         System.out.println("[ERROR][ " + e.getMessage() + "]");
@@ -87,6 +119,12 @@ public class TaskUI {
                     System.out.println("***Editing task.***");
                     System.out.println("Which task would you like to edit?: ");
                     title = input.nextLine();
+                    for(int curChar = 0; curChar < title.length(); curChar++){
+                        if(numOnlyCheck.indexOf(title.charAt(curChar)) == -1){
+                            byID = false;
+                            break;
+                        }
+                    }
                     System.out.println("Enter new title:"); newTitle = input.nextLine();
                     System.out.println("Enter new descriptipn:"); desc = input.nextLine();
                     System.out.println("Enter new quality (integer):"); quality = input.nextInt();
@@ -94,7 +132,11 @@ public class TaskUI {
                     System.out.println("Enter new type (0 for default, 1 for main, 2 for daily, 3 for weekly:"); type = input.nextInt();
 
                     try {
-                        taskManager.editTask(title, newTitle, desc, quality, timeLimit, type);
+                        if(byID){
+                            taskManager.editTask(Integer.parseInt(title), newTitle, desc, quality, timeLimit, type, editListPrompt(input));
+                        }else {
+                            taskManager.editTask(title, newTitle, desc, quality, timeLimit, type);
+                        }
                         System.out.println("Task edited!");
                     }catch(NonExistentTaskException e){
                         System.out.println("[ERROR][ " + e.getMessage() + "]");
@@ -131,6 +173,35 @@ public class TaskUI {
 
         System.out.println("Saving and quitting...");
         taskManager.save();
+    }
+
+    public void selectListPrompt(int id, Scanner input) throws NonExistentTaskException{
+        try {
+            System.out.println("Which tasklist are you selecting from?");
+            System.out.println("[1] Default");
+            System.out.println("[2] Custom");
+            int choice = input.nextInt();
+            while (choice != 1 && choice != 2) {
+                System.out.println("[Error][ Invalid choice entered!]");
+                choice = input.nextInt();
+            }
+            taskManager.selectTask(id, choice - 1);
+        }catch(NonExistentTaskException e){
+            throw new NonExistentTaskException(e.getMessage());
+        }
+    }
+
+    public int editListPrompt(Scanner input){
+            System.out.println("Which tasklist are you editing from?");
+            System.out.println("[1] Current");
+            System.out.println("[2] Default");
+            System.out.println("[3] Custom");
+            int choice = input.nextInt();
+            while (choice != 1 && choice != 2 && choice != 3) {
+                System.out.println("[Error][ Invalid choice entered!]");
+                choice = input.nextInt();
+            }
+            return choice-1;
     }
 
     public static void main(String[] args){

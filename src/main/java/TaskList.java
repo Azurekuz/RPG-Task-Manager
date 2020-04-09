@@ -34,7 +34,7 @@ public class TaskList{
 
     public int findTask(String title){
         for(int task = 0; task < taskList.size(); task++){
-            if(taskList.get(task).title.equals(title)){
+            if(taskList.get(task).title.toLowerCase().equals(title.toLowerCase())){
                 return task;
             }
         }
