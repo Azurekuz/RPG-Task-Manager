@@ -20,11 +20,15 @@ public class TaskManager {
         Task doLaundry = new Task(0, "Do your Laundry", "Clean your clothes.", 0, 0, 0, false);
         Task cleanRoom = new Task(0, "Clean your room", "Organize and dust off your room.", 0, 0, 0, false);
         Task flossTeeth = new Task(0, "Floss your teeth", "Floss under your gums too.", 0, 0, 0, false);
+        Task finishSemester = new Task(0, "Finish 1st Semester", "Ithaca College", 1000, 0, 1, false);
+        Task getJob = new Task(0, "Get a Job", "Money can be exchanged for goods & services", 500, 0, 1, false);
 
         defaultTaskList.addTask(doDishes);
         defaultTaskList.addTask(doLaundry);
         defaultTaskList.addTask(cleanRoom);
         defaultTaskList.addTask(flossTeeth);
+        defaultTaskList.addTask(finishSemester);
+        defaultTaskList.addTask(getJob);
         startTime = new Date();
     }
     public Task findCurrentTask(int id){

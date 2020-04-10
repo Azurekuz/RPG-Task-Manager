@@ -7,6 +7,7 @@ public class Task {
     public int quality, timeLimit, type;
     public boolean complete;
     private Date startTime;
+    private int progress;
 
     public Task(){ //default constructor = blank object created
         complete = false;
@@ -21,6 +22,10 @@ public class Task {
         this.timeLimit=timeLimit;
         this.type=type;
         this.complete=complete;
+        if (type == 1) {
+            this.progress = 0;
+        }
+
     }
 
     public int calcExp(){
@@ -51,6 +56,8 @@ public class Task {
 
     public void startTime() { this.startTime = new Date(); }
 
+    //TODO PROGRESS ADD
+
     /** GETTERS **/
     public boolean isTimed(){ return timeLimit > 0; }
     public int getID() { return id; }
@@ -69,6 +76,7 @@ public class Task {
             default: return null;
         }
     }
+    public int //TODO PROGRESS GET
 
     public boolean isComplete() { return complete; }
 }

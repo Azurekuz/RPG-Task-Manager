@@ -131,7 +131,17 @@ public class TaskManagerTests { //TODO test new tests added by Elias
         assertTrue(testManager2.viewCurrentTasks().contains("No tasks."));
         assertTrue(testManager2.viewFailedTasks().contains("Do Homework Before Class")
                 && testManager2.viewFailedTasks().contains("Email Teacher"));
+    }
 
+    public void mainTaskTests(){
+       TaskManager testManager = new TaskManager();
+       assertEquals(testManager.selectMainTask("Finish 1st Semester"),"Main task selected!");
+       assertEquals(testManager.getMainTask().getTitle(),"Finish 1st Semester");
+       assertEquals(testManager.selectMainTask("Get a Job"),"Can't have more than one main task selected.");
+       assertEquals(testManager.getMainTask().getTitle(),"Finish 1st Semester");
+
+       testManager.stopMainTask();
+       //TODO test no main task selected
 
     }
 }
