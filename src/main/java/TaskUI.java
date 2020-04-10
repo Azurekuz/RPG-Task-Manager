@@ -61,6 +61,10 @@ public class TaskUI {
                     break;
 
                 case "select":
+                    System.out.println("Available Custom Tasks:");
+                    System.out.println(taskManager.viewCustomTasks());
+                    System.out.println("Available Default Tasks:");
+                    System.out.println(taskManager.viewDefaultTasks());
                     System.out.println("Which task would you like to select & start?: ");
                     title = input.nextLine();
                     taskManager.selectTask(title);
@@ -93,7 +97,7 @@ public class TaskUI {
                     System.out.println("Enter new title:"); newTitle = input.nextLine();
                     System.out.println("Enter new descriptipn:"); desc = input.nextLine();
                     System.out.println("Enter new quality (integer):"); quality = input.nextInt();
-                    System.out.println("Enter new time limit (0 for not timed):"); timeLimit = input.nextInt();
+                    System.out.println("Enter new time limit (in  minutes, 0 for not timed):"); timeLimit = input.nextInt();
                     System.out.println("Enter new type (0 for default, 1 for main, 2 for daily, 3 for weekly:"); type = input.nextInt();
 
                     taskManager.editTask(title, newTitle, desc, quality, timeLimit, type);
