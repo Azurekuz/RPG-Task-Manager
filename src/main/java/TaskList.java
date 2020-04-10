@@ -8,6 +8,7 @@ public class TaskList{
         taskList = new ArrayList<Task>();
     }
 
+
     public void addTask(Task newTask){
         taskList.add(newTask);
     }
@@ -19,25 +20,42 @@ public class TaskList{
     }
 
     public void removeTask(int id){
-        taskList.remove(taskList.get(id));
+        Task task = getTask(id);
+        taskList.remove(task);
     }
+
+   // public void removeTask(String title){
+       // int id = findTask(title); Task task = getTask(id);
+        //taskList.remove(task);
+    //}
 
     public void editTask(int id, Task updatedTask){
         taskList.set(id, updatedTask);
     }
 
     public int findTask(String title){
-        for(int task = 0; task < taskList.size(); task++){
-            if(taskList.get(task).title.equals(title)){
-                return task;
+        for(int i = 0; i < taskList.size(); i++){
+            if(taskList.get(i).title.equals(title)){
+                return i; //returns index of task
             }
         }
         return -1;
     }
 
-    public Task getTask(int id){
-        return taskList.get(id);
+    public int findTask(int id){
+        for(int i = 0; i < taskList.size(); i++){
+            if(taskList.get(i).id == id){
+                return i; //returns index of task
+            }
+        }
+        return -1;
     }
+    public Task getTask(int id){
+        int index = findTask(id);
+        return taskList.get(index);
+    }
+
+    public Task getTaskAt(int index) { return taskList.get(index); }
 
     public int getSize(){return taskList.size();}
 
