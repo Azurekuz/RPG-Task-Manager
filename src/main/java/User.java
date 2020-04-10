@@ -2,17 +2,24 @@ import java.util.Iterator;
 
 public class User {
     private String ID;
+    private String password;
     private TaskList currentTasks,customTasks,completedTasks;
     private PlayerCharacter character;
 
-    public User(String ID){
+    public User(String ID, String password){
         this.ID=ID;
+        this.password=password;
         this.currentTasks = new TaskList();
         this.customTasks = new TaskList();
         this.completedTasks = new TaskList();
     }
 
     //getters:
+
+
+    public String getPassword() {
+        return password;
+    }
 
     public String getID() {
         return ID;
