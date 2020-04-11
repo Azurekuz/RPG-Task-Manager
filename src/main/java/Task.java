@@ -57,7 +57,11 @@ public class Task {
 
     public void startTime() { this.startTime = new Date(); }
 
-    public void addProgress(int progress) { this.progress+=progress; }
+    public void addProgress(int progress) {
+
+        this.progress+=progress;
+        if (this.progress > 100) this.progress = 100;
+    }
 
     /** GETTERS **/
     public boolean isTimed(){ return timeLimit > 0; }
@@ -80,4 +84,14 @@ public class Task {
     public int getProgress() { return progress; }
 
     public boolean isComplete() { return complete; }
+
+    public String toString(){ //TODO could make this a little more complicated if needed
+        String result = "";
+        if (!title.isEmpty()) {
+            result += "TASK\nid: " + id + "  title: " + title + "\ndesc: " + desc + "\nquality: " + quality + "  timelimit: " + timeLimit +
+                    "  type: " + type + "  complete: " + complete + "  progress: " + progress;
+            return result;
+        }
+        else{ return "Empty task object."; }
+    }
 }
