@@ -6,15 +6,17 @@ public class TaskManager {
     private TaskList completedTaskList;
     private TaskList customTaskList;
     private TaskList failedTaskList;
+    private Task mainTask;
     private Date startTime;
     //TODO tie in with User
 
-  TaskManager(){
+     TaskManager(){
         defaultTaskList = new TaskList();
         currentTaskList = new TaskList();
         completedTaskList = new TaskList();
         customTaskList = new TaskList();
         failedTaskList = new TaskList();
+        mainTask = new Task();
 
         Task doDishes = new Task(0, "Do the Dishes", "Clean all your unwashed dishes.", 0, 0, 0, false);
         Task doLaundry = new Task(0, "Do your Laundry", "Clean your clothes.", 0, 0, 0, false);
@@ -30,7 +32,7 @@ public class TaskManager {
         defaultTaskList.addTask(finishSemester);
         defaultTaskList.addTask(getJob);
         startTime = new Date();
-    }
+     }
     public Task findCurrentTask(int id){
         return currentTaskList.getTask(id);
     }
@@ -45,24 +47,31 @@ public class TaskManager {
     }
 
 
-    public void selectTask(String title){
+    public String selectTask(String title){
       Task task;
       int id;
         if(defaultTaskList.findTask(title) != -1){
             id = defaultTaskList.findTask(title);
             task = defaultTaskList.getTask(id);
+            if (!(mainTask.getTitle().isEmpty()) && task.getTypeInt() == 1){
+                return "ERROR: Can't have more than one main task selected.";
+            }
             task.startTime();
             currentTaskList.addTask(task);
         }
         else if(customTaskList.findTask(title) != -1){
             id = customTaskList.findTask(title);
             task = customTaskList.getTask(id);
+            if (!(mainTask.getTitle().isEmpty()) && task.getTypeInt() == 1){
+                return "ERROR: Can't have more than one main task selected.";
+            }
             task.startTime();
             currentTaskList.addTask(task);
         }
         else{
-            System.out.println("SELECTING TASK: task not found - not added to current tasks.");
+            return "SELECTING TASK: task not found - not added to current tasks.";
         }
+        return "Task started!";
     }
 
     public void stopTask(String title){
@@ -165,15 +174,15 @@ public class TaskManager {
     }
 
     public void save(){
-        //TODO (not sprint 1)
+        //TODO
     }
 
     public void load(){
-        //TODO (not sprint 1)
+        //TODO
     }
 
     public void startGame(){
-        //TODO (not sprint 1)
+        //TODO
     }
 
     public String checkTimedTasks(Date currentTime){
@@ -200,7 +209,15 @@ public class TaskManager {
             failedTasks = failedTasks.substring(0, failedTasks.length()-2); //removes ending ", "
             return failedTasks;
         }
-
     }
+
+    /* MAIN TASKS */
+
+    public Task getMainTask(){
+        return mainTask;
+    }
+
+
+
 
 }

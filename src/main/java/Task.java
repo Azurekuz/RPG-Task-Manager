@@ -29,7 +29,7 @@ public class Task {
     }
 
     public int calcExp(){
-        //TODO - not in sprint 1, "Determining EXP gain" zenhub card
+        //TODO - "Determining EXP gain" zenhub card
         return 0;
     }
     /** SETTERS **/
@@ -56,7 +56,7 @@ public class Task {
 
     public void startTime() { this.startTime = new Date(); }
 
-    //TODO PROGRESS ADD
+    public void addProgress(int progress) { this.progress+=progress; }
 
     /** GETTERS **/
     public boolean isTimed(){ return timeLimit > 0; }
@@ -76,7 +76,7 @@ public class Task {
             default: return null;
         }
     }
-    public int //TODO PROGRESS GET
+    public int getProgress() { return progress; }
 
     public boolean isComplete() { return complete; }
 }

@@ -135,13 +135,39 @@ public class TaskManagerTests { //TODO test new tests added by Elias
 
     public void mainTaskTests(){
        TaskManager testManager = new TaskManager();
-       assertEquals(testManager.selectMainTask("Finish 1st Semester"),"Main task selected!");
-       assertEquals(testManager.getMainTask().getTitle(),"Finish 1st Semester");
-       assertEquals(testManager.selectMainTask("Get a Job"),"Can't have more than one main task selected.");
-       assertEquals(testManager.getMainTask().getTitle(),"Finish 1st Semester");
 
-       testManager.stopMainTask();
-       //TODO test no main task selected
+       //Trying to do things with main task while none is selected
+       assertTrue(testManager.getMainTask().getTitle().isEmpty());
+       assertEquals(testManager.stopMainTask(), "ERROR: No main task selected to stop.");
+       assertThrows(IllegalArgumentException.class, () -> testManager.incMainProgress(1)); //TODO convert to custom error
+
+       //Selecting a main task and trying to select a second one
+       assertEquals(testManager.selectTask("Finish 1st Semester"),"Task started!");
+       assertEquals(testManager.getMainTask().getTitle(),"Finish 1st Semester");
+       assertEquals(testManager.selectTask("Get a Job"),"ERROR: Can't have more than one main task selected.");
+       assertEquals(testManager.getMainTask().getTitle(),"Finish 1st Semester");
+       assertEquals(testManager.getMainTask().getProgress(), 0);
+       //Stopping main task while one is selected.
+       assertEquals(testManager.stopMainTask(), "Main task stopped.");
+       assertTrue(testManager.getMainTask().getTitle().isEmpty()); //stopping main task makes it a blank Task obj
+
+        //Adding progress
+
+        assertEquals(testManager.selectTask("Get a Job"),"Task started!");
+        assertEquals(testManager.getMainTask().getProgress, 0);
+        testManager.incMainProgress(10);
+        assertEquals(testManager.getMainTask().getProgress, 10);
+
+        assertThrows(IllegalArgumentException.class, () -> testManager.incMainProgress(-1));
+        assertThrows(IllegalArgumentException.class, () -> testManager.incMainProgress(0.5));
+        assertThrows(IllegalArgumentException.class, () -> testManager.incMainProgress(101));
+        assertThrows(IllegalArgumentException.class, () -> testManager.incMainProgress(0));
+
+        testManager.incMainProgress(89);
+        assertEquals(testManager.getMainTask().getProgress, 99);
+        assertEquals(testManager.completeMain(),"ERROR: Main task not at 100% progress, can't complete.");
+        testManager.incMainProgress(1);
+        assertEquals(testManager.completeMain(),"Main task completed!");
 
     }
 }
