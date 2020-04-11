@@ -12,7 +12,6 @@ public class TaskList{
     public void addTask(Task newTask){
         taskList.add(newTask);
     }
-
     public void addTask(String title, String desc, int quality, int timeLimit, int type){
         int id = this.getSize();
         Task newTask = new Task(id, title, desc, quality, timeLimit, type, false);
@@ -41,7 +40,6 @@ public class TaskList{
         }
         return -1;
     }
-
     public int findTask(int id){
         for(int i = 0; i < taskList.size(); i++){
             if(taskList.get(i).id == id){
@@ -50,8 +48,16 @@ public class TaskList{
         }
         return -1;
     }
+    public Task getTask(String title){
+        int index = findTask(title);
+        return taskList.get(index);
+    }
+
     public Task getTask(int id){
         int index = findTask(id);
+        //if (index == -1){
+        //    return new Task();
+        //}
         return taskList.get(index);
     }
 

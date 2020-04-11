@@ -133,12 +133,14 @@ public class TaskManagerTests { //TODO test new tests added by Elias
                 && testManager2.viewFailedTasks().contains("Email Teacher"));
     }
 
+    @Test
     public void mainTaskTests(){
        TaskManager testManager = new TaskManager();
 
        //Trying to do things with main task while none is selected
        assertTrue(testManager.getMainTask().getTitle().isEmpty());
        assertEquals(testManager.stopMainTask(), "ERROR: No main task selected to stop.");
+       assertEquals(testManager.completeMain(),"ERROR: No main task selected to complete.");
        assertThrows(IllegalArgumentException.class, () -> testManager.incMainProgress(1)); //TODO convert to custom error
 
        //Selecting a main task and trying to select a second one
@@ -152,19 +154,18 @@ public class TaskManagerTests { //TODO test new tests added by Elias
        assertTrue(testManager.getMainTask().getTitle().isEmpty()); //stopping main task makes it a blank Task obj
 
         //Adding progress
-
         assertEquals(testManager.selectTask("Get a Job"),"Task started!");
-        assertEquals(testManager.getMainTask().getProgress, 0);
+        assertEquals(testManager.getMainTask().getProgress(), 0);
         testManager.incMainProgress(10);
-        assertEquals(testManager.getMainTask().getProgress, 10);
+        assertEquals(testManager.getMainTask().getProgress(), 10);
 
         assertThrows(IllegalArgumentException.class, () -> testManager.incMainProgress(-1));
-        assertThrows(IllegalArgumentException.class, () -> testManager.incMainProgress(0.5));
         assertThrows(IllegalArgumentException.class, () -> testManager.incMainProgress(101));
         assertThrows(IllegalArgumentException.class, () -> testManager.incMainProgress(0));
+        //TODO stop user from entering anything other than an int
 
         testManager.incMainProgress(89);
-        assertEquals(testManager.getMainTask().getProgress, 99);
+        assertEquals(testManager.getMainTask().getProgress(), 99);
         assertEquals(testManager.completeMain(),"ERROR: Main task not at 100% progress, can't complete.");
         testManager.incMainProgress(1);
         assertEquals(testManager.completeMain(),"Main task completed!");

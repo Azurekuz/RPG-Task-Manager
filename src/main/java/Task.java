@@ -10,6 +10,7 @@ public class Task {
     private int progress;
 
     public Task(){ //default constructor = blank object created
+        title = "";
         complete = false;
     }
 

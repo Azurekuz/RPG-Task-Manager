@@ -51,22 +51,24 @@ public class TaskManager {
       Task task;
       int id;
         if(defaultTaskList.findTask(title) != -1){
-            id = defaultTaskList.findTask(title);
-            task = defaultTaskList.getTask(id);
+            //id = defaultTaskList.findTask(title);
+            task = defaultTaskList.getTask(title);
             if (!(mainTask.getTitle().isEmpty()) && task.getTypeInt() == 1){
                 return "ERROR: Can't have more than one main task selected.";
             }
             task.startTime();
-            currentTaskList.addTask(task);
+            if (task.getTypeInt() == 1) mainTask = task;
+            else currentTaskList.addTask(task);
         }
         else if(customTaskList.findTask(title) != -1){
-            id = customTaskList.findTask(title);
-            task = customTaskList.getTask(id);
+           // id = customTaskList.findTask(title);
+            task = customTaskList.getTask(title);
             if (!(mainTask.getTitle().isEmpty()) && task.getTypeInt() == 1){
                 return "ERROR: Can't have more than one main task selected.";
             }
             task.startTime();
-            currentTaskList.addTask(task);
+            if (task.getTypeInt() == 1) mainTask = task;
+            else currentTaskList.addTask(task);
         }
         else{
             return "SELECTING TASK: task not found - not added to current tasks.";
@@ -217,7 +219,38 @@ public class TaskManager {
         return mainTask;
     }
 
+    public String stopMainTask(){
+        if (mainTask.getTitle().isEmpty()){
+            return "ERROR: No main task selected to stop.";
+        }
+        mainTask = new Task();
+        return "Main task stopped.";
+    }
 
+    public void incMainProgress(int progress) throws IllegalArgumentException{
+        if(progress <= 0 || progress > 100){
+            throw new IllegalArgumentException("Invalid progress amount.");
+        }
+        else if (mainTask.getTitle().isEmpty()){
+            throw new IllegalArgumentException("No main task selected.");
+        }
+        mainTask.addProgress(progress);
+    }
+
+    public String completeMain(){
+        //TODO EXP/Item gain
+        if (mainTask.getTitle().isEmpty()){
+            return "ERROR: No main task selected to complete.";
+        }
+        if (mainTask.getProgress() < 100){
+            return "ERROR: Main task not at 100% progress, can't complete.";
+        }
+        mainTask.complete();
+        completedTaskList.addTask(mainTask);
+        mainTask = new Task();
+        return "Main task completed!";
+
+    }
 
 
 }
