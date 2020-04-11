@@ -3,7 +3,7 @@ import static org.junit.jupiter.api.Assertions.*;
 
 public class TaskListTest {
     @Test
-    public void TaskListTest() {
+    public void TaskListTest() throws NonExistentTaskException{
 
         //TODO test toString and new addTask
         Task testTasks = new Task(0, "title1", "desc1", 0, 0, 0, false);

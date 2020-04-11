@@ -4,7 +4,7 @@ import java.util.Date;
 
 public class TaskManagerTests { //TODO test new tests added by Elias
     @Test
-    public void findTaskTest(){
+    public void findTaskTest() throws NonExistentTaskException{
         TaskManager testManager = new TaskManager();
         Task testTask = new Task(0, "Test1", "A test task", 5, 20, 0, false);
         testManager.addCurrentTask(testTask);
@@ -13,7 +13,7 @@ public class TaskManagerTests { //TODO test new tests added by Elias
     }
 
     @Test
-    public void addTaskTest(){
+    public void addTaskTest() throws NonExistentTaskException{
         TaskManager testManager = new TaskManager();
         Task testTask = new Task(0, "Test1", "A test task", 5, 20, 0, false);
         testManager.addCurrentTask(testTask);
@@ -23,7 +23,7 @@ public class TaskManagerTests { //TODO test new tests added by Elias
     }
 
     @Test
-    public void editTaskTest(){
+    public void editTaskTest() throws NonExistentTaskException{
         TaskManager testManager = new TaskManager();
         Task testTask = new Task(0, "Test1", "A test task", 5, 20, 0, false);
         testManager.addCurrentTask(testTask);
@@ -34,7 +34,7 @@ public class TaskManagerTests { //TODO test new tests added by Elias
     }
 
     @Test
-    public void completeTaskTest(){
+    public void completeTaskTest() throws NonExistentTaskException{
         TaskManager testManager = new TaskManager();
         Task testTask = new Task(0, "Test1", "A test task", 5, 20, 0, false);
         testManager.addCurrentTask(testTask);
@@ -44,7 +44,7 @@ public class TaskManagerTests { //TODO test new tests added by Elias
     }
 
     @Test
-    public void getCurrentTasksTest(){
+    public void getCurrentTasksTest() throws NonExistentTaskException{
         TaskManager testManager = new TaskManager();
         Task testTask1 = new Task(0, "Test1", "A test task", 5, 20, 0, false);
         Task testTask2 = new Task(1, "Test2", "Another test task", 4, 25, 0, false);
@@ -58,6 +58,8 @@ public class TaskManagerTests { //TODO test new tests added by Elias
         for(int taskID = 0; taskID < currentTasks.getSize();taskID++){
             assertEquals(currentTasks.getTask(taskID), testManager.findCurrentTask(taskID));
         }
+        assertThrows(NonExistentTaskException.class, ()-> {currentTasks.getTask(currentTasks.getSize());});
+        assertThrows(NonExistentTaskException.class, ()-> {currentTasks.getTask(-1);});
     }
 
     @Test

@@ -27,9 +27,13 @@ public class TaskManager {
         defaultTaskList.addTask(flossTeeth);
         startTime = new Date();
     }
-    public Task findCurrentTask(int id){
-        return currentTaskList.getTask(id);
-    }
+    public Task findCurrentTask(int id) throws NonExistentTaskException{
+      try {
+          return currentTaskList.getTask(id);
+      } catch (NonExistentTaskException e){
+          throw new NonExistentTaskException("Nonexistent or Invalid Task Requested!");
+      }
+  }
 
     public void addCurrentTask(Task newTask){
         currentTaskList.addTask(newTask);
@@ -40,87 +44,103 @@ public class TaskManager {
         customTaskList.addTask(newTask);
     }
 
-
-    public void selectTask(String title){
-      Task task;
-      int id;
-        if(defaultTaskList.findTask(title) != -1){
-            id = defaultTaskList.findTask(title);
-            task = defaultTaskList.getTask(id);
-            task.startTime();
-            currentTaskList.addTask(task);
-        }
-        else if(customTaskList.findTask(title) != -1){
+    public void selectTask(String title) throws NonExistentTaskException{
+      try{
+            Task task;
+            int id = defaultTaskList.findTask(title);
+            if(id != -1) {
+                task = defaultTaskList.getTask(id);
+                currentTaskList.addTask(task);
+                return;
+            }
             id = customTaskList.findTask(title);
-            task = customTaskList.getTask(id);
-            task.startTime();
-            currentTaskList.addTask(task);
-        }
-        else{
-            System.out.println("SELECTING TASK: task not found - not added to current tasks.");
-        }
+            if(id != -1) {
+                task = customTaskList.getTask(id);
+                currentTaskList.addTask(task);
+                return;
+            }
+
+            if(id==-1){
+                throw new NonExistentTaskException("Nonexistent or Invalid Task Requested!");
+            }
+      }catch (NonExistentTaskException e){
+          throw new NonExistentTaskException("Nonexistent or Invalid Task Requested!");
+      }
     }
 
-    public void stopTask(String title){
-        int id = currentTaskList.findTask(title);
-
-        if (id != -1){
+    public void stopTask(String title) throws NonExistentTaskException{
+        try{
+            int id = currentTaskList.findTask(title);
             currentTaskList.removeTask(id);
+        }catch (NonExistentTaskException e){
+            throw new NonExistentTaskException("Nonexistent or Invalid Task Requested!");
         }
-        else{
-            System.out.println("STOPPING TASK: task not found - not removed from current tasks.");
+    }
+
+
+    public void editCurrentTask(int id, Task newTask) throws NonExistentTaskException{
+        try {
+            currentTaskList.editTask(id, newTask);
+        }catch (NonExistentTaskException e) {
+            throw new NonExistentTaskException("Nonexistent or Invalid Task Requested!");
         }
-
     }
 
+    public void editTask(String title, String newTitle, String desc, int quality, int timeLimit, int type) throws NonExistentTaskException{
+        try {
+            Task editedTask;
+            int id = currentTaskList.findTask(title);
+            if(id != -1){
+                editedTask = currentTaskList.getTask(id);
+                editedTask.setTitle(newTitle);
+                editedTask.setDesc(desc);
+                editedTask.setQuality(quality);
+                editedTask.setTimeLimit(timeLimit);
+                editedTask.setType(type);
+                return;
+            }
 
-    public void editCurrentTask(int id, Task newTask){
-        currentTaskList.editTask(id, newTask);
+            id = defaultTaskList.findTask(title);
+            if(id != -1) {
+                editedTask = defaultTaskList.getTask(id);
+                editedTask.setTitle(newTitle);
+                editedTask.setDesc(desc);
+                editedTask.setQuality(quality);
+                editedTask.setTimeLimit(timeLimit);
+                editedTask.setType(type);
+                return;
+            }
+
+            id = customTaskList.findTask(title);
+            if(id != -1) {
+                editedTask = customTaskList.getTask(id);
+                editedTask.setTitle(newTitle);
+                editedTask.setDesc(desc);
+                editedTask.setQuality(quality);
+                editedTask.setTimeLimit(timeLimit);
+                editedTask.setType(type);
+                return;
+            }
+
+            if(id == -1){
+                throw new NonExistentTaskException("Nonexistent or Invalid Task Requested!");
+            }
+        }catch (NonExistentTaskException e) {
+            throw new NonExistentTaskException("Nonexistent or Invalid Task Requested!");
+        }
     }
 
-    public void editTask(String title, String newTitle, String desc, int quality, int timeLimit, int type){
-      int id;
-      Task editedTask;
-      if (currentTaskList.findTask(title) != -1){
-          id = currentTaskList.findTask(title);
-          editedTask = currentTaskList.getTask(id);
-          editedTask.setTitle(newTitle);
-          editedTask.setDesc(desc);
-          editedTask.setQuality(quality);
-          editedTask.setTimeLimit(timeLimit);
-          editedTask.setType(type);
-      }
-      else if(defaultTaskList.findTask(title) != -1){
-          id = defaultTaskList.findTask(title);
-          editedTask = defaultTaskList.getTask(id);
-          editedTask.setTitle(newTitle);
-          editedTask.setDesc(desc);
-          editedTask.setQuality(quality);
-          editedTask.setTimeLimit(timeLimit);
-          editedTask.setType(type);
-      }
-      else if(customTaskList.findTask(title) != -1){
-          id = customTaskList.findTask(title);
-          editedTask = customTaskList.getTask(id);
-          editedTask.setTitle(newTitle);
-          editedTask.setDesc(desc);
-          editedTask.setQuality(quality);
-          editedTask.setTimeLimit(timeLimit);
-          editedTask.setType(type);
-      }
-      else{
-          System.out.println("EDITNG TASK: task not found - no changes made.");
-      }
-
+    public void completeCurrentTask(int id) throws NonExistentTaskException{
+        try {
+            currentTaskList.getTask(id).complete();
+            completedTaskList.addTask(currentTaskList.getTask(id));
+            currentTaskList.removeTask(id);
+        }catch (NonExistentTaskException e){
+            throw new NonExistentTaskException("Nonexistent or Invalid Task Requested!");
+        }
     }
 
-    public void completeCurrentTask(int id){
-        currentTaskList.getTask(id).complete();
-        completedTaskList.addTask(currentTaskList.getTask(id));
-        currentTaskList.removeTask(id);
-    }
-
-    public void complete(String title){
+    public void complete(String title) throws NonExistentTaskException{
       int id = currentTaskList.findTask(title);
       completeCurrentTask(id);
     }
