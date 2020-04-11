@@ -1,9 +1,12 @@
+import java.util.Date;
 public class TaskManager {
 
     private TaskList defaultTaskList;
     private TaskList currentTaskList;
     private TaskList completedTaskList;
     private TaskList customTaskList;
+    private TaskList failedTaskList;
+    private Date startTime;
     //TODO tie in with User
 
   TaskManager(){
@@ -11,6 +14,7 @@ public class TaskManager {
         currentTaskList = new TaskList();
         completedTaskList = new TaskList();
         customTaskList = new TaskList();
+        failedTaskList = new TaskList();
 
         Task doDishes = new Task(0, "Do the Dishes", "Clean all your unwashed dishes.", 0, 0, 0, false);
         Task doLaundry = new Task(0, "Do your Laundry", "Clean your clothes.", 0, 0, 0, false);
@@ -21,6 +25,7 @@ public class TaskManager {
         defaultTaskList.addTask(doLaundry);
         defaultTaskList.addTask(cleanRoom);
         defaultTaskList.addTask(flossTeeth);
+        startTime = new Date();
     }
     public Task findCurrentTask(int id) throws NonExistentTaskException{
       try {
@@ -38,7 +43,6 @@ public class TaskManager {
         Task newTask = new Task(id, title, desc, quality, timeLimit, type, false);
         customTaskList.addTask(newTask);
     }
-
 
     public void selectTask(String title) throws NonExistentTaskException{
       try{
@@ -165,9 +169,15 @@ public class TaskManager {
     public String viewDefaultTasks(){
         return defaultTaskList.toString();
     }
-
     public TaskList getDefaultTasks(){
         return defaultTaskList;
+    }
+
+    public String viewFailedTasks(){
+        return failedTaskList.toString();
+    }
+    public TaskList getFailedTasks(){
+        return failedTaskList;
     }
 
     public void save(){
@@ -180,6 +190,33 @@ public class TaskManager {
 
     public void startGame(){
         //TODO (not sprint 1)
+    }
+
+    public String checkTimedTasks(Date currentTime){
+        String failedTasks="FAILED: ";  Task task;  Date time;
+
+        for (int i = 0; i < currentTaskList.getSize(); i++){
+            task = currentTaskList.getTaskAt(i);
+            if (task.isTimed()){
+                time = new Date(task.getStartTime().getTime() + task.getTimeLimit()*60000); //time to finish task by
+                if(currentTime.after(time)) {
+                    failedTasks= failedTasks.concat(task.getTitle());
+                    failedTasks = failedTasks.concat(", ");
+                    failedTaskList.addTask(task);
+                }
+            }
+        }
+        for (int i = 0; i < failedTaskList.getSize(); i++){
+            task = failedTaskList.getTaskAt(i);
+            currentTaskList.removeTask(task.getID());
+        }
+
+        if (failedTasks.equals("FAILED: ")) return "No tasks failed.";
+        else {
+            failedTasks = failedTasks.substring(0, failedTasks.length()-2); //removes ending ", "
+            return failedTasks;
+        }
+
     }
 
 }

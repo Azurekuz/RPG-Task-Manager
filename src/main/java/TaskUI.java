@@ -1,4 +1,6 @@
+import java.util.Date;
 import java.util.Scanner;
+
 public class TaskUI {
     public TaskManager taskManager;
 
@@ -6,15 +8,27 @@ public class TaskUI {
         taskManager = new TaskManager();
         String title, desc, newTitle;
         int quality, timeLimit, type;
+        Date currentTime;
 
         taskManager.load();
 
         Scanner input = new Scanner(System.in);
         System.out.println("***STARTING TASK INTERFACE***");
         String userStr = "";
+        String failedTasks;
+
         while (!(userStr.equals("quit"))){
             System.out.println("Enter your command or 'help' to see a list of commands.");
             userStr = input.nextLine();
+            currentTime = new Date();
+            failedTasks = taskManager.checkTimedTasks(currentTime);
+
+            if (!failedTasks.equals("No tasks failed.")){
+                System.out.println("*ATTENTION:* You have failed some of your selected tasks because you went over the time limit.");
+                System.out.println(failedTasks);
+                System.out.println("\n");
+            }
+
             switch (userStr) {
                 case "help":
                     System.out.println("***AVAILABLE COMMANDS***");
@@ -31,6 +45,7 @@ public class TaskUI {
                     System.out.println("'viewcust : View all the custom tasks you've made.");
                     System.out.println("'viewcomp : View all tasks you've completed.");
                     System.out.println("'viewcur' : View all tasks you have selected currently.");
+                    System.out.println("'viewfail : View all task you've failed.");
                     break;
 
                 case "rpg":
@@ -50,6 +65,10 @@ public class TaskUI {
                     break;
 
                 case "select":
+                    System.out.println("Available Custom Tasks:");
+                    System.out.println(taskManager.viewCustomTasks());
+                    System.out.println("Available Default Tasks:");
+                    System.out.println(taskManager.viewDefaultTasks());
                     System.out.println("Which task would you like to select & start?: ");
                     title = input.nextLine();
                     try {
@@ -76,7 +95,7 @@ public class TaskUI {
                     System.out.println("Enter task title:"); title = input.nextLine();
                     System.out.println("Enter task descriptipn:"); desc = input.nextLine();
                     System.out.println("Enter task quality (integer):"); quality = input.nextInt();
-                    System.out.println("Enter task time limit (0 for not timed):"); timeLimit = input.nextInt();
+                    System.out.println("Enter task time limit (in minutes, 0 for not timed):"); timeLimit = input.nextInt();
                     System.out.println("Enter task type (0 for default, 1 for main, 2 for daily, 3 for weekly:"); type = input.nextInt();
 
                     taskManager.addCustomTask(title, desc, quality, timeLimit, type);
@@ -90,7 +109,7 @@ public class TaskUI {
                     System.out.println("Enter new title:"); newTitle = input.nextLine();
                     System.out.println("Enter new descriptipn:"); desc = input.nextLine();
                     System.out.println("Enter new quality (integer):"); quality = input.nextInt();
-                    System.out.println("Enter new time limit (0 for not timed):"); timeLimit = input.nextInt();
+                    System.out.println("Enter new time limit (in  minutes, 0 for not timed):"); timeLimit = input.nextInt();
                     System.out.println("Enter new type (0 for default, 1 for main, 2 for daily, 3 for weekly:"); type = input.nextInt();
 
                     try {
@@ -120,13 +139,15 @@ public class TaskUI {
                     System.out.println("***Your currently active tasks:***");
                     System.out.println(taskManager.viewCurrentTasks());
                     break;
+                case "viewfail":
+                    System.out.println("***Your failed tasks:***");
+                    System.out.println(taskManager.viewFailedTasks());
 
                 default:
                     System.out.println("***Command not recognized.***");
                     break;
             }
 
-            //userStr = input.nextLine();
         }
 
         System.out.println("Saving and quitting...");
