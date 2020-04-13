@@ -12,7 +12,6 @@ public class TaskList{
     public void addTask(Task newTask){
         taskList.add(newTask);
     }
-
     public void addTask(String title, String desc, int quality, int timeLimit, int type){
         int id = this.getSize();
         Task newTask = new Task(id, title, desc, quality, timeLimit, type, false);
@@ -42,13 +41,28 @@ public class TaskList{
         }
         return -1;
     }
-
-    public Task getTask(int id) throws NonExistentTaskException{
-        if(id >= taskList.size() || id < 0){
+    public int findTask(int id){
+        for(int i = 0; i < taskList.size(); i++){
+            if(taskList.get(i).id == id){
+                return i; //returns index of task
+            }
+        }
+        return -1;
+    }
+    public Task getTask(String title) throws NonExistentTaskException{
+        int index = findTask(title);
+        if(index >= taskList.size() || index < 0){
             throw new NonExistentTaskException("Nonexistent or Invalid Task Requested!");
         }
-        return taskList.get(id);
+        return taskList.get(index);
+    }
 
+    public Task getTask(int id) throws NonExistentTaskException{
+        int index = findTask(id);
+        if(index >= taskList.size() || index < 0){
+            throw new NonExistentTaskException("Nonexistent or Invalid Task Requested!");
+        }
+        return taskList.get(index);
     }
 
     public Task getTaskAt(int index) { return taskList.get(index); }
