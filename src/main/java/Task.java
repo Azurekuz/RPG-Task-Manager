@@ -1,16 +1,11 @@
-import java.util.Date;
-
 public class Task {
 
     public int id;
     public String title, desc;
     public int quality, timeLimit, type;
     public boolean complete;
-    private Date startTime;
-    private int progress;
 
     public Task(){ //default constructor = blank object created
-        title = "";
         complete = false;
     }
 
@@ -23,14 +18,10 @@ public class Task {
         this.timeLimit=timeLimit;
         this.type=type;
         this.complete=complete;
-        if (type == 1) {
-            this.progress = 0;
-        }
-
     }
 
     public int calcExp(){
-        //TODO - "Determining EXP gain" zenhub card
+        //TODO - not in sprint 1, "Determining EXP gain" zenhub card
         return 0;
     }
     /** SETTERS **/
@@ -55,14 +46,6 @@ public class Task {
     }
     public void complete() { this.complete = true; }
 
-    public void startTime() { this.startTime = new Date(); }
-
-    public void addProgress(int progress) {
-
-        this.progress+=progress;
-        if (this.progress > 100) this.progress = 100;
-    }
-
     /** GETTERS **/
     public boolean isTimed(){ return timeLimit > 0; }
     public int getID() { return id; }
@@ -70,7 +53,6 @@ public class Task {
     public String getDesc() { return desc; }
     public int getQuality() { return quality; }
     public int getTimeLimit() { return timeLimit; }
-    public Date getStartTime() { return startTime; }
     public int getTypeInt() { return type; }
     public String getTypeStr() {
         switch(type){
@@ -81,17 +63,6 @@ public class Task {
             default: return null;
         }
     }
-    public int getProgress() { return progress; }
 
     public boolean isComplete() { return complete; }
-
-    public String toString(){ //TODO could make this a little more complicated if needed
-        String result = "";
-        if (!title.isEmpty()) {
-            result += "TASK\nid: " + id + "  title: " + title + "\ndesc: " + desc + "\nquality: " + quality + "  timelimit: " + timeLimit +
-                    "  type: " + type + "  complete: " + complete + "  progress: " + progress;
-            return result;
-        }
-        else{ return "Empty task object."; }
-    }
 }

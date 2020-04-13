@@ -14,11 +14,11 @@ public class TaskTest {
         assertEquals(0, testTask.getQuality());
 
         assertEquals(0, testTask.getTimeLimit());
-        assertFalse(testTask.isTimed());
+        assertEquals(false, testTask.isTimed());
 
         assertEquals(0, testTask.getTypeInt());
         assertEquals("default", testTask.getTypeStr());
-        assertFalse(testTask.isComplete());
+        assertEquals(false, testTask.isComplete());
 
         testTask.setID(1);
         assertEquals(1, testTask.getID());
@@ -36,10 +36,10 @@ public class TaskTest {
 
         testTask.setTimeLimit(1);
         assertEquals(1, testTask.getTimeLimit());
-        assertTrue(testTask.isTimed());
+        assertEquals(true, testTask.isTimed());
         testTask.setTimeLimit(3600);
         assertEquals(3600, testTask.getTimeLimit());
-        assertTrue(testTask.isTimed());
+        assertEquals(true, testTask.isTimed());
         assertThrows(IllegalArgumentException.class, () -> testTask.setTimeLimit(-1));
 
         testTask.setType(1);
@@ -53,7 +53,7 @@ public class TaskTest {
         assertThrows(IllegalArgumentException.class, () -> testTask.setType(4));
 
         testTask.complete();
-        assertTrue(testTask.isComplete());
+        assertEquals(true, testTask.isComplete());
 
         //default constructor - blank object created.
         Task testTask2 = new Task();
