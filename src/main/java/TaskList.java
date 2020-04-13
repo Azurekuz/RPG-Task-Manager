@@ -34,9 +34,9 @@ public class TaskList{
     }
 
     public int findTask(String title){
-        for(int i = 0; i < taskList.size(); i++){
-            if(taskList.get(i).title.equals(title)){
-                return i; //returns index of task
+        for(int task = 0; task < taskList.size(); task++){
+            if(taskList.get(task).title.toLowerCase().equals(title.toLowerCase())){
+                return task;
             }
         }
         return -1;
