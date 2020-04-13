@@ -85,6 +85,8 @@ public class TaskUI {
                             taskManager.incMainProgress(progress);
                         } catch(IllegalArgumentException e){
                             System.out.println("Please only enter a number from 1-100."); break;
+                        } catch (NonExistentTaskException e){
+                            System.out.println("[ERROR][ " + e.getMessage() + "]"); break;
                         }
                         System.out.println("Progress added!");
                     }
