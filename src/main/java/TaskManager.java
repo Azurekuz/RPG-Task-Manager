@@ -245,12 +245,12 @@ public class TaskManager {
         return "Main task stopped.";
     }
 
-    public void incMainProgress(int progress) throws IllegalArgumentException{
+    public void incMainProgress(int progress) throws IllegalArgumentException, NonExistentTaskException{
         if(progress <= 0 || progress > 100){
             throw new IllegalArgumentException("Invalid progress amount.");
         }
         else if (mainTask.getTitle().isEmpty()){
-            throw new IllegalArgumentException("No main task selected.");
+            throw new NonExistentTaskException("No main task selected.");
         }
         mainTask.addProgress(progress);
     }

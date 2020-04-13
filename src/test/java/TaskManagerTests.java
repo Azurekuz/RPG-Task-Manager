@@ -136,14 +136,14 @@ public class TaskManagerTests { //TODO test new tests added by Elias
     }
 
     @Test
-    public void mainTaskTests(){
+    public void mainTaskTests() throws NonExistentTaskException {
        TaskManager testManager = new TaskManager();
 
        //Trying to do things with main task while none is selected
        assertTrue(testManager.getMainTask().getTitle().isEmpty());
        assertEquals(testManager.stopMainTask(), "ERROR: No main task selected to stop.");
        assertEquals(testManager.completeMain(),"ERROR: No main task selected to complete.");
-       assertThrows(IllegalArgumentException.class, () -> testManager.incMainProgress(1)); //TODO convert to custom error
+       assertThrows(NonExistentTaskException.class, () -> testManager.incMainProgress(1));
 
        //Selecting a main task and trying to select a second one
        assertEquals(testManager.selectTask("Finish 1st Semester"),"Task started!");
