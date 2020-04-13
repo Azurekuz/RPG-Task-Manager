@@ -21,7 +21,12 @@ public class TaskUI {
             System.out.println("Enter your command or 'help' to see a list of commands.");
             userStr = input.nextLine();
             currentTime = new Date();
-            failedTasks = taskManager.checkTimedTasks(currentTime);
+            try {
+                failedTasks = taskManager.checkTimedTasks(currentTime);
+            } catch (NonExistentTaskException e) {
+                System.out.println("[ERROR][ " + e.getMessage() + "]");
+                failedTasks="Some tasks may have failed but were unsuccessfully handled. Please review your current and failed tasks.";
+            }
 
             if (!failedTasks.equals("No tasks failed.")){
                 System.out.println("*ATTENTION:* You have failed some of your selected tasks because you went over the time limit.");

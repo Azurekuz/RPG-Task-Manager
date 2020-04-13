@@ -102,7 +102,7 @@ public class TaskManagerTests { //TODO test new tests added by Elias
     }
 
     @Test
-    public void timeTests(){
+    public void timeTests() throws NonExistentTaskException {
         TaskManager testManager = new TaskManager();
         //Testing one timed task
         testManager.addCustomTask("Do Homework Before Class", "Due in an hour!", 10, 60, 0);

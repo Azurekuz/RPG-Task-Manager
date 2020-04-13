@@ -192,7 +192,7 @@ public class TaskManager {
         //TODO (not sprint 1)
     }
 
-    public String checkTimedTasks(Date currentTime){
+    public String checkTimedTasks(Date currentTime) throws NonExistentTaskException {
         String failedTasks="FAILED: ";  Task task;  Date time;
 
         for (int i = 0; i < currentTaskList.getSize(); i++){
