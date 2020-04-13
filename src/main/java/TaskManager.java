@@ -1,3 +1,5 @@
+import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Date;
 public class TaskManager {
 
@@ -197,8 +199,9 @@ public class TaskManager {
         //TODO
     }
 
-    public void load(){
-        //TODO
+    public void load() throws IOException {
+        ArrayList<Task> taskListFromFile = JsonUtil.listFromJsonFile("src/resources/defaultTaskList.json");
+
     }
 
     public void startGame(){
@@ -269,6 +272,4 @@ public class TaskManager {
         return "Main task completed!";
 
     }
-
-
 }

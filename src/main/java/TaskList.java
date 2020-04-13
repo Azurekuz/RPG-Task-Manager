@@ -8,6 +8,9 @@ public class TaskList{
         taskList = new ArrayList<Task>();
     }
 
+    TaskList(ArrayList<Task> taskListIn) {
+        taskList = taskListIn;
+    }
 
     public void addTask(Task newTask){
         taskList.add(newTask);

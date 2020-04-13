@@ -1,3 +1,4 @@
+import java.io.IOException;
 import java.util.Date;
 import java.util.Scanner;
 
@@ -10,7 +11,12 @@ public class TaskUI {
         int quality, timeLimit, type, progress;
         Date currentTime;
 
-        taskManager.load();
+        try {
+            taskManager.load();
+        } catch (IOException e) {
+            System.out.println("[ERROR-LOAD FAILED:][ " + e.getMessage() + "]");
+
+        }
 
         Scanner input = new Scanner(System.in);
         System.out.println("***STARTING TASK INTERFACE***");
