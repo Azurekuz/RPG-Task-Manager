@@ -23,7 +23,7 @@ public class TaskManager {
         mainTask = new Task();
         startTime = new Date();
     }
-    TaskManager(boolean genTasks){
+    TaskManager(boolean genTasks){ //FOR TESTING PURPOSES
         defaultTaskList = new TaskList();
         currentTaskList = new TaskList();
         completedTaskList = new TaskList();
@@ -219,6 +219,7 @@ public class TaskManager {
 
     public String checkTimedTasks(Date currentTime) throws NonExistentTaskException {
         String failedTasks="FAILED: ";  Task task;  Date time;
+        TaskList newFailedTasks = new TaskList();
 
         for (int i = 0; i < currentTaskList.getSize(); i++){
             task = currentTaskList.getTaskAt(i);
@@ -227,17 +228,17 @@ public class TaskManager {
                 if(currentTime.after(time)) {
                     failedTasks= failedTasks.concat(task.getTitle());
                     failedTasks = failedTasks.concat(", ");
-                    failedTaskList.addTask(task);
+                    newFailedTasks.addTask(task);
                 }
             }
         }
-        for (int i = 0; i < failedTaskList.getSize(); i++){
-            task = failedTaskList.getTaskAt(i);
-            currentTaskList.removeTask(task.getId());
-        }
-
         if (failedTasks.equals("FAILED: ")) return "No tasks failed.";
         else {
+            for (int i = 0; i < newFailedTasks.getSize(); i++){ //only go through failed tasks lists if there were failed tasks
+                task = newFailedTasks.getTaskAt(i);
+                currentTaskList.removeTask(task.getTitle());
+                failedTaskList.addTask(task);
+            }
             failedTasks = failedTasks.substring(0, failedTasks.length()-2); //removes ending ", "
             return failedTasks;
         }

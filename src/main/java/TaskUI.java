@@ -25,8 +25,6 @@ public class TaskUI {
         String failedTasks;
 
         while (!(userStr.equals("quit"))){
-            System.out.println("Enter your command or 'help' to see a list of commands.");
-            userStr = input.nextLine();
             currentTime = new Date();
             try {
                 failedTasks = taskManager.checkTimedTasks(currentTime);
@@ -34,12 +32,13 @@ public class TaskUI {
                 System.out.println("[ERROR][ " + e.getMessage() + "]");
                 failedTasks="Some tasks may have failed but were unsuccessfully handled. Please review your current and failed tasks.";
             }
-
             if (!failedTasks.equals("No tasks failed.")){
                 System.out.println("*ATTENTION:* You have failed some of your selected tasks because you went over the time limit.");
                 System.out.println(failedTasks);
                 System.out.println("\n");
             }
+            System.out.println("Enter your command or 'help' to see a list of commands.");
+            userStr = input.nextLine();
 
             switch (userStr) {
                 case "help":
@@ -196,6 +195,7 @@ public class TaskUI {
                 case "viewfail":
                     System.out.println("***Your failed tasks:***");
                     System.out.println(taskManager.viewFailedTasks());
+                    break;
                 case "viewmain":
                     System.out.println("***Your main task:***");
                     if (taskManager.getMainTask().toString().equals("Empty task object.")){
@@ -212,6 +212,7 @@ public class TaskUI {
                         System.out.println("[ERROR-SAVE FAILED:][ " + e.getMessage() + "]");
                     }
                     break;
+                case "quit": break; //avoids triggering default case
                 default:
                     System.out.println("***Command not recognized.***");
                     break;

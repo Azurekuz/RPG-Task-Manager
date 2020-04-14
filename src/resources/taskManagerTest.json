@@ -63,13 +63,33 @@
     } ]
   },
   "currentTaskList" : {
-    "taskList" : [ ]
+    "taskList" : [ {
+      "id" : 0,
+      "title" : "Do Homework Before Class",
+      "desc" : "Due in an hour!",
+      "quality" : 10,
+      "timeLimit" : 60,
+      "type" : 0,
+      "complete" : false,
+      "startTime" : 1586902211679,
+      "progress" : 0
+    } ]
   },
   "completedTaskList" : {
     "taskList" : [ ]
   },
   "customTaskList" : {
-    "taskList" : [ ]
+    "taskList" : [ {
+      "id" : 0,
+      "title" : "Do Homework Before Class",
+      "desc" : "Due in an hour!",
+      "quality" : 10,
+      "timeLimit" : 60,
+      "type" : 0,
+      "complete" : false,
+      "startTime" : 1586902211679,
+      "progress" : 0
+    } ]
   },
   "failedTaskList" : {
     "taskList" : [ ]

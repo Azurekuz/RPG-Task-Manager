@@ -25,10 +25,19 @@ public class TaskList{
 
 
     public void removeTask(int id) throws NonExistentTaskException{
-        if(id > taskList.size() || id < 0){
+        int index = findTask(id);
+        if(index > taskList.size() || index < 0){
             throw new NonExistentTaskException("Nonexistent or Invalid Task Requested!");
         }
-        taskList.remove(taskList.get(id));
+        taskList.remove(index);
+    }
+
+    public void removeTask(String title) throws NonExistentTaskException{
+        int index = findTask(title);
+        if(index >= taskList.size() || index < 0){
+            throw new NonExistentTaskException("Nonexistent or Invalid Task Requested!");
+        }
+        taskList.remove(index);
     }
 
     public void editTask(int id, Task updatedTask) throws NonExistentTaskException{
