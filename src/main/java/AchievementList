@@ -1,0 +1,19 @@
+public class AchievementList{
+    public ArrayList<Task> AchievementList;
+
+    AchievementListList(){
+        AchievementList = new ArrayList<Task>();
+    }
+
+    public void addAchievement(){}
+
+    public ArrayList<Task> getAchievementList() {
+        return AchievementList;
+    }
+
+    public void findAchievement(){}
+
+    public String toSting(AchievementList listToRead){
+
+    }
+}

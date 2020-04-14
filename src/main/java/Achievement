@@ -1,0 +1,62 @@
+public class Achievement{
+    public int id;
+    public String title;
+    public int quality;
+    public boolean complete;
+    private String description;
+
+    public Achievement(int id, String title,  int quality, boolean complete, String desc,){
+        this.id=id;
+        this.title=title;
+        this.desc=desc;
+        this.quality=quality;
+        this.timeLimit=timeLimit;
+        this.type=type;
+        this.complete=complete;
+    }
+
+    public boolean getComplete(){
+        return complete;
+    }
+
+    public String getTitle() {
+        return title;
+    }
+
+    public int getQuality() {
+        return quality;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setComplete(boolean complete) {
+        this.complete = complete;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
+    }
+
+    public void setQuality(int quality) {
+        this.quality = quality;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public boolean isComplete() {
+        return complete;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+}
