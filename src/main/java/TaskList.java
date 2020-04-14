@@ -9,15 +9,31 @@ public class TaskList{
     }
 
 
-    public void addTask(Task newTask){
-        taskList.add(newTask);
+    public void addTask(Task newTask) throws DuplicateTaskException{
+        try {
+            taskList.add(checkDuplicate(newTask));
+        }catch(DuplicateTaskException e){
+            throw new DuplicateTaskException(e.getMessage());
+        }
     }
-    public void addTask(String title, String desc, int quality, int timeLimit, int type){
-        int id = this.getSize();
-        Task newTask = new Task(id, title, desc, quality, timeLimit, type, false);
-        taskList.add(newTask);
+    public void addTask(String title, String desc, int quality, int timeLimit, int type) throws DuplicateTaskException{
+        try {
+            int id = this.getSize();
+            Task newTask = checkDuplicate(new Task(id, title, desc,quality, timeLimit, type, false));
+            taskList.add(newTask);
+        }catch(DuplicateTaskException e){
+            throw new DuplicateTaskException(e.getMessage());
+        }
     }
 
+    public Task checkDuplicate(Task newTask) throws DuplicateTaskException{
+        for(var taskID = 0; taskID < taskList.size(); taskID++){
+            if(taskList.get(taskID).title.toLowerCase().equals(newTask.title.toLowerCase())){
+                throw new DuplicateTaskException("You already have a task with this name!");
+            }
+        }
+        return newTask;
+    }
 
     public void removeTask(int id) throws NonExistentTaskException{
         if(id > taskList.size() || id < 0){

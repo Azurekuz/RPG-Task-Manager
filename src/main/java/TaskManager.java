@@ -22,8 +22,12 @@ public class TaskManager {
         mainTask = new Task();
         startTime = new Date();
 
-        generateDefaultTaskList();
-        generateDefaultDailyTaskList();
+        try {
+            generateDefaultTaskList();
+            generateDefaultDailyTaskList();
+        }catch(DuplicateTaskException e){
+            System.out.println("[WARNING][Default and/or Daily tasks have already been generated!]");
+        }
     }
 
     public Task findCurrentTask(int id) throws NonExistentTaskException{
@@ -34,7 +38,7 @@ public class TaskManager {
       }
     }
 
-    public void generateDefaultTaskList(){
+    public void generateDefaultTaskList() throws DuplicateTaskException{
         Task doDishes = new Task(0, "Do the Dishes", "Clean all your unwashed dishes.", 0, 0, 0, false);
         Task doLaundry = new Task(0, "Do your Laundry", "Clean your clothes.", 0, 0, 0, false);
         Task cleanRoom = new Task(0, "Clean your room", "Organize and dust off your room.", 0, 0, 0, false);
@@ -48,7 +52,7 @@ public class TaskManager {
         defaultTaskList.addTask(getJob);
     }
 
-    public void generateDefaultDailyTaskList(){
+    public void generateDefaultDailyTaskList() throws DuplicateTaskException{
         Task flossTeeth = new Task(0, "Floss your teeth", "Floss under your gums too.", 0, 0, 0, false);
         Task checkEmail = new Task(0, "Check your email", "Sift through work and spam mail.", 0, 0, 0, false);
         Task exercise = new Task(0, "Walk or Exercise", "Keep yourself in good shape.", 0, 0, 0, false);
@@ -58,14 +62,22 @@ public class TaskManager {
         dailyTaskList.addTask(exercise);
     }
 
-    public void addCurrentTask(Task newTask){
-        currentTaskList.addTask(newTask);
+    public void addCurrentTask(Task newTask) throws DuplicateTaskException{
+        try {
+            currentTaskList.addTask(newTask);
+        }catch(DuplicateTaskException e){
+            throw new DuplicateTaskException(e.getMessage());
+        }
     }
 
     public void addCustomTask(String title, String desc, int quality, int timeLimit, int type){
-        int id = customTaskList.getSize();
-        Task newTask = new Task(id, title, desc, quality, timeLimit, type, false);
-        customTaskList.addTask(newTask);
+        try {
+            int id = customTaskList.getSize();
+            Task newTask = new Task(id, title, desc, quality, timeLimit, type, false);
+            customTaskList.addTask(newTask);
+        }catch(DuplicateTaskException e){
+            System.out.println("[Error][" + e.getMessage() + "]");
+        }
     }
 
     public String selectTask(String title) throws NonExistentTaskException{
@@ -79,8 +91,12 @@ public class TaskManager {
                   return "ERROR: Can't have more than one main task selected.";
               }
               task.startTime();
-              if (task.getTypeInt() == 1) mainTask = task;
-              else currentTaskList.addTask(task);
+              try {
+                  if (task.getTypeInt() == 1) mainTask = task;
+                  else currentTaskList.addTask(task);
+              }catch(DuplicateTaskException e){
+                  System.out.println("[ERROR][You already have this main task selected!]");
+              }
           } else if (customTaskList.findTask(title) != -1) {
               // index = customTaskList.findTask(title);
               task = customTaskList.getTask(title);
@@ -88,8 +104,12 @@ public class TaskManager {
                   return "ERROR: Can't have more than one main task selected.";
               }
               task.startTime();
-              if (task.getTypeInt() == 1) mainTask = task;
-              else currentTaskList.addTask(task);
+              try {
+                  if (task.getTypeInt() == 1) mainTask = task;
+                  else currentTaskList.addTask(task);
+              }catch(DuplicateTaskException e){
+                  System.out.println("[ERROR][You already have this main task selected!]");
+              }
           } else {
               return "SELECTING TASK: task not found - not added to current tasks.";
           }
@@ -100,7 +120,7 @@ public class TaskManager {
     }
 
     public void selectTask(int id, int listType) throws NonExistentTaskException{
-      try{
+        try{
           Task task;
           if(listType == 0) {
               task = defaultTaskList.getTask(id);
@@ -111,9 +131,11 @@ public class TaskManager {
               currentTaskList.addTask(task);
               return;
           }
-      }catch(NonExistentTaskException e){
-          throw new NonExistentTaskException("Nonexistent or Invalid Task Requested!");
-      }
+        }catch(NonExistentTaskException e){
+            throw new NonExistentTaskException("Nonexistent or Invalid Task Requested!");
+        }catch(DuplicateTaskException e){
+            System.out.println("[Error][" + e.getMessage() + "]");
+        }
     }
 
     public void stopTask(String title) throws NonExistentTaskException{
@@ -233,6 +255,8 @@ public class TaskManager {
             currentTaskList.removeTask(id);
         }catch (NonExistentTaskException e){
             throw new NonExistentTaskException("Nonexistent or Invalid Task Requested!");
+        }catch(DuplicateTaskException e){
+            System.out.println("[Error][" + "Task already completed!" + "]");
         }
     }
 
@@ -302,7 +326,11 @@ public class TaskManager {
                 if(currentTime.after(time)) {
                     failedTasks= failedTasks.concat(task.getTitle());
                     failedTasks = failedTasks.concat(", ");
-                    failedTaskList.addTask(task);
+                    try {
+                        failedTaskList.addTask(task);
+                    }catch(DuplicateTaskException e){
+                        System.out.println("[Error][" + e.getMessage() + "]");
+                    }
                 }
             }
         }
@@ -351,7 +379,11 @@ public class TaskManager {
             return "ERROR: Main task not at 100% progress, can't complete.";
         }
         mainTask.complete();
-        completedTaskList.addTask(mainTask);
+        try {
+            completedTaskList.addTask(mainTask);
+        }catch (DuplicateTaskException e){
+            System.out.println("[NOTICE][You have completed this main task before!]");
+        }
         mainTask = new Task();
         return "Main task completed!";
 
