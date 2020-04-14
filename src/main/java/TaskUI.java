@@ -57,6 +57,7 @@ public class TaskUI {
                     System.out.println("'viewcust' : View all the custom tasks you've made.");
                     System.out.println("'viewcomp' : View all tasks you've completed.");
                     System.out.println("'viewcur'  : View all tasks you have selected currently.");
+                    System.out.println("'viewday'  : View all your current daily tasks.");
                     System.out.println("'viewfail' : View all task you've failed.");
                     System.out.println("'viewmain' : View your current main task and it's information.");
                     break;
@@ -219,6 +220,11 @@ public class TaskUI {
                 case "viewcust":
                     System.out.println("***Your custom tasks:***");
                     System.out.println(taskManager.viewCustomTasks());
+                    break;
+
+                case "viewday":
+                    System.out.println("***Your Daily tasks:***");
+                    System.out.println(taskManager.viewDailyTasks());
                     break;
 
                 case "viewcomp":

@@ -36,6 +36,7 @@ public class TaskManager {
             System.out.println("[WARNING][Default and/or Daily tasks have already been generated!]");
         }
         startTime = new java.util.Date(System.currentTimeMillis());
+        populateDailyTasks();
     }
 
     public Task findCurrentTask(int id) throws NonExistentTaskException{
@@ -48,10 +49,10 @@ public class TaskManager {
 
     public void generateDefaultTaskList() throws DuplicateTaskException{
         Task doDishes = new Task(0, "Do the Dishes", "Clean all your unwashed dishes.", 0, 0, 0, false);
-        Task doLaundry = new Task(0, "Do your Laundry", "Clean your clothes.", 0, 0, 0, false);
-        Task cleanRoom = new Task(0, "Clean your room", "Organize and dust off your room.", 0, 0, 0, false);
-        Task finishSemester = new Task(0, "Finish 1st Semester", "Ithaca College", 1000, 0, 1, false);
-        Task getJob = new Task(0, "Get a Job", "Money can be exchanged for goods & services", 500, 0, 1, false);
+        Task doLaundry = new Task(1, "Do your Laundry", "Clean your clothes.", 0, 0, 0, false);
+        Task cleanRoom = new Task(2, "Clean your room", "Organize and dust off your room.", 0, 0, 0, false);
+        Task finishSemester = new Task(3, "Finish 1st Semester", "Ithaca College", 1000, 0, 1, false);
+        Task getJob = new Task(4, "Get a Job", "Money can be exchanged for goods & services", 500, 0, 1, false);
 
         defaultTaskList.addTask(doDishes);
         defaultTaskList.addTask(doLaundry);
@@ -62,8 +63,8 @@ public class TaskManager {
 
     public void generateDefaultDailyTaskList() throws DuplicateTaskException{
         Task flossTeeth = new Task(0, "Floss your teeth", "Floss under your gums too.", 0, 0, 0, false);
-        Task checkEmail = new Task(0, "Check your email", "Sift through work and spam mail.", 0, 0, 0, false);
-        Task exercise = new Task(0, "Walk or Exercise", "Keep yourself in good shape.", 0, 0, 0, false);
+        Task checkEmail = new Task(1, "Check your email", "Sift through work and spam mail.", 0, 0, 0, false);
+        Task exercise = new Task(2, "Walk or Exercise", "Keep yourself in good shape.", 0, 0, 0, false);
 
         dailyTaskList.addTask(flossTeeth);
         dailyTaskList.addTask(checkEmail);
@@ -252,8 +253,16 @@ public class TaskManager {
         }
     }
 
-    public void grantDailyTasks(){
-
+    public void populateDailyTasks(){
+        for(int dailyID = 0; dailyID < dailyTaskList.getSize(); dailyID++){
+            try{
+                currentTaskList.addTask(dailyTaskList.getTask(dailyID));
+            }catch(NonExistentTaskException e){
+                System.out.println("[ERROR][Internal error. Daily task no longer found.]");
+            }catch(DuplicateTaskException e){
+                System.out.println("[NOTICE][Daily task was not completed. Skipped!]");
+            }
+        }
     }
 
     public void completeCurrentTask(int id) throws NonExistentTaskException{
@@ -293,6 +302,10 @@ public class TaskManager {
 
     public String viewCustomTasks(){
         return customTaskList.toString();
+    }
+
+    public String viewDailyTasks(){
+         return dailyTaskList.toString();
     }
     public TaskList getCustomTasks(){
         return customTaskList;
