@@ -1,3 +1,4 @@
+import java.time.LocalDateTime;
 import java.util.Date;
 public class TaskManager {
 
@@ -8,7 +9,7 @@ public class TaskManager {
     private TaskList customTaskList;
     private TaskList failedTaskList;
     private Task mainTask;
-    private Date lastTimeUsed;
+    private Date lastTimeUsed = null;
     private Date startTime;
     //TODO tie in with User
 
@@ -22,12 +23,19 @@ public class TaskManager {
         mainTask = new Task();
         startTime = new Date();
 
+        startUp();
+    }
+
+    public void startUp(){
         try {
-            generateDefaultTaskList();
-            generateDefaultDailyTaskList();
+            if(lastTimeUsed == null) {
+                generateDefaultTaskList();
+                generateDefaultDailyTaskList();
+            }
         }catch(DuplicateTaskException e){
             System.out.println("[WARNING][Default and/or Daily tasks have already been generated!]");
         }
+        startTime = new java.util.Date(System.currentTimeMillis());
     }
 
     public Task findCurrentTask(int id) throws NonExistentTaskException{
@@ -389,5 +397,8 @@ public class TaskManager {
 
     }
 
+    public Date getDate(){
+        return startTime;
+    }
 
 }

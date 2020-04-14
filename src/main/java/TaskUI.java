@@ -14,6 +14,7 @@ public class TaskUI {
 
         Scanner input = new Scanner(System.in);
         System.out.println("***STARTING TASK INTERFACE***");
+        System.out.println("[TIME]["+ taskManager.getDate() +"]");
         String userStr = "";
         String failedTasks;
         String numOnlyCheck = "0123456789";
