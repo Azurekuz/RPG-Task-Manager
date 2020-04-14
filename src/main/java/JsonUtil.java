@@ -31,7 +31,6 @@ public class JsonUtil {
 
     public static ArrayList<Task> listFromJsonFile(String filename) throws IOException {
         ObjectMapper mapper = new ObjectMapper();
-        mapper.configure(DeserializationFeature.ACCEPT_SINGLE_VALUE_AS_ARRAY, true);
         //found this fix here: https://stackoverflow.com/questions/11659844/jackson-deserialize-generic-class-variable
         return mapper.readValue(new File(filename), mapper.getTypeFactory().constructParametricType(ArrayList.class, Task.class));
     }

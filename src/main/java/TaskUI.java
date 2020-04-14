@@ -1,4 +1,5 @@
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.Scanner;
 
@@ -6,16 +7,16 @@ public class TaskUI {
     public TaskManager taskManager;
 
     public void commandHandler(){
-        taskManager = new TaskManager();
         String title, desc, newTitle, answer;
         int quality, timeLimit, type, progress;
         Date currentTime;
 
         try {
-            taskManager.load();
+            load();
         } catch (IOException e) {
             System.out.println("[ERROR-LOAD FAILED:][ " + e.getMessage() + "]");
-
+            System.out.println("Creating blank task manager...");
+            taskManager = new TaskManager();
         }
 
         Scanner input = new Scanner(System.in);
@@ -61,6 +62,7 @@ public class TaskUI {
                     System.out.println("'viewcur'  : View all tasks you have selected currently.");
                     System.out.println("'viewfail' : View all task you've failed.");
                     System.out.println("'viewmain' : View your current main task and it's information.");
+                    System.out.println("'save'     : Manually save everything.");
                     break;
 
                 case "rpg":
@@ -202,7 +204,14 @@ public class TaskUI {
                         System.out.println(taskManager.getMainTask().toString());
                     }
                     break;
-
+                case "save":
+                    System.out.println("***Saving***");
+                    try {
+                        save();
+                    } catch (IOException e) {
+                        System.out.println("[ERROR-SAVE FAILED:][ " + e.getMessage() + "]");
+                    }
+                    break;
                 default:
                     System.out.println("***Command not recognized.***");
                     break;
@@ -210,7 +219,11 @@ public class TaskUI {
         }
 
         System.out.println("Saving and quitting...");
-        taskManager.save();
+        try {
+            save();
+        } catch (IOException e) {
+            System.out.println("[ERROR-SAVE FAILED:][ " + e.getMessage() + "]");
+        }
     }
 
     public static void main(String[] args){
@@ -219,4 +232,12 @@ public class TaskUI {
         System.out.println("Welcome to RPG Task Manager!");
         taskUI.commandHandler();
     }
+    public void save() throws IOException {
+        JsonUtil.toJsonFile("src/resources/taskManager.json", taskManager);
+    }
+    public void load() throws IOException {
+        taskManager = JsonUtil.fromJsonFile("src/resources/taskManager.json", TaskManager.class);
+    }
 }
+
+

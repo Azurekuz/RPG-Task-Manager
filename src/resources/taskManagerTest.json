@@ -1,0 +1,88 @@
+{
+  "defaultTaskList" : {
+    "taskList" : [ {
+      "id" : 0,
+      "title" : "Do the Dishes",
+      "desc" : "Clean all your unwashed dishes.",
+      "quality" : 0,
+      "timeLimit" : 0,
+      "type" : 0,
+      "complete" : false,
+      "startTime" : null,
+      "progress" : 0
+    }, {
+      "id" : 0,
+      "title" : "Do your Laundry",
+      "desc" : "Clean your clothes.",
+      "quality" : 0,
+      "timeLimit" : 0,
+      "type" : 0,
+      "complete" : false,
+      "startTime" : null,
+      "progress" : 0
+    }, {
+      "id" : 0,
+      "title" : "Clean your room",
+      "desc" : "Organize and dust off your room.",
+      "quality" : 0,
+      "timeLimit" : 0,
+      "type" : 0,
+      "complete" : false,
+      "startTime" : null,
+      "progress" : 0
+    }, {
+      "id" : 0,
+      "title" : "Floss your teeth",
+      "desc" : "Floss under your gums too.",
+      "quality" : 0,
+      "timeLimit" : 0,
+      "type" : 0,
+      "complete" : false,
+      "startTime" : null,
+      "progress" : 0
+    }, {
+      "id" : 0,
+      "title" : "Finish 1st Semester",
+      "desc" : "Ithaca College",
+      "quality" : 1000,
+      "timeLimit" : 0,
+      "type" : 1,
+      "complete" : false,
+      "startTime" : null,
+      "progress" : 0
+    }, {
+      "id" : 0,
+      "title" : "Get a Job",
+      "desc" : "Money can be exchanged for goods & services",
+      "quality" : 500,
+      "timeLimit" : 0,
+      "type" : 1,
+      "complete" : false,
+      "startTime" : null,
+      "progress" : 0
+    } ]
+  },
+  "currentTaskList" : {
+    "taskList" : [ ]
+  },
+  "completedTaskList" : {
+    "taskList" : [ ]
+  },
+  "customTaskList" : {
+    "taskList" : [ ]
+  },
+  "failedTaskList" : {
+    "taskList" : [ ]
+  },
+  "mainTask" : {
+    "id" : 0,
+    "title" : "",
+    "desc" : null,
+    "quality" : 0,
+    "timeLimit" : 0,
+    "type" : 0,
+    "complete" : false,
+    "startTime" : null,
+    "progress" : 0
+  }
+}

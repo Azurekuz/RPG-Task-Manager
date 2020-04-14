@@ -8,20 +8,20 @@ public class TaskTest {
         //id, title, desc, quality, timeLimit, type, complete
         Task testTask = new Task(0, "title1","desc1",0, 0, 0, false);
 
-        assertEquals(0, testTask.getID());
+        assertEquals(0, testTask.getId());
         assertEquals("title1", testTask.getTitle());
         assertEquals("desc1", testTask.getDesc());
         assertEquals(0, testTask.getQuality());
 
         assertEquals(0, testTask.getTimeLimit());
-        assertFalse(testTask.isTimed());
+        assertFalse(testTask.checkIfTimed());
 
-        assertEquals(0, testTask.getTypeInt());
+        assertEquals(0, testTask.getType());
         assertEquals("default", testTask.getTypeStr());
         assertFalse(testTask.isComplete());
 
         testTask.setID(1);
-        assertEquals(1, testTask.getID());
+        assertEquals(1, testTask.getId());
         assertThrows(IllegalArgumentException.class, () -> testTask.setID(-1));
 
         testTask.setTitle("newtitle1");
@@ -36,14 +36,14 @@ public class TaskTest {
 
         testTask.setTimeLimit(1);
         assertEquals(1, testTask.getTimeLimit());
-        assertTrue(testTask.isTimed());
+        assertTrue(testTask.checkIfTimed());
         testTask.setTimeLimit(3600);
         assertEquals(3600, testTask.getTimeLimit());
-        assertTrue(testTask.isTimed());
+        assertTrue(testTask.checkIfTimed());
         assertThrows(IllegalArgumentException.class, () -> testTask.setTimeLimit(-1));
 
         testTask.setType(1);
-        assertEquals(1, testTask.getTypeInt());
+        assertEquals(1, testTask.getType());
         assertEquals("main", testTask.getTypeStr());
         testTask.setType(2);
         assertEquals("daily", testTask.getTypeStr());
@@ -57,13 +57,13 @@ public class TaskTest {
 
         //default constructor - blank object created.
         Task testTask2 = new Task();
-        assertEquals(0, testTask2.getID());
+        assertEquals(0, testTask2.getId());
         assertNull(testTask2.getTitle());
         assertNull(testTask2.getDesc());
         assertEquals(0, testTask2.getQuality());
         assertEquals(0, testTask2.getTimeLimit());
-        assertFalse(testTask2.isTimed());
-        assertEquals(0, testTask2.getTypeInt());
+        assertFalse(testTask2.checkIfTimed());
+        assertEquals(0, testTask2.getType());
         assertEquals("default",testTask2.getTypeStr());
         assertFalse(testTask2.isComplete());
 

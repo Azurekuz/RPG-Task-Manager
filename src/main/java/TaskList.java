@@ -1,3 +1,5 @@
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import java.awt.*;
 import java.util.ArrayList;
 
@@ -70,6 +72,7 @@ public class TaskList{
 
     public Task getTaskAt(int index) { return taskList.get(index); }
 
+    @JsonIgnore
     public int getSize(){return taskList.size();}
 
     public String toString(){

@@ -1,3 +1,5 @@
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Date;
@@ -19,6 +21,15 @@ public class TaskManager {
         customTaskList = new TaskList();
         failedTaskList = new TaskList();
         mainTask = new Task();
+        startTime = new Date();
+    }
+    TaskManager(boolean genTasks){
+        defaultTaskList = new TaskList();
+        currentTaskList = new TaskList();
+        completedTaskList = new TaskList();
+        customTaskList = new TaskList();
+        failedTaskList = new TaskList();
+        mainTask = new Task();
 
         Task doDishes = new Task(0, "Do the Dishes", "Clean all your unwashed dishes.", 0, 0, 0, false);
         Task doLaundry = new Task(0, "Do your Laundry", "Clean your clothes.", 0, 0, 0, false);
@@ -33,8 +44,10 @@ public class TaskManager {
         defaultTaskList.addTask(flossTeeth);
         defaultTaskList.addTask(finishSemester);
         defaultTaskList.addTask(getJob);
+
         startTime = new Date();
     }
+
     public Task findCurrentTask(int id) throws NonExistentTaskException{
       try {
           return currentTaskList.getTask(id);
@@ -59,20 +72,20 @@ public class TaskManager {
           if (defaultTaskList.findTask(title) != -1) {
               //index = defaultTaskList.findTask(title);
               task = defaultTaskList.getTask(title);
-              if (!(mainTask.getTitle().isEmpty()) && task.getTypeInt() == 1) {
+              if (!(mainTask.getTitle().isEmpty()) && task.getType() == 1) {
                   return "ERROR: Can't have more than one main task selected.";
               }
               task.startTime();
-              if (task.getTypeInt() == 1) mainTask = task;
+              if (task.getType() == 1) mainTask = task;
               else currentTaskList.addTask(task);
           } else if (customTaskList.findTask(title) != -1) {
               // index = customTaskList.findTask(title);
               task = customTaskList.getTask(title);
-              if (!(mainTask.getTitle().isEmpty()) && task.getTypeInt() == 1) {
+              if (!(mainTask.getTitle().isEmpty()) && task.getType() == 1) {
                   return "ERROR: Can't have more than one main task selected.";
               }
               task.startTime();
-              if (task.getTypeInt() == 1) mainTask = task;
+              if (task.getType() == 1) mainTask = task;
               else currentTaskList.addTask(task);
           } else {
               return "SELECTING TASK: task not found - not added to current tasks.";
@@ -163,45 +176,41 @@ public class TaskManager {
     public String viewCurrentTasks(){
         return currentTaskList.toString();
     }
-    public TaskList getCurrentTasks(){
+
+    public TaskList getCurrentTaskList(){
       return currentTaskList;
     }
 
     public String viewCompletedTasks(){
         return completedTaskList.toString();
     }
-    public TaskList getCompletedTasks(){
+
+    public TaskList getCompletedTaskList(){
         return completedTaskList;
     }
 
     public String viewCustomTasks(){
         return customTaskList.toString();
     }
-    public TaskList getCustomTasks(){
+
+    public TaskList getCustomTaskList(){
         return customTaskList;
     }
 
     public String viewDefaultTasks(){
         return defaultTaskList.toString();
     }
-    public TaskList getDefaultTasks(){
+
+    public TaskList getDefaultTaskList(){
         return defaultTaskList;
     }
 
     public String viewFailedTasks(){
         return failedTaskList.toString();
     }
-    public TaskList getFailedTasks(){
+
+    public TaskList getFailedTaskList(){
         return failedTaskList;
-    }
-
-    public void save(){
-        //TODO
-    }
-
-    public void load() throws IOException {
-        ArrayList<Task> taskListFromFile = JsonUtil.listFromJsonFile("src/resources/defaultTaskList.json");
-
     }
 
     public void startGame(){
@@ -213,7 +222,7 @@ public class TaskManager {
 
         for (int i = 0; i < currentTaskList.getSize(); i++){
             task = currentTaskList.getTaskAt(i);
-            if (task.isTimed()){
+            if (task.checkIfTimed()){
                 time = new Date(task.getStartTime().getTime() + task.getTimeLimit()*60000); //time to finish task by
                 if(currentTime.after(time)) {
                     failedTasks= failedTasks.concat(task.getTitle());
@@ -224,7 +233,7 @@ public class TaskManager {
         }
         for (int i = 0; i < failedTaskList.getSize(); i++){
             task = failedTaskList.getTaskAt(i);
-            currentTaskList.removeTask(task.getID());
+            currentTaskList.removeTask(task.getId());
         }
 
         if (failedTasks.equals("FAILED: ")) return "No tasks failed.";
