@@ -3,47 +3,65 @@ public class TaskManager {
 
     private TaskList defaultTaskList;
     private TaskList currentTaskList;
+    private TaskList dailyTaskList;
     private TaskList completedTaskList;
     private TaskList customTaskList;
     private TaskList failedTaskList;
     private Task mainTask;
+    private Date lastTimeUsed;
     private Date startTime;
     //TODO tie in with User
 
      TaskManager(){
         defaultTaskList = new TaskList();
         currentTaskList = new TaskList();
+        dailyTaskList = new TaskList();
         completedTaskList = new TaskList();
         customTaskList = new TaskList();
         failedTaskList = new TaskList();
         mainTask = new Task();
-
-        Task doDishes = new Task(0, "Do the Dishes", "Clean all your unwashed dishes.", 0, 0, 0, false);
-        Task doLaundry = new Task(0, "Do your Laundry", "Clean your clothes.", 0, 0, 0, false);
-        Task cleanRoom = new Task(0, "Clean your room", "Organize and dust off your room.", 0, 0, 0, false);
-        Task flossTeeth = new Task(0, "Floss your teeth", "Floss under your gums too.", 0, 0, 0, false);
-        Task finishSemester = new Task(0, "Finish 1st Semester", "Ithaca College", 1000, 0, 1, false);
-        Task getJob = new Task(0, "Get a Job", "Money can be exchanged for goods & services", 500, 0, 1, false);
-
-        defaultTaskList.addTask(doDishes);
-        defaultTaskList.addTask(doLaundry);
-        defaultTaskList.addTask(cleanRoom);
-        defaultTaskList.addTask(flossTeeth);
-        defaultTaskList.addTask(finishSemester);
-        defaultTaskList.addTask(getJob);
         startTime = new Date();
+
+        generateDefaultTaskList();
+        generateDefaultDailyTaskList();
     }
+
     public Task findCurrentTask(int id) throws NonExistentTaskException{
       try {
           return currentTaskList.getTask(id);
       } catch (NonExistentTaskException e){
           throw new NonExistentTaskException("Nonexistent or Invalid Task Requested!");
       }
-  }
+    }
+
+    public void generateDefaultTaskList(){
+        Task doDishes = new Task(0, "Do the Dishes", "Clean all your unwashed dishes.", 0, 0, 0, false);
+        Task doLaundry = new Task(0, "Do your Laundry", "Clean your clothes.", 0, 0, 0, false);
+        Task cleanRoom = new Task(0, "Clean your room", "Organize and dust off your room.", 0, 0, 0, false);
+        Task finishSemester = new Task(0, "Finish 1st Semester", "Ithaca College", 1000, 0, 1, false);
+        Task getJob = new Task(0, "Get a Job", "Money can be exchanged for goods & services", 500, 0, 1, false);
+
+        defaultTaskList.addTask(doDishes);
+        defaultTaskList.addTask(doLaundry);
+        defaultTaskList.addTask(cleanRoom);
+        defaultTaskList.addTask(finishSemester);
+        defaultTaskList.addTask(getJob);
+    }
+
+    public void generateDefaultDailyTaskList(){
+        Task flossTeeth = new Task(0, "Floss your teeth", "Floss under your gums too.", 0, 0, 0, false);
+        Task checkEmail = new Task(0, "Check your email", "Sift through work and spam mail.", 0, 0, 0, false);
+        Task exercise = new Task(0, "Walk or Exercise", "Keep yourself in good shape.", 0, 0, 0, false);
+
+        dailyTaskList.addTask(flossTeeth);
+        dailyTaskList.addTask(checkEmail);
+        dailyTaskList.addTask(exercise);
+    }
 
     public void addCurrentTask(Task newTask){
         currentTaskList.addTask(newTask);
     }
+
     public void addCustomTask(String title, String desc, int quality, int timeLimit, int type){
         int id = customTaskList.getSize();
         Task newTask = new Task(id, title, desc, quality, timeLimit, type, false);
@@ -202,6 +220,10 @@ public class TaskManager {
         }catch (NonExistentTaskException e) {
             throw new NonExistentTaskException("Nonexistent or Invalid Task Requested!");
         }
+    }
+
+    public void grantDailyTasks(){
+
     }
 
     public void completeCurrentTask(int id) throws NonExistentTaskException{
