@@ -49,26 +49,26 @@ public class TaskManager {
 
     public void generateDefaultTaskList() throws DuplicateTaskException{
         Task doDishes = new Task(0, "Do the Dishes", "Clean all your unwashed dishes.", 0, 0, 0, false);
-        Task doLaundry = new Task(1, "Do your Laundry", "Clean your clothes.", 0, 0, 0, false);
-        Task cleanRoom = new Task(2, "Clean your room", "Organize and dust off your room.", 0, 0, 0, false);
+        Task doLaundry = new Task(1, "Do your Laundry", "Clean your clothes.", 0, 0, 3, false);
+        Task cleanRoom = new Task(2, "Clean your room", "Organize and dust off your room.", 0, 3, 0, false);
         Task finishSemester = new Task(3, "Finish 1st Semester", "Ithaca College", 1000, 0, 1, false);
         Task getJob = new Task(4, "Get a Job", "Money can be exchanged for goods & services", 500, 0, 1, false);
+        Task flossTeeth = new Task(0, "Floss your teeth", "Floss under your gums too.", 0, 0, 2, false);
+        Task checkEmail = new Task(1, "Check your email", "Sift through work and spam mail.", 0, 0, 2, false);
+        Task exercise = new Task(2, "Walk or Exercise", "Keep yourself in good shape.", 0, 0, 2, false);
 
         defaultTaskList.addTask(doDishes);
         defaultTaskList.addTask(doLaundry);
         defaultTaskList.addTask(cleanRoom);
         defaultTaskList.addTask(finishSemester);
         defaultTaskList.addTask(getJob);
+        defaultTaskList.addTask(flossTeeth);
+        defaultTaskList.addTask(checkEmail);
+        defaultTaskList.addTask(exercise);
     }
 
     public void generateDefaultDailyTaskList() throws DuplicateTaskException{
-        Task flossTeeth = new Task(0, "Floss your teeth", "Floss under your gums too.", 0, 0, 0, false);
-        Task checkEmail = new Task(1, "Check your email", "Sift through work and spam mail.", 0, 0, 0, false);
-        Task exercise = new Task(2, "Walk or Exercise", "Keep yourself in good shape.", 0, 0, 0, false);
 
-        dailyTaskList.addTask(flossTeeth);
-        dailyTaskList.addTask(checkEmail);
-        dailyTaskList.addTask(exercise);
     }
 
     public void addCurrentTask(Task newTask) throws DuplicateTaskException{
@@ -102,7 +102,10 @@ public class TaskManager {
               task.startTime();
               try {
                   if (task.getTypeInt() == 1) mainTask = task;
-                  else currentTaskList.addTask(task);
+                  else if (task.getTypeInt() == 2){
+                      //task.setTimeLimit(startTime.getTime());
+                      dailyTaskList.addTask(task);
+                  }else currentTaskList.addTask(task);
               }catch(DuplicateTaskException e){
                   System.out.println("[ERROR][You already have this main task selected!]");
               }
@@ -198,6 +201,17 @@ public class TaskManager {
                 return;
             }
 
+            id = dailyTaskList.findTask(title);
+            if(id != -1) {
+                editedTask = dailyTaskList.getTask(id);
+                editedTask.setTitle(newTitle);
+                editedTask.setDesc(desc);
+                editedTask.setQuality(quality);
+                editedTask.setTimeLimit(timeLimit);
+                editedTask.setType(type);
+                return;
+            }
+
             id = customTaskList.findTask(title);
             if(id != -1) {
                 editedTask = customTaskList.getTask(id);
@@ -230,7 +244,7 @@ public class TaskManager {
                     editedTask.setType(type);
                     break;
                 case 1:
-                    editedTask = defaultTaskList.getTask(id);
+                    editedTask = dailyTaskList.getTask(id);
                     editedTask.setTitle(newTitle);
                     editedTask.setDesc(desc);
                     editedTask.setQuality(quality);
@@ -238,6 +252,14 @@ public class TaskManager {
                     editedTask.setType(type);
                     break;
                 case 2:
+                    editedTask = defaultTaskList.getTask(id);
+                    editedTask.setTitle(newTitle);
+                    editedTask.setDesc(desc);
+                    editedTask.setQuality(quality);
+                    editedTask.setTimeLimit(timeLimit);
+                    editedTask.setType(type);
+                    break;
+                case 3:
                     editedTask = customTaskList.getTask(id);
                     editedTask.setTitle(newTitle);
                     editedTask.setDesc(desc);

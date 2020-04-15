@@ -264,7 +264,7 @@ public class TaskUI {
             System.out.println("[1] Default");
             System.out.println("[2] Custom");
             int choice = input.nextInt();
-            while (choice != 1 && choice != 2) {
+            while (choice < 1 || choice > 2) {
                 System.out.println("[Error][ Invalid choice entered!]");
                 choice = input.nextInt();
             }
@@ -277,10 +277,11 @@ public class TaskUI {
     public int editListPrompt(Scanner input){
             System.out.println("Which tasklist are you editing from?");
             System.out.println("[1] Current");
-            System.out.println("[2] Default");
-            System.out.println("[3] Custom");
+            System.out.println("[2] Daily");
+            System.out.println("[3] Default");
+            System.out.println("[4] Custom");
             int choice = input.nextInt();
-            while (choice != 1 && choice != 2 && choice != 3) {
+            while (choice < 1 || choice > 4) {
                 System.out.println("[Error][ Invalid choice entered!]");
                 choice = input.nextInt();
             }
