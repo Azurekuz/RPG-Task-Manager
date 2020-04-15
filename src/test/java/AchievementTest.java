@@ -9,4 +9,49 @@ public class AchievementTest {
         Achievement TestAchievement6 = new Achievement(3, "Achievement1",3, true, "New Achievement6");
 
 
+    TestAchievement1.getID();
+    TestAchievement2.getID();
+    TestAchievement3.getID();
+    TestAchievement4.getID();
+    TestAchievement5.getID();
+    TestAchievement6.getID();
+
+    TestAchievement1.getTitle();
+    TestAchievement2.getTitle();
+    TestAchievement3.getTitle();
+    TestAchievement4.getTitle();
+    TestAchievement5.getTitle();
+    TestAchievement6.getTitle();
+
+
+    TestAchievement1.getDescription();
+    TestAchievement2.getDescription();
+    TestAchievement3.getDescription();
+    TestAchievement4.getDescription();
+    TestAchievement5.getDescription();
+    TestAchievement6.getDescription();
+
+    TestAchievement1.getQuality();
+    TestAchievement2.getQuality();
+    TestAchievement3.getQuality();
+    TestAchievement4.getQuality();
+    TestAchievement5.getQuality();
+    TestAchievement6.getQuality();
+
+     TestAchievement1.getComplete();
+    TestAchievement2.getComplete();
+    TestAchievement3.getComplete();
+    TestAchievement4.getComplete();
+    TestAchievement5.getComplete();
+    TestAchievement6.getComplete();
+
+
+
+
+
+
+
+
+
+}
 }
