@@ -8,10 +8,8 @@ public class Achievement{
     public Achievement(int id, String title,  int quality, boolean complete, String desc,){
         this.id=id;
         this.title=title;
-        this.desc=desc;
+        this.description=desc;
         this.quality=quality;
-        this.timeLimit=timeLimit;
-        this.type=type;
         this.complete=complete;
     }
 

@@ -1,19 +1,37 @@
+import java.awt.*;
+import java.util.ArrayList;
+
+
 public class AchievementList{
-    public ArrayList<Task> AchievementList;
+    ArrayList<Achievement> AchievementList = new ArrayList<Ahievement>(100);
 
-    AchievementListList(){
-        AchievementList = new ArrayList<Task>();
+    public void addAchievement(Achievement achievementToAdd){
+       this.AchievementList.add(achievementToAdd);
     }
-
-    public void addAchievement(){}
 
     public ArrayList<Task> getAchievementList() {
-        return AchievementList;
+        return this.AchievementList;
     }
 
-    public void findAchievement(){}
+    public void findAchievement(int achievementId){
+
+        for(int i = 0; i < this.AchievementList.size(); i++){
+            if(this.AchievementList.get(i).getId()==achievementId){
+                String y = this.AchievementList.get(i).getTitle()
+                int x=this.AchievementList.get(i).getId();
+                System.out.println("Title: " + y + "AchievementID: " + x);  //returns index of Achievement
+            }
+        }
+        return -1;
+
+    }
 
     public String toSting(AchievementList listToRead){
+        for(int i = 0; i < this.AchievementList.size(); i++){
+            system.out.println(this.AchievementList.get(i).getId()+" "+this.AchievementList.get(i).getTitle()+" "+this.AchievementList.get(i).getDescription()+" "+this.AchievementList.get(i).getQuality()+" "+this.AchievementList.get(i).getComplete());
 
+            }
+        }
+        return -1;
     }
 }
