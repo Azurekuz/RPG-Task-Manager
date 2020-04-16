@@ -1,6 +1,5 @@
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
-import java.awt.*;
 import java.util.ArrayList;
 
 public class TaskList{
@@ -17,9 +16,9 @@ public class TaskList{
     public void addTask(Task newTask){
         taskList.add(newTask);
     }
-    public void addTask(String title, String desc, int quality, int timeLimit, int type){
+    public void addTask(String title, String desc, int baseQuality, int timeLimit, int type){
         int id = this.getSize();
-        Task newTask = new Task(id, title, desc, quality, timeLimit, type, false);
+        Task newTask = new Task(id, title, desc, baseQuality, timeLimit, type, false);
         taskList.add(newTask);
     }
 
@@ -85,13 +84,13 @@ public class TaskList{
     public int getSize(){return taskList.size();}
 
     public String toString(){
-        String s = "{id: Title | Description | Quality | TimeLimit | Type | Complete\n";
+        String s = "{id: Title | Description | Base Quality | TimeLimit | Type | Complete | Completion Quality\n";
         Task task;
 
         for (int i = 0; i < taskList.size(); i++){
             s = s.concat(i +": ");
             task = taskList.get(i);
-            s = s.concat(task.getTitle() +" "+ task.getDesc() +" "+ task.getQuality() +" "+ task.getTimeLimit() +" "+ task.getTypeStr() +" "+ task.isComplete());
+            s = s.concat(task.getTitle() +" "+ task.getDesc() +" "+ task.getBaseQuality() +" "+ task.getTimeLimit() +" "+ task.getTypeStr() +" "+ task.isComplete()+" "+ task.getCompletionQuality());
             s = s.concat("\n");
 
         }

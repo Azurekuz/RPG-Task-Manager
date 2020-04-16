@@ -12,31 +12,21 @@ public class TaskListTest {
         Task testTasks4 = new Task(3, "title1", "desc4", 0, 0, 0, true);
         Task testTasks5 = new Task(4, "title1", "desc5", 0, 0, 0, true);
         TaskList testTaskList = new TaskList();
-        //id, title, desc, quality, timeLimit, type, complete
+        //id, title, desc, baseQuality, timeLimit, type, complete
         testTaskList.addTask(testTasks);
         testTaskList.addTask(testTasks2);
         testTaskList.addTask(testTasks3);
         testTaskList.addTask(testTasks4);
         testTaskList.addTask(testTasks5);
 
-        testTaskList.removeTask(0);
-        testTaskList.removeTask(0);
-        testTaskList.removeTask(0);
-        testTaskList.removeTask(0);
-        testTaskList.removeTask(0);
-        testTaskList.editTask(0, testTasks);
-
-
-        testTaskList.editTask(0, testTasks);
-        testTaskList.editTask(0, testTasks);
-        testTaskList.editTask(0, testTasks);
-        testTaskList.editTask(0, testTasks);
-        testTaskList.editTask(0, testTasks);
+//        testTaskList.removeTask("title1");
+//        assertThrows(NonExistentTaskException.class, ()-> testTaskList.editTask(4, testTasks));
+//        testTaskList.addTask(testTasks);
 
         assertEquals(0, testTasks.getId());
         assertEquals("title1", testTasks.getTitle());
         assertEquals("desc1", testTasks.getDesc());
-        assertEquals(0, testTasks.getQuality());
+        assertEquals(0, testTasks.getBaseQuality());
 
         assertEquals(0, testTasks.getTimeLimit());
         assertFalse(testTasks.checkIfTimed());
@@ -55,9 +45,9 @@ public class TaskListTest {
         testTasks.setDesc("newdesc1");
         assertEquals("newdesc1", testTasks.getDesc());
 
-        testTasks.setQuality(10);
-        assertEquals(10, testTasks.getQuality());
-        assertThrows(IllegalArgumentException.class, () -> testTasks.setQuality(-1));
+        testTasks.setBaseQuality(10);
+        assertEquals(10, testTasks.getBaseQuality());
+        assertThrows(IllegalArgumentException.class, () -> testTasks.setBaseQuality(-1));
 
         testTasks.setTimeLimit(1);
         assertEquals(1, testTasks.getTimeLimit());
@@ -83,9 +73,9 @@ public class TaskListTest {
         //default constructor - blank object created.
         Task testTask2 = new Task();
         assertEquals(0, testTask2.getId());
-        assertNull(testTask2.getTitle());
+        assertTrue(testTask2.getTitle().isEmpty());
         assertNull(testTask2.getDesc());
-        assertEquals(0, testTask2.getQuality());
+        assertEquals(0, testTask2.getBaseQuality());
         assertEquals(0, testTask2.getTimeLimit());
         assertFalse(testTask2.checkIfTimed());
         assertEquals(0, testTask2.getType());

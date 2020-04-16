@@ -9,6 +9,7 @@ public class TaskUI {
     public void commandHandler(){
         String title, desc, newTitle, answer;
         int quality, timeLimit, type, progress;
+        double completionQuality;
         Date currentTime;
 
         try {
@@ -75,6 +76,12 @@ public class TaskUI {
                 case "complete":
                     System.out.println("Which task would you like to complete?: ");
                     title = input.nextLine();
+                    System.out.println("How well did you do? (Enter a number from 0.1 to 1)");
+                    try {
+                        completionQuality =  Double.parseDouble(input.nextLine());
+                    } catch(IllegalArgumentException e){
+                        System.out.println("[ERROR][ " + e.getMessage() + "]"); break;
+                    }
                     try {
                         for(int curChar = 0; curChar < title.length(); curChar++){
                             if(numOnlyCheck.indexOf(title.charAt(curChar)) == -1){
@@ -83,9 +90,10 @@ public class TaskUI {
                             }
                         }
                         if(byID){
-                            taskManager.complete(Integer.parseInt(title));
+
+                            taskManager.complete(Integer.parseInt(title),completionQuality);
                         }else {
-                            taskManager.complete(title);
+                            taskManager.complete(title,completionQuality);
                         }
                         System.out.println("Task completed!");
                     }catch(NonExistentTaskException e){
@@ -181,7 +189,7 @@ public class TaskUI {
                     System.out.println("***Making a custom task.***");
                     System.out.println("Enter task title:"); title = input.nextLine();
                     System.out.println("Enter task descriptipn:"); desc = input.nextLine();
-                    System.out.println("Enter task quality (integer):"); quality = input.nextInt();
+                    System.out.println("Enter task base quality (integer):"); quality = input.nextInt();
                     System.out.println("Enter task time limit (in minutes, 0 for not timed):"); timeLimit = input.nextInt();
                     System.out.println("Enter task type (0 for default, 1 for main, 2 for daily, 3 for weekly:"); type = input.nextInt();
                     input.nextLine(); //prevents reading user's newline as an unrecognized cmd
@@ -201,7 +209,7 @@ public class TaskUI {
                     }
                     System.out.println("Enter new title:"); newTitle = input.nextLine();
                     System.out.println("Enter new descriptipn:"); desc = input.nextLine();
-                    System.out.println("Enter new quality (integer):"); quality = input.nextInt();
+                    System.out.println("Enter new baseQuality (integer):"); quality = input.nextInt();
                     System.out.println("Enter new time limit (in  minutes, 0 for not timed):"); timeLimit = input.nextInt();
                     System.out.println("Enter new type (0 for default, 1 for main, 2 for daily, 3 for weekly:"); type = input.nextInt();
                     input.nextLine(); //prevents reading user's newline as an unrecognized cmd

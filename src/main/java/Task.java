@@ -6,7 +6,8 @@ public class Task {
 
     public int id;
     public String title, desc;
-    public int quality, timeLimit, type;
+    public int baseQuality, timeLimit, type;
+    public double completionQuality;
     public boolean complete;
     private Date startTime;
     private int progress;
@@ -17,11 +18,11 @@ public class Task {
     }
 
 
-    public Task(int id, String title, String desc, int quality, int timeLimit, int type, boolean complete){
+    public Task(int id, String title, String desc, int baseQuality, int timeLimit, int type, boolean complete){
         this.id=id;
         this.title=title;
         this.desc=desc;
-        this.quality=quality;
+        this.baseQuality = baseQuality;
         this.timeLimit=timeLimit;
         this.type=type;
         this.complete=complete;
@@ -31,9 +32,10 @@ public class Task {
 
     }
 
-    public int calcExp(){
+    public double calcExp(){
+        double xp = baseQuality * completionQuality;
         //TODO - "Determining EXP gain" zenhub card
-        return 0;
+        return xp;
     }
     /** SETTERS **/
     public void setID(int id) {
@@ -43,9 +45,9 @@ public class Task {
     }
     public void setTitle(String title) { this.title = title; }
     public void setDesc(String desc) { this.desc = desc; }
-    public void setQuality(int quality) {
-        if (quality < 0) throw new IllegalArgumentException("Invalid quality"); //TODO max quality?
-        this.quality = quality;
+    public void setBaseQuality(int baseQuality) {
+        if (baseQuality < 0) throw new IllegalArgumentException("Invalid baseQuality"); //TODO max baseQuality?
+        this.baseQuality = baseQuality;
     }
     public void setTimeLimit(int timeLimit) {
         if (timeLimit < 0) throw new IllegalArgumentException("Invalid time"); //TODO max timeLimit?
@@ -56,7 +58,9 @@ public class Task {
         this.type = type;
     }
     public void complete() { this.complete = true; }
-
+    public void setCompletionQuality(double completionQuality) {
+        this.completionQuality = completionQuality;
+    }
     public void startTime() { this.startTime = new Date(); }
 
     public void addProgress(int progress) {
@@ -71,7 +75,7 @@ public class Task {
     public int getId() { return id; }
     public String getTitle() { return title; }
     public String getDesc() { return desc; }
-    public int getQuality() { return quality; }
+    public int getBaseQuality() { return baseQuality; }
     public int getTimeLimit() { return timeLimit; }
     public Date getStartTime() { return startTime; }
     public int getType() { return type; }
@@ -86,13 +90,13 @@ public class Task {
         }
     }
     public int getProgress() { return progress; }
-
+    public double getCompletionQuality() { return completionQuality; }
     public boolean isComplete() { return complete; }
 
     public String toString(){ //TODO could make this a little more complicated if needed
         String result = "";
         if (!title.isEmpty()) {
-            result += "TASK\nid: " + id + "  title: " + title + "\ndesc: " + desc + "\nquality: " + quality + "  timelimit: " + timeLimit +
+            result += "TASK\nid: " + id + "  title: " + title + "\ndesc: " + desc + "\nbaseQuality: " + baseQuality + "  timelimit: " + timeLimit +
                     "  type: " + type + "  complete: " + complete + "  progress: " + progress;
             return result;
         }

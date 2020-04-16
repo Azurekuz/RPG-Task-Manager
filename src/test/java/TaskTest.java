@@ -5,13 +5,13 @@ import static org.junit.jupiter.api.Assertions.*;
 public class TaskTest {
     @Test
     public void TaskTest(){
-        //id, title, desc, quality, timeLimit, type, complete
+        //id, title, desc, baseQuality, timeLimit, type, complete
         Task testTask = new Task(0, "title1","desc1",0, 0, 0, false);
 
         assertEquals(0, testTask.getId());
         assertEquals("title1", testTask.getTitle());
         assertEquals("desc1", testTask.getDesc());
-        assertEquals(0, testTask.getQuality());
+        assertEquals(0, testTask.getBaseQuality());
 
         assertEquals(0, testTask.getTimeLimit());
         assertFalse(testTask.checkIfTimed());
@@ -30,9 +30,9 @@ public class TaskTest {
         testTask.setDesc("newdesc1");
         assertEquals("newdesc1", testTask.getDesc());
 
-        testTask.setQuality(10);
-        assertEquals(10, testTask.getQuality());
-        assertThrows(IllegalArgumentException.class, () -> testTask.setQuality(-1));
+        testTask.setBaseQuality(10);
+        assertEquals(10, testTask.getBaseQuality());
+        assertThrows(IllegalArgumentException.class, () -> testTask.setBaseQuality(-1));
 
         testTask.setTimeLimit(1);
         assertEquals(1, testTask.getTimeLimit());
@@ -58,9 +58,9 @@ public class TaskTest {
         //default constructor - blank object created.
         Task testTask2 = new Task();
         assertEquals(0, testTask2.getId());
-        assertNull(testTask2.getTitle());
+        assertTrue(testTask2.getTitle().isEmpty());
         assertNull(testTask2.getDesc());
-        assertEquals(0, testTask2.getQuality());
+        assertEquals(0, testTask2.getBaseQuality());
         assertEquals(0, testTask2.getTimeLimit());
         assertFalse(testTask2.checkIfTimed());
         assertEquals(0, testTask2.getType());
