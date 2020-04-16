@@ -1,3 +1,5 @@
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import java.util.Date;
 
 public class Task {
@@ -64,14 +66,16 @@ public class Task {
     }
 
     /** GETTERS **/
-    public boolean isTimed(){ return timeLimit > 0; }
-    public int getID() { return id; }
+
+    public boolean checkIfTimed(){ return timeLimit > 0; }
+    public int getId() { return id; }
     public String getTitle() { return title; }
     public String getDesc() { return desc; }
     public int getQuality() { return quality; }
     public int getTimeLimit() { return timeLimit; }
     public Date getStartTime() { return startTime; }
-    public int getTypeInt() { return type; }
+    public int getType() { return type; }
+    @JsonIgnore
     public String getTypeStr() {
         switch(type){
             case 0: return "default";

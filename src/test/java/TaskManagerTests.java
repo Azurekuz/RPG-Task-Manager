@@ -39,7 +39,7 @@ public class TaskManagerTests { //TODO test new tests added by Elias
         Task testTask = new Task(0, "Test1", "A test task", 5, 20, 0, false);
         testManager.addCurrentTask(testTask);
         testManager.completeCurrentTask(0);
-        TaskList completedTasks = testManager.getCompletedTasks();
+        TaskList completedTasks = testManager.getCompletedTaskList();
         assertEquals("Test1",completedTasks.getTask(0).getTitle());
     }
 
@@ -54,7 +54,7 @@ public class TaskManagerTests { //TODO test new tests added by Elias
         testManager.addCurrentTask(testTask2);
         testManager.addCurrentTask(testTask3);
 
-        TaskList currentTasks = testManager.getCurrentTasks();
+        TaskList currentTasks = testManager.getCurrentTaskList();
         for(int taskID = 0; taskID < currentTasks.getSize();taskID++){
             assertEquals(currentTasks.getTask(taskID), testManager.findCurrentTask(taskID));
         }
@@ -90,7 +90,7 @@ public class TaskManagerTests { //TODO test new tests added by Elias
     @Test
     public void viewDefaultTasksTest(){
         TaskManager testManager = new TaskManager();
-        TaskList defaultTasks = testManager.getDefaultTasks();
+        TaskList defaultTasks = testManager.getDefaultTaskList();
 //        String expected = "{id: Title | Description | Quality | TimeLimit | Type | Complete\n" +
 //                "0: " + "Do the Dishes" +" "+ "Clean all your unwashed dishes." +" "+ 0 +" "+ 0 +" "+ "default" +" "+ false + "\n" +
 //                "1: " + "Do your Laundry" +" "+ "Clean your clothes." +" "+ 0 +" "+ 0 +" "+ "default" +" "+ false + "\n" +

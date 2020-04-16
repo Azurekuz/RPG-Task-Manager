@@ -1,3 +1,5 @@
+import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.Scanner;
 
@@ -5,12 +7,17 @@ public class TaskUI {
     public TaskManager taskManager;
 
     public void commandHandler(){
-        taskManager = new TaskManager();
         String title, desc, newTitle, answer;
         int quality, timeLimit, type, progress;
         Date currentTime;
 
-        taskManager.load();
+        try {
+            load();
+        } catch (IOException e) {
+            System.out.println("[ERROR-LOAD FAILED:][ " + e.getMessage() + "]");
+            System.out.println("Creating blank task manager...");
+            taskManager = new TaskManager();
+        }
 
         Scanner input = new Scanner(System.in);
         System.out.println("***STARTING TASK INTERFACE***");
@@ -21,8 +28,6 @@ public class TaskUI {
         
 
         while (!(userStr.equals("quit"))){
-            System.out.println("Enter your command or 'help' to see a list of commands.");
-            userStr = input.nextLine();
             currentTime = new Date();
             try {
                 failedTasks = taskManager.checkTimedTasks(currentTime);
@@ -30,12 +35,13 @@ public class TaskUI {
                 System.out.println("[ERROR][ " + e.getMessage() + "]");
                 failedTasks="Some tasks may have failed but were unsuccessfully handled. Please review your current and failed tasks.";
             }
-
             if (!failedTasks.equals("No tasks failed.")){
                 System.out.println("*ATTENTION:* You have failed some of your selected tasks because you went over the time limit.");
                 System.out.println(failedTasks);
                 System.out.println("\n");
             }
+            System.out.println("Enter your command or 'help' to see a list of commands.");
+            userStr = input.nextLine();
 
             switch (userStr.toLowerCase()) {
                 case "help":
@@ -58,6 +64,7 @@ public class TaskUI {
                     System.out.println("'viewcur'  : View all tasks you have selected currently.");
                     System.out.println("'viewfail' : View all task you've failed.");
                     System.out.println("'viewmain' : View your current main task and it's information.");
+                    System.out.println("'save'     : Manually save everything.");
                     break;
 
                 case "rpg":
@@ -98,6 +105,8 @@ public class TaskUI {
                             taskManager.incMainProgress(progress);
                         } catch(IllegalArgumentException e){
                             System.out.println("Please only enter a number from 1-100."); break;
+                        } catch (NonExistentTaskException e){
+                            System.out.println("[ERROR][ " + e.getMessage() + "]"); break;
                         }
                         System.out.println("Progress added!");
                     }
@@ -230,6 +239,7 @@ public class TaskUI {
                 case "viewfail":
                     System.out.println("***Your failed tasks:***");
                     System.out.println(taskManager.viewFailedTasks());
+                    break;
                 case "viewmain":
                     System.out.println("***Your main task:***");
                     if (taskManager.getMainTask().toString().equals("Empty task object.")){
@@ -238,7 +248,15 @@ public class TaskUI {
                         System.out.println(taskManager.getMainTask().toString());
                     }
                     break;
-
+                case "save":
+                    System.out.println("***Saving***");
+                    try {
+                        save();
+                    } catch (IOException e) {
+                        System.out.println("[ERROR-SAVE FAILED:][ " + e.getMessage() + "]");
+                    }
+                    break;
+                case "quit": break; //avoids triggering default case
                 default:
                     System.out.println("***Command not recognized.***");
                     break;
@@ -246,7 +264,11 @@ public class TaskUI {
         }
 
         System.out.println("Saving and quitting...");
-        taskManager.save();
+        try {
+            save();
+        } catch (IOException e) {
+            System.out.println("[ERROR-SAVE FAILED:][ " + e.getMessage() + "]");
+        }
     }
 
     public void selectListPrompt(int id, Scanner input) throws NonExistentTaskException{
@@ -284,4 +306,12 @@ public class TaskUI {
         System.out.println("Welcome to RPG Task Manager!");
         taskUI.commandHandler();
     }
+    public void save() throws IOException {
+        JsonUtil.toJsonFile("src/resources/taskManager.json", taskManager);
+    }
+    public void load() throws IOException {
+        taskManager = JsonUtil.fromJsonFile("src/resources/taskManager.json", TaskManager.class);
+    }
 }
+
+
