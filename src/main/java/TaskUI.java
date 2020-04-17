@@ -1,3 +1,5 @@
+import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.Scanner;
 
@@ -5,12 +7,18 @@ public class TaskUI {
     public TaskManager taskManager;
 
     public void commandHandler(){
-        taskManager = new TaskManager();
         String title, desc, newTitle, answer;
         int quality, timeLimit, type, progress;
+        double completionQuality;
         Date currentTime;
 
-        taskManager.load();
+        try {
+            load();
+        } catch (IOException e) {
+            System.out.println("[ERROR-LOAD FAILED:][ " + e.getMessage() + "]");
+            System.out.println("Creating blank task manager...");
+            taskManager = new TaskManager();
+        }
 
         Scanner input = new Scanner(System.in);
         System.out.println("***STARTING TASK INTERFACE***");
@@ -22,8 +30,6 @@ public class TaskUI {
         
 
         while (!(userStr.equals("quit"))){
-            System.out.println("Enter your command or 'help' to see a list of commands.");
-            userStr = input.nextLine();
             currentTime = new Date();
             try {
                 failedTasks = taskManager.checkTimedTasks(currentTime);
@@ -31,12 +37,13 @@ public class TaskUI {
                 System.out.println("[ERROR][ " + e.getMessage() + "]");
                 failedTasks="Some tasks may have failed but were unsuccessfully handled. Please review your current and failed tasks.";
             }
-
             if (!failedTasks.equals("No tasks failed.")){
                 System.out.println("*ATTENTION:* You have failed some of your selected tasks because you went over the time limit.");
                 System.out.println(failedTasks);
                 System.out.println("\n");
             }
+            System.out.println("Enter your command or 'help' to see a list of commands.");
+            userStr = input.nextLine();
 
             switch (userStr.toLowerCase()) {
                 case "help":
@@ -60,6 +67,7 @@ public class TaskUI {
                     System.out.println("'viewday'  : View all your current daily tasks.");
                     System.out.println("'viewfail' : View all task you've failed.");
                     System.out.println("'viewmain' : View your current main task and it's information.");
+                    System.out.println("'save'     : Manually save everything.");
                     break;
 
                 case "rpg":
@@ -70,6 +78,12 @@ public class TaskUI {
                 case "complete":
                     System.out.println("Which task would you like to complete?: ");
                     title = input.nextLine();
+                    System.out.println("How well did you do? (Enter a number from 0.1 to 1)");
+                    try {
+                        completionQuality =  Double.parseDouble(input.nextLine());
+                    } catch(IllegalArgumentException e){
+                        System.out.println("[ERROR][ " + e.getMessage() + "]"); break;
+                    }
                     try {
                         for(int curChar = 0; curChar < title.length(); curChar++){
                             if(numOnlyCheck.indexOf(title.charAt(curChar)) == -1){
@@ -78,9 +92,10 @@ public class TaskUI {
                             }
                         }
                         if(byID){
-                            taskManager.complete(Integer.parseInt(title));
+
+                            taskManager.complete(Integer.parseInt(title),completionQuality);
                         }else {
-                            taskManager.complete(title);
+                            taskManager.complete(title,completionQuality);
                         }
                         System.out.println("Task completed!");
                     }catch(NonExistentTaskException e){
@@ -100,8 +115,8 @@ public class TaskUI {
                             taskManager.incMainProgress(progress);
                         } catch(IllegalArgumentException e){
                             System.out.println("Please only enter a number from 1-100."); break;
-                        } catch(NonExistentTaskException e){
-                            System.out.println("[Errpr][" + e.getMessage() + "]");
+                        } catch (NonExistentTaskException e){
+                            System.out.println("[ERROR][ " + e.getMessage() + "]"); break;
                         }
                         System.out.println("Progress added!");
                     }
@@ -176,7 +191,7 @@ public class TaskUI {
                     System.out.println("***Making a custom task.***");
                     System.out.println("Enter task title:"); title = input.nextLine();
                     System.out.println("Enter task descriptipn:"); desc = input.nextLine();
-                    System.out.println("Enter task quality (integer):"); quality = input.nextInt();
+                    System.out.println("Enter task base quality (integer):"); quality = input.nextInt();
                     System.out.println("Enter task time limit (in minutes, 0 for not timed):"); timeLimit = input.nextInt();
                     System.out.println("Enter task type (0 for default, 1 for main, 2 for daily, 3 for weekly:"); type = input.nextInt();
                     input.nextLine(); //prevents reading user's newline as an unrecognized cmd
@@ -196,7 +211,7 @@ public class TaskUI {
                     }
                     System.out.println("Enter new title:"); newTitle = input.nextLine();
                     System.out.println("Enter new descriptipn:"); desc = input.nextLine();
-                    System.out.println("Enter new quality (integer):"); quality = input.nextInt();
+                    System.out.println("Enter new baseQuality (integer):"); quality = input.nextInt();
                     System.out.println("Enter new time limit (in  minutes, 0 for not timed):"); timeLimit = input.nextInt();
                     System.out.println("Enter new type (0 for default, 1 for main, 2 for daily, 3 for weekly:"); type = input.nextInt();
                     input.nextLine(); //prevents reading user's newline as an unrecognized cmd
@@ -239,6 +254,7 @@ public class TaskUI {
                 case "viewfail":
                     System.out.println("***Your failed tasks:***");
                     System.out.println(taskManager.viewFailedTasks());
+                    break;
                 case "viewmain":
                     System.out.println("***Your main task:***");
                     if (taskManager.getMainTask().toString().equals("Empty task object.")){
@@ -247,7 +263,15 @@ public class TaskUI {
                         System.out.println(taskManager.getMainTask().toString());
                     }
                     break;
-
+                case "save":
+                    System.out.println("***Saving***");
+                    try {
+                        save();
+                    } catch (IOException e) {
+                        System.out.println("[ERROR-SAVE FAILED:][ " + e.getMessage() + "]");
+                    }
+                    break;
+                case "quit": break; //avoids triggering default case
                 default:
                     System.out.println("***Command not recognized.***");
                     break;
@@ -255,7 +279,11 @@ public class TaskUI {
         }
 
         System.out.println("Saving and quitting...");
-        taskManager.save();
+        try {
+            save();
+        } catch (IOException e) {
+            System.out.println("[ERROR-SAVE FAILED:][ " + e.getMessage() + "]");
+        }
     }
 
     public void selectListPrompt(int id, Scanner input) throws NonExistentTaskException{
@@ -294,4 +322,12 @@ public class TaskUI {
         System.out.println("Welcome to RPG Task Manager!");
         taskUI.commandHandler();
     }
+    public void save() throws IOException {
+        JsonUtil.toJsonFile("src/resources/taskManager.json", taskManager);
+    }
+    public void load() throws IOException {
+        taskManager = JsonUtil.fromJsonFile("src/resources/taskManager.json", TaskManager.class);
+    }
 }
+
+

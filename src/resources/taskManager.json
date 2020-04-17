@@ -1,0 +1,128 @@
+{
+  "defaultTaskList" : {
+    "taskList" : [ {
+      "id" : 0,
+      "title" : "Do the Dishes",
+      "desc" : "Clean all your unwashed dishes.",
+      "baseQuality" : 10,
+      "timeLimit" : 0,
+      "type" : 0,
+      "completionQuality" : 0.0,
+      "complete" : false,
+      "startTime" : null,
+      "progress" : 0
+    }, {
+      "id" : 0,
+      "title" : "Do your Laundry",
+      "desc" : "Clean your clothes.",
+      "baseQuality" : 10,
+      "timeLimit" : 0,
+      "type" : 0,
+      "completionQuality" : 0.0,
+      "complete" : false,
+      "startTime" : null,
+      "progress" : 0
+    }, {
+      "id" : 0,
+      "title" : "Clean your room",
+      "desc" : "Organize and dust off your room.",
+      "baseQuality" : 20,
+      "timeLimit" : 0,
+      "type" : 0,
+      "completionQuality" : 0.0,
+      "complete" : false,
+      "startTime" : null,
+      "progress" : 0
+    }, {
+      "id" : 0,
+      "title" : "Floss your teeth",
+      "desc" : "Floss under your gums too.",
+      "baseQuality" : 5,
+      "timeLimit" : 0,
+      "type" : 0,
+      "completionQuality" : 0.0,
+      "complete" : false,
+      "startTime" : null,
+      "progress" : 0
+    }, {
+      "id" : 0,
+      "title" : "Finish 1st Semester",
+      "desc" : "Ithaca College",
+      "baseQuality" : 1000,
+      "timeLimit" : 0,
+      "type" : 1,
+      "completionQuality" : 0.0,
+      "complete" : false,
+      "startTime" : null,
+      "progress" : 0
+    }, {
+      "id" : 0,
+      "title" : "Get a Job",
+      "desc" : "Money can be exchanged for goods & services",
+      "baseQuality" : 500,
+      "timeLimit" : 0,
+      "type" : 1,
+      "completionQuality" : 0.0,
+      "complete" : false,
+      "startTime" : null,
+      "progress" : 0
+    } ]
+  },
+  "currentTaskList" : {
+    "taskList" : [ ]
+  },
+  "completedTaskList" : {
+    "taskList" : [ ]
+  },
+  "customTaskList" : {
+    "taskList" : [ {
+      "id" : 0,
+      "title" : "Feed Dog",
+      "desc" : "1 cup food w/ water",
+      "baseQuality" : 5,
+      "timeLimit" : 120,
+      "type" : 2,
+      "completionQuality" : 0.0,
+      "complete" : false,
+      "startTime" : null,
+      "progress" : 0
+    }, {
+      "id" : 1,
+      "title" : "Message Mom Back",
+      "desc" : "Hurry!",
+      "baseQuality" : 1,
+      "timeLimit" : 1,
+      "type" : 0,
+      "completionQuality" : 0.0,
+      "complete" : false,
+      "startTime" : 1586903660853,
+      "progress" : 0
+    } ]
+  },
+  "failedTaskList" : {
+    "taskList" : [ {
+      "id" : 1,
+      "title" : "Message Mom Back",
+      "desc" : "Hurry!",
+      "baseQuality" : 1,
+      "timeLimit" : 1,
+      "type" : 0,
+      "completionQuality" : 0.0,
+      "complete" : false,
+      "startTime" : 1586903660853,
+      "progress" : 0
+    } ]
+  },
+  "mainTask" : {
+    "id" : 0,
+    "title" : "",
+    "desc" : null,
+    "baseQuality" : 0,
+    "timeLimit" : 0,
+    "type" : 0,
+    "completionQuality" : 0.0,
+    "complete" : false,
+    "startTime" : null,
+    "progress" : 0
+  }
+}

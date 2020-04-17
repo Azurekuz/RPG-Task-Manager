@@ -1,4 +1,5 @@
-import java.awt.*;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import java.util.ArrayList;
 
 public class TaskList{
@@ -8,6 +9,9 @@ public class TaskList{
         taskList = new ArrayList<Task>();
     }
 
+    TaskList(ArrayList<Task> taskListIn) {
+        taskList = taskListIn;
+    }
 
     public void addTask(Task newTask) throws DuplicateTaskException{
         try {
@@ -16,6 +20,7 @@ public class TaskList{
             throw new DuplicateTaskException(e.getMessage());
         }
     }
+  
     public void addTask(String title, String desc, int quality, int timeLimit, int type) throws DuplicateTaskException{
         try {
             int id = this.getSize();
@@ -36,10 +41,19 @@ public class TaskList{
     }
 
     public void removeTask(int id) throws NonExistentTaskException{
-        if(id > taskList.size() || id < 0){
+        int index = findTask(id);
+        if(index > taskList.size() || index < 0){
             throw new NonExistentTaskException("Nonexistent or Invalid Task Requested!");
         }
-        taskList.remove(taskList.get(id));
+        taskList.remove(index);
+    }
+
+    public void removeTask(String title) throws NonExistentTaskException{
+        int index = findTask(title);
+        if(index >= taskList.size() || index < 0){
+            throw new NonExistentTaskException("Nonexistent or Invalid Task Requested!");
+        }
+        taskList.remove(index);
     }
 
     public void editTask(int id, Task updatedTask) throws NonExistentTaskException{
@@ -83,16 +97,17 @@ public class TaskList{
 
     public Task getTaskAt(int index) { return taskList.get(index); }
 
+    @JsonIgnore
     public int getSize(){return taskList.size();}
 
     public String toString(){
-        String s = "{id: Title | Description | Quality | TimeLimit | Type | Complete\n";
+        String s = "{id: Title | Description | Base Quality | TimeLimit | Type | Complete | Completion Quality\n";
         Task task;
 
         for (int i = 0; i < taskList.size(); i++){
             s = s.concat(i +": ");
             task = taskList.get(i);
-            s = s.concat(task.getTitle() +" "+ task.getDesc() +" "+ task.getQuality() +" "+ task.getTimeLimit() +" "+ task.getTypeStr() +" "+ task.isComplete());
+            s = s.concat(task.getTitle() +" "+ task.getDesc() +" "+ task.getBaseQuality() +" "+ task.getTimeLimit() +" "+ task.getTypeStr() +" "+ task.isComplete()+" "+ task.getCompletionQuality());
             s = s.concat("\n");
 
         }
