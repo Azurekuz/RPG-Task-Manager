@@ -1,7 +1,3 @@
-import com.fasterxml.jackson.annotation.JsonIgnore;
-
-import java.io.IOException;
-import java.util.ArrayList;
 import java.util.Date;
 public class TaskManager {
 
@@ -147,7 +143,7 @@ public class TaskManager {
                 editedTask = currentTaskList.getTask(id);
                 editedTask.setTitle(newTitle);
                 editedTask.setDesc(desc);
-                editedTask.setQuality(quality);
+                editedTask.setBaseQuality(quality);
                 editedTask.setTimeLimit(timeLimit);
                 editedTask.setType(type);
                 return;
@@ -158,7 +154,7 @@ public class TaskManager {
                 editedTask = defaultTaskList.getTask(id);
                 editedTask.setTitle(newTitle);
                 editedTask.setDesc(desc);
-                editedTask.setQuality(quality);
+                editedTask.setBaseQuality(quality);
                 editedTask.setTimeLimit(timeLimit);
                 editedTask.setType(type);
                 return;
@@ -169,7 +165,7 @@ public class TaskManager {
                 editedTask = customTaskList.getTask(id);
                 editedTask.setTitle(newTitle);
                 editedTask.setDesc(desc);
-                editedTask.setQuality(quality);
+                editedTask.setBaseQuality(quality);
                 editedTask.setTimeLimit(timeLimit);
                 editedTask.setType(type);
                 return;
@@ -191,7 +187,7 @@ public class TaskManager {
                     editedTask = currentTaskList.getTask(id);
                     editedTask.setTitle(newTitle);
                     editedTask.setDesc(desc);
-                    editedTask.setQuality(quality);
+                    editedTask.setBaseQuality(quality);
                     editedTask.setTimeLimit(timeLimit);
                     editedTask.setType(type);
                     break;
@@ -199,7 +195,7 @@ public class TaskManager {
                     editedTask = defaultTaskList.getTask(id);
                     editedTask.setTitle(newTitle);
                     editedTask.setDesc(desc);
-                    editedTask.setQuality(quality);
+                    editedTask.setBaseQuality(quality);
                     editedTask.setTimeLimit(timeLimit);
                     editedTask.setType(type);
                     break;
@@ -207,7 +203,7 @@ public class TaskManager {
                     editedTask = customTaskList.getTask(id);
                     editedTask.setTitle(newTitle);
                     editedTask.setDesc(desc);
-                    editedTask.setQuality(quality);
+                    editedTask.setBaseQuality(quality);
                     editedTask.setTimeLimit(timeLimit);
                     editedTask.setType(type);
                     break;
@@ -219,23 +215,31 @@ public class TaskManager {
         }
     }
 
-    public void completeCurrentTask(int id) throws NonExistentTaskException{
+    public void completeCurrentTask(int id, double completionQuality) throws NonExistentTaskException{
         try {
-            currentTaskList.getTask(id).complete();
-            completedTaskList.addTask(currentTaskList.getTask(id));
+            Task completedTask = currentTaskList.getTask(id);
+             completedTask.complete();
+             completedTask.setCompletionQuality(completionQuality);
+            completedTaskList.addTask(completedTask);
             currentTaskList.removeTask(id);
         }catch (NonExistentTaskException e){
             throw new NonExistentTaskException("Nonexistent or Invalid Task Requested!");
         }
     }
 
-    public void complete(String title) throws NonExistentTaskException{
+    public void complete(String title, double completionQuality) throws NonExistentTaskException, IllegalArgumentException{
+      if(completionQuality < 0.1 || completionQuality > 1 ){
+          throw new IllegalArgumentException("Invalid completion quality (needs between 0.1 and 1)");
+      }
       int id = currentTaskList.findTask(title);
-      completeCurrentTask(id);
+      completeCurrentTask(id, completionQuality);
     }
 
-    public void complete(int id) throws NonExistentTaskException{
-        completeCurrentTask(id);
+    public void complete(int id, double completionQuality) throws NonExistentTaskException, IllegalArgumentException{
+        if(completionQuality < 0.1 || completionQuality > 1 ){
+            throw new IllegalArgumentException("Invalid completion quality (needs between 0.1 and 1)");
+        }
+        completeCurrentTask(id, completionQuality);
     }
 
     public String viewCurrentTasks(){

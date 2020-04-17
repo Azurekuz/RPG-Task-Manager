@@ -38,9 +38,13 @@ public class TaskManagerTests { //TODO test new tests added by Elias
         TaskManager testManager = new TaskManager();
         Task testTask = new Task(0, "Test1", "A test task", 5, 20, 0, false);
         testManager.addCurrentTask(testTask);
-        testManager.completeCurrentTask(0);
+        testManager.completeCurrentTask(0,1);
         TaskList completedTasks = testManager.getCompletedTaskList();
         assertEquals("Test1",completedTasks.getTask(0).getTitle());
+        assertEquals(1,completedTasks.getTask(0).getCompletionQuality());
+        assertEquals(5.0,completedTasks.getTask(0).calcExp());
+
+
     }
 
     @Test
@@ -58,8 +62,8 @@ public class TaskManagerTests { //TODO test new tests added by Elias
         for(int taskID = 0; taskID < currentTasks.getSize();taskID++){
             assertEquals(currentTasks.getTask(taskID), testManager.findCurrentTask(taskID));
         }
-        assertThrows(NonExistentTaskException.class, ()-> {currentTasks.getTask(currentTasks.getSize());});
-        assertThrows(NonExistentTaskException.class, ()-> {currentTasks.getTask(-1);});
+        assertThrows(NonExistentTaskException.class, ()-> currentTasks.getTask(currentTasks.getSize()));
+        assertThrows(NonExistentTaskException.class, ()-> currentTasks.getTask(-1));
     }
 
     @Test
@@ -137,7 +141,7 @@ public class TaskManagerTests { //TODO test new tests added by Elias
 
     @Test
     public void mainTaskTests() throws NonExistentTaskException {
-       TaskManager testManager = new TaskManager();
+       TaskManager testManager = new TaskManager(true);
 
        //Trying to do things with main task while none is selected
        assertTrue(testManager.getMainTask().getTitle().isEmpty());
