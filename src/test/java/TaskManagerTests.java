@@ -4,7 +4,7 @@ import java.util.Date;
 
 public class TaskManagerTests { //TODO test new tests added by Elias
     @Test
-    public void findTaskTest() throws NonExistentTaskException{
+    public void findTaskTest() throws NonExistentTaskException, DuplicateTaskException{
         TaskManager testManager = new TaskManager();
         Task testTask = new Task(0, "Test1", "A test task", 5, 20, 0, false);
         testManager.addCurrentTask(testTask);
@@ -13,17 +13,18 @@ public class TaskManagerTests { //TODO test new tests added by Elias
     }
 
     @Test
-    public void addTaskTest() throws NonExistentTaskException{
+    public void addTaskTest() throws NonExistentTaskException, DuplicateTaskException{
         TaskManager testManager = new TaskManager();
         Task testTask = new Task(0, "Test1", "A test task", 5, 20, 0, false);
         testManager.addCurrentTask(testTask);
 
         assertEquals("Test1", testManager.findCurrentTask(0).getTitle());
+        assertThrows(DuplicateTaskException.class, ()->testManager.addCurrentTask(testTask));
 
     }
 
     @Test
-    public void editTaskTest() throws NonExistentTaskException{
+    public void editTaskTest() throws NonExistentTaskException, DuplicateTaskException{
         TaskManager testManager = new TaskManager();
         Task testTask = new Task(0, "Test1", "A test task", 5, 20, 0, false);
         testManager.addCurrentTask(testTask);
@@ -34,7 +35,7 @@ public class TaskManagerTests { //TODO test new tests added by Elias
     }
 
     @Test
-    public void completeTaskTest() throws NonExistentTaskException{
+    public void completeTaskTest() throws NonExistentTaskException, DuplicateTaskException{
         TaskManager testManager = new TaskManager();
         Task testTask = new Task(0, "Test1", "A test task", 5, 20, 0, false);
         testManager.addCurrentTask(testTask);
@@ -48,7 +49,7 @@ public class TaskManagerTests { //TODO test new tests added by Elias
     }
 
     @Test
-    public void getCurrentTasksTest() throws NonExistentTaskException{
+    public void getCurrentTasksTest() throws NonExistentTaskException, DuplicateTaskException{
         TaskManager testManager = new TaskManager();
         Task testTask1 = new Task(0, "Test1", "A test task", 5, 20, 0, false);
         Task testTask2 = new Task(1, "Test2", "Another test task", 4, 25, 0, false);

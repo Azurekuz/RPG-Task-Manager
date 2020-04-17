@@ -22,6 +22,7 @@ public class TaskUI {
 
         Scanner input = new Scanner(System.in);
         System.out.println("***STARTING TASK INTERFACE***");
+        System.out.println("[TIME]["+ taskManager.getDate() +"]");
         String userStr = "";
         String failedTasks;
         String numOnlyCheck = "0123456789";
@@ -63,6 +64,7 @@ public class TaskUI {
                     System.out.println("'viewcust' : View all the custom tasks you've made.");
                     System.out.println("'viewcomp' : View all tasks you've completed.");
                     System.out.println("'viewcur'  : View all tasks you have selected currently.");
+                    System.out.println("'viewday'  : View all your current daily tasks.");
                     System.out.println("'viewfail' : View all task you've failed.");
                     System.out.println("'viewmain' : View your current main task and it's information.");
                     System.out.println("'save'     : Manually save everything.");
@@ -235,6 +237,11 @@ public class TaskUI {
                     System.out.println(taskManager.viewCustomTasks());
                     break;
 
+                case "viewday":
+                    System.out.println("***Your Daily tasks:***");
+                    System.out.println(taskManager.viewDailyTasks());
+                    break;
+
                 case "viewcomp":
                     System.out.println("***Your completed tasks:***");
                     System.out.println(taskManager.viewCompletedTasks());
@@ -285,7 +292,7 @@ public class TaskUI {
             System.out.println("[1] Default");
             System.out.println("[2] Custom");
             int choice = input.nextInt();
-            while (choice != 1 && choice != 2) {
+            while (choice < 1 || choice > 2) {
                 System.out.println("[Error][ Invalid choice entered!]");
                 choice = input.nextInt();
             }
@@ -298,10 +305,11 @@ public class TaskUI {
     public int editListPrompt(Scanner input){
             System.out.println("Which tasklist are you editing from?");
             System.out.println("[1] Current");
-            System.out.println("[2] Default");
-            System.out.println("[3] Custom");
+            System.out.println("[2] Daily");
+            System.out.println("[3] Default");
+            System.out.println("[4] Custom");
             int choice = input.nextInt();
-            while (choice != 1 && choice != 2 && choice != 3) {
+            while (choice < 1 || choice > 4) {
                 System.out.println("[Error][ Invalid choice entered!]");
                 choice = input.nextInt();
             }

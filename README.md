@@ -19,3 +19,4 @@ Sprint goal: Basic working UI with initial Task functionality
 ### Sprint 2:
 Sprint goal: Clean up and finalize Task Manager system(s).
 - Class Diagram: [Link](https://drive.google.com/file/d/1n96HxVm0xI9YWkNWJKUwhDT8Fjcp8JKs/view?usp=sharing)
+- Achievement Seq. Diagram: [Link](https://drive.google.com/file/d/12PZ6L62dgg5ND5zN7zHjtVfawC0Psgjt/view?usp=sharing)
