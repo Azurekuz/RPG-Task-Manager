@@ -1,4 +1,7 @@
+import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.time.temporal.ChronoUnit;
+import java.util.Calendar;
 import java.util.Date;
 public class TaskManager {
 
@@ -9,8 +12,8 @@ public class TaskManager {
     private TaskList customTaskList;
     private TaskList failedTaskList;
     private Task mainTask;
-    private Date lastTimeUsed = null;
-    private Date startTime;
+    private LocalDateTime lastTimeUsed = null;
+    private LocalDateTime startTime;
     //TODO tie in with User
 
      TaskManager(){
@@ -21,7 +24,7 @@ public class TaskManager {
         customTaskList = new TaskList();
         failedTaskList = new TaskList();
         mainTask = new Task();
-        startTime = new Date();
+        startTime = LocalDateTime.now();
 
         startUp();
     }
@@ -35,8 +38,9 @@ public class TaskManager {
         }catch(DuplicateTaskException e){
             System.out.println("[WARNING][Default and/or Daily tasks have already been generated!]");
         }
-        startTime = new java.util.Date(System.currentTimeMillis());
-        populateDailyTasks();
+        if(lastTimeUsed != null && ChronoUnit.HOURS.between(lastTimeUsed, startTime) > 24) {
+            populateDailyTasks();
+        }
     }
 
     public Task findCurrentTask(int id) throws NonExistentTaskException{
@@ -53,9 +57,9 @@ public class TaskManager {
         Task cleanRoom = new Task(2, "Clean your room", "Organize and dust off your room.", 0, 3, 0, false);
         Task finishSemester = new Task(3, "Finish 1st Semester", "Ithaca College", 1000, 0, 1, false);
         Task getJob = new Task(4, "Get a Job", "Money can be exchanged for goods & services", 500, 0, 1, false);
-        Task flossTeeth = new Task(0, "Floss your teeth", "Floss under your gums too.", 0, 0, 2, false);
-        Task checkEmail = new Task(1, "Check your email", "Sift through work and spam mail.", 0, 0, 2, false);
-        Task exercise = new Task(2, "Walk or Exercise", "Keep yourself in good shape.", 0, 0, 2, false);
+        Task flossTeeth = new Task(5, "Floss your teeth", "Floss under your gums too.", 0, 0, 2, false);
+        Task checkEmail = new Task(6, "Check your email", "Sift through work and spam mail.", 0, 0, 2, false);
+        Task exercise = new Task(7, "Walk or Exercise", "Keep yourself in good shape.", 0, 0, 2, false);
 
         defaultTaskList.addTask(doDishes);
         defaultTaskList.addTask(doLaundry);
@@ -103,7 +107,11 @@ public class TaskManager {
               try {
                   if (task.getTypeInt() == 1) mainTask = task;
                   else if (task.getTypeInt() == 2){
-                      //task.setTimeLimit(startTime.getTime());
+                      LocalDateTime nextDay = LocalDateTime.now().minusDays(-1);
+                      System.out.println("BEFORE: "+nextDay);
+                      nextDay = nextDay.minusHours(nextDay.getHour());nextDay = nextDay.minusMinutes(nextDay.getMinute());nextDay = nextDay.minusSeconds(nextDay.getSecond());
+                      System.out.println("AFTER: "+nextDay.getHour());
+                      task.setTimeLimit((int) ChronoUnit.HOURS.between(startTime, nextDay));
                       dailyTaskList.addTask(task);
                   }else currentTaskList.addTask(task);
               }catch(DuplicateTaskException e){
@@ -136,17 +144,32 @@ public class TaskManager {
           Task task;
           if(listType == 0) {
               task = defaultTaskList.getTask(id);
-              currentTaskList.addTask(task);
+              checkIfDaily(task);
               return;
           }else if(listType == 1) {
               task = customTaskList.getTask(id);
-              currentTaskList.addTask(task);
+              checkIfDaily(task);
               return;
           }
         }catch(NonExistentTaskException e){
             throw new NonExistentTaskException("Nonexistent or Invalid Task Requested!");
         }catch(DuplicateTaskException e){
             System.out.println("[Error][" + e.getMessage() + "]");
+        }
+    }
+
+    public void checkIfDaily(Task task) throws DuplicateTaskException{
+        //System.out.println(startTime);
+        //System.out.println((new Date(startTime.getYear(), startTime.getMonth(), startTime.getDay()+1, 0,0)));
+        if(task.getTypeInt() == 2) {
+            LocalDateTime nextDay = LocalDateTime.now().minusDays(-1);
+            System.out.println("BEFORE: "+nextDay);
+            nextDay = nextDay.minusHours(nextDay.getHour());nextDay = nextDay.minusMinutes(nextDay.getMinute());nextDay = nextDay.minusSeconds(nextDay.getSecond());
+            System.out.println("AFTER: "+nextDay.getHour());
+            task.setTimeLimit((int) ChronoUnit.HOURS.between(startTime, nextDay));
+            dailyTaskList.addTask(task);
+        }else{
+            currentTaskList.addTask(task);
         }
     }
 
@@ -432,7 +455,7 @@ public class TaskManager {
 
     }
 
-    public Date getDate(){
+    public LocalDateTime getDate(){
         return startTime;
     }
 
