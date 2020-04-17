@@ -5,12 +5,12 @@ public class Achievement{
     public boolean complete;
     private String description;
 
-    public Achievement(int id, String title,  int quality, boolean complete, String desc,){
+    public Achievement(int id, String title,  int quality,String desc,){
         this.id=id;
         this.title=title;
         this.description=desc;
         this.quality=quality;
-        this.complete=complete;
+        this.complete=true;
     }
 
     public boolean getComplete(){

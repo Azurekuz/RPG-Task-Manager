@@ -7,11 +7,11 @@ public class TaskListTest {
     public void TaskListTest(){
         //int id, String title,  int quality, boolean complete, String desc,
         //T\
-        Achievement testAchievement1 = new Task(0, "title1", 2,false,"TASK TASK TASK");
-        Achievement testAchievement2 = new Task(1, "title1", 2,false,"WORD WORD WORD");
-        Achievement testAchievement3 = new Task(2, "title1", 1,false,"YEAH YEAH YEAH");
-        Achievement testAchievement4 = new Task(3, "title1", 3,true,"YADDA YADDA YADDA");
-        Achievement testAchievement5 = new Task(4, "title1", 5, true,"BLAH BLAH BLAH");
+        Achievement testAchievement1 = new Achievement(0, "title1", 2,false,"TASK TASK TASK");
+        Achievement testAchievement2 = new Achievement(1, "title1", 2,false,"WORD WORD WORD");
+        Achievement testAchievement3 = new Achievement(2, "title1", 1,false,"YEAH YEAH YEAH");
+        Achievement testAchievement4 = new Achievement(3, "title1", 3,true,"YADDA YADDA YADDA");
+        Achievement testAchievement5 = new Achievement(4, "title1", 5, true,"BLAH BLAH BLAH");
         AchievementList testAchievementList = new TaskList();
         //id, title, desc, quality, timeLimit, type, complete
         testAchievementList.addAchievement(testAchievement1);
