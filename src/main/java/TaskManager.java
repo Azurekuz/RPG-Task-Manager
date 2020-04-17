@@ -107,12 +107,7 @@ public class TaskManager {
               try {
                   if (task.getTypeInt() == 1) mainTask = task;
                   else if (task.getTypeInt() == 2){
-                      LocalDateTime nextDay = LocalDateTime.now().minusDays(-1);
-                      System.out.println("BEFORE: "+nextDay);
-                      nextDay = nextDay.minusHours(nextDay.getHour());nextDay = nextDay.minusMinutes(nextDay.getMinute());nextDay = nextDay.minusSeconds(nextDay.getSecond());
-                      System.out.println("AFTER: "+nextDay.getHour());
-                      task.setTimeLimit((int) ChronoUnit.HOURS.between(startTime, nextDay));
-                      dailyTaskList.addTask(task);
+                      dailyTaskList.addTask(recalculateHoursLeft(task));
                   }else currentTaskList.addTask(task);
               }catch(DuplicateTaskException e){
                   System.out.println("[ERROR][You already have this main task selected!]");
@@ -162,12 +157,7 @@ public class TaskManager {
         //System.out.println(startTime);
         //System.out.println((new Date(startTime.getYear(), startTime.getMonth(), startTime.getDay()+1, 0,0)));
         if(task.getTypeInt() == 2) {
-            LocalDateTime nextDay = LocalDateTime.now().minusDays(-1);
-            System.out.println("BEFORE: "+nextDay);
-            nextDay = nextDay.minusHours(nextDay.getHour());nextDay = nextDay.minusMinutes(nextDay.getMinute());nextDay = nextDay.minusSeconds(nextDay.getSecond());
-            System.out.println("AFTER: "+nextDay.getHour());
-            task.setTimeLimit((int) ChronoUnit.HOURS.between(startTime, nextDay));
-            dailyTaskList.addTask(task);
+            dailyTaskList.addTask(recalculateHoursLeft(task));
         }else{
             currentTaskList.addTask(task);
         }
@@ -301,13 +291,20 @@ public class TaskManager {
     public void populateDailyTasks(){
         for(int dailyID = 0; dailyID < dailyTaskList.getSize(); dailyID++){
             try{
-                currentTaskList.addTask(dailyTaskList.getTask(dailyID));
+                currentTaskList.addTask(recalculateHoursLeft(dailyTaskList.getTask(dailyID)));
             }catch(NonExistentTaskException e){
                 System.out.println("[ERROR][Internal error. Daily task no longer found.]");
             }catch(DuplicateTaskException e){
                 System.out.println("[NOTICE][Daily task was not completed. Skipped!]");
             }
         }
+    }
+
+    public Task recalculateHoursLeft(Task task){
+        LocalDateTime nextDay = LocalDateTime.now().minusDays(-1);
+        nextDay = nextDay.minusHours(nextDay.getHour());nextDay = nextDay.minusMinutes(nextDay.getMinute());nextDay = nextDay.minusSeconds(nextDay.getSecond());
+        task.setTimeLimit((int) ChronoUnit.HOURS.between(startTime, nextDay));
+        return task;
     }
 
     public void completeCurrentTask(int id) throws NonExistentTaskException{
