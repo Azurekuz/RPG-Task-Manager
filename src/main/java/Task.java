@@ -79,6 +79,7 @@ public class Task {
     public int getTimeLimit() { return timeLimit; }
     public LocalDateTime getStartTime() { return startTime; }
     public int getType() { return type; }
+
     @JsonIgnore
     public String getTypeStr() {
         switch(type){
@@ -92,7 +93,13 @@ public class Task {
     public int getProgress() { return progress; }
     public double getCompletionQuality() { return completionQuality; }
     public boolean isComplete() { return complete; }
-
+    public String displayComplete(){
+        if(isComplete()){
+            return "YES";
+        }else{
+            return "NO";
+        }
+    }
     public String toString(){ //TODO could make this a little more complicated if needed
         String result = "";
         if (!title.isEmpty()) {

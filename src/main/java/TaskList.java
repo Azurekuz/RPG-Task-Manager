@@ -101,20 +101,20 @@ public class TaskList{
     public int getSize(){return taskList.size();}
 
     public String toString(){
-        String s = "{id: Title | Description | Base Quality | TimeLimit | Type | Complete | Completion Quality\n";
+        String s = "{id: Title  \t | Description \t | Base Quality \t | TimeLimit \t | Type \t | Complete \t | Completion Quality }\n";
         Task task;
 
         for (int i = 0; i < taskList.size(); i++){
-            s = s.concat(i +": ");
+            s = s.concat("[ID][" + i +"]: ");
             task = taskList.get(i);
-            s = s.concat(task.getTitle() +" "+ task.getDesc() +" "+ task.getBaseQuality() +" "+ task.getTimeLimit() +" "+ task.getTypeStr() +" "+ task.isComplete()+" "+ task.getCompletionQuality());
+            s = s.concat("[TITLE][" + task.getTitle() +"] [DESC]["+ task.getDesc() +"] [BASE]["+ task.getBaseQuality() +"] [TIME]["+ task.getTimeLimit() +"] [TYPE]["+ task.getTypeStr() +"] [COMPLETE]["+ task.displayComplete()+"] [QUALITY]["+ task.getCompletionQuality()+"]");
             s = s.concat("\n");
 
         }
         if (taskList.size() == 0){
             s = s.concat("*No tasks.*\n");
         }
-        s = s.concat("}");
+        //s = s.concat("}");
         return s;
 
     }
