@@ -10,6 +10,7 @@ import java.util.ArrayList;
 
 /**
  * @author Original setup: Toby Dragon
+ * Modified by Elias Platt
  */
 public class JsonUtil {
     public static String toJsonString(Object objectToSerialize) throws JsonProcessingException {
@@ -21,11 +22,18 @@ public class JsonUtil {
     public static void toJsonFile(String filename, Object objectToSerialize) throws IOException {
         ObjectMapper mapper = new ObjectMapper();
         mapper.enable(SerializationFeature.INDENT_OUTPUT);
+        //Found this fix here:https://stackoverflow.com/questions/27952472/serialize-deserialize-java-8-java-time-with-jackson-json-mapper
+        mapper.findAndRegisterModules();
+        mapper.disable(SerializationFeature.WRITE_DATES_AS_TIMESTAMPS);
+
         mapper.writeValue(new File(filename), objectToSerialize);
     }
 
     public static <T> T fromJsonFile(String filename, Class<? extends T> classToBeCreated) throws IOException {
         ObjectMapper mapper = new ObjectMapper();
+        mapper.findAndRegisterModules();
+        mapper.disable(SerializationFeature.WRITE_DATES_AS_TIMESTAMPS);
+
         return  mapper.readValue(new File(filename), classToBeCreated);
     }
 

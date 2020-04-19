@@ -7,10 +7,10 @@ public class TaskListTest {
 
         //TODO test toString and new addTask
         Task testTasks = new Task(0, "title1", "desc1", 0, 0, 0, false);
-        Task testTasks2 = new Task(1, "title1", "desc2", 0, 0, 0, false);
-        Task testTasks3 = new Task(2, "title1", "desc3", 0, 0, 0, false);
-        Task testTasks4 = new Task(3, "title1", "desc4", 0, 0, 0, true);
-        Task testTasks5 = new Task(4, "title1", "desc5", 0, 0, 0, true);
+        Task testTasks2 = new Task(1, "title2", "desc2", 0, 0, 0, false);
+        Task testTasks3 = new Task(2, "title3", "desc3", 0, 0, 0, false);
+        Task testTasks4 = new Task(3, "title4", "desc4", 0, 0, 0, true);
+        Task testTasks5 = new Task(4, "title5", "desc5", 0, 0, 0, true);
         TaskList testTaskList = new TaskList();
         //id, title, desc, baseQuality, timeLimit, type, complete
         testTaskList.addTask(testTasks);

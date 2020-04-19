@@ -54,7 +54,7 @@ public class TaskManagerTests { //TODO test new tests added by Elias
         TaskManager testManager = new TaskManager(true);
         Task testTask1 = new Task(0, "Test1", "A test task", 5, 20, 0, false);
         Task testTask2 = new Task(1, "Test2", "Another test task", 4, 25, 0, false);
-        Task testTask3 = new Task(2, "Test2", "And another test task", 6, 15, 0, false);
+        Task testTask3 = new Task(2, "Test3", "And another test task", 6, 15, 0, false);
 
         testManager.addCurrentTask(testTask1);
         testManager.addCurrentTask(testTask2);

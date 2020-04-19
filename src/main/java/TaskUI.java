@@ -21,7 +21,7 @@ public class TaskUI {
 
         Scanner input = new Scanner(System.in);
         System.out.println("***STARTING TASK INTERFACE***");
-        System.out.println("[TIME]["+ taskManager.getDate() +"]");
+        System.out.println("[TIME]["+ taskManager.getStartTime() +"]");
         String userStr = "";
         String failedTasks;
         String numOnlyCheck = "0123456789";
@@ -186,6 +186,7 @@ public class TaskUI {
                     }
                     break;
 
+                case "addcust": //Kept trying to do this despite knowing the custom cmd so might as well add it as an alias
                 case "custom":
                     System.out.println("***Making a custom task.***");
                     System.out.println("Enter task title:"); title = input.nextLine();

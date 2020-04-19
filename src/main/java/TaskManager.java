@@ -1,3 +1,7 @@
+import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+import com.fasterxml.jackson.datatype.jsr310.ser.LocalDateTimeSerializer;
+
 import java.time.LocalDateTime;
 import java.time.temporal.ChronoUnit;
 public class TaskManager {
@@ -12,6 +16,7 @@ public class TaskManager {
     private LocalDateTime lastTimeUsed = null;
     private LocalDateTime startTime;
     //TODO tie in with User
+
 
      TaskManager(boolean genTasks){
         defaultTaskList = new TaskList();
@@ -30,6 +35,9 @@ public class TaskManager {
                 generateDefaultTaskList();
             } catch (DuplicateTaskException ignored){} //this isn't going to happen
         }
+    }
+    TaskManager(){ //Need default constructor for json, just calls the other constructor and makes a blank object
+         this(false);
     }
 
     public void startUp(){
@@ -453,7 +461,8 @@ public class TaskManager {
 
     }
 
-    public LocalDateTime getDate(){
+    //@JsonSerialize(using = LocalDateTimeSerializer.class)
+    public LocalDateTime getStartTime(){
         return startTime;
     }
 }

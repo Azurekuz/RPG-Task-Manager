@@ -100,22 +100,7 @@
       "type" : 0,
       "completionQuality" : 0.0,
       "complete" : false,
-      "startTime" : {
-        "nano" : 361200100,
-        "year" : 2020,
-        "monthValue" : 4,
-        "dayOfMonth" : 19,
-        "hour" : 14,
-        "minute" : 45,
-        "second" : 59,
-        "dayOfWeek" : "SUNDAY",
-        "dayOfYear" : 110,
-        "month" : "APRIL",
-        "chronology" : {
-          "id" : "ISO",
-          "calendarType" : "iso8601"
-        }
-      },
+      "startTime" : "2020-04-19T16:33:10.898063",
       "progress" : 0
     } ]
   },
@@ -132,22 +117,7 @@
       "type" : 0,
       "completionQuality" : 0.0,
       "complete" : false,
-      "startTime" : {
-        "nano" : 361200100,
-        "year" : 2020,
-        "monthValue" : 4,
-        "dayOfMonth" : 19,
-        "hour" : 14,
-        "minute" : 45,
-        "second" : 59,
-        "dayOfWeek" : "SUNDAY",
-        "dayOfYear" : 110,
-        "month" : "APRIL",
-        "chronology" : {
-          "id" : "ISO",
-          "calendarType" : "iso8601"
-        }
-      },
+      "startTime" : "2020-04-19T16:33:10.898063",
       "progress" : 0
     } ]
   },
@@ -166,20 +136,5 @@
     "startTime" : null,
     "progress" : 0
   },
-  "date" : {
-    "nano" : 359200000,
-    "year" : 2020,
-    "monthValue" : 4,
-    "dayOfMonth" : 19,
-    "hour" : 14,
-    "minute" : 45,
-    "second" : 59,
-    "dayOfWeek" : "SUNDAY",
-    "dayOfYear" : 110,
-    "month" : "APRIL",
-    "chronology" : {
-      "id" : "ISO",
-      "calendarType" : "iso8601"
-    }
-  }
+  "startTime" : "2020-04-19T16:33:10.8960629"
 }
