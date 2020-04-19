@@ -100,18 +100,7 @@
     } ]
   },
   "failedTaskList" : {
-    "taskList" : [ {
-      "id" : 1,
-      "title" : "Message Mom Back",
-      "desc" : "Hurry!",
-      "baseQuality" : 1,
-      "timeLimit" : 1,
-      "type" : 0,
-      "completionQuality" : 0.0,
-      "complete" : false,
-      "startTime" : 1586903660853,
-      "progress" : 0
-    } ]
+    "taskList" : [ ]
   },
   "mainTask" : {
     "id" : 0,

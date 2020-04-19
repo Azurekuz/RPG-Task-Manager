@@ -1,8 +1,5 @@
-import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.temporal.ChronoUnit;
-import java.util.Calendar;
-import java.util.Date;
 public class TaskManager {
 
     private TaskList defaultTaskList;
@@ -27,6 +24,12 @@ public class TaskManager {
         startTime = LocalDateTime.now();
 
         startUp();
+
+        if(genTasks){
+            try {
+                generateDefaultTaskList();
+            } catch (DuplicateTaskException ignored){} //this isn't going to happen
+        }
     }
 
     public void startUp(){
@@ -95,32 +98,29 @@ public class TaskManager {
 
     public String selectTask(String title) throws NonExistentTaskException{
       Task task;
-      int id;
       try {
-          if (defaultTaskList.findTask(title) != -1) {
-              //index = defaultTaskList.findTask(title);
+          if (defaultTaskList.findTask(title) != -1) { //if it exists in defaultTaskList
               task = defaultTaskList.getTask(title);
               if (!(mainTask.getTitle().isEmpty()) && task.getType() == 1) {
                   return "ERROR: Can't have more than one main task selected.";
               }
               task.startTime();
               try {
-                  if (task.getTypeInt() == 1) mainTask = task;
-                  else if (task.getTypeInt() == 2){
+                  if (task.getType() == 1) mainTask = task;
+                  else if (task.getType() == 2){
                       dailyTaskList.addTask(recalculateHoursLeft(task));
                   }else currentTaskList.addTask(task);
               }catch(DuplicateTaskException e){
                   System.out.println("[ERROR][You already have this main task selected!]");
               }
-          } else if (customTaskList.findTask(title) != -1) {
-              // index = customTaskList.findTask(title);
+          } else if (customTaskList.findTask(title) != -1) { //if it exists in customTaskList
               task = customTaskList.getTask(title);
               if (!(mainTask.getTitle().isEmpty()) && task.getType() == 1) {
                   return "ERROR: Can't have more than one main task selected.";
               }
               task.startTime();
               try {
-                  if (task.getTypeInt() == 1) mainTask = task;
+                  if (task.getType() == 1) mainTask = task;
                   else currentTaskList.addTask(task);
               }catch(DuplicateTaskException e){
                   System.out.println("[ERROR][You already have this main task selected!]");
@@ -140,11 +140,9 @@ public class TaskManager {
           if(listType == 0) {
               task = defaultTaskList.getTask(id);
               checkIfDaily(task);
-              return;
           }else if(listType == 1) {
               task = customTaskList.getTask(id);
               checkIfDaily(task);
-              return;
           }
         }catch(NonExistentTaskException e){
             throw new NonExistentTaskException("Nonexistent or Invalid Task Requested!");
@@ -156,7 +154,7 @@ public class TaskManager {
     public void checkIfDaily(Task task) throws DuplicateTaskException{
         //System.out.println(startTime);
         //System.out.println((new Date(startTime.getYear(), startTime.getMonth(), startTime.getDay()+1, 0,0)));
-        if(task.getTypeInt() == 2) {
+        if(task.getType() == 2) {
             dailyTaskList.addTask(recalculateHoursLeft(task));
         }else{
             currentTaskList.addTask(task);
@@ -192,9 +190,9 @@ public class TaskManager {
     public void editTask(String title, String newTitle, String desc, int quality, int timeLimit, int type) throws NonExistentTaskException{
         try {
             Task editedTask;
-            int id = currentTaskList.findTask(title);
-            if(id != -1){
-                editedTask = currentTaskList.getTask(id);
+            int index = currentTaskList.findTask(title);
+            if(index != -1){
+                editedTask = currentTaskList.getTaskAt(index);
                 editedTask.setTitle(newTitle);
                 editedTask.setDesc(desc);
                 editedTask.setBaseQuality(quality);
@@ -203,9 +201,9 @@ public class TaskManager {
                 return;
             }
 
-            id = defaultTaskList.findTask(title);
-            if(id != -1) {
-                editedTask = defaultTaskList.getTask(id);
+            index = defaultTaskList.findTask(title);
+            if(index != -1) {
+                editedTask = defaultTaskList.getTaskAt(index);
                 editedTask.setTitle(newTitle);
                 editedTask.setDesc(desc);
                 editedTask.setBaseQuality(quality);
@@ -214,20 +212,9 @@ public class TaskManager {
                 return;
             }
 
-            id = dailyTaskList.findTask(title);
-            if(id != -1) {
-                editedTask = dailyTaskList.getTask(id);
-                editedTask.setTitle(newTitle);
-                editedTask.setDesc(desc);
-                editedTask.setQuality(quality);
-                editedTask.setTimeLimit(timeLimit);
-                editedTask.setType(type);
-                return;
-            }
-
-            id = customTaskList.findTask(title);
-            if(id != -1) {
-                editedTask = customTaskList.getTask(id);
+            index = dailyTaskList.findTask(title);
+            if(index != -1) {
+                editedTask = dailyTaskList.getTaskAt(index);
                 editedTask.setTitle(newTitle);
                 editedTask.setDesc(desc);
                 editedTask.setBaseQuality(quality);
@@ -236,9 +223,17 @@ public class TaskManager {
                 return;
             }
 
-            if(id == -1){
-                throw new NonExistentTaskException("Nonexistent or Invalid Task Requested!");
+            index = customTaskList.findTask(title);
+            if(index != -1) {
+                editedTask = customTaskList.getTaskAt(index);
+                editedTask.setTitle(newTitle);
+                editedTask.setDesc(desc);
+                editedTask.setBaseQuality(quality);
+                editedTask.setTimeLimit(timeLimit);
+                editedTask.setType(type);
+                return;
             }
+            throw new NonExistentTaskException("Nonexistent or Invalid Task Requested!");
         }catch (NonExistentTaskException e) {
             throw new NonExistentTaskException("Nonexistent or Invalid Task Requested!");
         }
@@ -268,7 +263,7 @@ public class TaskManager {
                     editedTask = defaultTaskList.getTask(id);
                     editedTask.setTitle(newTitle);
                     editedTask.setDesc(desc);
-                    editedTask.setQuality(quality);
+                    editedTask.setBaseQuality(quality);
                     editedTask.setTimeLimit(timeLimit);
                     editedTask.setType(type);
                     break;
@@ -383,15 +378,16 @@ public class TaskManager {
         //TODO
     }
 
-    public String checkTimedTasks(Date currentTime) throws NonExistentTaskException {
-        String failedTasks="FAILED: ";  Task task;  Date time;
+    public String checkTimedTasks(LocalDateTime currentTime) throws NonExistentTaskException, DuplicateTaskException {
+        String failedTasks="FAILED: ";  Task task;  LocalDateTime time;
         TaskList newFailedTasks = new TaskList();
 
         for (int i = 0; i < currentTaskList.getSize(); i++){
             task = currentTaskList.getTaskAt(i);
             if (task.checkIfTimed()){
-                time = new Date(task.getStartTime().getTime() + task.getTimeLimit()*60000); //time to finish task by
-                if(currentTime.after(time)) {
+                //time = new Date(task.getStartTime().getTime() + task.getTimeLimit()*60000);
+                time = task.getStartTime().plusMinutes(task.getTimeLimit()); //time to finish task by
+                if(currentTime.isAfter(time)) {
                     failedTasks= failedTasks.concat(task.getTitle());
                     failedTasks = failedTasks.concat(", ");
                     try {

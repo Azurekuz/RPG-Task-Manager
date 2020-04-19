@@ -1,19 +1,19 @@
 import org.junit.jupiter.api.Test;
 
 import java.io.IOException;
-import java.util.Date;
+import java.time.LocalDateTime;
 
 import static org.junit.jupiter.api.Assertions.*;
 
 class JsonUtilTest {
 
     @Test
-    void toFromFileTest() throws IOException, NonExistentTaskException {
+    void toFromFileTest() throws IOException, NonExistentTaskException, DuplicateTaskException {
         //Includes failed/timed task testing to make sure it is saved correctly
         TaskManager testManager = new TaskManager(true);
         testManager.addCustomTask("Do Homework Before Class", "Due in an hour!", 10, 60, 0);
         testManager.selectTask("Do Homework Before Class");
-        Date currentTime = new Date();
+        LocalDateTime currentTime = LocalDateTime.now();
         assertEquals(testManager.checkTimedTasks(currentTime),"No tasks failed.");
 
         JsonUtil.toJsonFile("src/resources/taskManagerTest.json", testManager);
@@ -30,7 +30,7 @@ class JsonUtilTest {
         assertEquals(testManager.viewCompletedTasks(), testManager2.viewCompletedTasks());
         assertEquals(testManager.viewCurrentTasks(), testManager2.viewCurrentTasks());
 
-        currentTime.setTime(currentTime.getTime() + 65*60000);
+        currentTime = currentTime.plusMinutes(65);
         assertEquals(testManager2.checkTimedTasks(currentTime),"FAILED: Do Homework Before Class");
         assertTrue(testManager2.viewCurrentTasks().contains("No tasks."));
         assertTrue(testManager2.viewFailedTasks().contains("Do Homework Before Class"));

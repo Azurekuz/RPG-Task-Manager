@@ -12,40 +12,29 @@
       "startTime" : null,
       "progress" : 0
     }, {
-      "id" : 0,
+      "id" : 1,
       "title" : "Do your Laundry",
       "desc" : "Clean your clothes.",
       "baseQuality" : 0,
       "timeLimit" : 0,
-      "type" : 0,
+      "type" : 3,
       "completionQuality" : 0.0,
       "complete" : false,
       "startTime" : null,
       "progress" : 0
     }, {
-      "id" : 0,
+      "id" : 2,
       "title" : "Clean your room",
       "desc" : "Organize and dust off your room.",
       "baseQuality" : 0,
-      "timeLimit" : 0,
+      "timeLimit" : 3,
       "type" : 0,
       "completionQuality" : 0.0,
       "complete" : false,
       "startTime" : null,
       "progress" : 0
     }, {
-      "id" : 0,
-      "title" : "Floss your teeth",
-      "desc" : "Floss under your gums too.",
-      "baseQuality" : 0,
-      "timeLimit" : 0,
-      "type" : 0,
-      "completionQuality" : 0.0,
-      "complete" : false,
-      "startTime" : null,
-      "progress" : 0
-    }, {
-      "id" : 0,
+      "id" : 3,
       "title" : "Finish 1st Semester",
       "desc" : "Ithaca College",
       "baseQuality" : 1000,
@@ -56,12 +45,45 @@
       "startTime" : null,
       "progress" : 0
     }, {
-      "id" : 0,
+      "id" : 4,
       "title" : "Get a Job",
       "desc" : "Money can be exchanged for goods & services",
       "baseQuality" : 500,
       "timeLimit" : 0,
       "type" : 1,
+      "completionQuality" : 0.0,
+      "complete" : false,
+      "startTime" : null,
+      "progress" : 0
+    }, {
+      "id" : 5,
+      "title" : "Floss your teeth",
+      "desc" : "Floss under your gums too.",
+      "baseQuality" : 0,
+      "timeLimit" : 0,
+      "type" : 2,
+      "completionQuality" : 0.0,
+      "complete" : false,
+      "startTime" : null,
+      "progress" : 0
+    }, {
+      "id" : 6,
+      "title" : "Check your email",
+      "desc" : "Sift through work and spam mail.",
+      "baseQuality" : 0,
+      "timeLimit" : 0,
+      "type" : 2,
+      "completionQuality" : 0.0,
+      "complete" : false,
+      "startTime" : null,
+      "progress" : 0
+    }, {
+      "id" : 7,
+      "title" : "Walk or Exercise",
+      "desc" : "Keep yourself in good shape.",
+      "baseQuality" : 0,
+      "timeLimit" : 0,
+      "type" : 2,
       "completionQuality" : 0.0,
       "complete" : false,
       "startTime" : null,
@@ -78,7 +100,22 @@
       "type" : 0,
       "completionQuality" : 0.0,
       "complete" : false,
-      "startTime" : 1587061497103,
+      "startTime" : {
+        "nano" : 361200100,
+        "year" : 2020,
+        "monthValue" : 4,
+        "dayOfMonth" : 19,
+        "hour" : 14,
+        "minute" : 45,
+        "second" : 59,
+        "dayOfWeek" : "SUNDAY",
+        "dayOfYear" : 110,
+        "month" : "APRIL",
+        "chronology" : {
+          "id" : "ISO",
+          "calendarType" : "iso8601"
+        }
+      },
       "progress" : 0
     } ]
   },
@@ -95,7 +132,22 @@
       "type" : 0,
       "completionQuality" : 0.0,
       "complete" : false,
-      "startTime" : 1587061497103,
+      "startTime" : {
+        "nano" : 361200100,
+        "year" : 2020,
+        "monthValue" : 4,
+        "dayOfMonth" : 19,
+        "hour" : 14,
+        "minute" : 45,
+        "second" : 59,
+        "dayOfWeek" : "SUNDAY",
+        "dayOfYear" : 110,
+        "month" : "APRIL",
+        "chronology" : {
+          "id" : "ISO",
+          "calendarType" : "iso8601"
+        }
+      },
       "progress" : 0
     } ]
   },
@@ -113,5 +165,21 @@
     "complete" : false,
     "startTime" : null,
     "progress" : 0
+  },
+  "date" : {
+    "nano" : 359200000,
+    "year" : 2020,
+    "monthValue" : 4,
+    "dayOfMonth" : 19,
+    "hour" : 14,
+    "minute" : 45,
+    "second" : 59,
+    "dayOfWeek" : "SUNDAY",
+    "dayOfYear" : 110,
+    "month" : "APRIL",
+    "chronology" : {
+      "id" : "ISO",
+      "calendarType" : "iso8601"
+    }
   }
 }

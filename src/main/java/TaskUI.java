@@ -1,6 +1,5 @@
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.Date;
+import java.time.LocalDateTime;
 import java.util.Scanner;
 
 public class TaskUI {
@@ -10,14 +9,14 @@ public class TaskUI {
         String title, desc, newTitle, answer;
         int quality, timeLimit, type, progress;
         double completionQuality;
-        Date currentTime;
+        LocalDateTime currentTime;
 
         try {
             load();
         } catch (IOException e) {
             System.out.println("[ERROR-LOAD FAILED:][ " + e.getMessage() + "]");
             System.out.println("Creating blank task manager...");
-            taskManager = new TaskManager();
+            taskManager = new TaskManager(true);
         }
 
         Scanner input = new Scanner(System.in);
@@ -30,10 +29,10 @@ public class TaskUI {
         
 
         while (!(userStr.equals("quit"))){
-            currentTime = new Date();
+            currentTime = LocalDateTime.now();
             try {
                 failedTasks = taskManager.checkTimedTasks(currentTime);
-            } catch (NonExistentTaskException e) {
+            } catch (NonExistentTaskException | DuplicateTaskException e) {
                 System.out.println("[ERROR][ " + e.getMessage() + "]");
                 failedTasks="Some tasks may have failed but were unsuccessfully handled. Please review your current and failed tasks.";
             }

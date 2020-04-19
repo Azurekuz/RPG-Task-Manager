@@ -1,6 +1,6 @@
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
-import java.util.Date;
+import java.time.LocalDateTime;
 
 public class Task {
 
@@ -9,7 +9,7 @@ public class Task {
     public int baseQuality, timeLimit, type;
     public double completionQuality;
     public boolean complete;
-    private Date startTime;
+    private LocalDateTime startTime;
     private int progress;
 
     public Task(){ //default constructor = blank object created
@@ -61,7 +61,7 @@ public class Task {
     public void setCompletionQuality(double completionQuality) {
         this.completionQuality = completionQuality;
     }
-    public void startTime() { this.startTime = new Date(); }
+    public void startTime() { this.startTime =  LocalDateTime.now(); }
 
     public void addProgress(int progress) {
 
@@ -77,7 +77,7 @@ public class Task {
     public String getDesc() { return desc; }
     public int getBaseQuality() { return baseQuality; }
     public int getTimeLimit() { return timeLimit; }
-    public Date getStartTime() { return startTime; }
+    public LocalDateTime getStartTime() { return startTime; }
     public int getType() { return type; }
     @JsonIgnore
     public String getTypeStr() {

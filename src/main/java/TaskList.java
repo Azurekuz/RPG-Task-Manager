@@ -9,7 +9,7 @@ public class TaskList{
         taskList = new ArrayList<Task>();
     }
 
-    TaskList(ArrayList<Task> taskListIn) {
+    TaskList(ArrayList<Task> taskListIn) { //used for JSON loading if needed
         taskList = taskListIn;
     }
 
@@ -32,7 +32,7 @@ public class TaskList{
     }
 
     public Task checkDuplicate(Task newTask) throws DuplicateTaskException{
-        for(var taskID = 0; taskID < taskList.size(); taskID++){
+        for(int taskID = 0; taskID < taskList.size(); taskID++){
             if(taskList.get(taskID).title.toLowerCase().equals(newTask.title.toLowerCase())){
                 throw new DuplicateTaskException("You already have a task with this name!");
             }
@@ -64,9 +64,9 @@ public class TaskList{
     }
 
     public int findTask(String title){
-        for(int task = 0; task < taskList.size(); task++){
-            if(taskList.get(task).title.toLowerCase().equals(title.toLowerCase())){
-                return task;
+        for(int i = 0; i < taskList.size(); i++){
+            if(taskList.get(i).title.toLowerCase().equals(title.toLowerCase())){
+                return i; //returns index of task
             }
         }
         return -1;
