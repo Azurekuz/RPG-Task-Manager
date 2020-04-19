@@ -30,7 +30,7 @@ class JsonUtilTest {
         assertEquals(testManager.viewCompletedTasks(), testManager2.viewCompletedTasks());
         assertEquals(testManager.viewCurrentTasks(), testManager2.viewCurrentTasks());
 
-        currentTime = currentTime.plusMinutes(65);
+        currentTime = currentTime.plusHours(2);
         assertEquals(testManager2.checkTimedTasks(currentTime),"FAILED: Do Homework Before Class");
         assertTrue(testManager2.viewCurrentTasks().contains("No tasks."));
         assertTrue(testManager2.viewFailedTasks().contains("Do Homework Before Class"));

@@ -101,7 +101,7 @@ public class TaskList{
     public int getSize(){return taskList.size();}
 
     public String toString(){
-        String s = "{id: Title  \t | Description \t | Base Quality \t | TimeLimit \t | Type \t | Complete \t | Completion Quality }\n";
+        String s = "{id: \t Title \t |\t Description \t |\t Base Quality \t |\t TimeLimit \t |\t Type \t |\t Complete \t |\t Completion Quality }\n";
         Task task;
 
         for (int i = 0; i < taskList.size(); i++){

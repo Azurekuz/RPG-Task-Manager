@@ -310,33 +310,35 @@ public class TaskManager {
         return task;
     }
 
-    public void completeCurrentTask(int id, double completionQuality) throws NonExistentTaskException{
+    public double completeCurrentTask(int id, double completionQuality) throws NonExistentTaskException{
         try {
             Task completedTask = currentTaskList.getTask(id);
              completedTask.complete();
              completedTask.setCompletionQuality(completionQuality);
             completedTaskList.addTask(completedTask);
             currentTaskList.removeTask(id);
+            return completedTask.calcExp(); //TODO add xp to rpg player class
         }catch (NonExistentTaskException e){
             throw new NonExistentTaskException("Nonexistent or Invalid Task Requested!");
         }catch(DuplicateTaskException e){
-            System.out.println("[Error][" + "Task already completed!" + "]");
+            System.out.println("[Error][" + "Task already completed." + "]");
+            return 0;
         }
     }
 
-    public void complete(String title, double completionQuality) throws NonExistentTaskException, IllegalArgumentException{
+    public double complete(String title, double completionQuality) throws NonExistentTaskException, IllegalArgumentException{
       if(completionQuality < 0.1 || completionQuality > 1 ){
           throw new IllegalArgumentException("Invalid completion quality (needs between 0.1 and 1)");
       }
       int id = currentTaskList.findTask(title);
-      completeCurrentTask(id, completionQuality);
+      return completeCurrentTask(id, completionQuality);
     }
 
-    public void complete(int id, double completionQuality) throws NonExistentTaskException, IllegalArgumentException{
+    public double complete(int id, double completionQuality) throws NonExistentTaskException, IllegalArgumentException{
         if(completionQuality < 0.1 || completionQuality > 1 ){
             throw new IllegalArgumentException("Invalid completion quality (needs between 0.1 and 1)");
         }
-        completeCurrentTask(id, completionQuality);
+        return completeCurrentTask(id, completionQuality);
     }
 
     public String viewCurrentTasks(){
@@ -399,14 +401,14 @@ public class TaskManager {
                     failedTasks= failedTasks.concat(task.getTitle());
                     failedTasks = failedTasks.concat(", ");
                     try {
-                        failedTaskList.addTask(task);
+                        newFailedTasks.addTask(task);
                     }catch(DuplicateTaskException e){
                         System.out.println("[Error][" + e.getMessage() + "]");
                     }
                 }
             }
         }
-        if (failedTasks.equals("FAILED: ")) return "No tasks failed.";
+        if (failedTasks.equals("FAILED: ")) return "[NOTICE][ No tasks failed.]";
         else {
             for (int i = 0; i < newFailedTasks.getSize(); i++){ //only go through failed tasks lists if there were failed tasks
                 task = newFailedTasks.getTaskAt(i);

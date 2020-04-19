@@ -8,7 +8,7 @@ public class TaskUI {
     public void commandHandler(){
         String title, desc, newTitle, answer;
         int quality, timeLimit, type, progress;
-        double completionQuality;
+        double completionQuality, xp;
         LocalDateTime currentTime;
 
         try {
@@ -97,11 +97,12 @@ public class TaskUI {
                         }
                         if(byID){
 
-                            taskManager.complete(Integer.parseInt(title),completionQuality);
+                            xp = taskManager.complete(Integer.parseInt(title),completionQuality);
                         }else {
-                            taskManager.complete(title,completionQuality);
+                            xp = taskManager.complete(title,completionQuality);
                         }
                         System.out.println("[SUCCESS][ Task completed! ]");
+                        System.out.println("[EXP][ "+xp+" experience gained.]");
                     }catch(NonExistentTaskException e){
                         System.out.println("[ERROR][ " + e.getMessage() + " ]");
                     }

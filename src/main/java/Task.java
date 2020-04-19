@@ -33,9 +33,7 @@ public class Task {
     }
 
     public double calcExp(){
-        double xp = baseQuality * completionQuality;
-        //TODO - "Determining EXP gain" zenhub card
-        return xp;
+        return baseQuality * completionQuality;
     }
     /** SETTERS **/
     public void setID(int id) {
