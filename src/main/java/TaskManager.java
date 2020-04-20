@@ -15,7 +15,9 @@ public class TaskManager {
     private Task mainTask;
     private LocalDateTime lastTimeUsed = null;
     private LocalDateTime startTime;
-    //TODO tie in with User
+    private User currentUser; //TODO replace with other implementation when needed
+    private RPGUI rpg;
+    //TODO tie in with User (all lists but defaultTaskList go to User class)
 
 
      TaskManager(boolean genTasks){
@@ -38,6 +40,10 @@ public class TaskManager {
     }
     TaskManager(){ //Need default constructor for json, just calls the other constructor and makes a blank object
          this(false);
+    }
+
+    public LocalDateTime getStartTime(){
+        return startTime;
     }
 
     public void startUp(){
@@ -385,7 +391,8 @@ public class TaskManager {
     }
 
     public void startGame(){
-        //TODO
+         currentUser = new User("test"); //TEMPORARY TODO REMOVE
+         rpg = new RPGUI(currentUser);
     }
 
     public String checkTimedTasks(LocalDateTime currentTime) throws NonExistentTaskException, DuplicateTaskException {
@@ -463,8 +470,4 @@ public class TaskManager {
 
     }
 
-    //@JsonSerialize(using = LocalDateTimeSerializer.class)
-    public LocalDateTime getStartTime(){
-        return startTime;
-    }
 }
