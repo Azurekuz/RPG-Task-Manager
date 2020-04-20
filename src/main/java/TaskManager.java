@@ -156,10 +156,10 @@ public class TaskManager {
     public void selectTask(int id, int listType) throws NonExistentTaskException{
         try{
           Task task;
-          if(listType == 0) {
+          if(defaultTaskList.findTask(id) != -1) {
               task = defaultTaskList.getTask(id);
               checkIfDaily(task);
-          }else if(listType == 1) {
+          }else if(customTaskList.findTask(id) != -1) {
               task = customTaskList.getTask(id);
               checkIfDaily(task);
           }
@@ -261,42 +261,48 @@ public class TaskManager {
     public void editTask(int id, String newTitle, String desc, int quality, int timeLimit, int type, int taskList) throws NonExistentTaskException{
         try {
             Task editedTask;
-            switch(taskList) {
-                case 0:
+            //switch(taskList) {
+               //case 0:
+                if(currentTaskList.findTask(id) != -1) {
                     editedTask = currentTaskList.getTask(id);
                     editedTask.setTitle(newTitle);
                     editedTask.setDesc(desc);
                     editedTask.setBaseQuality(quality);
                     editedTask.setTimeLimit(timeLimit);
                     editedTask.setType(type);
-                    break;
-                case 1:
+                }
+                //case 1:
+
+                if(dailyTaskList.findTask(id) != -1) {
                     editedTask = dailyTaskList.getTask(id);
                     editedTask.setTitle(newTitle);
                     editedTask.setDesc(desc);
                     editedTask.setBaseQuality(quality);
                     editedTask.setTimeLimit(timeLimit);
                     editedTask.setType(type);
-                    break;
-                case 2:
+                }
+                //case 2:
+                if(defaultTaskList.findTask(id) != -1) {
                     editedTask = defaultTaskList.getTask(id);
                     editedTask.setTitle(newTitle);
                     editedTask.setDesc(desc);
                     editedTask.setBaseQuality(quality);
                     editedTask.setTimeLimit(timeLimit);
                     editedTask.setType(type);
-                    break;
-                case 3:
+                }
+                //case 3:
+                if(customTaskList.findTask(id) != -1) {
                     editedTask = customTaskList.getTask(id);
                     editedTask.setTitle(newTitle);
                     editedTask.setDesc(desc);
                     editedTask.setBaseQuality(quality);
                     editedTask.setTimeLimit(timeLimit);
                     editedTask.setType(type);
-                    break;
-                default:
+                    //break;
+                }
+                //default:
                     System.out.println("Internal Error");
-            }
+            //}
         }catch (NonExistentTaskException e) {
             throw new NonExistentTaskException("Nonexistent or Invalid Task Requested!");
         }

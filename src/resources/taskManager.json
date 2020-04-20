@@ -71,7 +71,7 @@
       "title" : "Check your email",
       "desc" : "Sift through work and spam mail.",
       "baseQuality" : 0,
-      "timeLimit" : 0,
+      "timeLimit" : 31,
       "type" : 2,
       "completionQuality" : 0.0,
       "complete" : false,
@@ -91,13 +91,35 @@
     } ]
   },
   "currentTaskList" : {
-    "taskList" : [ ]
+    "taskList" : [ {
+      "id" : 9,
+      "title" : "C",
+      "desc" : "D",
+      "baseQuality" : 6,
+      "timeLimit" : 0,
+      "type" : 0,
+      "completionQuality" : 0.0,
+      "complete" : false,
+      "startTime" : null,
+      "progress" : 0
+    } ]
   },
   "completedTaskList" : {
     "taskList" : [ ]
   },
   "customTaskList" : {
-    "taskList" : [ ]
+    "taskList" : [ {
+      "id" : 9,
+      "title" : "C",
+      "desc" : "D",
+      "baseQuality" : 6,
+      "timeLimit" : 0,
+      "type" : 0,
+      "completionQuality" : 0.0,
+      "complete" : false,
+      "startTime" : null,
+      "progress" : 0
+    } ]
   },
   "failedTaskList" : {
     "taskList" : [ ]
