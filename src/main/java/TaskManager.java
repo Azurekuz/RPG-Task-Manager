@@ -88,6 +88,7 @@ public class TaskManager {
 
     public void addCurrentTask(Task newTask) throws DuplicateTaskException{
         try {
+            newTask.setID(validID());
             currentTaskList.addTask(newTask);
         }catch(DuplicateTaskException e){
             throw new DuplicateTaskException(e.getMessage());
@@ -98,10 +99,20 @@ public class TaskManager {
         try {
             int id = customTaskList.getSize();
             Task newTask = new Task(id, title, desc, quality, timeLimit, type, false);
+            newTask.setID(validID());
             customTaskList.addTask(newTask);
         }catch(DuplicateTaskException e){
             System.out.println("[Error][" + e.getMessage() + "]");
         }
+    }
+
+    public int validID(){
+        int size = defaultTaskList.getSize() + currentTaskList.getSize() + dailyTaskList.getSize() + completedTaskList.getSize() + customTaskList.getSize() + failedTaskList.getSize();
+        if(!mainTask.getTitle().isEmpty()){
+            size += 1;
+        }
+        System.out.println("SIZE:" + size);
+        return size;
     }
 
     public String selectTask(String title) throws NonExistentTaskException{

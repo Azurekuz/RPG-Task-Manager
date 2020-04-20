@@ -105,7 +105,7 @@ public class TaskList{
         Task task;
 
         for (int i = 0; i < taskList.size(); i++){
-            s = s.concat("[ID][" + i +"]: ");
+            s = s.concat("[ID][" + taskList.get(i).id +"]: ");
             task = taskList.get(i);
             s = s.concat("[TITLE][" + task.getTitle() +"] [DESC]["+ task.getDesc() +"] [BASE]["+ task.getBaseQuality() +"] [TIME]["+ task.getTimeLimit() +"] [TYPE]["+ task.getTypeStr() +"] [COMPLETE]["+ task.displayComplete()+"] [QUALITY]["+ task.getCompletionQuality()+"]");
             s = s.concat("\n");
