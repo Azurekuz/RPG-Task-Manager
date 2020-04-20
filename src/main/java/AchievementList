@@ -3,35 +3,57 @@ import java.util.ArrayList;
 
 
 public class AchievementList{
-    ArrayList<Achievement> AchievementList = new ArrayList<Ahievement>(100);
+    ArrayList<Achievement> AchievementList = new ArrayList<Achievement>(100);
 
     public void addAchievement(Achievement achievementToAdd){
+        if(achievementToAdd.getId()==AchievementList.findAchievement().getId()){
+
+            achievementToAdd.setId(achievementToAdd.getID+1));
+            this.AchievementList.add(achievementToAdd);
+        }
+        else{
        this.AchievementList.add(achievementToAdd);
+
+        }
     }
 
-    public ArrayList<Task> getAchievementList() {
+    public ArrayList<Achievement> getAchievementList() {
         return this.AchievementList;
     }
 
-    public void findAchievement(int achievementId){
+    public Achievement findAchievement(int achievementId){
 
         for(int i = 0; i < this.AchievementList.size(); i++){
             if(this.AchievementList.get(i).getId()==achievementId){
+
                 String y = this.AchievementList.get(i).getTitle()
                 int x=this.AchievementList.get(i).getId();
                 System.out.println("Title: " + y + "AchievementID: " + x);  //returns index of Achievement
+                return this.AchievementList.get(i);
+            }
+            else if {
+                throw new NonExistentAchievementException("Apparently there is no Achievement with that ID");
             }
         }
-        return -1;
-
+        /*return -1;
+            */
     }
 
     public String toSting(AchievementList listToRead){
-        for(int i = 0; i < this.AchievementList.size(); i++){
-            system.out.println(this.AchievementList.get(i).getId()+" "+this.AchievementList.get(i).getTitle()+" "+this.AchievementList.get(i).getDescription()+" "+this.AchievementList.get(i).getQuality()+" "+this.AchievementList.get(i).getComplete());
+        String stringToAdd =""
+        if(this.AchievementList.isEmpty()==true){
 
-            }
+            throw new NonExistentAchievementException("Apparently there are no Achievements in this List);
         }
-        return -1;
+        else{
+        for(int i = 0; i < this.AchievementList.size(); i++){
+            String stringToReturn = str(this.AchievementList.get(i).getId())+" "+this.AchievementList.get(i).getTitle()+" "+this.AchievementList.get(i).getDescription()+" "+str(this.AchievementList.get(i).getQuality())+" "+str(this.AchievementList.get(i).getComplete());
+            stringToAdd = stringToAdd + " "+ stringToReturn+" ";
+
+
+        }
+        }
+
+        return stringToAdd;
     }
 }

@@ -15,6 +15,7 @@ public class TaskListTest {
         AchievementList testAchievementList = new TaskList();
         //id, title, desc, quality, timeLimit, type, complete
         testAchievementList.addAchievement(testAchievement1);
+
         testAchievementList.addAchievement(testAchievement2);
         testAchievementList.addAchievement(testAchievement3);
         testAchievementList.addAchievement(testAchievement4);
@@ -24,11 +25,23 @@ public class TaskListTest {
         assertEquals(testAchievement1,testAchievementList.findAchievement(0));
         assertEquals(testAchievement2,testAchievementList.findAchievement(1));
         assertEquals(testAchievement3,testAchievementList.findAchievement(2));
-        assertEquals(false ,testAchievementList.findAchievement(3));
-        assertEquals(false,testAchievementList.findAchievement(4));
-        assertEquals(false,testAchievementList.findAchievement(6));
+        assertEquals(testAchievement4,testAchievementList.findAchievement(3));
+        assertEquals(testAchievement5,testAchievementList.findAchievement(4));
 
-        assertEquals(testAchievementList,testAchievementList.toString());
+        /*Test for non existent Achievements in the Achievement list*/
+        assertThrows(NonExistentAchievementException.class(),testAchievementList.findAchievement(6));
+        assertThrows(NonExistentAchievementException.class(),testAchievementList.findAchievement(7));
+        assertThrows(NonExistentAchievementException.class(),testAchievementList.findAchievement(8));
+
+        testAchievementList.clear();
+        testAchievementList.addAchievement(testAchievement1);
+        String stringToReturn=""
+        assertEquals(stringToReturn = str(this.AchievementList.get(0).getId())+" "+this.AchievementList.get(0).getTitle()+" "+this.AchievementList.get(0).getDescription()+" "+str(this.AchievementList.get(0).getQuality())+" "+str(this.AchievementList.get(0).getComplete());,testAchievementList.toString());
+
+        testAchievementList.clear();
+        assertThrows(NonExistentAchievementException.class(),testAchievementList.toString());
+
+
 
 
 

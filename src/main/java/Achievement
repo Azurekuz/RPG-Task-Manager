@@ -6,11 +6,17 @@ public class Achievement{
     private String description;
 
     public Achievement(int id, String title,  int quality,String desc,){
-        this.id=id;
-        this.title=title;
-        this.description=desc;
-        this.quality=quality;
-        this.complete=true;
+        if(id<0==true || quality<0==true){
+            throw new IllegalArgumentException("The values of your id and quality are invalid");
+
+        }
+        else {
+            this.id = id;
+            this.title = title;
+            this.description = desc;
+            this.quality = quality;
+            this.complete = true;
+        }
     }
 
     public boolean getComplete(){
