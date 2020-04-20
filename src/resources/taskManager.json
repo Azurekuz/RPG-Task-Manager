@@ -60,7 +60,7 @@
       "title" : "Floss your teeth",
       "desc" : "Floss under your gums too.",
       "baseQuality" : 0,
-      "timeLimit" : 0,
+      "timeLimit" : 31,
       "type" : 2,
       "completionQuality" : 0.0,
       "complete" : false,
@@ -82,7 +82,7 @@
       "title" : "Walk or Exercise",
       "desc" : "Keep yourself in good shape.",
       "baseQuality" : 0,
-      "timeLimit" : 0,
+      "timeLimit" : 31,
       "type" : 2,
       "completionQuality" : 0.0,
       "complete" : false,
@@ -91,18 +91,7 @@
     } ]
   },
   "currentTaskList" : {
-    "taskList" : [ {
-      "id" : 9,
-      "title" : "C",
-      "desc" : "D",
-      "baseQuality" : 6,
-      "timeLimit" : 0,
-      "type" : 0,
-      "completionQuality" : 0.0,
-      "complete" : false,
-      "startTime" : null,
-      "progress" : 0
-    } ]
+    "taskList" : [ ]
   },
   "completedTaskList" : {
     "taskList" : [ ]

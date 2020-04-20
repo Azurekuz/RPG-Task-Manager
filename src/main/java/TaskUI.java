@@ -136,6 +136,10 @@ public class TaskUI {
                     System.out.println(taskManager.completeMain());
                     break;
 
+                case "test_nextday":
+                    taskManager.populateDailyTasks();
+                    break;
+
                 case "select":
                     System.out.println("***[ Available Custom Tasks ]***");
                     System.out.println(taskManager.viewCustomTasks());

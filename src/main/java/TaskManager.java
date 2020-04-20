@@ -111,7 +111,6 @@ public class TaskManager {
         if(!mainTask.getTitle().isEmpty()){
             size += 1;
         }
-        System.out.println("SIZE:" + size);
         return size;
     }
 
@@ -183,7 +182,15 @@ public class TaskManager {
     public void stopTask(String title) throws NonExistentTaskException{
         try{
             int id = currentTaskList.findTask(title);
-            currentTaskList.removeTask(id);
+            if(id != -1) {
+                currentTaskList.removeTask(id);
+            }else{
+                id = dailyTaskList.findTask(title);
+                if(id != -1){
+                    dailyTaskList.removeTask(id);
+                }
+            }
+
         }catch (NonExistentTaskException e){
             throw new NonExistentTaskException("Nonexistent or Invalid Task Requested!");
         }
@@ -191,7 +198,15 @@ public class TaskManager {
 
     public void stopTask(int id) throws NonExistentTaskException{
         try{
-            currentTaskList.removeTask(id);
+            int task = currentTaskList.findTask(id);
+            if(task != -1) {
+                currentTaskList.removeTask(id);
+            }else{
+                task = dailyTaskList.findTask(id);
+                if(task != -1){
+                    dailyTaskList.removeTask(id);
+                }
+            }
         }catch (NonExistentTaskException e){
             throw new NonExistentTaskException("Nonexistent or Invalid Task Requested!");
         }
@@ -311,10 +326,13 @@ public class TaskManager {
     public void populateDailyTasks(){
         for(int dailyID = 0; dailyID < dailyTaskList.getSize(); dailyID++){
             try{
-                currentTaskList.addTask(recalculateHoursLeft(dailyTaskList.getTask(dailyID)));
-            }catch(NonExistentTaskException e){
+                Task newDaily = dailyTaskList.getTaskAt(dailyID);
+                newDaily.setID(validID());
+                newDaily.startTime();
+                currentTaskList.addTask(recalculateHoursLeft(newDaily));
+            }/*catch(NonExistentTaskException e){
                 System.out.println("[ERROR][Internal error. Daily task no longer found.]");
-            }catch(DuplicateTaskException e){
+            }*/catch(DuplicateTaskException e){
                 System.out.println("[NOTICE][Daily task was not completed. Skipped!]");
             }
         }
