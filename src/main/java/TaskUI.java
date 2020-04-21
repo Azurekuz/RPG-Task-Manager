@@ -25,11 +25,11 @@ public class TaskUI {
         String userStr = "";
         String failedTasks;
         String numOnlyCheck = "0123456789";
-        boolean byID = true;
         
 
         while (!(userStr.equals("quit"))){
             currentTime = LocalDateTime.now();
+            boolean byID = true;
             try {
                 failedTasks = taskManager.checkTimedTasks(currentTime);
             } catch (NonExistentTaskException | DuplicateTaskException e) {
@@ -179,10 +179,11 @@ public class TaskUI {
                         }
                         if(byID) {
                             taskManager.stopTask(Integer.parseInt(title));
+                            System.out.println("[NOTICE][ Task stopped! ]");
                         }else{
                             taskManager.stopTask(title);
+                            System.out.println("[NOTICE][ Task stopped! ]");
                         }
-                        System.out.println("[NOTICE][ Task stopped! ]");
                     }catch(NonExistentTaskException e){
                         System.out.println("[ERROR][ " + e.getMessage() + " ]");
                     }

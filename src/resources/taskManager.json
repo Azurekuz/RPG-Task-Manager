@@ -51,8 +51,8 @@
       "baseQuality" : 500,
       "timeLimit" : 0,
       "type" : 1,
-      "completionQuality" : 0.0,
-      "complete" : false,
+      "completionQuality" : 0.75,
+      "complete" : true,
       "startTime" : null,
       "progress" : 0
     }, {
@@ -94,14 +94,47 @@
     "taskList" : [ ]
   },
   "completedTaskList" : {
-    "taskList" : [ ]
+    "taskList" : [ {
+      "id" : 8,
+      "title" : "Get a Job",
+      "desc" : "Money can be exchanged for goods & services",
+      "baseQuality" : 500,
+      "timeLimit" : 0,
+      "type" : 1,
+      "completionQuality" : 0.75,
+      "complete" : true,
+      "startTime" : null,
+      "progress" : 0
+    }, {
+      "id" : 9,
+      "title" : "H",
+      "desc" : "C",
+      "baseQuality" : 100,
+      "timeLimit" : 480,
+      "type" : 0,
+      "completionQuality" : 0.6,
+      "complete" : true,
+      "startTime" : "2020-04-21T13:51:20.7516789",
+      "progress" : 0
+    }, {
+      "id" : 11,
+      "title" : "A",
+      "desc" : "B",
+      "baseQuality" : 50,
+      "timeLimit" : 0,
+      "type" : 0,
+      "completionQuality" : 0.65,
+      "complete" : true,
+      "startTime" : null,
+      "progress" : 0
+    } ]
   },
   "customTaskList" : {
     "taskList" : [ {
-      "id" : 9,
-      "title" : "C",
-      "desc" : "D",
-      "baseQuality" : 6,
+      "id" : 10,
+      "title" : "A",
+      "desc" : "B",
+      "baseQuality" : 50,
       "timeLimit" : 0,
       "type" : 0,
       "completionQuality" : 0.0,
