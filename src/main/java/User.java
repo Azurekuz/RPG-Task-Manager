@@ -12,6 +12,7 @@ public class User {
         this.currentTasks = new TaskList();
         this.customTasks = new TaskList();
         this.completedTasks = new TaskList();
+        this.character = new PlayerCharacter();
     }
 
     //getters:
@@ -41,6 +42,9 @@ public class User {
         return customTasks;
     }
 
+    public void addTask(Task task){
+
+    }
 
 
     public String toString(TaskList tasks){

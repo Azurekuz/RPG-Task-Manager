@@ -3,28 +3,42 @@ import java.util.ArrayList;
 public class UserList {
     public ArrayList<User> userList;
 
-    UserList(){
+    UserList() {
         userList = new ArrayList<User>();
     }
 
-    public void addUser(User newUser){
+    public void addUser(User newUser) {
         userList.add(newUser);
     }
 
-    public void addUser(String username, String password){
-        User newUser= new User(username,password);
+    public void addUser(String username, String password) {
+        User newUser = new User(username, password);
         userList.add(newUser);
     }
 
-    public void removeUser(String username){
+    public void removeUser(String username) {
         for (int i = 0; i < userList.size(); i++) {
-            if (username.equals(userList.get(i))){
+            if (username.equals(userList.get(i).getID())) {
                 userList.remove(i);
-                break;
+                return;
             }
         }
         System.out.println("No user found");
 
     }
 
+    public boolean confirmCredentials(String username, String password) {
+        for (int i = 0; i < userList.size(); i++) {
+            if (username.equals(userList.get(i).getID())){
+                if (password.equals(userList.get(i).getPassword())){
+                    return true;
+                }
+                else{
+                    return false;
+                }
+
+            }
+        }
+        return false;
+    }
 }
