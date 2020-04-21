@@ -308,6 +308,7 @@ public class TaskUI {
                 System.out.println("[ERROR][ Invalid choice entered! ]");
                 choice = input.nextInt();
             }
+            input.nextLine();
             taskManager.selectTask(id, choice - 1);
         }catch(NonExistentTaskException e){
             throw new NonExistentTaskException(e.getMessage());
@@ -326,6 +327,7 @@ public class TaskUI {
                 System.out.println("[Error][ Invalid choice entered! ]");
                 choice = input.nextInt();
             }
+            input.nextLine();
             return choice-1;
     }
 

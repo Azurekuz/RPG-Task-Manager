@@ -1,2 +1,2 @@
-public class NPC {
+public class NPC extends Actor{
 }

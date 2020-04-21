@@ -12,13 +12,14 @@ public class RPGUI {
 
     public void commandHandler(User user){
         this.user = user;
-        try {
-            load();
-        } catch (IOException e) {
-            System.out.println("[ERROR-LOAD FAILED:][ " + e.getMessage() + " ]");
-            System.out.println("[NOTICE][ Creating blank task manager... ]");
-            rpgManager = new RPGManager(true, user);
-        }
+//        try {
+//            //load(); TODO
+//        } catch (IOException e) {
+//            System.out.println("[ERROR-LOAD FAILED:][ " + e.getMessage() + " ]");
+//            System.out.println("[NOTICE][ Creating blank rpg manager... ]");
+//            rpgManager = new RPGManager(true, user);
+//        }
+        rpgManager = new RPGManager(true, user); //TODO
 
         Scanner input = new Scanner(System.in);
         System.out.println("***[STARTING RPG GAME INTERFACE]***");

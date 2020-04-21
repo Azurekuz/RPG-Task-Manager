@@ -14,11 +14,12 @@ public class RPGManager {
     /************* BACKEND ****************/
 
     public RPGManager(){
-        this(false,null);
-    }
+        this(false, new User("TEMPORARY")); //TODO
+            }
 
     public RPGManager(boolean genDefault, User user){
-
+        this.user = user;
+        this.player = user.getCharacter();
 
         if(genDefault){
             System.out.println("[NOTICE][Generating Default RPGManager unimplemented.]");
