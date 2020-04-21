@@ -15,7 +15,9 @@ public class TaskManager {
     private Task mainTask;
     private LocalDateTime lastTimeUsed = null;
     private LocalDateTime startTime;
-    //TODO tie in with User
+    private User currentUser; //TODO replace with other implementation when needed
+    private RPGUI rpg;
+    //TODO tie in with User (all lists but defaultTaskList go to User class)
 
 
      TaskManager(boolean genTasks){
@@ -28,7 +30,10 @@ public class TaskManager {
         mainTask = new Task();
         startTime = LocalDateTime.now();
 
-        startUp();
+         currentUser = new User("test"); //TEMPORARY TODO REMOVE
+
+
+         startUp();
 
         if(genTasks){
             try {
@@ -38,6 +43,10 @@ public class TaskManager {
     }
     TaskManager(){ //Need default constructor for json, just calls the other constructor and makes a blank object
          this(false);
+    }
+
+    public LocalDateTime getStartTime(){
+        return startTime;
     }
 
     public void startUp(){
@@ -63,14 +72,14 @@ public class TaskManager {
     }
 
     public void generateDefaultTaskList() throws DuplicateTaskException{
-        Task doDishes = new Task(0, "Do the Dishes", "Clean all your unwashed dishes.", 0, 0, 0, false);
-        Task doLaundry = new Task(1, "Do your Laundry", "Clean your clothes.", 0, 0, 3, false);
-        Task cleanRoom = new Task(2, "Clean your room", "Organize and dust off your room.", 0, 3, 0, false);
+        Task doDishes = new Task(0, "Do the Dishes", "Clean all your unwashed dishes.", 10, 0, 0, false);
+        Task doLaundry = new Task(1, "Do your Laundry", "Clean your clothes.", 10, 0, 3, false);
+        Task cleanRoom = new Task(2, "Clean your room", "Organize and dust off your room.", 10, 3, 0, false);
         Task finishSemester = new Task(3, "Finish 1st Semester", "Ithaca College", 1000, 0, 1, false);
         Task getJob = new Task(4, "Get a Job", "Money can be exchanged for goods & services", 500, 0, 1, false);
-        Task flossTeeth = new Task(5, "Floss your teeth", "Floss under your gums too.", 0, 0, 2, false);
-        Task checkEmail = new Task(6, "Check your email", "Sift through work and spam mail.", 0, 0, 2, false);
-        Task exercise = new Task(7, "Walk or Exercise", "Keep yourself in good shape.", 0, 0, 2, false);
+        Task flossTeeth = new Task(5, "Floss your teeth", "Floss under your gums too.", 10, 0, 2, false);
+        Task checkEmail = new Task(6, "Check your email", "Sift through work and spam mail.", 5, 0, 2, false);
+        Task exercise = new Task(7, "Walk or Exercise", "Keep yourself in good shape.", 20, 0, 2, false);
 
         defaultTaskList.addTask(doDishes);
         defaultTaskList.addTask(doLaundry);
@@ -317,7 +326,9 @@ public class TaskManager {
              completedTask.setCompletionQuality(completionQuality);
             completedTaskList.addTask(completedTask);
             currentTaskList.removeTask(id);
-            return completedTask.calcExp(); //TODO add xp to rpg player class
+            double exp = completedTask.calcExp();
+            currentUser.getCharacter().addExp(exp);
+            return exp;
         }catch (NonExistentTaskException e){
             throw new NonExistentTaskException("Nonexistent or Invalid Task Requested!");
         }catch(DuplicateTaskException e){
@@ -385,7 +396,7 @@ public class TaskManager {
     }
 
     public void startGame(){
-        //TODO
+         rpg = new RPGUI(currentUser);
     }
 
     public String checkTimedTasks(LocalDateTime currentTime) throws NonExistentTaskException, DuplicateTaskException {
@@ -463,8 +474,4 @@ public class TaskManager {
 
     }
 
-    //@JsonSerialize(using = LocalDateTimeSerializer.class)
-    public LocalDateTime getStartTime(){
-        return startTime;
-    }
 }
