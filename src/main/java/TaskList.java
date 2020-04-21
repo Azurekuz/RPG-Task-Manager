@@ -15,6 +15,9 @@ public class TaskList{
 
     public void addTask(Task newTask) throws DuplicateTaskException{
         try {
+            if(newTask.getTimeLimit() != 0){
+                newTask.startTime();
+            }
             taskList.add(checkDuplicate(newTask));
         }catch(DuplicateTaskException e){
             throw new DuplicateTaskException(e.getMessage());

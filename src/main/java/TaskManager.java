@@ -56,11 +56,7 @@ public class TaskManager {
     }
 
     public Task findCurrentTask(int id) throws NonExistentTaskException{
-      try {
-          return currentTaskList.getTask(id);
-      } catch (NonExistentTaskException e){
-          throw new NonExistentTaskException("Nonexistent or Invalid Task Requested!");
-      }
+          return currentTaskList.getTaskAt(id);
     }
 
     public void reassignGlobalIDs(){
@@ -374,9 +370,9 @@ public class TaskManager {
 
     public double completeCurrentTask(int id, double completionQuality) throws NonExistentTaskException{
         try {
-            Task completedTask = currentTaskList.getTask(id);
-             completedTask.complete();
-             completedTask.setCompletionQuality(completionQuality);
+            Task completedTask = currentTaskList.getTaskAt(id);
+            completedTask.complete();
+            completedTask.setCompletionQuality(completionQuality);
             completedTaskList.addTask(completedTask);
             currentTaskList.removeTask(id);
             return completedTask.calcExp(); //TODO add xp to rpg player class
