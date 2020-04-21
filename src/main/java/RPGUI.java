@@ -57,11 +57,14 @@ public class RPGUI {
                     break;
                 case "locations":
                     System.out.println("***[ AVAILABLE LOCATIONS ]***");
-                    rpgManager.viewLocations();
+                    //rpgManager.viewLocations();
+                    System.out.println("[NOTICE][ Unimplemented content.]");
+
                     break;
                 case "look":
                     System.out.println("***[ YOUR CURRENT LOCATION]***"); //TODO better header? More like text based adventure game?
-                    System.out.println(rpgManager.look());
+                    //System.out.println(rpgManager.look());
+                    System.out.println("[NOTICE][ Unimplemented content.]");
                     break;
                 case "trade":
                 case "shop":
@@ -92,6 +95,7 @@ public class RPGUI {
                     System.out.print("[SELECT ENEMY][> ");
                     name = input.nextLine();
                     rpgManager.fight(name);
+                    System.out.println("[NOTICE][ Unimplemented content.]");
                     break;
                 case "quit": break; //avoids triggering default case
                 default:
