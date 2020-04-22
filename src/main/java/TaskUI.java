@@ -4,7 +4,6 @@ import java.io.IOException;
 import java.time.LocalDateTime;
 import java.util.InputMismatchException;
 import java.util.Scanner;
-
 public class TaskUI {
     public TaskManager taskManager;
 
@@ -235,6 +234,7 @@ public class TaskUI {
                     }catch(InputMismatchException e){
                         System.out.println("[ERROR][ Invalid input entered! ]");
                     }
+
                     break;
 
                 case "edit":
@@ -324,6 +324,8 @@ public class TaskUI {
                     System.out.println("[ERROR][ Command not recognized. ]");
                     break;
             }
+
+            //userStr = input.nextLine();
         }
 
         System.out.println("[NOTICE][ Saving and quitting... ]");
