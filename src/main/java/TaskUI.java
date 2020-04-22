@@ -1,14 +1,17 @@
+import org.codehaus.stax2.ri.evt.NamespaceEventImpl;
+
 import java.io.IOException;
 import java.time.LocalDateTime;
+import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class TaskUI {
     public TaskManager taskManager;
 
     public void commandHandler(){
-        String title, desc, newTitle, answer;
-        int quality, timeLimit, type, progress;
-        double completionQuality, xp;
+        String title = "", desc="", newTitle="", answer="";
+        int quality=0, timeLimit=0, type=0, progress=0;
+        double completionQuality=0, xp=0;
         LocalDateTime currentTime;
 
         try {
@@ -95,7 +98,6 @@ public class TaskUI {
                             }
                         }
                         if(byID){
-
                             xp = taskManager.complete(Integer.parseInt(title),completionQuality);
                         }else {
                             xp = taskManager.complete(title,completionQuality);
@@ -104,6 +106,8 @@ public class TaskUI {
                         System.out.println("[EXP][ "+xp+" experience gained.]");
                     }catch(NonExistentTaskException e){
                         System.out.println("[ERROR][ " + e.getMessage() + " ]");
+                    }catch(IllegalArgumentException e){
+                        System.out.println("[ERROR][ Invalid input entered! ]");
                     }
                     break;
 
@@ -114,16 +118,20 @@ public class TaskUI {
                     System.out.println("[?][ How much progress would you like to add to your main task? ]");
                     System.out.print("[PROGRESS][> ");
                     if (input.hasNextInt()){
-                        progress=input.nextInt();
-                        input.nextLine(); //prevents reading user's newline as an unrecognized cmd
                         try {
-                            taskManager.incMainProgress(progress);
-                        } catch(IllegalArgumentException e){
-                            System.out.println("[ERROR][ Please only enter a number from 1-100. ]"); break;
-                        } catch (NonExistentTaskException e){
-                            System.out.println("[ERROR][ " + e.getMessage() + " ]"); break;
+                            progress = input.nextInt();
+                            input.nextLine(); //prevents reading user's newline as an unrecognized cmd
+                            try {
+                                taskManager.incMainProgress(progress);
+                            } catch(IllegalArgumentException e){
+                                System.out.println("[ERROR][ Please only enter a number from 1-100. ]"); break;
+                            } catch (NonExistentTaskException e){
+                                System.out.println("[ERROR][ " + e.getMessage() + " ]"); break;
+                            }
+                            System.out.println("[NOTICE][ Progress added! ]");
+                        }catch(InputMismatchException e){
+                            System.out.println("[ERROR][ Invalid input entered! ]");
                         }
-                        System.out.println("[NOTICE][ Progress added! ]");
                     }
                     else {
                         System.out.println("[ERROR][ Please only enter a whole number. ]");
@@ -168,7 +176,11 @@ public class TaskUI {
                 case "stop":
                     System.out.println("[?][ Which task would you like to stop? ]");
                     System.out.print("[STOP TASK][> ");
-                    title = input.nextLine();
+                    try {
+                        title = input.nextLine();
+                    }catch (IllegalArgumentException e){
+                        System.out.println("[ERROR][ Invalid input entered! ]");
+                    }
                     try {
                         for(int curChar = 0; curChar < title.length(); curChar++){
                             if(numOnlyCheck.indexOf(title.charAt(curChar)) == -1){
@@ -190,7 +202,11 @@ public class TaskUI {
 
                 case "stopmain":
                     System.out.println("[ALERT][ Are you sure you want to stop your main task? You will lose all progress! (y/n) ]");
-                    answer = input.nextLine();
+                    try {
+                        answer = input.nextLine();
+                    }catch(IllegalArgumentException e){
+                        System.out.println("[ERROR][ Invalid input entered! ]");
+                    }
                     if(answer.toLowerCase().equals("y") || answer.toLowerCase().equals("yes")) {
                         System.out.println(taskManager.stopMainTask());
                     }
@@ -201,15 +217,24 @@ public class TaskUI {
 
                 case "addcust": //Kept trying to do this despite knowing the custom cmd so might as well add it as an alias
                 case "custom":
-                    System.out.println("***Making a custom task.***");
-                    System.out.println("[Enter task title][> "); title = input.nextLine();
-                    System.out.println("[Enter task description][> "); desc = input.nextLine();
-                    System.out.println("[Enter task base quality (integer)][> "); quality = input.nextInt();
-                    System.out.println("[Enter task time limit (in minutes, 0 for not timed][> "); timeLimit = input.nextInt();
-                    System.out.println("[Enter task type (0 for default, 1 for main, 2 for daily, 3 for weekly][> "); type = input.nextInt();
-                    input.nextLine(); //prevents reading user's newline as an unrecognized cmd
-                    taskManager.addCustomTask(title, desc, quality, timeLimit, type);
-                    System.out.println("[SUCCESS][ Task created!]");
+                    try {
+                        System.out.println("***Making a custom task.***");
+                        System.out.println("[Enter task title][> ");
+                        title = input.nextLine();
+                        System.out.println("[Enter task description][> ");
+                        desc = input.nextLine();
+                        System.out.println("[Enter task base quality (integer)][> ");
+                        quality = input.nextInt();
+                        System.out.println("[Enter task time limit (in minutes, 0 for not timed][> ");
+                        timeLimit = input.nextInt();
+                        System.out.println("[Enter task type (0 for default, 1 for main, 2 for daily, 3 for weekly][> ");
+                        type = input.nextInt();
+                        input.nextLine(); //prevents reading user's newline as an unrecognized cmd
+                        taskManager.addCustomTask(title, desc, quality, timeLimit, type);
+                        System.out.println("[SUCCESS][ Task created!]");
+                    }catch(InputMismatchException e){
+                        System.out.println("[ERROR][ Invalid input entered! ]");
+                    }
                     break;
 
                 case "edit":
@@ -223,21 +248,30 @@ public class TaskUI {
                             break;
                         }
                     }
-                    System.out.println("[Enter new title][> "); newTitle = input.nextLine();
-                    System.out.println("[Enter new description][> "); desc = input.nextLine();
-                    System.out.println("[Enter new Base Quality (integer)][> "); quality = input.nextInt();
-                    System.out.println("[Enter new time limit (in  minutes, 0 for not timed)][> "); timeLimit = input.nextInt();
-                    System.out.println("[Enter new type (0 for default, 1 for main, 2 for daily, 3 for weekly][> "); type = input.nextInt();
-                    input.nextLine(); //prevents reading user's newline as an unrecognized cmd
                     try {
-                        if(byID){
-                            taskManager.editTask(Integer.parseInt(title), newTitle, desc, quality, timeLimit, type, 0); //editListPrompt(input)
-                        }else {
-                            taskManager.editTask(title, newTitle, desc, quality, timeLimit, type);
+                        System.out.println("[Enter new title][> ");
+                        newTitle = input.nextLine();
+                        System.out.println("[Enter new description][> ");
+                        desc = input.nextLine();
+                        System.out.println("[Enter new Base Quality (integer)][> ");
+                        quality = input.nextInt();
+                        System.out.println("[Enter new time limit (in  minutes, 0 for not timed)][> ");
+                        timeLimit = input.nextInt();
+                        System.out.println("[Enter new type (0 for default, 1 for main, 2 for daily, 3 for weekly][> ");
+                        type = input.nextInt();
+                        input.nextLine(); //prevents reading user's newline as an unrecognized cmd
+                        try {
+                            if(byID){
+                                taskManager.editTask(Integer.parseInt(title), newTitle, desc, quality, timeLimit, type, 0); //editListPrompt(input)
+                            }else {
+                                taskManager.editTask(title, newTitle, desc, quality, timeLimit, type);
+                            }
+                            System.out.println("[SUCCESS][ Task edited! ]");
+                        }catch(NonExistentTaskException e){
+                            System.out.println("[ERROR][ " + e.getMessage() + " ]");
                         }
-                        System.out.println("[SUCCESS][ Task edited! ]");
-                    }catch(NonExistentTaskException e){
-                        System.out.println("[ERROR][ " + e.getMessage() + " ]");
+                    }catch(InputMismatchException e){
+                        System.out.println("[ERROR][ Invalid input entered! ]");
                     }
                     break;
 
