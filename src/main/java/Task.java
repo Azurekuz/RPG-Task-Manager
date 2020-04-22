@@ -12,6 +12,7 @@ public class Task {
     private int progress;
 
     public Task(){ //default constructor = blank object created
+        title="";
         complete = false;
     }
 
@@ -24,6 +25,9 @@ public class Task {
         this.timeLimit=timeLimit;
         this.type=type;
         this.complete=complete;
+        if (type == 1) {
+            this.progress = 0;
+        }
     }
 
     public double calcExp(){
