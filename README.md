@@ -11,6 +11,7 @@ An RPG Game where the user can input a ‘main task’ and ‘side tasks’. The
 - Zenhub: [Link](https://app.zenhub.com/workspaces/rpg-tasks-5e5ff15b63c718891a5aacb2/board?repos=244972518)
 
 ### Sprint 1:
+Sprint goal: Basic working UI with initial Task functionality
 - Class Diagram: [Link](https://drive.google.com/file/d/140AbHzaxltgDzKVBUYyYfWc_1CIR4Ebh/view?usp=sharing)
 - Sprint 1 Review Meeting doc: [Link](https://docs.google.com/document/d/1pWe4r2CDPy9umHHfbNV3Shm50lXJQnb5Efa18UGlexk/edit?usp=sharing)
 - Sprint 1 Retrospective: [Link](https://docs.google.com/document/d/1cPsGp3-SIhRzqITo2maJk-c2BELcKFjRlqQuBiZ-uhs/edit)
