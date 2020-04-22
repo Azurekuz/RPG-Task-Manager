@@ -108,7 +108,18 @@
     } ]
   },
   "customTaskList" : {
-    "taskList" : [ ]
+    "taskList" : [ {
+      "id" : 9,
+      "title" : "Finish Sprint2",
+      "desc" : "Finish this sprint.",
+      "baseQuality" : 1000,
+      "timeLimit" : 0,
+      "type" : 1,
+      "completionQuality" : 0.0,
+      "complete" : false,
+      "startTime" : null,
+      "progress" : 0
+    } ]
   },
   "failedTaskList" : {
     "taskList" : [ ]

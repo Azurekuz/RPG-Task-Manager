@@ -221,7 +221,13 @@ public class TaskManager {
     public void checkIfDaily(Task task) throws DuplicateTaskException{
         //System.out.println(startTime);
         //System.out.println((new Date(startTime.getYear(), startTime.getMonth(), startTime.getDay()+1, 0,0)));
-        if(task.getType() == 2) {
+        if(task.getType() == 1){
+            if (!(mainTask.getTitle().isEmpty()) && task.getType() == 1) {
+                throw new DuplicateTaskException("ERROR: Can't have more than one main task selected.");
+            }
+            mainTask = task;
+            task.startTime();
+        }else if(task.getType() == 2) {
             Task newTaskInstance = new Task(validID(), task.title, task.desc, task.baseQuality, task.timeLimit, task.type, task.complete);
             newTaskInstance.setID(validID());
             dailyTaskList.addTask(recalculateHoursLeft(newTaskInstance));
