@@ -1,4 +1,5 @@
-package PACKAGE_NAME;
-
-public class NonExistentAchievementException {
+public class NonExistentAchievementException extends Exception {
+    public NonExistentAchievementException(String message){
+        super(message);
+    }
 }
