@@ -46,7 +46,7 @@ public class TaskUI {
             System.out.print("[COMMAND][> ");
             try {
                 userStr = input.nextLine();
-            }catch(NumberFormatException e){
+            }catch(IllegalArgumentException e){
                 System.out.println("[ERROR][Invalid input entered!]");
             }
             System.out.println();
@@ -87,7 +87,7 @@ public class TaskUI {
                     System.out.print("[TASK][> ");
                     try{
                         title = input.nextLine();
-                    }catch(NumberFormatException e){
+                    }catch(IllegalArgumentException e){
                         System.out.println("[ERROR][Invalid input entered!]");
                     }
                     System.out.println("[?][ How well did you do? (Enter a number from 0.1 to 1) ]");
