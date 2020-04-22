@@ -25,8 +25,6 @@ public class TaskUI {
         String userStr = "";
         String failedTasks;
         String numOnlyCheck = "0123456789";
-        
-
         while (!(userStr.equals("quit"))){
             currentTime = LocalDateTime.now();
             boolean byID = true;
@@ -75,6 +73,7 @@ public class TaskUI {
                 case "rpg":
                     System.out.println("[NOTICE][ Starting RPG interface... ]");
                     taskManager.startGame();
+                    System.out.println("***[RETURNED TO TASK INTERFACE]***");
                     break;
 
                 case "complete":
@@ -331,6 +330,7 @@ public class TaskUI {
                 System.out.println("[Error][ Invalid choice entered! ]");
                 choice = input.nextInt();
             }
+            input.nextLine();
             return choice-1;
     }
 

@@ -10,6 +10,7 @@ public class User {
         this.currentTasks = new TaskList();
         this.customTasks = new TaskList();
         this.completedTasks = new TaskList();
+        this.character = new PlayerCharacter();
     }
 
     //getters:

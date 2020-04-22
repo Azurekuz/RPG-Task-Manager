@@ -40,11 +40,11 @@ public class TaskManagerTests { //TODO test new tests added by Elias
         TaskManager testManager = new TaskManager(true);
         Task testTask = new Task(0, "Test1", "A test task", 5, 20, 0, false);
         testManager.addCurrentTask(testTask);
-        testManager.completeCurrentTask(0,1);
+        testManager.completeCurrentTask(testTask.id,1);
         TaskList completedTasks = testManager.getCompletedTaskList();
-        assertEquals("Test1",completedTasks.getTaskAt(0).getTitle());
-        assertEquals(1,completedTasks.getTaskAt(0).getCompletionQuality());
-        assertEquals(5.0,completedTasks.getTaskAt(0).calcExp());
+        assertEquals("Test1",completedTasks.getTask(testTask.id).getTitle());
+        assertEquals(1,completedTasks.getTask(testTask.id).getCompletionQuality());
+        assertEquals(5.0,completedTasks.getTask(testTask.id).calcExp());
 
 
     }

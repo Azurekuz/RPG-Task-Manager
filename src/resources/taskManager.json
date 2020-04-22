@@ -4,7 +4,7 @@
       "id" : 0,
       "title" : "Do the Dishes",
       "desc" : "Clean all your unwashed dishes.",
-      "baseQuality" : 0,
+      "baseQuality" : 10,
       "timeLimit" : 0,
       "type" : 0,
       "completionQuality" : 0.0,
@@ -15,7 +15,7 @@
       "id" : 1,
       "title" : "Do your Laundry",
       "desc" : "Clean your clothes.",
-      "baseQuality" : 0,
+      "baseQuality" : 10,
       "timeLimit" : 0,
       "type" : 3,
       "completionQuality" : 0.0,
@@ -26,12 +26,12 @@
       "id" : 2,
       "title" : "Clean your room",
       "desc" : "Organize and dust off your room.",
-      "baseQuality" : 0,
+      "baseQuality" : 10,
       "timeLimit" : 3,
       "type" : 0,
       "completionQuality" : 0.0,
       "complete" : false,
-      "startTime" : null,
+      "startTime" : "2020-04-22T08:53:04.6906556",
       "progress" : 0
     }, {
       "id" : 3,
@@ -51,16 +51,16 @@
       "baseQuality" : 500,
       "timeLimit" : 0,
       "type" : 1,
-      "completionQuality" : 0.75,
-      "complete" : true,
+      "completionQuality" : 0.0,
+      "complete" : false,
       "startTime" : null,
       "progress" : 0
     }, {
       "id" : 5,
       "title" : "Floss your teeth",
       "desc" : "Floss under your gums too.",
-      "baseQuality" : 0,
-      "timeLimit" : 31,
+      "baseQuality" : 10,
+      "timeLimit" : 0,
       "type" : 2,
       "completionQuality" : 0.0,
       "complete" : false,
@@ -70,8 +70,8 @@
       "id" : 6,
       "title" : "Check your email",
       "desc" : "Sift through work and spam mail.",
-      "baseQuality" : 0,
-      "timeLimit" : 31,
+      "baseQuality" : 5,
+      "timeLimit" : 0,
       "type" : 2,
       "completionQuality" : 0.0,
       "complete" : false,
@@ -81,8 +81,8 @@
       "id" : 7,
       "title" : "Walk or Exercise",
       "desc" : "Keep yourself in good shape.",
-      "baseQuality" : 0,
-      "timeLimit" : 31,
+      "baseQuality" : 20,
+      "timeLimit" : 0,
       "type" : 2,
       "completionQuality" : 0.0,
       "complete" : false,
@@ -95,53 +95,20 @@
   },
   "completedTaskList" : {
     "taskList" : [ {
-      "id" : 8,
-      "title" : "Get a Job",
-      "desc" : "Money can be exchanged for goods & services",
-      "baseQuality" : 500,
+      "id" : 9,
+      "title" : "Finish 1st Semester",
+      "desc" : "Ithaca College",
+      "baseQuality" : 1000,
       "timeLimit" : 0,
       "type" : 1,
       "completionQuality" : 0.75,
       "complete" : true,
       "startTime" : null,
       "progress" : 0
-    }, {
-      "id" : 9,
-      "title" : "H",
-      "desc" : "C",
-      "baseQuality" : 100,
-      "timeLimit" : 480,
-      "type" : 0,
-      "completionQuality" : 0.6,
-      "complete" : true,
-      "startTime" : "2020-04-21T13:51:20.7516789",
-      "progress" : 0
-    }, {
-      "id" : 11,
-      "title" : "A",
-      "desc" : "B",
-      "baseQuality" : 50,
-      "timeLimit" : 0,
-      "type" : 0,
-      "completionQuality" : 0.65,
-      "complete" : true,
-      "startTime" : null,
-      "progress" : 0
     } ]
   },
   "customTaskList" : {
-    "taskList" : [ {
-      "id" : 10,
-      "title" : "A",
-      "desc" : "B",
-      "baseQuality" : 50,
-      "timeLimit" : 0,
-      "type" : 0,
-      "completionQuality" : 0.0,
-      "complete" : false,
-      "startTime" : null,
-      "progress" : 0
-    } ]
+    "taskList" : [ ]
   },
   "failedTaskList" : {
     "taskList" : [ ]
@@ -158,5 +125,5 @@
     "startTime" : null,
     "progress" : 0
   },
-  "startTime" : "2020-04-19T16:29:11.8293891"
+  "startTime" : "2020-04-22T08:53:04.6906556"
 }
