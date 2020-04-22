@@ -1,7 +1,6 @@
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import java.time.LocalDateTime;
-
 public class Task {
 
     public int id;
@@ -13,7 +12,6 @@ public class Task {
     private int progress;
 
     public Task(){ //default constructor = blank object created
-        title = "";
         complete = false;
     }
 
@@ -26,10 +24,6 @@ public class Task {
         this.timeLimit=timeLimit;
         this.type=type;
         this.complete=complete;
-        if (type == 1) {
-            this.progress = 0;
-        }
-
     }
 
     public double calcExp(){
@@ -56,6 +50,7 @@ public class Task {
         this.type = type;
     }
     public void complete() { this.complete = true; }
+
     public void setCompletionQuality(double completionQuality) {
         this.completionQuality = completionQuality;
     }
@@ -88,6 +83,7 @@ public class Task {
             default: return null;
         }
     }
+  
     public int getProgress() { return progress; }
     public double getCompletionQuality() { return completionQuality; }
     public boolean isComplete() { return complete; }

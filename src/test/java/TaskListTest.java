@@ -33,7 +33,7 @@ public class TaskListTest {
 
         assertEquals(0, testTasks.getType());
         assertEquals("default", testTasks.getTypeStr());
-        assertFalse(testTasks.isComplete());
+        assertEquals(false, testTasks.isComplete());
 
         testTasks.setID(1);
         assertEquals(1, testTasks.getId());
@@ -68,7 +68,7 @@ public class TaskListTest {
         assertThrows(IllegalArgumentException.class, () -> testTasks.setType(4));
 
         testTasks.complete();
-        assertTrue(testTasks.isComplete());
+        assertEquals(true, testTasks.isComplete());
 
         //default constructor - blank object created.
         Task testTask2 = new Task();
