@@ -1,17 +1,18 @@
-import java.util.Iterator;
-
 public class User {
-    private String ID;
+    private String username;
     private String password;
-    private TaskList currentTasks,customTasks,completedTasks;
+    private TaskList currentTaskList, dailyTaskList, completedTaskList, customTaskList, failedTaskList;
+    private Task mainTask;
     private PlayerCharacter character;
 
-    public User(String ID, String password){
-        this.ID=ID;
+    public User(String username, String password){
+        this.username =username;
         this.password=password;
-        this.currentTasks = new TaskList();
-        this.customTasks = new TaskList();
-        this.completedTasks = new TaskList();
+        this.currentTaskList = new TaskList();
+        this.customTaskList = new TaskList();
+        this.completedTaskList = new TaskList();
+        this.dailyTaskList = new TaskList();
+        this.customTaskList = new TaskList();
         this.character = new PlayerCharacter();
     }
 
@@ -22,25 +23,29 @@ public class User {
         return password;
     }
 
-    public String getID() {
-        return ID;
+    public String getUsername() {
+        return username;
     }
 
     public PlayerCharacter getCharacter() {
         return character;
     }
 
-    public TaskList getCompletedTasks() {
-        return completedTasks;
+    public TaskList getCompletedTaskList() {
+        return completedTaskList;
     }
 
-    public TaskList getCurrentTasks() {
-        return currentTasks;
+    public TaskList getCurrentTaskList() {
+        return currentTaskList;
     }
 
-    public TaskList getCustomTasks() {
-        return customTasks;
+    public TaskList getCustomTaskList() {
+        return customTaskList;
     }
+
+    public TaskList getDailyTaskList() { return dailyTaskList; }
+
+    public TaskList getFailedTaskList() { return failedTaskList; }
 
     public void addTask(Task task){
 

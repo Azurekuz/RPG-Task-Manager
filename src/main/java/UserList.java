@@ -1,4 +1,3 @@
-import java.awt.*;
 import java.util.ArrayList;
 public class UserList {
     public ArrayList<User> userList;
@@ -18,7 +17,7 @@ public class UserList {
 
     public void removeUser(String username) {
         for (int i = 0; i < userList.size(); i++) {
-            if (username.equals(userList.get(i).getID())) {
+            if (username.equals(userList.get(i).getUsername())) {
                 userList.remove(i);
                 return;
             }
@@ -29,7 +28,7 @@ public class UserList {
 
     public boolean confirmCredentials(String username, String password) {
         for (int i = 0; i < userList.size(); i++) {
-            if (username.equals(userList.get(i).getID())){
+            if (username.equals(userList.get(i).getUsername())){
                 if (password.equals(userList.get(i).getPassword())){
                     return true;
                 }

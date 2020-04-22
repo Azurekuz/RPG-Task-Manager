@@ -14,7 +14,7 @@ public class RPGManager {
     /************* BACKEND ****************/
 
     public RPGManager(){
-        this(false, new User("TEMPORARY")); //TODO
+        this(false, new User("TEMPORARY","1234")); //TODO
             }
 
     public RPGManager(boolean genDefault, User user){

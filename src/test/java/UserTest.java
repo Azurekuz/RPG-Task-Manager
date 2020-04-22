@@ -5,7 +5,7 @@ public class UserTest {
     @Test
     public void getIDTest(){
         User christian = new User("christian","abc");
-        assertEquals("christian", christian.getID());
+        assertEquals("christian", christian.getUsername());
     }
 
     @Test
