@@ -95,7 +95,7 @@
   },
   "completedTaskList" : {
     "taskList" : [ {
-      "id" : 9,
+      "id" : 8,
       "title" : "Finish 1st Semester",
       "desc" : "Ithaca College",
       "baseQuality" : 1000,
@@ -104,6 +104,17 @@
       "completionQuality" : 0.75,
       "complete" : true,
       "startTime" : null,
+      "progress" : 0
+    }, {
+      "id" : 9,
+      "title" : "Clean your room",
+      "desc" : "Organize and dust off your room.",
+      "baseQuality" : 10,
+      "timeLimit" : 3,
+      "type" : 0,
+      "completionQuality" : 0.75,
+      "complete" : true,
+      "startTime" : "2020-04-22T10:23:57.9608448",
       "progress" : 0
     } ]
   },
