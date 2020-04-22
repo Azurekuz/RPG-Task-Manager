@@ -528,6 +528,7 @@ public class TaskManager {
         }
         mainTask.complete();
         try {
+            mainTask.setID(validID());
             completedTaskList.addTask(mainTask);
         }catch (DuplicateTaskException e){
             System.out.println("[NOTICE][You have completed this main task before!]");
