@@ -230,11 +230,11 @@ public class TaskUI {
                         System.out.println("[Enter task type (0 for default, 1 for main, 2 for daily, 3 for weekly][> ");
                         type = input.nextInt();
                         input.nextLine(); //prevents reading user's newline as an unrecognized cmd
+                        taskManager.addCustomTask(title, desc, quality, timeLimit, type);
+                        System.out.println("[SUCCESS][ Task created!]");
                     }catch(InputMismatchException e){
                         System.out.println("[ERROR][ Invalid input entered! ]");
                     }
-                    taskManager.addCustomTask(title, desc, quality, timeLimit, type);
-                    System.out.println("[SUCCESS][ Task created!]");
                     break;
 
                 case "edit":
@@ -260,18 +260,18 @@ public class TaskUI {
                         System.out.println("[Enter new type (0 for default, 1 for main, 2 for daily, 3 for weekly][> ");
                         type = input.nextInt();
                         input.nextLine(); //prevents reading user's newline as an unrecognized cmd
+                        try {
+                            if(byID){
+                                taskManager.editTask(Integer.parseInt(title), newTitle, desc, quality, timeLimit, type, 0); //editListPrompt(input)
+                            }else {
+                                taskManager.editTask(title, newTitle, desc, quality, timeLimit, type);
+                            }
+                            System.out.println("[SUCCESS][ Task edited! ]");
+                        }catch(NonExistentTaskException e){
+                            System.out.println("[ERROR][ " + e.getMessage() + " ]");
+                        }
                     }catch(InputMismatchException e){
                         System.out.println("[ERROR][ Invalid input entered! ]");
-                    }
-                    try {
-                        if(byID){
-                            taskManager.editTask(Integer.parseInt(title), newTitle, desc, quality, timeLimit, type, 0); //editListPrompt(input)
-                        }else {
-                            taskManager.editTask(title, newTitle, desc, quality, timeLimit, type);
-                        }
-                        System.out.println("[SUCCESS][ Task edited! ]");
-                    }catch(NonExistentTaskException e){
-                        System.out.println("[ERROR][ " + e.getMessage() + " ]");
                     }
                     break;
 
