@@ -116,20 +116,31 @@
       "complete" : true,
       "startTime" : "2020-04-22T10:23:57.9608448",
       "progress" : 0
-    } ]
-  },
-  "customTaskList" : {
-    "taskList" : [ {
-      "id" : 9,
+    }, {
+      "id" : 12,
       "title" : "Finish Sprint2",
       "desc" : "Finish this sprint.",
       "baseQuality" : 1000,
       "timeLimit" : 0,
       "type" : 1,
       "completionQuality" : 0.0,
-      "complete" : false,
-      "startTime" : null,
-      "progress" : 0
+      "complete" : true,
+      "startTime" : "2020-04-22T12:23:22.8903752",
+      "progress" : 100
+    } ]
+  },
+  "customTaskList" : {
+    "taskList" : [ {
+      "id" : 12,
+      "title" : "Finish Sprint2",
+      "desc" : "Finish this sprint.",
+      "baseQuality" : 1000,
+      "timeLimit" : 0,
+      "type" : 1,
+      "completionQuality" : 0.0,
+      "complete" : true,
+      "startTime" : "2020-04-22T12:23:22.8903752",
+      "progress" : 100
     } ]
   },
   "failedTaskList" : {
