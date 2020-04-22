@@ -42,9 +42,9 @@ public class TaskManagerTests { //TODO test new tests added by Elias
         testManager.addCurrentTask(testTask);
         testManager.completeCurrentTask(0,1);
         TaskList completedTasks = testManager.getCompletedTaskList();
-        assertEquals("Test1",completedTasks.getTask(0).getTitle());
-        assertEquals(1,completedTasks.getTask(0).getCompletionQuality());
-        assertEquals(5.0,completedTasks.getTask(0).calcExp());
+        assertEquals("Test1",completedTasks.getTaskAt(0).getTitle());
+        assertEquals(1,completedTasks.getTaskAt(0).getCompletionQuality());
+        assertEquals(5.0,completedTasks.getTaskAt(0).calcExp());
 
 
     }
@@ -62,7 +62,7 @@ public class TaskManagerTests { //TODO test new tests added by Elias
 
         TaskList currentTasks = testManager.getCurrentTaskList();
         for(int taskID = 0; taskID < currentTasks.getSize();taskID++){
-            assertEquals(currentTasks.getTask(taskID), testManager.findCurrentTask(taskID));
+            assertEquals(currentTasks.getTaskAt(taskID), testManager.findCurrentTask(taskID));
         }
         assertThrows(NonExistentTaskException.class, ()-> currentTasks.getTask(currentTasks.getSize()));
         assertThrows(NonExistentTaskException.class, ()-> currentTasks.getTask(-1));
@@ -115,7 +115,7 @@ public class TaskManagerTests { //TODO test new tests added by Elias
         testManager.selectTask("Do Homework Before Class");
 
         LocalDateTime currentTime = LocalDateTime.now();
-        assertEquals(testManager.checkTimedTasks(currentTime),"No tasks failed.");
+        assertEquals("[NOTICE][ No tasks failed.]", testManager.checkTimedTasks(currentTime));
 
         //currentTime.setTime(currentTime.getTime() + 65*60000);
         currentTime = currentTime.plusMinutes(65);
@@ -133,7 +133,7 @@ public class TaskManagerTests { //TODO test new tests added by Elias
         testManager2.selectTask("Email Teacher");
         currentTime = LocalDateTime.now();
 
-        assertEquals(testManager2.checkTimedTasks(currentTime),"No tasks failed.");
+        assertEquals("[NOTICE][ No tasks failed.]", testManager2.checkTimedTasks(currentTime));
         //currentTime.setTime(currentTime.getTime() + 65*60000); //faking time passage
         currentTime = currentTime.plusMinutes(65);
 

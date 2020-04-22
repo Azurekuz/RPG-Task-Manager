@@ -51,8 +51,8 @@
       "baseQuality" : 500,
       "timeLimit" : 0,
       "type" : 1,
-      "completionQuality" : 0.0,
-      "complete" : false,
+      "completionQuality" : 0.75,
+      "complete" : true,
       "startTime" : null,
       "progress" : 0
     }, {
@@ -60,7 +60,7 @@
       "title" : "Floss your teeth",
       "desc" : "Floss under your gums too.",
       "baseQuality" : 0,
-      "timeLimit" : 0,
+      "timeLimit" : 31,
       "type" : 2,
       "completionQuality" : 0.0,
       "complete" : false,
@@ -71,7 +71,7 @@
       "title" : "Check your email",
       "desc" : "Sift through work and spam mail.",
       "baseQuality" : 0,
-      "timeLimit" : 0,
+      "timeLimit" : 31,
       "type" : 2,
       "completionQuality" : 0.0,
       "complete" : false,
@@ -82,7 +82,7 @@
       "title" : "Walk or Exercise",
       "desc" : "Keep yourself in good shape.",
       "baseQuality" : 0,
-      "timeLimit" : 0,
+      "timeLimit" : 31,
       "type" : 2,
       "completionQuality" : 0.0,
       "complete" : false,
@@ -94,10 +94,54 @@
     "taskList" : [ ]
   },
   "completedTaskList" : {
-    "taskList" : [ ]
+    "taskList" : [ {
+      "id" : 8,
+      "title" : "Get a Job",
+      "desc" : "Money can be exchanged for goods & services",
+      "baseQuality" : 500,
+      "timeLimit" : 0,
+      "type" : 1,
+      "completionQuality" : 0.75,
+      "complete" : true,
+      "startTime" : null,
+      "progress" : 0
+    }, {
+      "id" : 9,
+      "title" : "H",
+      "desc" : "C",
+      "baseQuality" : 100,
+      "timeLimit" : 480,
+      "type" : 0,
+      "completionQuality" : 0.6,
+      "complete" : true,
+      "startTime" : "2020-04-21T13:51:20.7516789",
+      "progress" : 0
+    }, {
+      "id" : 11,
+      "title" : "A",
+      "desc" : "B",
+      "baseQuality" : 50,
+      "timeLimit" : 0,
+      "type" : 0,
+      "completionQuality" : 0.65,
+      "complete" : true,
+      "startTime" : null,
+      "progress" : 0
+    } ]
   },
   "customTaskList" : {
-    "taskList" : [ ]
+    "taskList" : [ {
+      "id" : 10,
+      "title" : "A",
+      "desc" : "B",
+      "baseQuality" : 50,
+      "timeLimit" : 0,
+      "type" : 0,
+      "completionQuality" : 0.0,
+      "complete" : false,
+      "startTime" : null,
+      "progress" : 0
+    } ]
   },
   "failedTaskList" : {
     "taskList" : [ ]

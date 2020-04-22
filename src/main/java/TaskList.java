@@ -15,6 +15,9 @@ public class TaskList{
 
     public void addTask(Task newTask) throws DuplicateTaskException{
         try {
+            if(newTask.getTimeLimit() != 0){
+                newTask.startTime();
+            }
             taskList.add(checkDuplicate(newTask));
         }catch(DuplicateTaskException e){
             throw new DuplicateTaskException(e.getMessage());
@@ -42,7 +45,7 @@ public class TaskList{
 
     public void removeTask(int id) throws NonExistentTaskException{
         int index = findTask(id);
-        if(index > taskList.size() || index < 0){
+        if(index >= taskList.size() || index < 0){
             throw new NonExistentTaskException("Nonexistent or Invalid Task Requested!");
         }
         taskList.remove(index);
@@ -105,7 +108,7 @@ public class TaskList{
         Task task;
 
         for (int i = 0; i < taskList.size(); i++){
-            s = s.concat("[ID][" + i +"]: ");
+            s = s.concat("[ID][" + taskList.get(i).id +"]: ");
             task = taskList.get(i);
             s = s.concat("[TITLE][" + task.getTitle() +"] [DESC]["+ task.getDesc() +"] [BASE]["+ task.getBaseQuality() +"] [TIME]["+ task.getTimeLimit() +"] [TYPE]["+ task.getTypeStr() +"] [COMPLETE]["+ task.displayComplete()+"] [QUALITY]["+ task.getCompletionQuality()+"]");
             s = s.concat("\n");

@@ -25,11 +25,11 @@ public class TaskUI {
         String userStr = "";
         String failedTasks;
         String numOnlyCheck = "0123456789";
-        boolean byID = true;
         
 
         while (!(userStr.equals("quit"))){
             currentTime = LocalDateTime.now();
+            boolean byID = true;
             try {
                 failedTasks = taskManager.checkTimedTasks(currentTime);
             } catch (NonExistentTaskException | DuplicateTaskException e) {
@@ -136,6 +136,10 @@ public class TaskUI {
                     System.out.println(taskManager.completeMain());
                     break;
 
+                case "test_nextday":
+                    taskManager.populateDailyTasks();
+                    break;
+
                 case "select":
                     System.out.println("***[ Available Custom Tasks ]***");
                     System.out.println(taskManager.viewCustomTasks());
@@ -175,10 +179,11 @@ public class TaskUI {
                         }
                         if(byID) {
                             taskManager.stopTask(Integer.parseInt(title));
+                            System.out.println("[NOTICE][ Task stopped! ]");
                         }else{
                             taskManager.stopTask(title);
+                            System.out.println("[NOTICE][ Task stopped! ]");
                         }
-                        System.out.println("[NOTICE][ Task stopped! ]");
                     }catch(NonExistentTaskException e){
                         System.out.println("[ERROR][ " + e.getMessage() + " ]");
                     }
@@ -227,7 +232,7 @@ public class TaskUI {
                     input.nextLine(); //prevents reading user's newline as an unrecognized cmd
                     try {
                         if(byID){
-                            taskManager.editTask(Integer.parseInt(title), newTitle, desc, quality, timeLimit, type, editListPrompt(input));
+                            taskManager.editTask(Integer.parseInt(title), newTitle, desc, quality, timeLimit, type, 0); //editListPrompt(input)
                         }else {
                             taskManager.editTask(title, newTitle, desc, quality, timeLimit, type);
                         }
@@ -299,7 +304,7 @@ public class TaskUI {
 
     public void selectListPrompt(int id, Scanner input) throws NonExistentTaskException{
         try {
-            System.out.println("[?][Which tasklist are you selecting from? ]");
+            /*System.out.println("[?][Which tasklist are you selecting from? ]");
             System.out.println("[1] Default");
             System.out.println("[2] Custom");
             System.out.print("[CHOICE][> ");
@@ -307,8 +312,8 @@ public class TaskUI {
             while (choice < 1 || choice > 2) {
                 System.out.println("[ERROR][ Invalid choice entered! ]");
                 choice = input.nextInt();
-            }
-            taskManager.selectTask(id, choice - 1);
+            }*/
+            taskManager.selectTask(id, 1);
         }catch(NonExistentTaskException e){
             throw new NonExistentTaskException(e.getMessage());
         }
