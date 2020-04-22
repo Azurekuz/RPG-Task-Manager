@@ -374,7 +374,7 @@ public class TaskManager {
             completedTask.complete();
             completedTask.setCompletionQuality(completionQuality);
             completedTaskList.addTask(completedTask);
-            currentTaskList.removeTask(id);
+            currentTaskList.removeTask(completedTask.id);
             return completedTask.calcExp(); //TODO add xp to rpg player class
         }catch (NonExistentTaskException e){
             throw new NonExistentTaskException("Nonexistent or Invalid Task Requested!");

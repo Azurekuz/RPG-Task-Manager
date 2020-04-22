@@ -115,7 +115,7 @@ public class TaskManagerTests { //TODO test new tests added by Elias
         testManager.selectTask("Do Homework Before Class");
 
         LocalDateTime currentTime = LocalDateTime.now();
-        assertEquals(testManager.checkTimedTasks(currentTime),"No tasks failed.");
+        assertEquals("[NOTICE][ No tasks failed.]", testManager.checkTimedTasks(currentTime));
 
         //currentTime.setTime(currentTime.getTime() + 65*60000);
         currentTime = currentTime.plusMinutes(65);
@@ -133,7 +133,7 @@ public class TaskManagerTests { //TODO test new tests added by Elias
         testManager2.selectTask("Email Teacher");
         currentTime = LocalDateTime.now();
 
-        assertEquals(testManager2.checkTimedTasks(currentTime),"No tasks failed.");
+        assertEquals("[NOTICE][ No tasks failed.]", testManager2.checkTimedTasks(currentTime));
         //currentTime.setTime(currentTime.getTime() + 65*60000); //faking time passage
         currentTime = currentTime.plusMinutes(65);
 

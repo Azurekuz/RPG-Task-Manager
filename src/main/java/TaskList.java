@@ -45,7 +45,7 @@ public class TaskList{
 
     public void removeTask(int id) throws NonExistentTaskException{
         int index = findTask(id);
-        if(index > taskList.size() || index < 0){
+        if(index >= taskList.size() || index < 0){
             throw new NonExistentTaskException("Nonexistent or Invalid Task Requested!");
         }
         taskList.remove(index);
