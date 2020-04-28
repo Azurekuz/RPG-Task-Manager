@@ -22,3 +22,7 @@ Sprint goal: Clean up and finalize Task Manager system(s).
 - Achievement Seq. Diagram: [Link](https://drive.google.com/file/d/12PZ6L62dgg5ND5zN7zHjtVfawC0Psgjt/view?usp=sharing)
 - Review Meeting Agenda: [Link](https://docs.google.com/document/d/1apFbHmETFGkfJeYKvcO7kc4zfYBJrOG3pfMRxqa9D20/edit)
 - Retrospective: [Link](https://docs.google.com/document/d/1P3zPb3Mcxsi57NN8l19kYEuZwLybwUPcmYE_cupEaZg/edit?usp=sharing)
+
+### Sprint 3:
+Sprint goal:
+- User Acceptance Testing: [Link](https://docs.google.com/document/d/1Mv-iSf0z2Vn-3jJHjM5DUZ7lrf2zjfvviIP1uxn0lUs/edit?usp=sharing)
