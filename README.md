@@ -24,5 +24,5 @@ Sprint goal: Clean up and finalize Task Manager system(s).
 - Retrospective: [Link](https://docs.google.com/document/d/1P3zPb3Mcxsi57NN8l19kYEuZwLybwUPcmYE_cupEaZg/edit?usp=sharing)
 
 ### Sprint 3:
-Sprint goal:
+Sprint goal: A functional and basic RPG system that is integrated with our current Task Manager.
 - User Acceptance Testing: [Link](https://docs.google.com/document/d/1Mv-iSf0z2Vn-3jJHjM5DUZ7lrf2zjfvviIP1uxn0lUs/edit?usp=sharing)
