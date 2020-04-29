@@ -6,6 +6,8 @@ public class Actor {
     private int curHealth;
     private int baseAttack;
     private int baseDefense;
+    private int modAttack; /* MODIFIED Attack, this is your total attack after taking into account equipment and buffs/debuffs*/
+    private int modDefense; /* MODIFIED Defense, this is your total attack after taking into account equipment and buffs/debuffs*/
 
     boolean isAlive;
 
@@ -25,6 +27,8 @@ public class Actor {
         curHealth = maxHealth;
         baseAttack = 1;
         baseDefense = 1;
+        modAttack = baseAttack;
+        modDefense = baseDefense;
 
         isAlive = true;
 
@@ -40,6 +44,8 @@ public class Actor {
         this.curHealth = this.maxHealth;
         this.baseAttack = baseAttack;
         this.baseDefense = baseDefense;
+        this.modAttack = this.baseAttack;
+        this.modDefense = this.baseDefense;
 
         isAlive = true;
 
@@ -68,28 +74,28 @@ public class Actor {
 
     public void attack(Actor target){
         if(isAlive) {
-            target.damage(NumTools.intLowerBorder(0, this.baseAttack, -target.getBaseDefense()));
+            target.damage(NumTools.intLowerBorder(0, this.modAttack, -target.getModDefense()));
         }
     }
 
     public void use(Item itemToUse){
-
+        //TODO
     }
 
     public void equip(Item equipment){
-
+        //TODO
     }
 
     private void findProperSlot(){
-
+        //TODO
     }
 
     private void die(){
-        isAlive = false;
+        setAlive(false);
     }
 
     private void resurrect(){
-        isAlive = true;
+        setAlive(true);
     }
 
     private void checkForDeath(){
@@ -105,6 +111,50 @@ public class Actor {
 
     public void heal(int healthAddition){
         this.curHealth = NumTools.intClamp(0,this.maxHealth, this.curHealth, healthAddition);
+    }
+
+    public void setName(String newName){
+        name = newName;
+    }
+
+    public void setLevel(int newLevel){
+        level = newLevel;
+    }
+
+    public void setExperience(double newEXP){
+        experience = newEXP;
+    }
+
+    public void setMaxHealth(int newMaxHP){
+        maxHealth = newMaxHP;
+    }
+
+    public void setCurHealth(int newCurHP){
+        curHealth = newCurHP;
+    }
+
+    public void setBaseAttack(int newBaseATK){
+        baseAttack = newBaseATK;
+    }
+
+    public void setBaseDefense(int newBaseDEF){
+        baseDefense = newBaseDEF;
+    }
+
+    public void setModAttack(int newModATK){
+        modAttack = newModATK;
+    }
+
+    public void setModDefense(int newModDEF){
+        modDefense = newModDEF;
+    }
+
+    public void setCurrency(int newCurrency){
+        currency = newCurrency;
+    }
+
+    public void setAlive(boolean newState){
+        isAlive = newState;
     }
 
     public String getName(){
@@ -133,6 +183,14 @@ public class Actor {
 
     public int getBaseDefense(){
         return baseDefense;
+    }
+
+    public int getModAttack(){
+        return modAttack;
+    }
+
+    public int getModDefense(){
+        return modDefense;
     }
 
     public int getCurrency(){
