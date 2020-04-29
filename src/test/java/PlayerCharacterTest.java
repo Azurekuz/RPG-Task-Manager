@@ -51,4 +51,24 @@ public class PlayerCharacterTest {
 
         assertEquals(false, p2.getAlive());
     }
+
+    @Test
+    public void PVM_Test(){
+        Monster m1 = new Monster("Monster01", 1, 10, 5, 2,50);
+        Player p1 = new Player("Player01", 1, 10, 3, 3);
+
+        p1.attack(m1);
+        m1.attack(p1);
+
+        assertEquals(9 ,m1.getCurHealth());
+        assertEquals(8 ,p1.getCurHealth());
+
+        while(m1.isAlive){
+            p1.attack(m1);
+        }
+        p1.grantCurrency(m1.getCurrency());
+
+        assertEquals(false, m1.getAlive());
+        assertEquals(50, p1.getCurrency());
+    }
 }

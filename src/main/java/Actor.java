@@ -136,6 +136,14 @@ public class Actor {
         }
     }
 
+    public void grantCurrency(int currencyAmount) throws IllegalArgumentException{
+        if(currencyAmount < 0){
+            throw new IllegalArgumentException("What are you trying to do? STEAL my money?");
+        }
+
+        this.currency += currencyAmount;
+    }
+
     public void levelDown(){
         this.level = this.level - 1;
     }
