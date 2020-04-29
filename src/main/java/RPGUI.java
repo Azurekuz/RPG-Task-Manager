@@ -4,22 +4,21 @@ import java.util.Scanner;
 
 public class RPGUI {
     public RPGManager rpgManager;
-    public User user; //TODO pass in current user from TaskManager
 
-    public RPGUI(User user){
-        commandHandler(user);
+    public void levelup(double xp){
+        rpgManager.player.addExp(xp);
+        rpgManager.player.checklevel();
     }
 
-    public void commandHandler(User user){
-        this.user = user;
+    public void commandHandler(){
 //        try {
 //            //load(); TODO
 //        } catch (IOException e) {
 //            System.out.println("[ERROR-LOAD FAILED:][ " + e.getMessage() + " ]");
 //            System.out.println("[NOTICE][ Creating blank rpg manager... ]");
-//            rpgManager = new RPGManager(true, user);
+//            rpgManager = new RPGManager(true);
 //        }
-        rpgManager = new RPGManager(true, user); //TODO
+        rpgManager = new RPGManager(true); //TODO
 
         Scanner input = new Scanner(System.in);
         System.out.println("***[STARTING RPG GAME INTERFACE]***");
@@ -38,8 +37,8 @@ public class RPGUI {
                     System.out.println("***[AVAILABLE COMMANDS]***");
                     System.out.println("['help'      : Displays this ]");
                     System.out.println("['quit'      : Stops the game, go back to Task Interface ]");
-                    System.out.println("['go'        : Go to a location. You will be shown a list of available locations and prompted for a name. ]");
-                    System.out.println("['locations' : Displays a list of all available locations you can travel to. ]");
+                    //System.out.println("['go'        : Go to a location. You will be shown a list of available locations and prompted for a name. ]");
+                    //System.out.println("['locations' : Displays a list of all available locations you can travel to. ]");
                     System.out.println("['look'      : Displays your current location. ]");
                     System.out.println("['shop'      : If in a town, start trading with a merchant. You will be prompted for the merchant's name and other commands." +"]");
                     System.out.println("['talk'      : Talk with an NPC. Prompted for the name of who you want to talk to. ]");
@@ -47,25 +46,25 @@ public class RPGUI {
                     System.out.println("['char'      : Displays all your character's information, including inventory and stats.]");
                     System.out.println("['fight'     : Fight a monster. You will be prompted for which monster you want to fight and start a combat interface.]");
                     break;
-                case "go":
-                    System.out.println("***[ AVAILABLE LOCATIONS ]***");
-                    rpgManager.viewLocations();
-                    System.out.println("[?][ Where do you want to go? ]");
-                    System.out.print("[SELECT Location][> ");
-                    name = input.nextLine();
-                    System.out.println(rpgManager.goTo(name)); //will print result
-                    break;
-                case "locations":
-                    System.out.println("***[ AVAILABLE LOCATIONS ]***");
-                    //rpgManager.viewLocations();
-                    System.out.println("[NOTICE][ Unimplemented content.]");
-
-                    break;
-                case "look":
-                    System.out.println("***[ YOUR CURRENT LOCATION]***"); //TODO better header? More like text based adventure game?
-                    //System.out.println(rpgManager.look());
-                    System.out.println("[NOTICE][ Unimplemented content.]");
-                    break;
+//                case "go":
+//                    System.out.println("***[ AVAILABLE LOCATIONS ]***");
+//                    //rpgManager.viewLocations();
+//                    System.out.println("[?][ Where do you want to go? ]");
+//                    System.out.print("[SELECT Location][> ");
+//                    name = input.nextLine();
+//                    System.out.println(rpgManager.goTo(name)); //will print result
+//                    break;
+//                case "locations":
+//                    System.out.println("***[ AVAILABLE LOCATIONS ]***");
+//                    //rpgManager.viewLocations();
+//                    System.out.println("[NOTICE][ Unimplemented content.]");
+//
+//                    break;
+//                case "look":
+//                    System.out.println("***[ YOUR CURRENT LOCATION]***"); //TODO better header? More like text based adventure game?
+//                    //System.out.println(rpgManager.look());
+//                    System.out.println("[NOTICE][ Unimplemented content.]");
+//                    break;
                 case "trade":
                 case "shop":
                     System.out.println("[?][ Who do you want to trade with? ]"); //TODO show merchants in area and make sure user is in town
@@ -116,6 +115,13 @@ public class RPGUI {
     }
     public void load() throws IOException {
         rpgManager = JsonUtil.fromJsonFile("src/resources/rpgManager.json", RPGManager.class);
+    }
+
+    public void transferEXP(double xp) throws IOException {
+        //TODO make sure saving/loading works
+        load();
+        rpgManager.transferEXP(xp);
+        save();
     }
 
 

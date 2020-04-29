@@ -2,6 +2,7 @@ import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import com.fasterxml.jackson.datatype.jsr310.ser.LocalDateTimeSerializer;
 
+import java.io.IOException;
 import java.time.LocalDateTime;
 import java.time.temporal.ChronoUnit;
 
@@ -16,9 +17,8 @@ public class TaskManager {
     private Task mainTask;
     private LocalDateTime lastTimeUsed = null;
     private LocalDateTime startTime;
-    private User currentUser; //TODO replace with other implementation when needed
     private RPGUI rpg;
-    //TODO tie in with User (all lists but defaultTaskList go to User class)
+
 
 
      TaskManager(boolean genTasks){
@@ -30,15 +30,14 @@ public class TaskManager {
         failedTaskList = new TaskList();
         mainTask = new Task();
         startTime = LocalDateTime.now();
+        rpg = new RPGUI();
 
-         currentUser = new User("test"); //TEMPORARY TODO REMOVE
-
-
-         startUp();
+         startUp(); //starts time stuff
 
         if(genTasks){
             try {
                 generateDefaultTaskList();
+                //generateDailyTaskList
             } catch (DuplicateTaskException ignored){} //this isn't going to happen
         }
     }
@@ -153,6 +152,7 @@ public class TaskManager {
 
     }
 
+
     public void addCurrentTask(Task newTask) throws DuplicateTaskException{
         try {
             newTask.setID(validID());
@@ -210,12 +210,11 @@ public class TaskManager {
               }
               task.startTime();
               try {
+                  Task newTaskInstance = new Task(validID(), task.title, task.desc, task.baseQuality, task.timeLimit, task.type, task.complete);
                   if (task.getType() == 1) {
-                      Task newTaskInstance = new Task(validID(), task.title, task.desc, task.baseQuality, task.timeLimit, task.type, task.complete);
                       mainTask = newTaskInstance;
                   }
                   else {
-                      Task newTaskInstance = new Task(validID(), task.title, task.desc, task.baseQuality, task.timeLimit, task.type, task.complete);
                       currentTaskList.addTask(newTaskInstance);
                   }
               }catch(DuplicateTaskException e){
@@ -269,15 +268,15 @@ public class TaskManager {
 
     public void stopTask(String title) throws NonExistentTaskException{
         try{
-            int id = currentTaskList.findTask(title);
-            if(id != -1) {
-                currentTaskList.removeTask(id);
+            int index = currentTaskList.findTask(title);
+            if(index != -1) {
+                currentTaskList.removeTask(title);
                 reassignGlobalIDs();
                 return;
             }
-            id = dailyTaskList.findTask(title);
-            if(id != -1){
-                dailyTaskList.removeTask(id);
+            index = dailyTaskList.findTask(title);
+            if(index != -1){
+                dailyTaskList.removeTask(title);
                 reassignGlobalIDs();
                 return;
             }
@@ -419,11 +418,17 @@ public class TaskManager {
             completedTask.setCompletionQuality(completionQuality);
             completedTaskList.addTask(completedTask);
             currentTaskList.removeTask(completedTask.id);
-            return completedTask.calcExp(); //TODO add xp to rpg player class
+            double xp = completedTask.calcExp();
+            rpg.transferEXP(xp);
+            return xp;
         }catch (NonExistentTaskException e){
             throw new NonExistentTaskException("Nonexistent or Invalid Task Requested!");
         }catch(DuplicateTaskException e){
-            System.out.println("[Error][" + "Task already completed." + "]");
+            System.out.println("[ERROR][ Task already completed.]");
+            return 0;
+        } catch (IOException e) {
+            System.out.println("[ERROR][ EXP transfer failed (load/save error).]");
+            System.out.println("[ "+ e +"]");
             return 0;
         }
     }
@@ -487,7 +492,7 @@ public class TaskManager {
     }
 
     public void startGame(){
-         rpg = new RPGUI(currentUser);
+         rpg.commandHandler(); //starts rpg interface
     }
 
     public String checkTimedTasks(LocalDateTime currentTime) throws NonExistentTaskException, DuplicateTaskException {
@@ -522,7 +527,7 @@ public class TaskManager {
         }
     }
 
-    /* MAIN TASKS */
+    /*** MAIN TASKS ***/
 
     public Task getMainTask(){
         return mainTask;
@@ -547,22 +552,28 @@ public class TaskManager {
     }
 
     public String completeMain(){
-        //TODO EXP/Item gain
         if (mainTask.getTitle().isEmpty()){
-            return "ERROR: No main task selected to complete.";
+            return "[ERROR: No main task selected to complete.]";
         }
         if (mainTask.getProgress() < 100){
-            return "ERROR: Main task not at 100% progress, can't complete.";
+            return "[ERROR: Main task not at 100% progress, can't complete.]";
         }
         mainTask.complete();
+        try {
+            mainTask.setCompletionQuality(1);
+            rpg.transferEXP(mainTask.calcExp());
+        } catch (IOException e) {
+            System.out.println("[ERROR][ EXP transfer failed (load/save error).]");
+            System.out.println("[ "+ e +"]");
+        }
         try {
             mainTask.setID(validID());
             completedTaskList.addTask(mainTask);
         }catch (DuplicateTaskException e){
-            System.out.println("[NOTICE][You have completed this main task before!]");
+            System.out.println("[NOTICE: You have completed this main task before!]");
         }
         mainTask = new Task();
-        return "Main task completed!";
+        return "[SUCCESS: Main task completed!]";
 
     }
 

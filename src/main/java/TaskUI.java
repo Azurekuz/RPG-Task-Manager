@@ -39,6 +39,8 @@ public class TaskUI {
             if (!failedTasks.equals("[NOTICE][ No tasks failed.]")){
                 System.out.println("[ATTENTION][ You have failed some of your selected tasks because you went over the time limit. ]");
                 System.out.println(failedTasks);
+                System.out.print("[ATTENTION][Acknowledge (enter anything)][> ");
+                userStr = input.nextLine();
                 System.out.println("\n");
             }
             System.out.println("[?][ Enter your command or 'help' to see a list of commands. ]");
@@ -139,7 +141,14 @@ public class TaskUI {
 
                 case "compmain":
                     System.out.println("[NOTICE][ Completing main task... ]");
-                    System.out.println(taskManager.completeMain());
+                    Task task = taskManager.getMainTask();
+                    String result = taskManager.completeMain();
+                    System.out.println(result);
+                    if (result.contains("SUCCESS")){
+                        task.setCompletionQuality(1.0);
+                        xp = task.calcExp();
+                        System.out.println("[EXP][ "+xp+" experience gained.]");
+                    }
                     break;
 
                 case "test_nextday":
