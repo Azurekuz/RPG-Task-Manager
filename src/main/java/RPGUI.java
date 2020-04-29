@@ -5,6 +5,11 @@ import java.util.Scanner;
 public class RPGUI {
     public RPGManager rpgManager;
 
+    public void levelup(double xp){
+        rpgManager.player.addExp(xp);
+        rpgManager.player.checklevel();
+    }
+
     public void commandHandler(){
 //        try {
 //            //load(); TODO

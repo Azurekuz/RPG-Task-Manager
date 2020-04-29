@@ -9,8 +9,5 @@
         <module name="RPG-Task-Manager" />
       </profile>
     </annotationProcessing>
-    <bytecodeTargetLevel>
-      <module name="RPG-Task-Manager" target="1.10" />
-    </bytecodeTargetLevel>
   </component>
 </project>

@@ -124,6 +124,10 @@ public class TaskManager {
 
     }
 
+    public void levelup(double xp){
+         rpg.levelup(xp);
+    }
+
     public void addCurrentTask(Task newTask) throws DuplicateTaskException{
         try {
             newTask.setID(validID());

@@ -105,6 +105,7 @@ public class TaskUI {
                         }
                         System.out.println("[SUCCESS][ Task completed! ]");
                         System.out.println("[EXP][ "+xp+" experience gained.]");
+                        taskManager.levelup(xp);
                     }catch(NonExistentTaskException e){
                         System.out.println("[ERROR][ " + e.getMessage() + " ]");
                     }catch(IllegalArgumentException e){
