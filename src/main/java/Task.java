@@ -27,7 +27,6 @@ public class Task {
         this.complete=complete;
         if (type == 1) {
             this.progress = 0;
-            this.completionQuality=1;
         }
     }
 
@@ -99,11 +98,11 @@ public class Task {
             return "NO";
         }
     }
-    public String toString(){
+    public String toString(){ //TODO could make this a little more complicated if needed
         String result = "";
         if (!title.isEmpty()) {
-            result += "TASK\n[ID: " + id + "]  [TITLE: " + title + "]\n[DESC: " + desc + "]\n[BASEQUALITY: " + baseQuality + "]  [TIMELIMIT:  " + timeLimit +
-                    "]  [TYPE: " + type + "]  [COMPLETE: " + displayComplete() + "]  [PROGRESS: " + progress + "]";
+            result += "TASK\nid: " + id + "  title: " + title + "\ndesc: " + desc + "\nbaseQuality: " + baseQuality + "  timelimit: " + timeLimit +
+                    "  type: " + type + "  complete: " + complete + "  progress: " + progress;
             return result;
         }
         else{ return "Empty task object."; }

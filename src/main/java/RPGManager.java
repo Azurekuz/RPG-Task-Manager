@@ -1,52 +1,56 @@
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 public class RPGManager {
-    //public LocationList locations;
-    public PlayerCharacter player;
+    public LocationList locations;
+    //public achievements AchivementList;
 
+    @JsonIgnore
+    public User user;
+    @JsonIgnore
+    public PlayerCharacter player;
     @JsonIgnore
     private CombatUI combat;
 
     /************* BACKEND ****************/
 
-    public RPGManager(){ this(false); }
+    public RPGManager(){
+        this(false, new User("TEMPORARY")); //TODO
+            }
 
-    public RPGManager(boolean genDefault){
-        this.player = new PlayerCharacter();
+    public RPGManager(boolean genDefault, User user){
+        this.user = user;
+        this.player = user.getCharacter();
 
         if(genDefault){
             System.out.println("[NOTICE][Generating Default RPGManager unimplemented.]");
         }
     }
 
-    public PlayerCharacter getPlayer() { return player; }
-
-    public void transferEXP(double xp){
-        player.addExp(xp);
+    public LocationList getLocations() {
+        return locations;
     }
-
-    //    public LocationList getLocations() {
-//        return locations;
-//    }
     /************* LOCATIONS *************/
 
-//    public String goTo(String locationName){
-//        //return "[SUCCESS][ Went to "+locationName+"].";
-//
-//        return "[NOTICE][ Unimplemented content.]";
-//    }
+    public String goTo(Location location){ //TODO delete if uneeded
+        return "[NOTICE][ Unimplemented content.]";
+    }
+    public String goTo(String locationName){
+        //return "[SUCCESS][ Went to "+locationName+"].";
+
+        return "[NOTICE][ Unimplemented content.]";
+    }
 
     /**
      * @return String describing player's current location
      */
-//    public String look(){
-//        //TODO player char obj stores current location
-//        return "[NOTICE][ Unimplemented content.]";
-//    }
-//
-//    public String viewLocations(){
-//        return locations.toString();
-//    }
+    public String look(){
+        //TODO player char obj stores current location
+        return "[NOTICE][ Unimplemented content.]";
+    }
+
+    public String viewLocations(){
+        return locations.toString();
+    }
 
     /************* NPCs *************/
 
