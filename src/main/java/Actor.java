@@ -176,6 +176,14 @@ public class Actor {
         currency = newCurrency;
     }
 
+    public void setInventory(ItemList newInventory){
+        this.inventory = newInventory;
+    }
+
+    public void setEquipment(Item[] newEquipment){
+        this.equipment = newEquipment;
+    }
+
     public void setAlive(boolean newState){
         isAlive = newState;
     }
@@ -224,13 +232,21 @@ public class Actor {
         return isAlive;
     }
 
+    public String displayAlive(){
+        if(isAlive){
+            return "";
+        }else{
+            return "DEAD";
+        }
+    }
+
     public String toString(){
         String toString = "";
         toString += "\t[NAME][ " + this.name + "\n";
         toString += "\t[LVL][ " + this.level + "\n";
         toString += "\t[EXP][ " + this.experience + "\n";
         toString += "\n";
-        toString += "\t[HP][ " + this.curHealth + "/" + this.maxHealth + "\n";
+        toString += "\t[HP][ " + this.curHealth + "/" + this.maxHealth + " " + displayAlive() + "\n";
         toString += "\t[ATK][ " + this.baseAttack + " + " + (this.modAttack - this.baseAttack) + "\n";
         toString += "\t[DEF][ " + this.baseDefense + " + " + (this.modDefense - this.baseDefense) + "\n";
         toString += "\n";

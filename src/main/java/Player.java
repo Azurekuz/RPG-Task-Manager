@@ -1,6 +1,6 @@
 public class Player extends Actor{
     Player(){
-        super();
+        super("Player", 1, 8, 1, 1);
     }
 
     Player(String name, int level, int health, int baseAttack, int baseDefense) throws IllegalArgumentException{
