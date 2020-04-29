@@ -2,7 +2,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 
 public class RPGManager {
     //public LocationList locations;
-    public PlayerCharacter player;
+    public Player player;
 
     @JsonIgnore
     private CombatUI combat;
@@ -12,18 +12,18 @@ public class RPGManager {
     public RPGManager(){ this(false); }
 
     public RPGManager(boolean genDefault){
-        this.player = new PlayerCharacter();
+        this.player = new Player();
 
         if(genDefault){
             System.out.println("[NOTICE][Generating Default RPGManager unimplemented.]");
         }
     }
 
-    public PlayerCharacter getPlayer() { return player; }
+    public Player getPlayer() { return player; }
 
     public void transferEXP(double xp){
-        player.addExp(xp);
-        player.checklevel();
+        player.grantExperience(xp);
+        player.getLevel();
     }
 
     //    public LocationList getLocations() {

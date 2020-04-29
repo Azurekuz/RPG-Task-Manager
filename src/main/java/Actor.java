@@ -125,6 +125,29 @@ public class Actor {
         experience = newEXP;
     }
 
+    public void grantExperience(double expAmount) throws IllegalArgumentException{
+        if(expAmount < 0){
+            throw new IllegalArgumentException("Invalid EXP amount provided!");
+        }
+
+        experience += expAmount;
+        if(checkLevelUp()){
+            levelUp();
+        }
+    }
+
+    public void levelDown(){
+        this.level = this.level - 1;
+    }
+
+    public void levelUp(){
+        this.level = this.level + 1;
+    }
+
+    public boolean checkLevelUp(){
+        return false;
+    }
+
     public void setMaxHealth(int newMaxHP){
         maxHealth = newMaxHP;
     }
@@ -199,5 +222,19 @@ public class Actor {
 
     public boolean getAlive(){
         return isAlive;
+    }
+
+    public String toString(){
+        String toString = "";
+        toString += "\t[NAME][ " + this.name + "\n";
+        toString += "\t[LVL][ " + this.level + "\n";
+        toString += "\t[EXP][ " + this.experience + "\n";
+        toString += "\n";
+        toString += "\t[HP][ " + this.curHealth + "/" + this.maxHealth + "\n";
+        toString += "\t[ATK][ " + this.baseAttack + " + " + (this.modAttack - this.baseAttack) + "\n";
+        toString += "\t[DEF][ " + this.baseDefense + " + " + (this.modDefense - this.baseDefense) + "\n";
+        toString += "\n";
+        toString += "\t[CURRENCY][ " + this.currency + " Gold" + "\n";
+        return toString;
     }
 }
