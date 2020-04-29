@@ -149,6 +149,7 @@ public class TaskUI {
                         task.setCompletionQuality(1.0);
                         xp = task.calcExp();
                         System.out.println("[EXP][ "+xp+" experience gained.]");
+                        taskManager.levelup(xp);
                     }
                     break;
 
