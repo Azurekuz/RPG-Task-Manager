@@ -1,6 +1,6 @@
-public class PlayerCharacter extends Actor {
+public class PlayerCharacter{
 
-    private double exp;
+    /*private double exp;
     private ItemList inventory;
 
     public PlayerCharacter(){
@@ -25,5 +25,5 @@ public class PlayerCharacter extends Actor {
         result=result.concat("[EXP]["+exp+"]\n");
         result=result.concat("[STATS] { [LEVEL]["+stats[0]+"] [HEALTH]["+stats[1]+"] [STRENGTH]["+stats[2]+"] [DEXTERITY]["+stats[3]+"] [INTELLIGENCE]["+stats[4]+"] }");
         return result;
-    }
+    }*/
 }

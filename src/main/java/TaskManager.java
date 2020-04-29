@@ -102,23 +102,51 @@ public class TaskManager {
     }
 
     public void generateDefaultTaskList() throws DuplicateTaskException{
-        Task doDishes = new Task(0, "Do the Dishes", "Clean all your unwashed dishes.", 10, 0, 0, false);
-        Task doLaundry = new Task(1, "Do your Laundry", "Clean your clothes.", 10, 0, 3, false);
-        Task cleanRoom = new Task(2, "Clean your room", "Organize and dust off your room.", 10, 3, 0, false);
-        Task finishSemester = new Task(3, "Finish 1st Semester", "Ithaca College", 1000, 0, 1, false);
-        Task getJob = new Task(4, "Get a Job", "Money can be exchanged for goods & services", 500, 0, 1, false);
-        Task flossTeeth = new Task(5, "Floss your teeth", "Floss under your gums too.", 10, 0, 2, false);
-        Task checkEmail = new Task(6, "Check your email", "Sift through work and spam mail.", 5, 0, 2, false);
-        Task exercise = new Task(7, "Walk or Exercise", "Keep yourself in good shape.", 20, 0, 2, false);
-
+        Task doDishes = new Task(validID(), "Do the Dishes", "Clean all your unwashed dishes.", 10, 0, 0, false);
         defaultTaskList.addTask(doDishes);
+
+        Task doLaundry = new Task(validID(), "Do your Laundry", "Clean your clothes.", 10, 0, 3, false);
         defaultTaskList.addTask(doLaundry);
+
+        Task cleanRoom = new Task(validID(), "Clean your room", "Organize and dust off your room.", 10, 3, 0, false);
         defaultTaskList.addTask(cleanRoom);
+
+        Task finishSemester = new Task(validID(), "Finish 1st Semester", "Ithaca College", 1000, 0, 1, false);
         defaultTaskList.addTask(finishSemester);
+
+        Task getJob = new Task(validID(), "Get a Job", "Money can be exchanged for goods & services", 500, 0, 1, false);
         defaultTaskList.addTask(getJob);
+
+        Task flossTeeth = new Task(validID(), "Floss your teeth", "Floss under your gums too.", 10, 0, 2, false);
         defaultTaskList.addTask(flossTeeth);
+
+        Task checkEmail = new Task(validID(), "Check your email", "Sift through work and spam mail.", 5, 0, 2, false);
         defaultTaskList.addTask(checkEmail);
+
+        Task exercise = new Task(validID(), "Walk or Exercise", "Keep yourself in good shape.", 20, 0, 2, false);
         defaultTaskList.addTask(exercise);
+
+        Task pet = new Task(validID(), "Feed your pet", "Or we will call the ASPCA", 55, 0, 2, false);
+        defaultTaskList.addTask(pet);
+
+        Task garbage = new Task(validID(), "Garbage Day", "Or we will call the ASPCA", 55, 0, 3, false);
+        defaultTaskList.addTask(garbage);
+
+        Task sweeping = new Task(validID(), "Sweep your Home", "The less dust, the better.", 35, 0, 3, false);
+        defaultTaskList.addTask(sweeping);
+
+        Task dinner = new Task(validID(), "Cook a Meal", "Don't starve, make yourself something good!", 45, 0, 2, false);
+        defaultTaskList.addTask(dinner);
+
+        Task makeBed = new Task(validID(), "Make your Bed", "Don't be lazy, make it look comfy.", 5, 0, 2, false);
+        defaultTaskList.addTask(makeBed);
+
+        Task cleanBathroom = new Task(validID(), "Clean Bathroom", "Don't be gross. You'll thank yourself later.", 15, 0, 3, false);
+        defaultTaskList.addTask(cleanBathroom);
+
+        Task organizeMail = new Task(validID(), "Organize Mail", "Sift through your mail and sort it!", 10, 0, 2, false);
+        defaultTaskList.addTask(organizeMail);
+
     }
 
     public void generateDefaultDailyTaskList() throws DuplicateTaskException{
