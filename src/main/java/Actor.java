@@ -74,7 +74,7 @@ public class Actor {
 
     public void attack(Actor target){
         if(isAlive) {
-            target.damage(NumTools.intLowerBorder(0, this.modAttack, -target.getModDefense()));
+            target.damage(NumTools.intLowerBorder(0, getModAttack(), -target.getModDefense()));
         }
     }
 
