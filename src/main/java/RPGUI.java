@@ -6,8 +6,8 @@ public class RPGUI {
     public RPGManager rpgManager;
 
     public void levelup(double xp){
-        rpgManager.player.addExp(xp);
-        rpgManager.player.checklevel();
+        rpgManager.player.grantExperience(xp);
+        rpgManager.player.getLevel();
     }
 
     public void commandHandler(){

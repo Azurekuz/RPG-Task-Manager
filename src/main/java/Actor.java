@@ -76,7 +76,7 @@ public class Actor {
 
     public void attack(Actor target){
         if(isAlive) {
-            target.damage(NumTools.intLowerBorder(0, this.modAttack, -target.getModDefense()));
+            target.damage(NumTools.intLowerBorder(0, getModAttack(), -target.getModDefense()));
         }
     }
 
@@ -127,6 +127,37 @@ public class Actor {
         experience = newEXP;
     }
 
+    public void grantExperience(double expAmount) throws IllegalArgumentException{
+        if(expAmount < 0){
+            throw new IllegalArgumentException("Invalid EXP amount provided!");
+        }
+
+        experience += expAmount;
+        if(checkLevelUp()){
+            levelUp();
+        }
+    }
+
+    public void grantCurrency(int currencyAmount) throws IllegalArgumentException{
+        if(currencyAmount < 0){
+            throw new IllegalArgumentException("What are you trying to do? STEAL my money?");
+        }
+
+        this.currency += currencyAmount;
+    }
+
+    public void levelDown(){
+        this.level = this.level - 1;
+    }
+
+    public void levelUp(){
+        this.level = this.level + 1;
+    }
+
+    public boolean checkLevelUp(){
+        return false;
+    }
+
     public void setMaxHealth(int newMaxHP){
         maxHealth = newMaxHP;
     }
@@ -153,6 +184,14 @@ public class Actor {
 
     public void setCurrency(int newCurrency){
         currency = newCurrency;
+    }
+
+    public void setInventory(ItemList newInventory){
+        this.inventory = newInventory;
+    }
+
+    public void setEquipment(Item[] newEquipment){
+        this.equipment = newEquipment;
     }
 
     public void setAlive(boolean newState){
@@ -215,5 +254,27 @@ public class Actor {
 
     public boolean getAlive(){
         return isAlive;
+    }
+
+    public String displayAlive(){
+        if(isAlive){
+            return "";
+        }else{
+            return "DEAD";
+        }
+    }
+
+    public String toString(){
+        String toString = "";
+        toString += "\t[NAME][ " + this.name + "\n";
+        toString += "\t[LVL][ " + this.level + "\n";
+        toString += "\t[EXP][ " + this.experience + "\n";
+        toString += "\n";
+        toString += "\t[HP][ " + this.curHealth + "/" + this.maxHealth + " " + displayAlive() + "\n";
+        toString += "\t[ATK][ " + this.baseAttack + " + " + (this.modAttack - this.baseAttack) + "\n";
+        toString += "\t[DEF][ " + this.baseDefense + " + " + (this.modDefense - this.baseDefense) + "\n";
+        toString += "\n";
+        toString += "\t[CURRENCY][ " + this.currency + " Gold" + "\n";
+        return toString;
     }
 }
