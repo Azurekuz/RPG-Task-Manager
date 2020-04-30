@@ -150,7 +150,7 @@ public class TaskManagerTests { //TODO test new tests added by Elias
        //Trying to do things with main task while none is selected
        assertTrue(testManager.getMainTask().getTitle().isEmpty());
        assertEquals(testManager.stopMainTask(), "ERROR: No main task selected to stop.");
-       assertEquals(testManager.completeMain(),"ERROR: No main task selected to complete.");
+       assertEquals(testManager.completeMain(),"[ERROR: No main task selected to complete.]");
        assertThrows(NonExistentTaskException.class, () -> testManager.incMainProgress(1));
 
        //Selecting a main task and trying to select a second one
@@ -176,9 +176,9 @@ public class TaskManagerTests { //TODO test new tests added by Elias
 
         testManager.incMainProgress(89);
         assertEquals(testManager.getMainTask().getProgress(), 99);
-        assertEquals(testManager.completeMain(),"ERROR: Main task not at 100% progress, can't complete.");
+        assertEquals(testManager.completeMain(),"[ERROR: Main task not at 100% progress, can't complete.]");
         testManager.incMainProgress(1);
-        assertEquals(testManager.completeMain(),"Main task completed!");
+        assertEquals(testManager.completeMain(),"[SUCCESS: Main task completed!]");
 
     }
 }

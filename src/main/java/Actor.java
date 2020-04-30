@@ -1,3 +1,5 @@
+import java.lang.*;
+
 public class Actor {
     private String name;
     private int level;
@@ -16,8 +18,8 @@ public class Actor {
     private Item[] equipment; //MainWeapon, SubWeapon, Head, Torso, Leggings, Boots, Gloves, Acc1, Acc2
 
     /*public int[] stats; //size=5, 0:level 1: hp 2:strength 3:dexterity 4:intelligence TODO more stats? define constants for each stat index?
-            //TODO if we don't have more than like five stats then it's probably worth ditching the array idea
-    public ItemList items;*/
+            //TODO if we don't have more than like five stats then it's probably worth ditching the array idea*/
+    public ItemList items;
 
     public Actor(){
         name = "Empty Husk";
@@ -224,16 +226,30 @@ public class Actor {
         return baseDefense;
     }
 
+    public ItemList getItems() { return items; }
+
+    public int getCurrency() {
+        return currency;
+    }
+
+    public void addToCurrency(int toAdd){
+        this.currency+=toAdd;
+    }
+    public void subtractFromCurrency(int toTake) throws InsufficentCurrencyException {
+        if((this.currency-toTake)<0){
+            throw new InsufficentCurrencyException("You do not have sufficient funds.");
+        }
+        else {
+            this.currency-=toTake;
+        }
+    }
+
     public int getModAttack(){
         return modAttack;
     }
 
     public int getModDefense(){
         return modDefense;
-    }
-
-    public int getCurrency(){
-        return currency;
     }
 
     public boolean getAlive(){
