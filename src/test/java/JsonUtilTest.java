@@ -8,7 +8,7 @@ import static org.junit.jupiter.api.Assertions.*;
 class JsonUtilTest {
 
     @Test
-    void toFromFileTest() throws IOException, NonExistentTaskException, DuplicateTaskException {
+    void taskToFromFileTest() throws IOException, NonExistentTaskException, DuplicateTaskException {
         //Includes failed/timed task testing to make sure it is saved correctly
         TaskManager testManager = new TaskManager(true);
         testManager.addCustomTask("Do Homework Before Class", "Due in an hour!", 10, 60, 0);
@@ -38,4 +38,23 @@ class JsonUtilTest {
         //assertEquals(testManager.getMainTask(), testManager2.getMainTask()); fails when a main task hasn't been selected yet
 
     }
-}
+    @Test
+    void rpgToFromFileTest() throws IOException{
+        RPGManager testRPG = new RPGManager(true);
+        testRPG.transferEXP(50);
+        assertEquals(50, testRPG.getPlayer().getExp());
+        assertEquals(1, testRPG.getPlayer().getLevel());
+
+        JsonUtil.toJsonFile("src/resources/rpgManagerTest.json", testRPG);
+
+        RPGManager testRPG2;
+        testRPG2 = JsonUtil.fromJsonFile("src/resources/rpgManagerTest.json", RPGManager.class);
+
+        assertEquals(50, testRPG2.getPlayer().getExp());
+        assertEquals(1, testRPG2.getPlayer().getLevel());
+
+
+        //TODO complete once playerChar & rpgManager are done
+    }
+
+    }
