@@ -1,17 +1,17 @@
 public class PlayerCharacter{
 
-    /*private double exp;
+    private double exp;
     private ItemList inventory;
     private int level;
 
     public PlayerCharacter(){
-        super(); //calls Actor constructor
+        //super(); //calls Actor constructor
         this.exp=0;
         this.level=1;
         this.inventory = new ItemList();
     }
     public PlayerCharacter(int exp, ItemList inventory, int[] stats, ItemList equipment, int level){
-        super(stats, equipment);
+       // super();
         this.exp = exp;
         this.inventory = inventory;
         this.level=level;
@@ -34,7 +34,7 @@ public class PlayerCharacter{
         //TODO include itemlists, title
         String result = "[PLAYER CHARACTER]{\n ";
         result=result.concat("[EXP]["+exp+"]\n");
-        result=result.concat("[STATS] { [LEVEL]["+stats[0]+"] [HEALTH]["+stats[1]+"] [STRENGTH]["+stats[2]+"] [DEXTERITY]["+stats[3]+"] [INTELLIGENCE]["+stats[4]+"] }");
+        //result=result.concat("[STATS] { [LEVEL]["+stats[0]+"] [HEALTH]["+stats[1]+"] [STRENGTH]["+stats[2]+"] [DEXTERITY]["+stats[3]+"] [INTELLIGENCE]["+stats[4]+"] }");
         return result;
-    }*/
+    }
 }

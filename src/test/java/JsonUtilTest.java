@@ -14,7 +14,7 @@ class JsonUtilTest {
         testManager.addCustomTask("Do Homework Before Class", "Due in an hour!", 10, 60, 0);
         testManager.selectTask("Do Homework Before Class");
         LocalDateTime currentTime = LocalDateTime.now();
-        assertEquals(testManager.checkTimedTasks(currentTime),"No tasks failed.");
+        assertEquals(testManager.checkTimedTasks(currentTime),"[NOTICE][ No tasks failed.]");
 
         JsonUtil.toJsonFile("src/resources/taskManagerTest.json", testManager);
 

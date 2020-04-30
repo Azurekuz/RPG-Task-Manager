@@ -3,6 +3,25 @@ import static org.junit.jupiter.api.Assertions.*;
 
 public class ActorTest {
     @Test
+    public void ActorCurrencyTest() throws InsufficentCurrencyException {
+        Actor act1 = new Actor();
+        Actor act2 = new Actor();
+
+        assertEquals(0, act1.getCurrency());
+        assertEquals(0, act2.getCurrency());
+
+        act1.addToCurrency(1);
+        assertEquals(1, act1.getCurrency());
+        act1.subtractFromCurrency(1);
+        assertEquals(0, act1.getCurrency());
+        assertThrows(InsufficentCurrencyException.class, ()-> act1.subtractFromCurrency(1));
+
+        assertThrows(InsufficentCurrencyException.class, ()-> act2.subtractFromCurrency(1));
+
+
+    }
+
+    @Test
     public void ActorCreationTest(){
         Actor testActor = new Actor();
         assertEquals("Empty Husk", testActor.getName());
