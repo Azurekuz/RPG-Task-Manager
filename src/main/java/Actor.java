@@ -194,28 +194,23 @@ public class Actor {
     }
 
     public void addToCurrency(int toAdd){
-        this.currency= this.currency+toAdd;
+        this.currency+=toAdd;
     }
-    public void subtractFromCurrency(int toTake){
-        if((this.currency-toTake)>0){
-            throw new InsufficentCurrencyException("We are afraid you do not have sufficent funds");
+    public void subtractFromCurrency(int toTake) throws InsufficentCurrencyException {
+        if((this.currency-toTake)<0){
+            throw new InsufficentCurrencyException("You do not have sufficient funds.");
         }
         else {
-            this.currency = this.currency + toTake;
+            this.currency-=toTake;
         }
     }
 
-}
     public int getModAttack(){
         return modAttack;
     }
 
     public int getModDefense(){
         return modDefense;
-    }
-
-    public int getCurrency(){
-        return currency;
     }
 
     public boolean getAlive(){
