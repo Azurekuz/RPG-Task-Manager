@@ -13,10 +13,9 @@ public class RPGManager {
 
     public RPGManager(boolean genDefault){
         this.player = new PlayerCharacter();
-
-        if(genDefault){
-            System.out.println("[NOTICE][Generating Default RPGManager unimplemented.]");
-        }
+//        if(genDefault){
+//            System.out.println("[NOTICE][Generating Default RPGManager unimplemented.]");
+//        }
     }
 
     public PlayerCharacter getPlayer() { return player; }

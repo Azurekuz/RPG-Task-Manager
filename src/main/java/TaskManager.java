@@ -1,7 +1,3 @@
-import com.fasterxml.jackson.annotation.JsonFormat;
-import com.fasterxml.jackson.databind.annotation.JsonSerialize;
-import com.fasterxml.jackson.datatype.jsr310.ser.LocalDateTimeSerializer;
-
 import java.io.IOException;
 import java.time.LocalDateTime;
 import java.time.temporal.ChronoUnit;
@@ -247,8 +243,6 @@ public class TaskManager {
     }
 
     public void checkIfDaily(Task task) throws DuplicateTaskException{
-        //System.out.println(startTime);
-        //System.out.println((new Date(startTime.getYear(), startTime.getMonth(), startTime.getDay()+1, 0,0)));
         if(task.getType() == 1){
             if (!(mainTask.getTitle().isEmpty()) && task.getType() == 1) {
                 throw new DuplicateTaskException("ERROR: Can't have more than one main task selected.");
@@ -355,8 +349,6 @@ public class TaskManager {
     public void editTask(int id, String newTitle, String desc, int quality, int timeLimit, int type, int taskList) throws NonExistentTaskException{
         try {
             Task editedTask;
-            //switch(taskList) {
-               //case 0:
                 if(currentTaskList.findTask(id) != -1) {
                     editedTask = currentTaskList.getTask(id);
                     editedTask.setTitle(newTitle);
@@ -383,7 +375,6 @@ public class TaskManager {
                     return;
                 }
                 throw new NonExistentTaskException("Nonexistent or Invalid Task Requested!");
-            //}
         }catch (NonExistentTaskException e) {
             throw new NonExistentTaskException("Nonexistent or Invalid Task Requested!");
         }

@@ -3,7 +3,7 @@ import static org.junit.jupiter.api.Assertions.*;
 
 import java.time.LocalDateTime;
 
-public class TaskManagerTests { //TODO test new tests added by Elias
+public class TaskManagerTests {
     @Test
     public void findTaskTest() throws NonExistentTaskException, DuplicateTaskException{
         TaskManager testManager = new TaskManager(true);
@@ -117,7 +117,6 @@ public class TaskManagerTests { //TODO test new tests added by Elias
         LocalDateTime currentTime = LocalDateTime.now();
         assertEquals("[NOTICE][ No tasks failed.]", testManager.checkTimedTasks(currentTime));
 
-        //currentTime.setTime(currentTime.getTime() + 65*60000);
         currentTime = currentTime.plusMinutes(65);
 
         assertEquals(testManager.checkTimedTasks(currentTime),"FAILED: Do Homework Before Class");
@@ -134,7 +133,6 @@ public class TaskManagerTests { //TODO test new tests added by Elias
         currentTime = LocalDateTime.now();
 
         assertEquals("[NOTICE][ No tasks failed.]", testManager2.checkTimedTasks(currentTime));
-        //currentTime.setTime(currentTime.getTime() + 65*60000); //faking time passage
         currentTime = currentTime.plusMinutes(65);
 
         assertEquals(testManager2.checkTimedTasks(currentTime),"FAILED: Do Homework Before Class, Email Teacher");
