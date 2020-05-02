@@ -1,6 +1,6 @@
 public class Player extends Actor{
     Player(){
-        super("Player", 1, 8, 1, 1);
+        super("Player", 1, 8, 3, 2);
     }
 
     Player(String name, int level, int health, int baseAttack, int baseDefense) throws IllegalArgumentException{
@@ -9,6 +9,6 @@ public class Player extends Actor{
 
     public void die(){
         setAlive(false);
-        setCurrency((int) (getCurrency()*0.75));
+        setCurrency((int) (((double) getCurrency())*0.75));
     }
 }
