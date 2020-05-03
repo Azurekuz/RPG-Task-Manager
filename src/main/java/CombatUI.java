@@ -18,7 +18,7 @@ public class CombatUI {
     }
 
     public void handleTurn(){
-        while(result == "") {
+        while(result.equals("")) {
             System.out.println("[ *** TURN " + (currentTurnNum + 1) + " *** ]");
             if (currentTurnNum % 2 == 0) {
                 handlePlayerTurn();
@@ -31,7 +31,7 @@ public class CombatUI {
 
     public void handlePlayerTurn(){
         if(player.getAlive()){
-            System.out.println("\t"+player.getName()+"\'s Turn!");
+            System.out.println("\t"+player.getName()+ "'s Turn!");
             System.out.println();
             int barFill = (int) Math.ceil(((double) this.enemy.getCurHealth()/(double) this.enemy.getMaxHealth())*10);
             System.out.print("[" + this.enemy.getName() + "][");
@@ -53,7 +53,7 @@ public class CombatUI {
 
     public void handleEnemyTurn(){
         if(enemy.getAlive()){
-            System.out.println("\t"+enemy.getName()+"\'s Turn!");
+            System.out.println("\t"+enemy.getName()+ "'s Turn!");
             actionAttack(this.enemy, this.player);
         }else{
             eventEnemyDeath();

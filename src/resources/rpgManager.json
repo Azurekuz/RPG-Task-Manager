@@ -1,8 +1,8 @@
 {
   "player" : {
     "name" : "Player",
-    "level" : 1,
-    "experience" : 0.0,
+    "level" : 161,
+    "experience" : 5555.0,
     "maxHealth" : 8,
     "curHealth" : 8,
     "baseAttack" : 3,

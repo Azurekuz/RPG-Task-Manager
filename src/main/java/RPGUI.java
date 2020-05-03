@@ -7,7 +7,6 @@ public class RPGUI {
 
     public void levelup(double xp){
         rpgManager.player.grantExperience(xp);
-        rpgManager.player.getLevel();
     }
 
     public void commandHandler(){
@@ -117,7 +116,6 @@ public class RPGUI {
     }
 
     public void transferEXP(double xp) throws IOException {
-        //TODO make sure saving/loading works
         load();
         rpgManager.transferEXP(xp);
         save();

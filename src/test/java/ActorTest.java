@@ -17,7 +17,27 @@ public class ActorTest {
         assertThrows(InsufficentCurrencyException.class, ()-> act1.subtractFromCurrency(1));
 
         assertThrows(InsufficentCurrencyException.class, ()-> act2.subtractFromCurrency(1));
+    }
+    @Test
+    public void ActorLevelingTest() throws IllegalArgumentException{
+        Actor a = new Actor();
 
+        assertThrows(IllegalArgumentException.class, ()-> a.grantExperience(-1));
+
+        assertEquals(1, a.getLevel());
+        assertEquals(0, a.getExperience());
+
+        a.grantExperience(0.1);
+        assertEquals(1, a.getLevel());
+        assertEquals(0.1, a.getExperience());
+
+        a.grantExperience(100);
+        assertEquals(2, a.getLevel());
+        assertEquals(100.1, a.getExperience());
+
+        a.grantExperience(899);
+        assertEquals(10, a.getLevel());
+        assertEquals(999.1, a.getExperience());
 
     }
 
@@ -25,14 +45,14 @@ public class ActorTest {
     public void ActorCreationTest(){
         Actor testActor = new Actor();
         assertEquals("Empty Husk", testActor.getName());
-        assertEquals(0, testActor.getLevel());
+        assertEquals(1, testActor.getLevel());
         assertEquals(0, testActor.getExperience());
         assertEquals(1, testActor.getMaxHealth());
         assertEquals(1, testActor.getCurHealth());
         assertEquals(1, testActor.getBaseAttack());
         assertEquals(1, testActor.getBaseDefense());
         assertEquals(0, testActor.getCurrency());
-        assertEquals(true, testActor.getAlive());
+        assertTrue(testActor.getAlive());
 
         Actor testActor2 = new Actor("Test Dummy", 50, 250, 3, 2);
         assertEquals("Test Dummy", testActor2.getName());
@@ -42,7 +62,7 @@ public class ActorTest {
         assertEquals(250, testActor2.getCurHealth());
         assertEquals(3, testActor2.getBaseAttack());
         assertEquals(2, testActor2.getBaseDefense());
-        assertEquals(true, testActor2.getAlive());
+        assertTrue(testActor2.getAlive());
 
         assertThrows(IllegalArgumentException.class, ()->{new Actor("", 1, 1, 1, 1);});
         assertThrows(IllegalArgumentException.class, ()->{new Actor("A", -100, 1, 1, 1);});
@@ -66,6 +86,6 @@ public class ActorTest {
             dummy1.attack(dummy2);
         }
 
-        assertEquals(false, dummy2.getAlive());
+        assertFalse(dummy2.getAlive());
     }
 }

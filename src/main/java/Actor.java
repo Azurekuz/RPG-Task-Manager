@@ -1,6 +1,9 @@
-import java.lang.*;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 public class Actor {
+    @JsonIgnore
+    final double EXP_TO_LEVEL = 100.0;
+
     private String name;
     private int level;
     private double experience;
@@ -23,7 +26,7 @@ public class Actor {
 
     public Actor(){
         name = "Empty Husk";
-        level = 0;
+        level = 1;
         experience = 0;
         maxHealth = 1;
         curHealth = maxHealth;
@@ -134,9 +137,7 @@ public class Actor {
         }
 
         experience += expAmount;
-        if(checkLevelUp()){
-            levelUp();
-        }
+        checkLevelUp();
     }
 
     public void grantCurrency(int currencyAmount) throws IllegalArgumentException{
@@ -155,8 +156,13 @@ public class Actor {
         this.level = this.level + 1;
     }
 
-    public boolean checkLevelUp(){
-        return false;
+    public void checkLevelUp(){
+        double curExperience =  experience - EXP_TO_LEVEL * (level-1);
+        if (curExperience >= EXP_TO_LEVEL){
+            this.level+= curExperience / EXP_TO_LEVEL;
+            //TODO stat gain?
+        }
+
     }
 
     public void setMaxHealth(int newMaxHP){

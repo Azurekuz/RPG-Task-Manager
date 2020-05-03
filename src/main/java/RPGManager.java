@@ -23,7 +23,6 @@ public class RPGManager {
 
     public void transferEXP(double xp){
         player.grantExperience(xp);
-        player.getLevel();
     }
 
     //    public LocationList getLocations() {
