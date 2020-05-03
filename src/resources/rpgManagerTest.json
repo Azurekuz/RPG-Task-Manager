@@ -1,6 +1,16 @@
 {
   "player" : {
-    "exp" : 50.0,
-    "level" : 1.0
+    "name" : "Player",
+    "level" : 1,
+    "experience" : 50.0,
+    "maxHealth" : 8,
+    "curHealth" : 8,
+    "baseAttack" : 3,
+    "baseDefense" : 2,
+    "modAttack" : 3,
+    "modDefense" : 2,
+    "currency" : 0,
+    "items" : null,
+    "alive" : true
   }
 }

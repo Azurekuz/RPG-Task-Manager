@@ -12,8 +12,8 @@ public class PlayerCharacterTest {
         assertEquals(0, testPlayer.getExperience());
         assertEquals(8, testPlayer.getMaxHealth());
         assertEquals(8, testPlayer.getCurHealth());
-        assertEquals(1, testPlayer.getBaseAttack());
-        assertEquals(1, testPlayer.getBaseDefense());
+        assertEquals(3, testPlayer.getBaseAttack());
+        assertEquals(2, testPlayer.getBaseDefense());
         assertEquals(0, testPlayer.getCurrency());
         assertEquals(true, testPlayer.getAlive());
 

@@ -267,15 +267,15 @@ public class Actor {
 
     public String toString(){
         String toString = "";
-        toString += "\t[NAME][ " + this.name + "\n";
-        toString += "\t[LVL][ " + this.level + "\n";
-        toString += "\t[EXP][ " + this.experience + "\n";
+        toString += "\t[NAME][ " + this.name + " ]\n";
+        toString += "\t[LVL][ " + this.level + " ]\n";
+        toString += "\t[EXP][ " + this.experience + " ]\n";
         toString += "\n";
-        toString += "\t[HP][ " + this.curHealth + "/" + this.maxHealth + " " + displayAlive() + "\n";
-        toString += "\t[ATK][ " + this.baseAttack + " + " + (this.modAttack - this.baseAttack) + "\n";
-        toString += "\t[DEF][ " + this.baseDefense + " + " + (this.modDefense - this.baseDefense) + "\n";
+        toString += "\t[HP][ " + this.curHealth + "/" + this.maxHealth + " " + displayAlive() + " ]\n";
+        toString += "\t[ATK][ " + this.baseAttack + " + " + (this.modAttack - this.baseAttack) + " ]\n";
+        toString += "\t[DEF][ " + this.baseDefense + " + " + (this.modDefense - this.baseDefense) + " ]\n";
         toString += "\n";
-        toString += "\t[CURRENCY][ " + this.currency + " Gold" + "\n";
+        toString += "\t[CURRENCY][ " + this.currency + " Gold" + " ]\n";
         return toString;
     }
 }
