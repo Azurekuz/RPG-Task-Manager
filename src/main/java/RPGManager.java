@@ -73,7 +73,11 @@ public class RPGManager {
     /************* COMBAT *************/
 
     public void fight(String name){
-        //combat.commandHandler(player, enemy);
+        combat = new CombatUI(this.player, new Monster(name, 1, 10, (int)(Math.floor(Math.random()*3)+1), (int)(Math.floor(Math.random()*3)+1), (int)(Math.floor(Math.random()*15)+10)));
+        combat.handleTurn();
+        if(!player.getAlive()){
+            player.resurrect();
+        }
     }
 
 

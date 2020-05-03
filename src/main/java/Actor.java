@@ -96,8 +96,9 @@ public class Actor {
         setAlive(false);
     }
 
-    private void resurrect(){
+    public void resurrect(){
         setAlive(true);
+        setCurHealth(getMaxHealth());
     }
 
     private void checkForDeath(){

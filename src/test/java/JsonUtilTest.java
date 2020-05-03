@@ -42,7 +42,7 @@ class JsonUtilTest {
     void rpgToFromFileTest() throws IOException{
         RPGManager testRPG = new RPGManager(true);
         testRPG.transferEXP(50);
-        assertEquals(50, testRPG.getPlayer().getExp());
+        assertEquals(50, testRPG.getPlayer().getExperience());
         assertEquals(1, testRPG.getPlayer().getLevel());
 
         JsonUtil.toJsonFile("src/resources/rpgManagerTest.json", testRPG);
@@ -50,7 +50,7 @@ class JsonUtilTest {
         RPGManager testRPG2;
         testRPG2 = JsonUtil.fromJsonFile("src/resources/rpgManagerTest.json", RPGManager.class);
 
-        assertEquals(50, testRPG2.getPlayer().getExp());
+        assertEquals(50, testRPG2.getPlayer().getExperience());
         assertEquals(1, testRPG2.getPlayer().getLevel());
 
 
