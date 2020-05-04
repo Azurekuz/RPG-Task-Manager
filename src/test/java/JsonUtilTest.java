@@ -8,7 +8,7 @@ import static org.junit.jupiter.api.Assertions.*;
 class JsonUtilTest {
 
     @Test
-    void taskToFromFileTest() throws IOException, NonExistentTaskException, DuplicateTaskException {
+    void taskToFromFileTest() throws IOException, NonExistentObjectException, DuplicateObjectException {
         //Includes failed/timed task testing to make sure it is saved correctly
         TaskManager testManager = new TaskManager(true);
         testManager.addCustomTask("Do Homework Before Class", "Due in an hour!", 10, 60, 0);
@@ -55,6 +55,28 @@ class JsonUtilTest {
 
 
         //TODO complete once playerChar & rpgManager are done
+    }
+    @Test
+    void ActorListTest() throws IOException, DuplicateObjectException {
+        ActorList testList = new ActorList();
+        Actor act1 = new Actor("Eric", 1, 4, 3, 2);
+        Actor act2 = new Actor("Sarah", 0, 9, 8, 0);
+        Actor act3 = new Actor("Morty", 1, 4, 3, 2);
+        Actor act4 = new Actor("Link", 0, 9, 0, 0);
+        Actor act5 = new Actor("John", 91, 4, 30, 25);
+        Actor act6 = new Actor("Riley", 12, 42, 32, 26);
+        testList.addActor(act1);
+        testList.addActor(act2);
+        testList.addActor(act3);
+        testList.addActor(act4);
+        testList.addActor(act5);
+        testList.addActor(act6);
+
+        JsonUtil.toJsonFile("src/resources/actorListFileTest.json", testList);
+
+        ActorList testList2;
+        testList2 = JsonUtil.fromJsonFile("src/resources/actorListFileTest.json", ActorList.class);
+
     }
 
     }
