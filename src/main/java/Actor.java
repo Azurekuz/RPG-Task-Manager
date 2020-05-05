@@ -83,17 +83,87 @@ public class Actor {
         }
     }
 
-    public void use(Item itemToUse){
-        //TODO
+    public void use(Usable itemToUse){
+        if (itemToUse.name.equals("health potion")){
+            this.curHealth+=itemToUse.getValue();
+            itemToUse.setValue(0);
+        }
+
+         if (itemToUse.name.equals("damage potion")){
+            this.modAttack+=itemToUse.getValue();
+            itemToUse.setValue(0);
+         }
+
     }
 
-    public void equip(Item equipment){
-        //TODO
+    public void equip(Gear equipment){
+        String type = equipment.getType();
+        int slot;
+        switch(type){
+            case "MainWeapon":
+                slot= 0;
+                this.equipment[slot]=equipment;
+                this.modAttack+=equipment.getDamage();
+            case "SubWeapon":
+                slot= 1;
+                this.equipment[slot]=equipment;
+                this.modAttack+=equipment.getDamage();
+            case "Head":
+                slot= 2;
+                this.equipment[slot]=equipment;
+                this.modDefense+=equipment.getDefense();
+            case "Torso":
+                slot= 3;
+                this.equipment[slot]=equipment;
+                this.modDefense+=equipment.getDefense();
+            case "Leggings":
+                slot= 4;
+                this.equipment[slot]=equipment;
+                this.modDefense+=equipment.getDefense();
+            case "Boots":
+                slot= 5;
+                this.equipment[slot]=equipment;
+                this.modDefense+=equipment.getDefense();
+            case "Gloves":
+                slot= 6;
+                this.equipment[slot]=equipment;
+                this.modDefense+=equipment.getDefense();
+            case "Acc1":
+                slot= 7;
+                this.equipment[slot]=equipment;
+            case "Acc2":
+                slot= 8;
+                this.equipment[slot]=equipment;
+
+        }
+
     }
 
-    private void findProperSlot(){
-        //TODO
-    }
+//    private int findProperSlot(String type){
+//        switch(type){
+//            case "MainWeapon":
+//                return 0;
+//            case "SubWeapon":
+//                return 1;
+//            case "Head":
+//                return 2;
+//            case "Torso":
+//                return 3;
+//            case "Leggings":
+//                return 4;
+//            case "Boots":
+//                return 5;
+//            case "Gloves":
+//                return 6;
+//            case "Acc1":
+//                return 7;
+//            case "Acc2":
+//                return 8;
+//
+//        }
+//        System.out.println("invalid type");
+//        return 0;
+//    }
 
     private void die(){
         setAlive(false);

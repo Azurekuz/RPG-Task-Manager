@@ -22,7 +22,7 @@ public class ItemList {
                 return;
             }
         }
-        System.out.println("No user found");
+        System.out.println("No item found");
 
     }
 
