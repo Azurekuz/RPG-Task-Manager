@@ -18,6 +18,10 @@ public class CombatUI {
     }
 
     public void handleTurn(){
+        if(player.getLevel() < enemy.getLevel()){
+            System.out.println("[WARNING][ This " + enemy.getName() +" is a higher level than you!]");
+        }
+
         while(result.equals("")) {
             System.out.println("[ *** TURN " + (currentTurnNum + 1) + " *** ]");
             if (currentTurnNum % 2 == 0) {
@@ -70,6 +74,7 @@ public class CombatUI {
             System.out.print("[ACTION][> ");
             try {
                 action = input.nextInt();
+
             } catch (InputMismatchException e) {
                 action = -1;
             }
@@ -84,6 +89,8 @@ public class CombatUI {
                 default:
                     action = -1;
                     System.out.println("[ERROR][ Invalid action entered! ]");
+                    input.nextLine(); //without this it goes on an infinite loop for some reason
+                    break;
             }
         }
     }
@@ -107,7 +114,12 @@ public class CombatUI {
 
     public void eventPlayerDeath(){
         result = "L";
-        System.out.println("Oh dear, you are dead!");
+        System.out.println("Your vision fades to black as you lose consciousness...");
+        System.out.println("\nHey! Are you ok? Let's get you back to town. Maybe you should do some tasks to level up?\n[NOTICE][ You have lost some gold.]");
+        int lostCur = (int)(player.getCurrency() * 0.1);
+        try {
+            player.subtractFromCurrency(lostCur);
+        } catch (InsufficentCurrencyException ignored) {} //This won't happen anyway
     }
 
     public void eventEnemyDeath(){
