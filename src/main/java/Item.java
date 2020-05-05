@@ -5,12 +5,14 @@ public class Item {
     public String type;
 
     public Item(){
-        name=" ";
+        name="";
+        type="";
         ID=0;
     }
 
-    public Item(String name, int id){
+    public Item(String name, String type, int id){
         this.name=name;
+        this.type=type;
         this.ID=id;
     }
 
@@ -36,5 +38,11 @@ public class Item {
 
     public void setID(int ID) {
         this.ID = ID;
+    }
+
+    public String toString(){
+        String result = ""; //TODO add durability and id if they matter
+        result = "[NAME: "+ name+"]  [TYPE: "+type+"]";
+        return result;
     }
 }

@@ -82,8 +82,8 @@ public class RPGUI {
                     System.out.println(rpgManager.talk(name));
                     break;
                 case "equip":
-                    System.out.println("[?][ What do you want to equip? ]");//TODO show inventory
-
+                    System.out.println("[?][ What do you want to equip? ]");
+                    System.out.println("[INVENTORY]\n" + rpgManager.getPlayer().getInventory().toString());
                     System.out.print("[SELECT ITEM][> ");
                     name = input.nextLine(); //TODO support for selection by item id?
                     System.out.println(rpgManager.equip(name));
@@ -93,7 +93,7 @@ public class RPGUI {
                     System.out.println(rpgManager.viewCharacter());
                     break;
                 case "fight":
-                    System.out.println("[?][ What/who do you want to fight? ]"); //TODO warning if enemy is higher level?
+                    System.out.println("[?][ What/who do you want to fight? ]");
                     System.out.print("[SELECT ENEMY][> ");
                     name = input.nextLine();
                     rpgManager.fight(name);

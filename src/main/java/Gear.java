@@ -4,11 +4,11 @@ public class Gear extends Item {
     public int defense;
 
     public Gear(){
-        super("",0);
+        super("","",0);
     }
 
-    public Gear(String name, int id, int durability, int damage, int defense){
-        super(name,id);
+    public Gear(String name, String type, int id, int durability, int damage, int defense){
+        super(name,type, id);
         this.durability=durability;
         this.damage=damage;
         this.defense=defense;
@@ -36,6 +36,13 @@ public class Gear extends Item {
 
     public void setDurability(int damage) {
         this.durability = durability;
+    }
+
+    @Override
+    public String toString(){
+        String result = ""; //TODO add durability and id if they matter
+        result = "[NAME: "+ name+"]  [TYPE: "+type+"]  [DAMAGE: "+damage+"]  [DEFENSE: "+defense+"]";
+        return result;
     }
 
 }

@@ -19,7 +19,6 @@ public class Actor {
     private int currency;
     private ItemList inventory;
     private Item[] equipment; //MainWeapon, SubWeapon, Head, Torso, Leggings, Boots, Gloves, Acc1, Acc2
-    public ItemList items;
 
     public Actor(){
         name = "Empty Husk";
@@ -71,7 +70,7 @@ public class Actor {
     private void initialiseItems(){
         currency = 0;
         inventory = new ItemList();
-        equipment = new Item[10];
+        equipment = new Item[9];
     }
 
     public void attack(Actor target){
@@ -135,32 +134,6 @@ public class Actor {
         }
 
     }
-
-//    private int findProperSlot(String type){
-//        switch(type){
-//            case "MainWeapon":
-//                return 0;
-//            case "SubWeapon":
-//                return 1;
-//            case "Head":
-//                return 2;
-//            case "Torso":
-//                return 3;
-//            case "Leggings":
-//                return 4;
-//            case "Boots":
-//                return 5;
-//            case "Gloves":
-//                return 6;
-//            case "Acc1":
-//                return 7;
-//            case "Acc2":
-//                return 8;
-//
-//        }
-//        System.out.println("invalid type");
-//        return 0;
-//    }
 
     private void die(){
         setAlive(false);
@@ -304,11 +277,11 @@ public class Actor {
         return baseDefense;
     }
 
-    public ItemList getItems() { return items; }
-
     public int getCurrency() {
         return currency;
     }
+
+    public ItemList getInventory() { return inventory; }
 
     public void addToCurrency(int toAdd){
         this.currency+=toAdd;
@@ -342,7 +315,7 @@ public class Actor {
         }
     }
 
-    public String toString(){ //TODO show items
+    public String toString(){
         String toString = "";
         toString += "\t[NAME][ " + this.name + " ]\n";
         toString += "\t[LVL][ " + this.level + " ]\n";
@@ -353,6 +326,18 @@ public class Actor {
         toString += "\t[DEF][ " + this.baseDefense + " + " + (this.modDefense - this.baseDefense) + " ]\n";
         toString += "\n";
         toString += "\t[CURRENCY][ " + this.currency + " Gold" + " ]\n";
+        toString += "\t[EQUIPMENT]" +
+                "\n\t\t[Main Weapon: " + this.equipment[0].toString() + "]" +
+                "\n\t\t[Sub Weapon:  " + this.equipment[1].toString() + "]" +
+                "\n\t\t[Head:   " + this.equipment[2].toString() + "]" +
+                "\n\t\t[Torso:  " + this.equipment[3].toString() + "] " +
+                "\n\t\t[Legs:   " + this.equipment[4].toString() + "]" +
+                "\n\t\t[Boots:  " + this.equipment[5].toString() + "]" +
+                "\n\t\t[Gloves: " + this.equipment[6].toString() + "]" +
+                "\n\t\t[Acc1:   " + this.equipment[7].toString() + "]" +
+                "\n\t\t[Acc2:   " + this.equipment[8].toString() + "]";
+
+        toString += "\t[INVENTORY][ " + this.inventory.toString() + " ]\n";
         return toString;
     }
 }

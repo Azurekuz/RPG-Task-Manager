@@ -2,11 +2,11 @@ public class Usable extends Item {
     public int value;
 
     public Usable(){
-        super("",0);
+        super("","",0);
     }
 
-    public Usable(String name, int id, int value){
-        super(name,id);
+    public Usable(String name, String type, int id, int value){
+        super(name,type,id);
         this.value=value;
     }
 
@@ -16,6 +16,13 @@ public class Usable extends Item {
 
     public void setValue(int value) {
         this.value = value;
+    }
+
+    @Override
+    public String toString(){
+        String result = ""; //TODO add id if it matters
+        result = "[NAME: "+ name+"]  [TYPE: "+type+"]  [VALUE: "+value+"]";
+        return result;
     }
 
 }
