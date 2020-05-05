@@ -7,6 +7,17 @@ public class Player extends Actor{
         super(name, level, health, baseAttack, baseDefense);
     }
 
+    public void damage(int healthDeduction){
+        setCurHealth(NumTools.intClamp(0, getMaxHealth(), getCurHealth(), -healthDeduction));
+        checkForDeath();
+    }
+
+    private void checkForDeath(){
+        if(getCurHealth() <= 0){
+            this.die();
+        }
+    }
+
     public void die(){
         setAlive(false);
         setCurrency((int) (((double) getCurrency())*0.75));
