@@ -10,7 +10,9 @@
     "modAttack" : 3,
     "modDefense" : 2,
     "currency" : 0,
-    "inventory" : null,
+    "inventory" : {
+      "itemList" : [ ]
+    },
     "alive" : true
   },
   "defaultMonsters" : {
@@ -25,7 +27,9 @@
       "modAttack" : 1,
       "modDefense" : 2,
       "currency" : 3,
-      "inventory" : null,
+      "inventory" : {
+        "itemList" : [ ]
+      },
       "alive" : true
     }, {
       "name" : "Bandit",
@@ -38,7 +42,9 @@
       "modAttack" : 1,
       "modDefense" : 1,
       "currency" : 10,
-      "inventory" : null,
+      "inventory" : {
+        "itemList" : [ ]
+      },
       "alive" : true
     }, {
       "name" : "Dragon",
@@ -51,7 +57,9 @@
       "modAttack" : 10,
       "modDefense" : 15,
       "currency" : 100,
-      "inventory" : null,
+      "inventory" : {
+        "itemList" : [ ]
+      },
       "alive" : true
     }, {
       "name" : "Wraith",
@@ -64,7 +72,9 @@
       "modAttack" : 3,
       "modDefense" : 5,
       "currency" : 10,
-      "inventory" : null,
+      "inventory" : {
+        "itemList" : [ ]
+      },
       "alive" : true
     } ]
   }

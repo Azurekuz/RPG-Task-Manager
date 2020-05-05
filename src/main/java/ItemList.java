@@ -5,6 +5,7 @@ public class ItemList {
     public ItemList() {
         itemList = new ArrayList<Item>();
     }
+    public ItemList(ArrayList<Item> listIn){ itemList = listIn; }
 
     public void addItem(Item item) {
         itemList.add(item);
@@ -28,15 +29,12 @@ public class ItemList {
 
     public String toString(){
         String result = "{ Name \t|\t Type \t |\t Damage/Value \t |\t Defense }\n";
-        Item item;
-
+        if (itemList.size() == 0){
+            return result.concat("\t*No items.*\n");
+        }
         for(int i = 0; i < itemList.size(); i++){
             result = result.concat(itemList.get(i).toString());
             result = result.concat("\n");
-        }
-
-        if (itemList.size() == 0){
-            result = result.concat("*No items.*\n");
         }
         return result;
     }

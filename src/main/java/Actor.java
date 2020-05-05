@@ -71,6 +71,19 @@ public class Actor {
         currency = 0;
         inventory = new ItemList();
         equipment = new Item[9];
+        //MainWeapon, SubWeapon, Head, Torso, Leggings, Boots, Gloves, Acc1, Acc2
+        //String name, String type, int id, int durability, int damage, int defense
+        equipment[0] = new Gear("Fist","MainWeapon",0, 100, 0, 0);
+        equipment[1] = new Gear("Fist","SubWeapon",1, 100, 0, 0);
+        equipment[2] = new Gear("Hair","Head",2, 100, 0, 0);
+        equipment[3] = new Gear("T-Shirt","Torso",3, 100, 0, 0);
+        equipment[4] = new Gear("Underwear","Leggings",4, 100, 0, 0);
+        equipment[5] = new Gear("Bare Feet","Boots",5, 100, 0, 0);
+        equipment[6] = new Gear("Hands","Gloves",6, 100, 0, 0);
+        equipment[7] = new Gear("N/A","Acc1",7, 100, 0, 0);
+        equipment[8] = new Gear("N/A","Acc2",8, 100, 0, 0);
+
+
     }
 
     public void attack(Actor target){
@@ -337,7 +350,7 @@ public class Actor {
                 "\n\t\t[Acc1:   " + this.equipment[7].toString() + "]" +
                 "\n\t\t[Acc2:   " + this.equipment[8].toString() + "]";
 
-        toString += "\t[INVENTORY][ " + this.inventory.toString() + " ]\n";
+        toString += "\n\t[INVENTORY]\n\t" + this.inventory.toString();
         return toString;
     }
 }
