@@ -1,9 +1,12 @@
 import java.io.IOException;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.Random;
 import java.util.Scanner;
 
 public class RPGUI {
     public RPGManager rpgManager;
+    public String[] locations = {"cave","ruined tower","deep forest","sewer", "ruin", "mine"};
 
     public void levelup(double xp){
         rpgManager.player.grantExperience(xp);
@@ -43,6 +46,7 @@ public class RPGUI {
                     System.out.println("['equip'     : Equip an item. Prompted for name or id of the item you want to equip. ]");
                     System.out.println("['char'      : Displays all your character's information, including inventory and stats.]");
                     System.out.println("['fight'     : Fight a monster. You will be prompted for which monster you want to fight and start a combat interface.]");
+                    System.out.println("['fightrand' : Go out and fight a random monster.]");
                     break;
 //                case "go":
 //                    System.out.println("***[ AVAILABLE LOCATIONS ]***");
@@ -92,7 +96,14 @@ public class RPGUI {
                     System.out.print("[SELECT ENEMY][> ");
                     name = input.nextLine();
                     rpgManager.fight(name);
-                    System.out.println("[NOTICE][ Unimplemented content.]");
+                    //System.out.println("[NOTICE][ Unimplemented content.]");
+                    break;
+                case "fightrand":
+                    Random random = new Random();
+                    int idx = random.nextInt(locations.length);
+                    System.out.println("[DIALOGUE][ Hello traveler! Thanks for helping us with our monster infestation. ]");
+                    System.out.println("[NARRATION][ You head to the nearby " + locations[idx] + " and encounter a monster!]\n");
+                    rpgManager.fightrand();
                     break;
                 case "quit": break; //avoids triggering default case
                 default:
