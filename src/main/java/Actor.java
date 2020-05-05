@@ -19,9 +19,6 @@ public class Actor {
     private int currency;
     private ItemList inventory;
     private Item[] equipment; //MainWeapon, SubWeapon, Head, Torso, Leggings, Boots, Gloves, Acc1, Acc2
-
-    /*public int[] stats; //size=5, 0:level 1: hp 2:strength 3:dexterity 4:intelligence TODO more stats? define constants for each stat index?
-            //TODO if we don't have more than like five stats then it's probably worth ditching the array idea*/
     public ItemList items;
 
     public Actor(){
@@ -229,8 +226,12 @@ public class Actor {
     public void checkLevelUp(){
         double curExperience =  experience - EXP_TO_LEVEL * (level-1);
         if (curExperience >= EXP_TO_LEVEL){
-            this.level+= curExperience / EXP_TO_LEVEL;
-            //TODO stat gain?
+            int levelGain= 0;
+            levelGain+= curExperience / EXP_TO_LEVEL;
+            this.level+= levelGain;
+            maxHealth+=levelGain*2;
+            baseAttack+=levelGain;
+            baseDefense+=levelGain;
         }
 
     }
@@ -341,7 +342,7 @@ public class Actor {
         }
     }
 
-    public String toString(){
+    public String toString(){ //TODO show items
         String toString = "";
         toString += "\t[NAME][ " + this.name + " ]\n";
         toString += "\t[LVL][ " + this.level + " ]\n";
