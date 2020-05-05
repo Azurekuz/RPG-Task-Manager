@@ -34,7 +34,7 @@ public class TaskManager {
             try {
                 generateDefaultTaskList();
                 //generateDailyTaskList
-            } catch (DuplicateTaskException ignored){} //this isn't going to happen
+            } catch (DuplicateObjectException ignored){} //this isn't going to happen
         }
     }
     TaskManager(){ //Need default constructor for json, just calls the other constructor and makes a blank object
@@ -52,7 +52,7 @@ public class TaskManager {
                 generateDefaultTaskList();
                 generateDefaultDailyTaskList();
             }
-        }catch(DuplicateTaskException e){
+        }catch(DuplicateObjectException e){
             System.out.println("[WARNING][Default and/or Daily tasks have already been generated!]");
         }
         if(lastTimeUsed != null && ChronoUnit.HOURS.between(lastTimeUsed, startTime) > 24) {
@@ -60,7 +60,7 @@ public class TaskManager {
         }
     }
 
-    public Task findCurrentTask(int id) throws NonExistentTaskException{
+    public Task findCurrentTask(int id) throws NonExistentObjectException {
           return currentTaskList.getTaskAt(id);
     }
 
@@ -96,7 +96,7 @@ public class TaskManager {
             }
     }
 
-    public void generateDefaultTaskList() throws DuplicateTaskException{
+    public void generateDefaultTaskList() throws DuplicateObjectException {
         Task doDishes = new Task(validID(), "Do the Dishes", "Clean all your unwashed dishes.", 10, 0, 0, false);
         defaultTaskList.addTask(doDishes);
 
@@ -144,17 +144,17 @@ public class TaskManager {
 
     }
 
-    public void generateDefaultDailyTaskList() throws DuplicateTaskException{
+    public void generateDefaultDailyTaskList() throws DuplicateObjectException {
 
     }
 
 
-    public void addCurrentTask(Task newTask) throws DuplicateTaskException{
+    public void addCurrentTask(Task newTask) throws DuplicateObjectException {
         try {
             newTask.setID(validID());
             currentTaskList.addTask(newTask);
-        }catch(DuplicateTaskException e){
-            throw new DuplicateTaskException(e.getMessage());
+        }catch(DuplicateObjectException e){
+            throw new DuplicateObjectException(e.getMessage());
         }
     }
 
@@ -164,7 +164,7 @@ public class TaskManager {
             Task newTask = new Task(id, title, desc, quality, timeLimit, type, false);
             newTask.setID(validID());
             customTaskList.addTask(newTask);
-        }catch(DuplicateTaskException e){
+        }catch(DuplicateObjectException e){
             System.out.println("[Error][" + e.getMessage() + "]");
         }
     }
@@ -177,7 +177,7 @@ public class TaskManager {
         return size;
     }
 
-    public String selectTask(String title) throws NonExistentTaskException{
+    public String selectTask(String title) throws NonExistentObjectException {
       Task task;
       try {
           if (defaultTaskList.findTask(title) != -1) { //if it exists in defaultTaskList
@@ -196,7 +196,7 @@ public class TaskManager {
                       Task newTaskInstance = new Task(validID(), task.title, task.desc, task.baseQuality, task.timeLimit, task.type, task.complete);
                       currentTaskList.addTask(newTaskInstance);
                   }
-              }catch(DuplicateTaskException e){
+              }catch(DuplicateObjectException e){
                   System.out.println("[ERROR][You already have this main task selected!]");
               }
           } else if (customTaskList.findTask(title) != -1) { //if it exists in customTaskList
@@ -213,19 +213,19 @@ public class TaskManager {
                   else {
                       currentTaskList.addTask(newTaskInstance);
                   }
-              }catch(DuplicateTaskException e){
+              }catch(DuplicateObjectException e){
                   System.out.println("[ERROR][You already have this main task selected!]");
               }
           } else {
               return "SELECTING TASK: task not found - not added to current tasks.";
           }
-      }catch(NonExistentTaskException e){
-          throw new NonExistentTaskException("Nonexistent or Invalid Task Requested!");
+      }catch(NonExistentObjectException e){
+          throw new NonExistentObjectException("Nonexistent or Invalid Task Requested!");
       }
         return "Task started!";
     }
 
-    public void selectTask(int id, int listType) throws NonExistentTaskException{
+    public void selectTask(int id, int listType) throws NonExistentObjectException {
         try{
           Task task;
           if(defaultTaskList.findTask(id) != -1) {
@@ -235,17 +235,17 @@ public class TaskManager {
               task = customTaskList.getTask(id);
               checkIfDaily(task);
           }
-        }catch(NonExistentTaskException e){
-            throw new NonExistentTaskException("Nonexistent or Invalid Task Requested!");
-        }catch(DuplicateTaskException e){
+        }catch(NonExistentObjectException e){
+            throw new NonExistentObjectException("Nonexistent or Invalid Task Requested!");
+        }catch(DuplicateObjectException e){
             System.out.println("[Error][" + e.getMessage() + "]");
         }
     }
 
-    public void checkIfDaily(Task task) throws DuplicateTaskException{
+    public void checkIfDaily(Task task) throws DuplicateObjectException {
         if(task.getType() == 1){
             if (!(mainTask.getTitle().isEmpty()) && task.getType() == 1) {
-                throw new DuplicateTaskException("ERROR: Can't have more than one main task selected.");
+                throw new DuplicateObjectException("ERROR: Can't have more than one main task selected.");
             }
             mainTask = task;
             task.startTime();
@@ -260,7 +260,7 @@ public class TaskManager {
         }
     }
 
-    public void stopTask(String title) throws NonExistentTaskException{
+    public void stopTask(String title) throws NonExistentObjectException {
         try{
             int index = currentTaskList.findTask(title);
             if(index != -1) {
@@ -274,13 +274,13 @@ public class TaskManager {
                 reassignGlobalIDs();
                 return;
             }
-            throw new NonExistentTaskException("Nonexistent or Invalid Task Requested!");
-        }catch (NonExistentTaskException e){
-            throw new NonExistentTaskException("Nonexistent or Invalid Task Requested!");
+            throw new NonExistentObjectException("Nonexistent or Invalid Task Requested!");
+        }catch (NonExistentObjectException e){
+            throw new NonExistentObjectException("Nonexistent or Invalid Task Requested!");
         }
     }
 
-    public void stopTask(int id) throws NonExistentTaskException{
+    public void stopTask(int id) throws NonExistentObjectException {
         try{
             int task = currentTaskList.findTask(id);
             if(task != -1) {
@@ -294,22 +294,22 @@ public class TaskManager {
                 reassignGlobalIDs();
                 return;
             }
-            throw new NonExistentTaskException("Nonexistent or Invalid Task Requested!");
-        }catch (NonExistentTaskException e){
-            throw new NonExistentTaskException("Nonexistent or Invalid Task Requested!");
+            throw new NonExistentObjectException("Nonexistent or Invalid Task Requested!");
+        }catch (NonExistentObjectException e){
+            throw new NonExistentObjectException("Nonexistent or Invalid Task Requested!");
         }
     }
 
 
-    public void editCurrentTask(int id, Task newTask) throws NonExistentTaskException{
+    public void editCurrentTask(int id, Task newTask) throws NonExistentObjectException {
         try {
             currentTaskList.editTask(id, newTask);
-        }catch (NonExistentTaskException e) {
-            throw new NonExistentTaskException("Nonexistent or Invalid Task Requested!");
+        }catch (NonExistentObjectException e) {
+            throw new NonExistentObjectException("Nonexistent or Invalid Task Requested!");
         }
     }
 
-    public void editTask(String title, String newTitle, String desc, int quality, int timeLimit, int type) throws NonExistentTaskException{
+    public void editTask(String title, String newTitle, String desc, int quality, int timeLimit, int type) throws NonExistentObjectException {
         try {
             Task editedTask;
             int index = currentTaskList.findTask(title);
@@ -340,13 +340,13 @@ public class TaskManager {
                 editedTask.setType(type);
                 return;
             }
-            throw new NonExistentTaskException("Nonexistent or Invalid Task Requested!");
-        }catch (NonExistentTaskException e) {
-            throw new NonExistentTaskException("Nonexistent or Invalid Task Requested!");
+            throw new NonExistentObjectException("Nonexistent or Invalid Task Requested!");
+        }catch (NonExistentObjectException e) {
+            throw new NonExistentObjectException("Nonexistent or Invalid Task Requested!");
         }
     }
 
-    public void editTask(int id, String newTitle, String desc, int quality, int timeLimit, int type, int taskList) throws NonExistentTaskException{
+    public void editTask(int id, String newTitle, String desc, int quality, int timeLimit, int type, int taskList) throws NonExistentObjectException {
         try {
             Task editedTask;
                 if(currentTaskList.findTask(id) != -1) {
@@ -374,9 +374,9 @@ public class TaskManager {
                     editedTask.setType(type);
                     return;
                 }
-                throw new NonExistentTaskException("Nonexistent or Invalid Task Requested!");
-        }catch (NonExistentTaskException e) {
-            throw new NonExistentTaskException("Nonexistent or Invalid Task Requested!");
+                throw new NonExistentObjectException("Nonexistent or Invalid Task Requested!");
+        }catch (NonExistentObjectException e) {
+            throw new NonExistentObjectException("Nonexistent or Invalid Task Requested!");
         }
     }
 
@@ -387,9 +387,9 @@ public class TaskManager {
                 newDaily.setID(validID());
                 newDaily.startTime();
                 currentTaskList.addTask(recalculateHoursLeft(newDaily));
-            }/*catch(NonExistentTaskException e){
+            }/*catch(NonExistentObjectException e){
                 System.out.println("[ERROR][Internal error. Daily task no longer found.]");
-            }*/catch(DuplicateTaskException e){
+            }*/catch(DuplicateObjectException e){
                 System.out.println("[NOTICE][Daily task was not completed. Skipped!]");
             }
         }
@@ -402,7 +402,7 @@ public class TaskManager {
         return task;
     }
 
-    public double completeCurrentTask(int id, double completionQuality) throws NonExistentTaskException{
+    public double completeCurrentTask(int id, double completionQuality) throws NonExistentObjectException {
         try {
             Task completedTask = currentTaskList.getTask(id);
             completedTask.complete();
@@ -412,9 +412,9 @@ public class TaskManager {
             double xp = completedTask.calcExp();
             rpg.transferEXP(xp);
             return xp;
-        }catch (NonExistentTaskException e){
-            throw new NonExistentTaskException("Nonexistent or Invalid Task Requested!");
-        }catch(DuplicateTaskException e){
+        }catch (NonExistentObjectException e){
+            throw new NonExistentObjectException("Nonexistent or Invalid Task Requested!");
+        }catch(DuplicateObjectException e){
             System.out.println("[ERROR][ Task already completed.]");
             return 0;
         } catch (IOException e) {
@@ -424,7 +424,7 @@ public class TaskManager {
         }
     }
 
-    public double complete(String title, double completionQuality) throws NonExistentTaskException, IllegalArgumentException{
+    public double complete(String title, double completionQuality) throws NonExistentObjectException, IllegalArgumentException{
       if(completionQuality < 0.1 || completionQuality > 1 ){
           throw new IllegalArgumentException("Invalid completion quality (needs between 0.1 and 1)");
       }
@@ -432,7 +432,7 @@ public class TaskManager {
       return completeCurrentTask(id, completionQuality);
     }
 
-    public double complete(int id, double completionQuality) throws NonExistentTaskException, IllegalArgumentException{
+    public double complete(int id, double completionQuality) throws NonExistentObjectException, IllegalArgumentException{
         if(completionQuality < 0.1 || completionQuality > 1 ){
             throw new IllegalArgumentException("Invalid completion quality (needs between 0.1 and 1)");
         }
@@ -486,7 +486,7 @@ public class TaskManager {
          rpg.commandHandler(); //starts rpg interface
     }
 
-    public String checkTimedTasks(LocalDateTime currentTime) throws NonExistentTaskException, DuplicateTaskException {
+    public String checkTimedTasks(LocalDateTime currentTime) throws NonExistentObjectException, DuplicateObjectException {
         String failedTasks="FAILED: ";  Task task;  LocalDateTime time;
         TaskList newFailedTasks = new TaskList();
 
@@ -500,7 +500,7 @@ public class TaskManager {
                     failedTasks = failedTasks.concat(", ");
                     try {
                         newFailedTasks.addTask(task);
-                    }catch(DuplicateTaskException e){
+                    }catch(DuplicateObjectException e){
                         System.out.println("[Error][" + e.getMessage() + "]");
                     }
                 }
@@ -532,12 +532,12 @@ public class TaskManager {
         return "Main task stopped.";
     }
 
-    public void incMainProgress(int progress) throws IllegalArgumentException, NonExistentTaskException{
+    public void incMainProgress(int progress) throws IllegalArgumentException, NonExistentObjectException {
         if(progress <= 0 || progress > 100){
             throw new IllegalArgumentException("Invalid progress amount.");
         }
         else if (mainTask.getTitle().isEmpty()){
-            throw new NonExistentTaskException("No main task selected.");
+            throw new NonExistentObjectException("No main task selected.");
         }
         mainTask.addProgress(progress);
     }
@@ -560,7 +560,7 @@ public class TaskManager {
         try {
             mainTask.setID(validID());
             completedTaskList.addTask(mainTask);
-        }catch (DuplicateTaskException e){
+        }catch (DuplicateObjectException e){
             System.out.println("[NOTICE: You have completed this main task before!]");
         }
         mainTask = new Task();
