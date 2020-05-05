@@ -43,7 +43,7 @@ public class RPGManager {
         Monster dragon = new Monster("Dragon", 10, 30, 10, 15, 100);
         defaultMonsters.addActor(dragon);
 
-        Monster wraith = new Monster("Wraith", 4, 10, 3, 10, 10);
+        Monster wraith = new Monster("Wraith", 4, 10, 3, 5, 10);
         defaultMonsters.addActor(wraith);
 
     }

@@ -156,8 +156,12 @@ public class Actor {
     public void checkLevelUp(){
         double curExperience =  experience - EXP_TO_LEVEL * (level-1);
         if (curExperience >= EXP_TO_LEVEL){
-            this.level+= curExperience / EXP_TO_LEVEL;
-            //TODO stat gain?
+            int levelGain= 0;
+            levelGain+= curExperience / EXP_TO_LEVEL;
+            this.level+= levelGain;
+            maxHealth+=levelGain*2;
+            baseAttack+=levelGain;
+            baseDefense+=levelGain;
         }
 
     }

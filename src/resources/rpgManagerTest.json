@@ -60,9 +60,9 @@
       "maxHealth" : 10,
       "curHealth" : 10,
       "baseAttack" : 3,
-      "baseDefense" : 10,
+      "baseDefense" : 5,
       "modAttack" : 3,
-      "modDefense" : 10,
+      "modDefense" : 5,
       "currency" : 10,
       "items" : null,
       "alive" : true
