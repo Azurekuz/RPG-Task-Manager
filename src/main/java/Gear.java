@@ -7,9 +7,11 @@ public class Gear extends Item {
         super("",0);
     }
 
-    public Gear(String name, int id, int durability){
+    public Gear(String name, int id, int durability, int damage, int defense){
         super(name,id);
         this.durability=durability;
+        this.damage=damage;
+        this.defense=defense;
     }
 
     public int getDurability() {
