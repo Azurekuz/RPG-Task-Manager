@@ -1,0 +1,187 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="5944031c-4d31-4f46-a7a7-815273b13d69" name="Default Changelist" comment="" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="Git.Settings">
+    <excluded-from-favorite>
+      <branch-storage>
+        <map>
+          <entry type="LOCAL">
+            <value>
+              <list>
+                <branch-info repo="$PROJECT_DIR$" source="master" />
+              </list>
+            </value>
+          </entry>
+        </map>
+      </branch-storage>
+    </excluded-from-favorite>
+    <favorite-branches>
+      <branch-storage>
+        <map>
+          <entry type="LOCAL">
+            <value>
+              <list>
+                <branch-info repo="$PROJECT_DIR$" source="Sprint3" />
+              </list>
+            </value>
+          </entry>
+        </map>
+      </branch-storage>
+    </favorite-branches>
+    <option name="RECENT_BRANCH_BY_REPOSITORY">
+      <map>
+        <entry key="$PROJECT_DIR$" value="Sprint3" />
+      </map>
+    </option>
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+    <option name="UPDATE_TYPE" value="MERGE" />
+  </component>
+  <component name="IgnoredFileRootStore">
+    <option name="generatedRoots">
+      <set>
+        <option value="C:\Users\lwatson\IdeaProjects\RPG-TaskManagerSprint3\.idea" />
+      </set>
+    </option>
+  </component>
+  <component name="ProjectId" id="1bC4flAaYylEqEeu88cxaFPb53j" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showExcludedFiles" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="Git.Branch.Popup.ShowAllRemotes" value="true" />
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/src/main/java" />
+  </component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\lwatson\IdeaProjects\RPG-TaskManagerSprint3\src\main\java" />
+    </key>
+  </component>
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="5944031c-4d31-4f46-a7a7-815273b13d69" name="Default Changelist" comment="" />
+      <created>1588122846198</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1588122846198</updated>
+    </task>
+    <task id="LOCAL-00001" summary="Implementing Currency into Actor.java&#10;11:54 PM">
+      <created>1588175714114</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1588175714114</updated>
+    </task>
+    <task id="LOCAL-00002" summary="Implementing Currency into Actor.java&#10;12:24 PM">
+      <created>1588177508136</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1588177508136</updated>
+    </task>
+    <task id="LOCAL-00003" summary="Implementing Currency into Actor.java&#10;12:38 PM">
+      <created>1588178331244</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1588178331244</updated>
+    </task>
+    <task id="LOCAL-00004" summary="Implementing Currency into ActorList.java and ActorListTest.java&#10;12:31 PM">
+      <created>1588609896178</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1588609896178</updated>
+    </task>
+    <task id="LOCAL-00005" summary="Implementing Currency into ActorList.java and ActorListTest.java&#10;12:31 PM">
+      <created>1588611773696</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1588611773696</updated>
+    </task>
+    <task id="LOCAL-00006" summary="Implementing Currency into ActorList.java and ActorListTest.java&#10;12:31 PM">
+      <created>1588700050705</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1588700050705</updated>
+    </task>
+    <task id="LOCAL-00007" summary="Implementing Currency into ActorList.java and ActorListTest.java&#10;12:31 PM">
+      <created>1588701013436</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1588701013436</updated>
+    </task>
+    <task id="LOCAL-00008" summary="Implementing Currency into ActorList.java and ActorListTest.java&#10;12:31 PM">
+      <created>1588785247531</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1588785247532</updated>
+    </task>
+    <option name="localTasksCounter" value="9" />
+    <servers />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="Implementing Currency into Actor.java&#10;11:54 PM" />
+    <MESSAGE value="Implementing Currency into Actor.java&#10;12:24 PM" />
+    <MESSAGE value="Implementing Currency into Actor.java&#10;12:38 PM" />
+    <MESSAGE value="Implementing Currency into ActorList.java and ActorListTest.java&#10;12:31 PM" />
+    <option name="LAST_COMMIT_MESSAGE" value="Implementing Currency into ActorList.java and ActorListTest.java&#10;12:31 PM" />
+  </component>
+  <component name="WindowStateProjectService">
+    <state x="501" y="178" key="#com.intellij.fileTypes.FileTypeChooser" timestamp="1588699591519">
+      <screen x="0" y="0" width="1366" height="728" />
+    </state>
+    <state x="501" y="178" key="#com.intellij.fileTypes.FileTypeChooser/0.0.1366.728@0.0.1366.728" timestamp="1588699591519" />
+    <state x="636" y="264" key="#com.intellij.ide.util.projectWizard.JdkChooserPanel.MyDialog" timestamp="1588699339657">
+      <screen x="0" y="0" width="1366" height="728" />
+    </state>
+    <state x="636" y="264" key="#com.intellij.ide.util.projectWizard.JdkChooserPanel.MyDialog/0.0.1366.728@0.0.1366.728" timestamp="1588699339657" />
+    <state x="382" y="0" key="CommitChangelistDialog2" timestamp="1588785246568">
+      <screen x="0" y="0" width="1366" height="728" />
+    </state>
+    <state x="382" y="0" key="CommitChangelistDialog2/0.0.1366.728@0.0.1366.728" timestamp="1588785246568" />
+    <state width="245" height="554" key="Git.Branch.Popup" timestamp="1588785440049">
+      <screen x="0" y="0" width="1366" height="728" />
+    </state>
+    <state width="245" height="554" key="Git.Branch.Popup/0.0.1366.728@0.0.1366.728" timestamp="1588785440049" />
+    <state x="500" y="91" key="MultipleFileMergeDialog" timestamp="1588276975896">
+      <screen x="0" y="0" width="1366" height="728" />
+    </state>
+    <state x="500" y="91" key="MultipleFileMergeDialog/0.0.1366.728@0.0.1366.728" timestamp="1588276975896" />
+    <state x="380" y="97" key="Vcs.Push.Dialog.v2" timestamp="1588785253232">
+      <screen x="0" y="0" width="1366" height="728" />
+    </state>
+    <state x="380" y="97" key="Vcs.Push.Dialog.v2/0.0.1366.728@0.0.1366.728" timestamp="1588785253232" />
+    <state x="484" y="199" key="com.intellij.ide.util.TipDialog" timestamp="1588778455284">
+      <screen x="0" y="0" width="1366" height="728" />
+    </state>
+    <state x="484" y="199" key="com.intellij.ide.util.TipDialog/0.0.1366.728@0.0.1366.728" timestamp="1588778455284" />
+    <state x="597" y="292" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1588785381202">
+      <screen x="0" y="0" width="1366" height="728" />
+    </state>
+    <state x="597" y="292" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.0.1366.728@0.0.1366.728" timestamp="1588785381202" />
+    <state x="380" y="34" key="scopes" timestamp="1588605463549">
+      <screen x="0" y="0" width="1366" height="728" />
+    </state>
+    <state x="380" y="34" key="scopes/0.0.1366.728@0.0.1366.728" timestamp="1588605463549" />
+    <state x="451" y="49" width="672" height="678" key="search.everywhere.popup" timestamp="1588542044961">
+      <screen x="0" y="0" width="1366" height="728" />
+    </state>
+    <state x="451" y="49" width="672" height="678" key="search.everywhere.popup/0.0.1366.728@0.0.1366.728" timestamp="1588542044961" />
+  </component>
+</project>
