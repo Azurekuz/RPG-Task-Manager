@@ -1,7 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="5944031c-4d31-4f46-a7a7-815273b13d69" name="Default Changelist" comment="" />
+    <list default="true" id="5944031c-4d31-4f46-a7a7-815273b13d69" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/src/main/java/Merchant.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -132,7 +135,14 @@
       <option name="project" value="LOCAL" />
       <updated>1588785247532</updated>
     </task>
-    <option name="localTasksCounter" value="9" />
+    <task id="LOCAL-00009" summary="Implementing Merchant Class">
+      <created>1588785572153</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1588785572153</updated>
+    </task>
+    <option name="localTasksCounter" value="10" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
@@ -140,7 +150,8 @@
     <MESSAGE value="Implementing Currency into Actor.java&#10;12:24 PM" />
     <MESSAGE value="Implementing Currency into Actor.java&#10;12:38 PM" />
     <MESSAGE value="Implementing Currency into ActorList.java and ActorListTest.java&#10;12:31 PM" />
-    <option name="LAST_COMMIT_MESSAGE" value="Implementing Currency into ActorList.java and ActorListTest.java&#10;12:31 PM" />
+    <MESSAGE value="Implementing Merchant Class" />
+    <option name="LAST_COMMIT_MESSAGE" value="Implementing Merchant Class" />
   </component>
   <component name="WindowStateProjectService">
     <state x="501" y="178" key="#com.intellij.fileTypes.FileTypeChooser" timestamp="1588699591519">
@@ -151,22 +162,22 @@
       <screen x="0" y="0" width="1366" height="728" />
     </state>
     <state x="636" y="264" key="#com.intellij.ide.util.projectWizard.JdkChooserPanel.MyDialog/0.0.1366.728@0.0.1366.728" timestamp="1588699339657" />
-    <state x="382" y="0" key="CommitChangelistDialog2" timestamp="1588785246568">
+    <state x="382" y="0" key="CommitChangelistDialog2" timestamp="1588785571269">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state x="382" y="0" key="CommitChangelistDialog2/0.0.1366.728@0.0.1366.728" timestamp="1588785246568" />
-    <state width="245" height="554" key="Git.Branch.Popup" timestamp="1588785440049">
+    <state x="382" y="0" key="CommitChangelistDialog2/0.0.1366.728@0.0.1366.728" timestamp="1588785571269" />
+    <state width="247" height="556" key="Git.Branch.Popup" timestamp="1588785583314">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state width="245" height="554" key="Git.Branch.Popup/0.0.1366.728@0.0.1366.728" timestamp="1588785440049" />
+    <state width="247" height="556" key="Git.Branch.Popup/0.0.1366.728@0.0.1366.728" timestamp="1588785583314" />
     <state x="500" y="91" key="MultipleFileMergeDialog" timestamp="1588276975896">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
     <state x="500" y="91" key="MultipleFileMergeDialog/0.0.1366.728@0.0.1366.728" timestamp="1588276975896" />
-    <state x="380" y="97" key="Vcs.Push.Dialog.v2" timestamp="1588785253232">
+    <state x="380" y="97" key="Vcs.Push.Dialog.v2" timestamp="1588785589873">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state x="380" y="97" key="Vcs.Push.Dialog.v2/0.0.1366.728@0.0.1366.728" timestamp="1588785253232" />
+    <state x="380" y="97" key="Vcs.Push.Dialog.v2/0.0.1366.728@0.0.1366.728" timestamp="1588785589873" />
     <state x="484" y="199" key="com.intellij.ide.util.TipDialog" timestamp="1588778455284">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
