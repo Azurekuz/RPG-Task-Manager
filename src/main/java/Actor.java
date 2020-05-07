@@ -113,36 +113,47 @@ public class Actor {
                 slot= 0;
                 this.equipment[slot]=equipment;
                 this.modAttack+=equipment.getDamage();
+                break;
             case "SubWeapon":
                 slot= 1;
                 this.equipment[slot]=equipment;
                 this.modAttack+=equipment.getDamage();
+                break;
             case "Head":
                 slot= 2;
                 this.equipment[slot]=equipment;
                 this.modDefense+=equipment.getDefense();
+                break;
             case "Torso":
                 slot= 3;
                 this.equipment[slot]=equipment;
                 this.modDefense+=equipment.getDefense();
+                break;
             case "Leggings":
                 slot= 4;
                 this.equipment[slot]=equipment;
                 this.modDefense+=equipment.getDefense();
+                break;
             case "Boots":
                 slot= 5;
                 this.equipment[slot]=equipment;
                 this.modDefense+=equipment.getDefense();
+                break;
             case "Gloves":
                 slot= 6;
                 this.equipment[slot]=equipment;
                 this.modDefense+=equipment.getDefense();
+                break;
             case "Acc1":
                 slot= 7;
                 this.equipment[slot]=equipment;
+                break;
             case "Acc2":
                 slot= 8;
                 this.equipment[slot]=equipment;
+                break;
+            default:
+                System.out.println("[ERROR][Equip failed, invalid type?]");
         }
 
     }

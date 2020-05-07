@@ -97,9 +97,12 @@ public class RPGManager {
 
     /************* CHARACTER *************/
 
-    public String equip(String name){
-        //return "[SUCCESS][ Item equipped.]";
-        return "[NOTICE][ Unimplemented content.]";
+    public String equip(String name) throws NonExistentObjectException {
+        Gear itemToEquip = (Gear) player.getInventory().getItem(name);
+        player.getInventory().removeItem(itemToEquip);
+        player.equip(itemToEquip);
+        return "[SUCCESS][ Item equipped.]";
+        //return "[NOTICE][ Unimplemented content.]";
     }
 
     public String viewCharacter(){

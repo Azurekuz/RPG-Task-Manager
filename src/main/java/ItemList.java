@@ -30,6 +30,12 @@ public class ItemList {
         System.out.println("No item found");
 
     }
+    public void removeItem(Item itemToRemove) throws NonExistentObjectException {
+        if (!itemList.contains(itemToRemove)) {
+            throw new NonExistentObjectException("This Item does not exist in this list");
+        }
+        itemList.remove(findItem(itemToRemove.getName()));
+    }
 
     public String toString(){
         String result = "{ Name \t|\t Type \t |\t Damage/Value \t |\t Defense }\n";
@@ -44,22 +50,17 @@ public class ItemList {
     }
 
     @JsonIgnore
-    public Item getRandomItem() throws NonExistentObjectException{
-        if (itemList.size() == 0){
-            throw new NonExistentObjectException("Empty ActorList");
-        }
-        Random random = new Random();
-        int randint = random.nextInt(itemList.size());
-        return itemList.get(randint);
-    }
-
-    public boolean contains(Item item){
-        return itemList.contains(item);
-    }
-
-    @JsonIgnore
     public int getSize(){
         return itemList.size();
+    }
+    /** Finding/Searching/Getting **/
+
+    public Item getItem(String name) throws NonExistentObjectException{
+        int index = findItem(name);
+        if(index >= itemList.size() || index < 0){
+            throw new NonExistentObjectException("Nonexistent or Invalid Item Requested!");
+        }
+        return itemList.get(index);
     }
 
     public Item getItemAt(int index) throws IllegalArgumentException{
@@ -67,6 +68,29 @@ public class ItemList {
             throw new IllegalArgumentException("Invalid index");
         }
         return itemList.get(index);
+    }
+
+    public int findItem(String name){
+        for(int i = 0; i < itemList.size(); i++){
+            if(itemList.get(i).getName().toLowerCase().equals(name.toLowerCase())){
+                return i; //returns index of item
+            }
+        }
+        return -1; //not found
+    }
+
+    public boolean contains(Item item){
+        return itemList.contains(item);
+    }
+
+    @JsonIgnore
+    public Item getRandomItem() throws NonExistentObjectException{
+        if (itemList.size() == 0){
+            throw new NonExistentObjectException("Empty ItemList");
+        }
+        Random random = new Random();
+        int randint = random.nextInt(itemList.size());
+        return itemList.get(randint);
     }
 
 

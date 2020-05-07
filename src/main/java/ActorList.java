@@ -64,7 +64,7 @@ public class ActorList {
     public Actor getActor(String name) throws NonExistentObjectException{
         int index = findActor(name);
         if(index >= actorList.size() || index < 0){
-            throw new NonExistentObjectException("Nonexistent or Invalid Task Requested!");
+            throw new NonExistentObjectException("Nonexistent or Invalid Actor Requested!");
         }
         return actorList.get(index);
     }
