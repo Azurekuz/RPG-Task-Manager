@@ -97,9 +97,7 @@ public class CombatUI {
 
     public void actionAttack(Actor attacker, Actor target){
         System.out.println("\t"+attacker.getName()+" attacks " + target.getName() + "!");
-        int damageOutput = target.getCurHealth();
-        attacker.attack(target);
-        damageOutput = (damageOutput-target.getCurHealth());
+        int damageOutput = attacker.attack(target);
         System.out.println("\t"+attacker.getName()+" dealt " + damageOutput + " damage to " + target.getName() + ".");
     }
 
@@ -115,8 +113,8 @@ public class CombatUI {
     public void eventPlayerDeath(){
         result = "L";
         System.out.println("Your vision fades to black as you lose consciousness...");
-        System.out.println("\nHey! Are you ok? Let's get you back to town. Maybe you should do some tasks to level up?\n[NOTICE][ You have lost some gold.]");
-        int lostCur = (int)(player.getCurrency() * 0.1);
+        int lostCur = (int)((double) player.getCurrency() * 0.25);
+        System.out.println("\nHey! Are you ok? Let's get you back to town. Maybe you should do some tasks to level up?\n[NOTICE][ You have lost " + lostCur + " gold.]");
         try {
             player.subtractFromCurrency(lostCur);
         } catch (InsufficentCurrencyException ignored) {} //This won't happen anyway

@@ -1,8 +1,7 @@
 {
   "player" : {
-    "name" : "Player",
-    "level" : 6,
-    "experience" : 555.0,
+    "level" : 10,
+    "experience" : 1000.0,
     "maxHealth" : 8,
     "curHealth" : 8,
     "baseAttack" : 3,
@@ -15,7 +14,6 @@
   },
   "defaultMonsters" : {
     "actorList" : [ {
-      "name" : "Orc Grunt",
       "level" : 1,
       "experience" : 0.0,
       "maxHealth" : 4,
@@ -28,20 +26,18 @@
       "items" : null,
       "alive" : true
     }, {
-      "name" : "Bandit",
       "level" : 1,
       "experience" : 0.0,
       "maxHealth" : 8,
       "curHealth" : 8,
-      "baseAttack" : 2,
+      "baseAttack" : 3,
       "baseDefense" : 1,
-      "modAttack" : 1,
+      "modAttack" : 3,
       "modDefense" : 1,
       "currency" : 10,
       "items" : null,
       "alive" : true
     }, {
-      "name" : "Dragon",
       "level" : 10,
       "experience" : 0.0,
       "maxHealth" : 30,
@@ -54,7 +50,6 @@
       "items" : null,
       "alive" : true
     }, {
-      "name" : "Wraith",
       "level" : 4,
       "experience" : 0.0,
       "maxHealth" : 10,

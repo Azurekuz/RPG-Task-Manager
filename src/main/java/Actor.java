@@ -2,10 +2,12 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 
 public class Actor {
     @JsonIgnore
-    final double EXP_TO_LEVEL = 100.0;
 
     private String name;
     private int level;
+
+    final double BASE_EXP = 100.0;
+    private double EXP_TO_LEVEL;
     private double experience;
     private int maxHealth;
     private int curHealth;
@@ -35,6 +37,7 @@ public class Actor {
         isAlive = true;
 
         initialiseItems();
+        EXP_TO_LEVEL = (int) (BASE_EXP * Math.pow(1.15, ((double) this.level-1)));
     }
 
     public Actor(String name, int level, int health, int baseAttack, int baseDefense) throws IllegalArgumentException{
@@ -52,6 +55,7 @@ public class Actor {
         isAlive = true;
 
         initialiseItems();
+        EXP_TO_LEVEL = (int) (BASE_EXP * Math.pow(1.15, ((double) this.level-1)));
     }
 
     private void verifyConstructorInput(String name, int level, int health, int baseAttack, int baseDefense){
@@ -74,10 +78,11 @@ public class Actor {
         equipment = new Item[10];
     }
 
-    public void attack(Actor target){
+    public int attack(Actor target){
         if(isAlive) {
-            target.damage(NumTools.intLowerBorder(0, getModAttack(), -target.getModDefense()));
+            return target.damage(NumTools.intLowerBorder(0, getModAttack(), -target.getModDefense()));
         }
+        return 0;
     }
 
     public void use(Item itemToUse){
@@ -107,9 +112,10 @@ public class Actor {
         }
     }
 
-    public void damage(int healthDeduction){
+    public int damage(int healthDeduction){
         this.curHealth = NumTools.intClamp(0,this.maxHealth, this.curHealth, -healthDeduction);
         checkForDeath();
+        return healthDeduction;
     }
 
     public void heal(int healthAddition){
@@ -154,9 +160,15 @@ public class Actor {
     }
 
     public void checkLevelUp(){
-        double curExperience =  experience - EXP_TO_LEVEL * (level-1);
+        double curExperience =  experience - EXP_TO_LEVEL;
         if (curExperience >= EXP_TO_LEVEL){
-            this.level+= curExperience / EXP_TO_LEVEL;
+            int levelGain= 0;
+            levelGain+= curExperience / EXP_TO_LEVEL;
+            for(int levelUp = 0; levelUp < levelGain; levelUp++){
+                this.level+= 1;
+                EXP_TO_LEVEL += ((int) (BASE_EXP * Math.pow(1.15, ((double) this.level-1))));
+                System.out.println("NEXT: " + EXP_TO_LEVEL);
+            }
             //TODO stat gain?
         }
 
@@ -273,6 +285,7 @@ public class Actor {
         toString += "\t[NAME][ " + this.name + " ]\n";
         toString += "\t[LVL][ " + this.level + " ]\n";
         toString += "\t[EXP][ " + this.experience + " ]\n";
+        toString += "\t[NEXT][ " + (EXP_TO_LEVEL) + " ]\n";
         toString += "\n";
         toString += "\t[HP][ " + this.curHealth + "/" + this.maxHealth + " " + displayAlive() + " ]\n";
         toString += "\t[ATK][ " + this.baseAttack + " + " + (this.modAttack - this.baseAttack) + " ]\n";
