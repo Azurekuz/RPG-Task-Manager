@@ -1,7 +1,17 @@
+import com.fasterxml.jackson.annotation.JsonSubTypes;
+import com.fasterxml.jackson.annotation.JsonTypeInfo;
+
+@JsonTypeInfo(use = JsonTypeInfo.Id.NAME,
+        property = "type") @JsonSubTypes({
+
+        @JsonSubTypes.Type(value = Gear.class, name = "gear"),
+        @JsonSubTypes.Type(value = Usable.class, name = "usable")
+})
 public class Item {
 
     public String name;
     private int ID;
+    //MainWeapon, SubWeapon, Head, Torso, Leggings, Boots, Gloves, Acc1, Acc2
     public String type;
 
     public Item(){

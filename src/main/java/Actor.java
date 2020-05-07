@@ -143,12 +143,15 @@ public class Actor {
             case "Acc2":
                 slot= 8;
                 this.equipment[slot]=equipment;
-
         }
 
     }
 
-    private void die(){
+    public void pickUp(Item newItem){
+        inventory.addItem(newItem);
+    }
+
+    public void die(){
         setAlive(false);
     }
 

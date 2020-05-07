@@ -33,17 +33,31 @@ public class RPGManager {
     }
 
     public void generateDefaultMonsterList() throws DuplicateObjectException {
+        defaultMonsters = new ActorList();
         //Stats are mostly temporary... tweak if you want, but make sure you change it in the file as well?
         Monster orcGrunt = new Monster("Orc Grunt", 1 , 4, 1, 2, 3 );
+        Gear club = new Gear("Wooden Club", "MainWeapon",9,100,2,0);
+        Gear shoddyHelm = new Gear("Shoddy Helm", "Head", 10, 100, 0, 2);
+        orcGrunt.pickUp(club); orcGrunt.pickUp(shoddyHelm);
         defaultMonsters.addActor(orcGrunt);
 
         Monster bandit = new Monster("Bandit", player.getLevel(), player.getMaxHealth(), player.getBaseDefense()+1, player.getBaseAttack()/2, 10);
+        Gear boots = new Gear("Leather Boots", "Boots",11,100,0,1);
+        Gear goldRing = new Gear("Gold Ring", "Acc2",12,100,0,1);
+        bandit.pickUp(boots); bandit.pickUp(goldRing);
         defaultMonsters.addActor(bandit);
 
         Monster dragon = new Monster("Dragon", 10, 30, 10, 15, 100);
+        Gear dragonShield = new Gear("Dragon Scale Shield", "SubWeapon",13,100,1,4);
+        Gear dragonArmor = new Gear("Dragon Scale Armor", "Torso",14,100,0,5);
+        Gear dragonLeggings = new Gear("Dragon Scale Leggings", "Leggings",15,100,0,4);
+        dragon.pickUp(dragonShield); dragon.pickUp(dragonArmor); dragon.pickUp(dragonLeggings);
         defaultMonsters.addActor(dragon);
 
         Monster wraith = new Monster("Wraith", 4, 10, 3, 5, 10);
+        Usable wraithEssence = new Usable("Health Potion","Usable",16,5);
+        Gear spectralRing = new Gear("Spectral Ring", "Acc1", 17, 100, 1, 1);
+        wraith.pickUp(wraithEssence); wraith.pickUp(spectralRing);
         defaultMonsters.addActor(wraith);
 
     }
@@ -105,12 +119,12 @@ public class RPGManager {
     public void fightrand(){
         Random random = new Random();
         int randIdx = random.nextInt(defaultMonsters.getSize());
-        Actor actor = defaultMonsters.getActorAt(randIdx);
-        Monster monster = new Monster(actor.getName(), actor.getLevel(), actor.getMaxHealth(), actor.getBaseAttack(), actor.getBaseDefense(), actor.getCurrency());
+        Actor monster = defaultMonsters.getActorAt(randIdx);
+        //Monster monster = new Monster(actor.getName(), actor.getLevel(), actor.getMaxHealth(), actor.getBaseAttack(), actor.getBaseDefense(), actor.getCurrency());
         //TODO is there a better way to do that? InteliJ offered casting the Actor as Monster
 
         System.out.println("The " + monster.getName() + " stares at you menacingly.");
-        CombatUI combat = new CombatUI(this.player, monster);
+        CombatUI combat = new CombatUI(this.player, (Monster) monster);
         combat.handleTurn();
         if(!player.getAlive()){
             player.resurrect();

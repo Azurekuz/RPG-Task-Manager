@@ -20,6 +20,12 @@ public class RPGUI {
             System.out.println("[NOTICE][ Creating blank rpg manager... ]");
             rpgManager = new RPGManager(true);
         }
+        try {
+            rpgManager.generateDefaultMonsterList();
+        } catch (DuplicateObjectException e) {
+            System.out.println("[ERROR][ Monster generation failed:" + e.getMessage()+"]");
+
+        }
 
         Scanner input = new Scanner(System.in);
         System.out.println("***[STARTING RPG GAME INTERFACE]***");

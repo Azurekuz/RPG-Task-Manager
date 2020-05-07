@@ -1,3 +1,7 @@
+import com.fasterxml.jackson.annotation.JsonTypeInfo;
+import com.fasterxml.jackson.annotation.JsonTypeName;
+
+@JsonTypeName("square")
 public class Gear extends Item {
     public int durability;
     public int damage;
