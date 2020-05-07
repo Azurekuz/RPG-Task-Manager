@@ -126,6 +126,17 @@ public class CombatUI {
         result = "W";
         System.out.println("Victory! " + enemy.getName() + " has been defeated!");
         System.out.println("You have looted " + enemy.getCurrency() + " gold.");
+        ItemList enemyInv = enemy.getInventory();
+        boolean hasLooted = false; int i = 0;
+        //TODO allow duplicate items to sell? need proper id system
+        while(!hasLooted && i < enemyInv.getSize()){ //while nothing has been looted or there are items left to look at
+            if(!player.getInventory().contains(enemyInv.getItemAt(i))){ //if player doesn't have enemy's i'th item
+                player.pickUp(enemyInv.getItemAt(i));
+                System.out.println("You found: " + enemyInv.getItemAt(i).getName() + " and it has been added to your inventory.");
+                hasLooted = true;
+            }
+            i++;
+        }
         player.grantCurrency(enemy.getCurrency());
     }
 }

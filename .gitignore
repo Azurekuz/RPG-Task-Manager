@@ -8,3 +8,5 @@
 
 #compiled class files
 *.class
+/target/classes/
+/target/test-classes/

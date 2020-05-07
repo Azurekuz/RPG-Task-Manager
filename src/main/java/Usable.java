@@ -1,3 +1,7 @@
+import com.fasterxml.jackson.annotation.JsonTypeInfo;
+import com.fasterxml.jackson.annotation.JsonTypeName;
+
+@JsonTypeName("square")
 public class Usable extends Item {
     public int value;
 

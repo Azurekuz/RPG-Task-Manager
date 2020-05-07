@@ -20,9 +20,16 @@ public class RPGUI {
             System.out.println("[NOTICE][ Creating blank rpg manager... ]");
             rpgManager = new RPGManager(true);
         }
+        try {
+            rpgManager.generateDefaultMonsterList();
+        } catch (DuplicateObjectException e) {
+            System.out.println("[ERROR][ Monster generation failed:" + e.getMessage()+"]");
+
+        }
 
         Scanner input = new Scanner(System.in);
         System.out.println("***[STARTING RPG GAME INTERFACE]***");
+        System.out.println("You are in a peaceful town on a bright sunny day. However, some folks have worried looks on their faces.");
         String userStr = "",name;
         //String numOnlyCheck = "0123456789";
 
@@ -42,7 +49,7 @@ public class RPGUI {
                     //System.out.println("['locations' : Displays a list of all available locations you can travel to. ]");
                     System.out.println("['look'      : Displays your current location. ]");
                     System.out.println("['shop'      : If in a town, start trading with a merchant. You will be prompted for the merchant's name and other commands." +"]");
-                    System.out.println("['talk'      : Talk with an NPC. Prompted for the name of who you want to talk to. ]");
+                    //System.out.println("['talk'      : Talk with an NPC. Prompted for the name of who you want to talk to. ]");
                     System.out.println("['equip'     : Equip an item. Prompted for name or id of the item you want to equip. ]");
                     System.out.println("['char'      : Displays all your character's information, including inventory and stats.]");
                     System.out.println("['fight'     : Fight a monster. You will be prompted for which monster you want to fight and start a combat interface.]");
@@ -63,10 +70,11 @@ public class RPGUI {
 //
 //                    break;
 //                case "look":
-//                    System.out.println("***[ YOUR CURRENT LOCATION]***"); //TODO better header? More like text based adventure game?
-//                    //System.out.println(rpgManager.look());
-//                    System.out.println("[NOTICE][ Unimplemented content.]");
-//                    break;
+                    //System.out.println("***[ YOUR CURRENT LOCATION]***"); //TODO better header? More like text based adventure game?
+                    //System.out.println(rpgManager.look());
+                    //System.out.println("[NOTICE][ Unimplemented content.]");
+                    //System.out.println("You are in a peaceful town on a bright sunny day. However, some folks have worried looks on their faces.");
+                    //break;
                 case "trade":
                 case "shop":
                     System.out.println("[?][ Who do you want to trade with? ]"); //TODO show merchants in area and make sure user is in town
@@ -75,18 +83,22 @@ public class RPGUI {
                     rpgManager.shop(name);
                     //TODO print result
                     break;
-                case "talk":
-                    System.out.println("[?][ Who do you want to talk to? ]"); //TODO show NPCs in area
-                    System.out.print("[SELECT NPC][> ");
-                    name = input.nextLine();
-                    System.out.println(rpgManager.talk(name));
-                    break;
+//                case "talk":
+//                    System.out.println("[?][ Who do you want to talk to? ]"); //TODO show NPCs in area
+//                    System.out.print("[SELECT NPC][> ");
+//                    name = input.nextLine();
+//                    System.out.println(rpgManager.talk(name));
+//                    break;
                 case "equip":
                     System.out.println("[?][ What do you want to equip? ]");
                     System.out.println("[INVENTORY]\n" + rpgManager.getPlayer().getInventory().toString());
                     System.out.print("[SELECT ITEM][> ");
-                    name = input.nextLine(); //TODO support for selection by item id?
-                    System.out.println(rpgManager.equip(name));
+                    name = input.nextLine(); //TODO support for selection by item id? need proper id system
+                    try {
+                        System.out.println(rpgManager.equip(name));
+                    } catch (NonExistentObjectException e) {
+                        System.out.println("[ERROR][ " + e.getMessage() + "]");
+                    }
                     break;
                 case "char":
                     System.out.println("***[ YOUR CHARACTER ]***");
@@ -106,6 +118,9 @@ public class RPGUI {
                     System.out.println("[NARRATION][ You head to the nearby " + locations[idx] + " and encounter a monster!]\n");
                     rpgManager.fightrand();
                     break;
+                case "admin_reset_player":
+                    rpgManager.player = new Player();
+                    System.out.println("Player character reset.");
                 case "quit": break; //avoids triggering default case
                 default:
                     System.out.println("[ERROR][ Command not recognized. ]");

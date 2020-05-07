@@ -28,7 +28,23 @@
       "modDefense" : 2,
       "currency" : 3,
       "inventory" : {
-        "itemList" : [ ]
+        "itemList" : [ {
+          "type" : "gear",
+          "name" : "Wooden Club",
+          "type" : "MainWeapon",
+          "durability" : 100,
+          "damage" : 2,
+          "defense" : 0,
+          "id" : 9
+        }, {
+          "type" : "gear",
+          "name" : "Shoddy Helm",
+          "type" : "Head",
+          "durability" : 100,
+          "damage" : 0,
+          "defense" : 2,
+          "id" : 10
+        } ]
       },
       "alive" : true
     }, {
@@ -43,7 +59,23 @@
       "modDefense" : 1,
       "currency" : 10,
       "inventory" : {
-        "itemList" : [ ]
+        "itemList" : [ {
+          "type" : "gear",
+          "name" : "Leather Boots",
+          "type" : "Boots",
+          "durability" : 100,
+          "damage" : 0,
+          "defense" : 1,
+          "id" : 11
+        }, {
+          "type" : "gear",
+          "name" : "Gold Ring",
+          "type" : "Acc2",
+          "durability" : 100,
+          "damage" : 0,
+          "defense" : 1,
+          "id" : 12
+        } ]
       },
       "alive" : true
     }, {
@@ -58,7 +90,31 @@
       "modDefense" : 15,
       "currency" : 100,
       "inventory" : {
-        "itemList" : [ ]
+        "itemList" : [ {
+          "type" : "gear",
+          "name" : "Dragon Scale Shield",
+          "type" : "SubWeapon",
+          "durability" : 100,
+          "damage" : 1,
+          "defense" : 4,
+          "id" : 13
+        }, {
+          "type" : "gear",
+          "name" : "Dragon Scale Armor",
+          "type" : "Torso",
+          "durability" : 100,
+          "damage" : 0,
+          "defense" : 5,
+          "id" : 14
+        }, {
+          "type" : "gear",
+          "name" : "Dragon Scale Leggings",
+          "type" : "Leggings",
+          "durability" : 100,
+          "damage" : 0,
+          "defense" : 4,
+          "id" : 15
+        } ]
       },
       "alive" : true
     }, {
@@ -73,7 +129,21 @@
       "modDefense" : 5,
       "currency" : 10,
       "inventory" : {
-        "itemList" : [ ]
+        "itemList" : [ {
+          "type" : "usable",
+          "name" : "Health Potion",
+          "type" : "Usable",
+          "value" : 5,
+          "id" : 16
+        }, {
+          "type" : "gear",
+          "name" : "Spectral Ring",
+          "type" : "Acc1",
+          "durability" : 100,
+          "damage" : 1,
+          "defense" : 1,
+          "id" : 17
+        } ]
       },
       "alive" : true
     } ]
