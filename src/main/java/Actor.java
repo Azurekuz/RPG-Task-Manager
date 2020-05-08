@@ -22,7 +22,7 @@ public class Actor {
     private ItemList inventory;
     private Gear[] equipment; //MainWeapon, SubWeapon, Head, Torso, Leggings, Boots, Gloves, Acc1, Acc2
 
-    public Actor(){
+    public Actor() {
         name = "Empty Husk";
         level = 1;
         experience = 0;
@@ -36,10 +36,10 @@ public class Actor {
         isAlive = true;
 
         initialiseItems();
-        EXP_TO_LEVEL = (int) (BASE_EXP * Math.pow(1.15, ((double) this.level-1)));
+        EXP_TO_LEVEL = (int) (BASE_EXP * Math.pow(1.15, ((double) this.level - 1)));
     }
 
-    public Actor(String name, int level, int health, int baseAttack, int baseDefense) throws IllegalArgumentException{
+    public Actor(String name, int level, int health, int baseAttack, int baseDefense) throws IllegalArgumentException {
         verifyConstructorInput(name, level, health, baseAttack, baseDefense);
         this.name = name;
         this.level = level;
@@ -54,121 +54,122 @@ public class Actor {
         isAlive = true;
 
         initialiseItems();
-        EXP_TO_LEVEL = (int) (BASE_EXP * Math.pow(1.15, ((double) this.level-1)));
+        EXP_TO_LEVEL = (int) (BASE_EXP * Math.pow(1.15, ((double) this.level - 1)));
     }
 
-    private void verifyConstructorInput(String name, int level, int health, int baseAttack, int baseDefense){
-        if(name.length() <= 0){
+    private void verifyConstructorInput(String name, int level, int health, int baseAttack, int baseDefense) {
+        if (name.length() <= 0) {
             throw new IllegalArgumentException("Name of Improper Length provided!");
-        }else if(level < 0){
+        } else if (level < 0) {
             throw new IllegalArgumentException("Illegal level provided!");
-        }else if(health <= 0){
+        } else if (health <= 0) {
             throw new IllegalArgumentException("Illegal health value provided!");
-        }else if(baseAttack < 0){
+        } else if (baseAttack < 0) {
             throw new IllegalArgumentException("Illegal attack value provided!");
-        }else if(baseDefense < 0){
+        } else if (baseDefense < 0) {
             throw new IllegalArgumentException("Illegal defense value provided!");
         }
     }
 
-    private void initialiseItems(){
+    private void initialiseItems() {
         currency = 0;
         inventory = new ItemList();
         equipment = new Gear[9];
         //MainWeapon, SubWeapon, Head, Torso, Leggings, Boots, Gloves, Acc1, Acc2
         //String name, String type, int id, int durability, int damage, int defense
-        equipment[0] = new Gear("Fist","MainWeapon",0, 100, 0, 0);
-        equipment[1] = new Gear("Fist","SubWeapon",1, 100, 0, 0);
-        equipment[2] = new Gear("Hair","Head",2, 100, 0, 0);
-        equipment[3] = new Gear("T-Shirt","Torso",3, 100, 0, 0);
-        equipment[4] = new Gear("Underwear","Leggings",4, 100, 0, 0);
-        equipment[5] = new Gear("Bare Feet","Boots",5, 100, 0, 0);
-        equipment[6] = new Gear("Hands","Gloves",6, 100, 0, 0);
-        equipment[7] = new Gear("N/A","Acc1",7, 100, 0, 0);
-        equipment[8] = new Gear("N/A","Acc2",8, 100, 0, 0);
+        equipment[0] = new Gear("Fist", "MainWeapon", 0, 100, 0, 0, 0);
+        equipment[1] = new Gear("Fist", "SubWeapon", 1, 100, 0, 0, 0);
+        equipment[2] = new Gear("Hair", "Head", 2, 100, 0, 0, 0);
+        equipment[3] = new Gear("T-Shirt", "Torso", 3, 100, 0, 0, 0);
+        equipment[4] = new Gear("Underwear", "Leggings", 4, 100, 0, 0, 0);
+        equipment[5] = new Gear("Bare Feet", "Boots", 5, 100, 0, 0, 0);
+        equipment[6] = new Gear("Hands", "Gloves", 6, 100, 0, 0, 0);
+        equipment[7] = new Gear("N/A", "Acc1", 7, 100, 0, 0, 0);
+        equipment[8] = new Gear("N/A", "Acc2", 8, 100, 0, 0, 0);
 
 
     }
 
-    public int attack(Actor target){
-        if(isAlive) {
+    public int attack(Actor target) {
+        if (isAlive) {
             return target.damage(NumTools.intLowerBorder(0, getModAttack(), -target.getModDefense()));
         }
         return 0;
     }
 
-    public void use(Usable itemToUse){
-        if (itemToUse.name.equals("health potion")){
-            this.curHealth+=itemToUse.getValue();
-            itemToUse.setValue(0);
+    public void use(Usable itemToUse) throws NonExistentObjectException {
+        if (itemToUse.type.equals("Health")) {
+            this.curHealth += itemToUse.getValue();
+            inventory.removeItem(itemToUse);
         }
 
-         if (itemToUse.name.equals("damage potion")){
-            this.modAttack+=itemToUse.getValue();
-            itemToUse.setValue(0);
-         }
+//         if (itemToUse.name.equals("damage potion")){
+//            this.modAttack+=itemToUse.getValue();
+//            itemToUse.setValue(0);
+//         }
 
     }
 
-    private void checkUnequip(int slotID){
-        if(this.equipment[slotID] != null){
+    private void checkUnequip(int slotID) {
+        if (this.equipment[slotID] != null) {
             this.inventory.addItem(this.equipment[slotID]);
         }
     }
 
-    public void equip(Gear equipment){
+    public void equip(Gear equipment) throws NonExistentObjectException {
         String type = equipment.getType();
         int slot;
-        switch(type){
+        switch (type) {
             case "MainWeapon":
-                slot= 0;
+                slot = 0;
                 checkUnequip(slot);
-                this.equipment[slot]=equipment;
+                this.equipment[slot] = equipment;
                 break;
             case "SubWeapon":
-                slot= 1;
+                slot = 1;
                 checkUnequip(slot);
-                this.equipment[slot]=equipment;
+                this.equipment[slot] = equipment;
                 break;
             case "Head":
-                slot= 2;
+                slot = 2;
                 checkUnequip(slot);
-                this.equipment[slot]=equipment;
+                this.equipment[slot] = equipment;
                 break;
             case "Torso":
-                slot= 3;
+                slot = 3;
                 checkUnequip(slot);
-                this.equipment[slot]=equipment;
+                this.equipment[slot] = equipment;
                 break;
             case "Leggings":
-                slot= 4;
+                slot = 4;
                 checkUnequip(slot);
-                this.equipment[slot]=equipment;
+                this.equipment[slot] = equipment;
                 break;
             case "Boots":
-                slot= 5;
+                slot = 5;
                 checkUnequip(slot);
-                this.equipment[slot]=equipment;
+                this.equipment[slot] = equipment;
                 break;
             case "Gloves":
-                slot= 6;
+                slot = 6;
                 checkUnequip(slot);
-                this.equipment[slot]=equipment;
+                this.equipment[slot] = equipment;
                 break;
             case "Acc1":
-                slot= 7;
+                slot = 7;
                 checkUnequip(slot);
-                this.equipment[slot]=equipment;
+                this.equipment[slot] = equipment;
                 break;
             case "Acc2":
-                slot= 8;
+                slot = 8;
                 checkUnequip(slot);
-                this.equipment[slot]=equipment;
+                this.equipment[slot] = equipment;
                 break;
             default:
                 System.out.println("[ERROR][Equip failed, invalid type?]");
         }
         updateModStats();
+        inventory.removeItem(equipment);
     }
 
     private void updateModStats(){
@@ -230,8 +231,14 @@ public class Actor {
         if(currencyAmount < 0){
             throw new IllegalArgumentException("What are you trying to do? STEAL my money?");
         }
-
         this.currency += currencyAmount;
+    }
+
+    public void subtractFromCurrency(int toTake) throws InsufficientCurrencyException {
+        if((this.currency - toTake) < 0){
+            throw new InsufficientCurrencyException("You do not have sufficient funds.");
+        }
+        else { this.currency-=toTake; }
     }
 
     public void levelDown(){
@@ -353,18 +360,6 @@ public class Actor {
     }
 
     public ItemList getInventory() { return inventory; }
-
-    public void addToCurrency(int toAdd){
-        this.currency+=toAdd;
-    }
-    public void subtractFromCurrency(int toTake) throws InsufficientCurrencyException {
-        if((this.currency-toTake)<0){
-            throw new InsufficientCurrencyException("You do not have sufficient funds.");
-        }
-        else {
-            this.currency-=toTake;
-        }
-    }
 
     public int getModAttack(){
         return modAttack;

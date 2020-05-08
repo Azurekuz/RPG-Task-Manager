@@ -1,16 +1,10 @@
 import java.io.IOException;
-import java.time.LocalDateTime;
-import java.util.ArrayList;
 import java.util.Random;
 import java.util.Scanner;
 
 public class RPGUI {
     public RPGManager rpgManager;
     public String[] locations = {"cave","ruined tower","deep forest","sewer", "ruin", "mine"};
-
-    public void levelup(double xp){
-        rpgManager.player.grantExperience(xp);
-    }
 
     public void commandHandler(){
         try {
@@ -22,16 +16,17 @@ public class RPGUI {
         }
         try {
             rpgManager.generateDefaultMonsterList();
+            rpgManager.generateMerchantInventory();
         } catch (DuplicateObjectException e) {
-            System.out.println("[ERROR][ Monster generation failed:" + e.getMessage()+"]");
+            System.out.println("[ERROR][ Monster or merchant generation failed:" + e.getMessage()+"]");
 
         }
 
         Scanner input = new Scanner(System.in);
         System.out.println("***[STARTING RPG GAME INTERFACE]***");
-        System.out.println("You are in a peaceful town on a bright sunny day. However, some folks have worried looks on their faces.");
+        System.out.println("[NARRATION][You are in a peaceful town on a bright sunny day. However, some folks have worried looks on their faces." +
+                "\nThere is a merchant at a nearby stall and a man standing near the gate.\nYou also hear the sounds of an arena behind you.]");
         String userStr = "",name;
-        //String numOnlyCheck = "0123456789";
 
         while (!(userStr.equals("quit"))){
             System.out.println("[?][ Enter your command or 'help' to see a list of commands. ]");
@@ -48,12 +43,12 @@ public class RPGUI {
                     //System.out.println("['go'        : Go to a location. You will be shown a list of available locations and prompted for a name. ]");
                     //System.out.println("['locations' : Displays a list of all available locations you can travel to. ]");
                     System.out.println("['look'      : Displays your current location. ]");
-                    System.out.println("['shop'      : If in a town, start trading with a merchant. You will be prompted for the merchant's name and other commands." +"]");
+                    System.out.println("['shop'      : Start trading with the merchant. You will be prompted for a choice of buying or selling. ]");
                     //System.out.println("['talk'      : Talk with an NPC. Prompted for the name of who you want to talk to. ]");
                     System.out.println("['equip'     : Equip an item. Prompted for name or id of the item you want to equip. ]");
                     System.out.println("['char'      : Displays all your character's information, including inventory and stats.]");
-                    System.out.println("['fight'     : Fight a monster. You will be prompted for which monster you want to fight and start a combat interface.]");
-                    System.out.println("['fightrand' : Go out and fight a random monster.]");
+                    System.out.println("['arena'     : Fight a monster with random stats. You will be prompted for a monster's name that you want to fight. ]");
+                    System.out.println("['explore'   : Go out and fight a random preset monster.]");
                     break;
 //                case "go":
 //                    System.out.println("***[ AVAILABLE LOCATIONS ]***");
@@ -77,11 +72,12 @@ public class RPGUI {
                     //break;
                 case "trade":
                 case "shop":
-                    System.out.println("[?][ Who do you want to trade with? ]"); //TODO show merchants in area and make sure user is in town
-                    System.out.print("[SELECT Merchant][> ");
-                    name = input.nextLine();
-                    rpgManager.shop(name);
-                    //TODO print result
+                    System.out.println("[NARRATION][ You go over to the merchant's stall.]");
+                    System.out.println("[DIALOGUE][ Hey, got a fine selection for adventurers here. I'll take any items off your hands as well! ]");
+                    System.out.println("[Merchant's inventory]: \n" + rpgManager.getMerchantInv().toString());
+                    System.out.println("[?][ What do you want to do? 'buy', or 'sell'? ]");
+                    shop();
+
                     break;
 //                case "talk":
 //                    System.out.println("[?][ Who do you want to talk to? ]"); //TODO show NPCs in area
@@ -105,6 +101,10 @@ public class RPGUI {
                     System.out.println(rpgManager.viewCharacter());
                     break;
                 case "fight":
+                case "arena":
+                    System.out.println("[NARRATION][ You go to the arena and greet the arena master.]\n");
+                    System.out.println("[DIALOGUE][ Hey there! Welcome to the arena. We don't know much about the monsters that breed below,\n" +
+                            "but let us know if you want to fight something and we'll get it out here for you. ]");
                     System.out.println("[?][ What/who do you want to fight? ]");
                     System.out.print("[SELECT ENEMY][> ");
                     name = input.nextLine();
@@ -112,9 +112,11 @@ public class RPGUI {
                     //System.out.println("[NOTICE][ Unimplemented content.]");
                     break;
                 case "fightrand":
+                case "explore":
                     Random random = new Random();
                     int idx = random.nextInt(locations.length);
-                    System.out.println("[DIALOGUE][ Hello traveler! Thanks for helping us with our monster infestation. ]");
+                    System.out.println("[NARRATION][ You go over to the man at the gate.]\n");
+                    System.out.println("[DIALOGUE][ Hello traveler! If you're going out to explore, can you help us with our monster infestation? Thanks! ]");
                     System.out.println("[NARRATION][ You head to the nearby " + locations[idx] + " and encounter a monster!]\n");
                     rpgManager.fightrand();
                     break;
@@ -148,5 +150,40 @@ public class RPGUI {
         save();
     }
 
+    public void shop(){                         //this ended up being long so I separated it from main UI
+        Scanner input = new Scanner(System.in);
+        String choice,name;
+        System.out.print("[COMMAND][> ");
+        choice = input.nextLine();
+        if(choice.toLowerCase().equals("buy")) {
+            System.out.println("[?][ What do you want to buy? ]");
+            System.out.print("[SELECT ITEM][> ");
+            name = input.nextLine();
+            try {
+                rpgManager.buy(name);
+            } catch (InsufficientCurrencyException e) {
+                System.out.println(e.getMessage());
+            } catch (NonExistentObjectException e) {
+                System.out.println("Sorry, I don't have anything like that.");
+                System.out.println("[ERROR: " + e.getMessage() + "]");
+            }
+        }
+        else if (choice.toLowerCase().equals("sell")){
+            System.out.println("[?][ What do you want to sell? ]");
+            System.out.println("[Your inventory]: \n" + rpgManager.player.getInventory().toString());
+            System.out.print("[SELECT ITEM][> ");
+            name = input.nextLine();
+            try {
+                rpgManager.sell(name);
+            }catch (NonExistentObjectException e){
+                System.out.println("[ERROR: " + e.getMessage() + "]");
+            }
+        }else{
+            System.out.println("[NARRATION][ The merchant stares at you with a quizzical look on his face.]");
+            System.out.println("[DIALOGUE][ Uh, sorry, what? ]");
+            System.out.println("[NARRATION][ You leave the stall. ]");
+
+        }
+    }
 
 }

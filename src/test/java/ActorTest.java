@@ -10,7 +10,7 @@ public class ActorTest {
         assertEquals(0, act1.getCurrency());
         assertEquals(0, act2.getCurrency());
 
-        act1.addToCurrency(1);
+        act1.grantCurrency(1);
         assertEquals(1, act1.getCurrency());
         act1.subtractFromCurrency(1);
         assertEquals(0, act1.getCurrency());
