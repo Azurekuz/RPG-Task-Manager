@@ -77,7 +77,7 @@ public class RPGManager {
     public void generateMerchantInventory() {
         //MainWeapon, SubWeapon, Head, Torso, Leggings, Boots, Gloves, Acc1, Acc2
         this.merchantInv = new ItemList();
-        Gear a = new Gear("Lumberjack's Axe", "MainWeapon", 0, 100, 3, 0, 21);
+        Gear laxe = new Gear("Lumberjack's Axe", "MainWeapon", 0, 100, 3, 0, 21);
         Gear dagger = new Gear("Steel Dagger", "SubWeapon", 0, 100, 2, 0, 21);
         Gear ljacket = new Gear("Leather Jacket", "Torso", 0, 100, 0, 2, 16);
         Gear sandals = new Gear("Sandals", "Boots", 0, 100, 0, 1, 12);
@@ -85,10 +85,9 @@ public class RPGManager {
         Gear lgrips = new Gear("Leather Grips", "Gloves", 0, 100, 0, 1, 12);
         Gear bcharm = new Gear("Bone Charm", "Acc1", 0, 100, 0, 1, 12);
         Gear oband = new Gear("Obsidian Band", "Acc2", 0, 100, 0, 2, 16);
-        merchantInv.addItem(ljacket); merchantInv.addItem(sandals);
+        merchantInv.addItem(laxe); merchantInv.addItem(dagger); merchantInv.addItem(ljacket); merchantInv.addItem(sandals);
+        merchantInv.addItem(cpants); merchantInv.addItem(lgrips); merchantInv.addItem(bcharm); merchantInv.addItem(oband);
     }
-
-
 
         //    public LocationList getLocations() {
 //        return locations;

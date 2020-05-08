@@ -166,7 +166,8 @@ public class Actor {
                 this.equipment[slot] = equipment;
                 break;
             default:
-                System.out.println("[ERROR][Equip failed, invalid type?]");
+                System.out.println("[ERROR][Equip failed, invalid type]");
+                return;
         }
         updateModStats();
         inventory.removeItem(equipment);
