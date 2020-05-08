@@ -41,6 +41,8 @@ public class TaskManager {
          this(false);
     }
 
+    public RPGUI testGetRPG(){ return rpg;}
+
     public LocalDateTime getStartTime(){
         return startTime;
     }

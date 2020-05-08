@@ -82,6 +82,5 @@ public class TaskListTest {
         assertEquals("default", testTask2.getTypeStr());
         assertFalse(testTask2.isComplete());
 
-
     }
 }

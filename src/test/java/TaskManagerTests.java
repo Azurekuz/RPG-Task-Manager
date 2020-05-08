@@ -45,8 +45,8 @@ public class TaskManagerTests {
         assertEquals("Test1",completedTasks.getTask(testTask.id).getTitle());
         assertEquals(1,completedTasks.getTask(testTask.id).getCompletionQuality());
         assertEquals(5.0,completedTasks.getTask(testTask.id).calcExp());
-
-
+        testManager.testGetRPG().rpgManager.player = new Player(); //make sure xp changes aren't saved.
+        testManager.testGetRPG().rpgManager.transferEXP(0);
     }
 
     @Test
@@ -177,6 +177,8 @@ public class TaskManagerTests {
         assertEquals(testManager.completeMain(),"[ERROR: Main task not at 100% progress, can't complete.]");
         testManager.incMainProgress(1);
         assertEquals(testManager.completeMain(),"[SUCCESS: Main task completed!]");
+        testManager.testGetRPG().rpgManager.player = new Player(); //make sure xp changes aren't saved.
+        testManager.testGetRPG().rpgManager.transferEXP(0);
 
     }
 }
