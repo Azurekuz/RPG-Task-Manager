@@ -37,6 +37,8 @@ public class TaskUI {
             if (!failedTasks.equals("[NOTICE][ No tasks failed.]")){
                 System.out.println("[ATTENTION][ You have failed some of your selected tasks because you went over the time limit. ]");
                 System.out.println(failedTasks);
+                System.out.print("[ATTENTION][Acknowledge (enter anything)][> ");
+                userStr = input.nextLine();
                 System.out.println("\n");
             }
             System.out.println("[?][ Enter your command or 'help' to see a list of commands. ]");
