@@ -39,7 +39,7 @@ class JsonUtilTest {
 
     }
     @Test
-    void rpgToFromFileTest() throws IOException{
+    void rpgExperienceTest() throws IOException{
         RPGManager testRPG = new RPGManager(true);
         testRPG.transferEXP(50);
         assertEquals(50, testRPG.getPlayer().getExperience());
@@ -52,9 +52,6 @@ class JsonUtilTest {
 
         assertEquals(50, testRPG2.getPlayer().getExperience());
         assertEquals(1, testRPG2.getPlayer().getLevel());
-
-
-        //TODO complete once playerChar & rpgManager are done
     }
     @Test
     void ActorListTest() throws IOException, DuplicateObjectException {

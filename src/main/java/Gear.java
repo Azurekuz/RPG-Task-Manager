@@ -1,18 +1,17 @@
-import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 
-@JsonTypeName("square")
+@JsonTypeName("gear")
 public class Gear extends Item {
     public int durability;
     public int damage;
     public int defense;
 
     public Gear(){
-        super("","",0);
+        super("","",0, 0);
     }
 
-    public Gear(String name, String type, int id, int durability, int damage, int defense){
-        super(name,type, id);
+    public Gear(String name, String type, int id, int durability, int damage, int defense, int worth){
+        super(name,type, id, worth);
         this.durability=durability;
         this.damage=damage;
         this.defense=defense;
@@ -45,7 +44,7 @@ public class Gear extends Item {
     @Override
     public String toString(){
         String result = ""; //TODO add durability and id if they matter
-        result = "[NAME: "+ name+"]  [TYPE: "+type+"]  [DAMAGE: "+damage+"]  [DEFENSE: "+defense+"]";
+        result = "[NAME: "+ name+"]  [TYPE: "+type+"]  [WORTH:" + worth+"]  [DAMAGE: "+damage+"]  [DEFENSE: "+defense+"]";
         return result;
     }
 

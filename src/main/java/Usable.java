@@ -1,16 +1,15 @@
-import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 
-@JsonTypeName("square")
+@JsonTypeName("usable")
 public class Usable extends Item {
     public int value;
 
     public Usable(){
-        super("","",0);
+        super("","",0, 0);
     }
 
-    public Usable(String name, String type, int id, int value){
-        super(name,type,id);
+    public Usable(String name, String type, int id, int value, int worth){
+        super(name,type,id, worth);
         this.value=value;
     }
 
@@ -25,7 +24,7 @@ public class Usable extends Item {
     @Override
     public String toString(){
         String result = ""; //TODO add id if it matters
-        result = "[NAME: "+ name+"]  [TYPE: "+type+"]  [VALUE: "+value+"]";
+        result = "[NAME: "+ name+"]  [TYPE: "+type+"]  [WORTH: " + worth+"]  [VALUE: "+value+"]";
         return result;
     }
 

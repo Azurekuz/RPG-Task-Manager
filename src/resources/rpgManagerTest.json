@@ -32,6 +32,7 @@
           "type" : "gear",
           "name" : "Wooden Club",
           "type" : "MainWeapon",
+          "worth" : 0,
           "durability" : 100,
           "damage" : 2,
           "defense" : 0,
@@ -40,6 +41,7 @@
           "type" : "gear",
           "name" : "Shoddy Helm",
           "type" : "Head",
+          "worth" : 0,
           "durability" : 100,
           "damage" : 0,
           "defense" : 2,
@@ -63,6 +65,7 @@
           "type" : "gear",
           "name" : "Leather Boots",
           "type" : "Boots",
+          "worth" : 3,
           "durability" : 100,
           "damage" : 0,
           "defense" : 1,
@@ -71,6 +74,7 @@
           "type" : "gear",
           "name" : "Gold Ring",
           "type" : "Acc2",
+          "worth" : 3,
           "durability" : 100,
           "damage" : 0,
           "defense" : 1,
@@ -94,6 +98,7 @@
           "type" : "gear",
           "name" : "Dragon Scale Shield",
           "type" : "SubWeapon",
+          "worth" : 10,
           "durability" : 100,
           "damage" : 1,
           "defense" : 4,
@@ -102,6 +107,7 @@
           "type" : "gear",
           "name" : "Dragon Scale Armor",
           "type" : "Torso",
+          "worth" : 10,
           "durability" : 100,
           "damage" : 0,
           "defense" : 5,
@@ -110,6 +116,7 @@
           "type" : "gear",
           "name" : "Dragon Scale Leggings",
           "type" : "Leggings",
+          "worth" : 8,
           "durability" : 100,
           "damage" : 0,
           "defense" : 4,
@@ -131,14 +138,16 @@
       "inventory" : {
         "itemList" : [ {
           "type" : "usable",
-          "name" : "Health Potion",
-          "type" : "Usable",
-          "value" : 5,
+          "name" : "Wraith Essence",
+          "type" : "Health",
+          "worth" : 12,
+          "value" : 12,
           "id" : 16
         }, {
           "type" : "gear",
           "name" : "Spectral Ring",
           "type" : "Acc1",
+          "worth" : 4,
           "durability" : 100,
           "damage" : 1,
           "defense" : 1,
@@ -146,6 +155,84 @@
         } ]
       },
       "alive" : true
+    }, {
+      "name" : "Giant Spider",
+      "level" : 2,
+      "experience" : 0.0,
+      "maxHealth" : 5,
+      "curHealth" : 5,
+      "baseAttack" : 2,
+      "baseDefense" : 2,
+      "modAttack" : 2,
+      "modDefense" : 2,
+      "currency" : 4,
+      "inventory" : {
+        "itemList" : [ {
+          "type" : "gear",
+          "name" : "Spider Fang",
+          "type" : "SubWeapon",
+          "worth" : 8,
+          "durability" : 100,
+          "damage" : 4,
+          "defense" : 0,
+          "id" : 18
+        } ]
+      },
+      "alive" : true
+    }, {
+      "name" : "DEMON LORD",
+      "level" : 100,
+      "experience" : 0.0,
+      "maxHealth" : 300,
+      "curHealth" : 300,
+      "baseAttack" : 50,
+      "baseDefense" : 40,
+      "modAttack" : 50,
+      "modDefense" : 40,
+      "currency" : 400,
+      "inventory" : {
+        "itemList" : [ {
+          "type" : "gear",
+          "name" : "Legendary Sword",
+          "type" : "MainWeapon",
+          "worth" : 50,
+          "durability" : 100,
+          "damage" : 20,
+          "defense" : 3,
+          "id" : 19
+        }, {
+          "type" : "gear",
+          "name" : "Demon's Armor",
+          "type" : "Torso",
+          "worth" : 50,
+          "durability" : 100,
+          "damage" : 3,
+          "defense" : 20,
+          "id" : 20
+        } ]
+      },
+      "alive" : true
+    } ]
+  },
+  "merchantInv" : {
+    "itemList" : [ {
+      "type" : "gear",
+      "name" : "Leather Jacket",
+      "type" : "Torso",
+      "worth" : 5,
+      "durability" : 100,
+      "damage" : 0,
+      "defense" : 2,
+      "id" : 0
+    }, {
+      "type" : "gear",
+      "name" : "Sandals",
+      "type" : "Boots",
+      "worth" : 3,
+      "durability" : 100,
+      "damage" : 0,
+      "defense" : 1,
+      "id" : 0
     } ]
   }
 }

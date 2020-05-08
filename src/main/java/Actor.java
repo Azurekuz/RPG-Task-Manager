@@ -73,15 +73,15 @@ public class Actor {
         equipment = new Item[9];
         //MainWeapon, SubWeapon, Head, Torso, Leggings, Boots, Gloves, Acc1, Acc2
         //String name, String type, int id, int durability, int damage, int defense
-        equipment[0] = new Gear("Fist","MainWeapon",0, 100, 0, 0);
-        equipment[1] = new Gear("Fist","SubWeapon",1, 100, 0, 0);
-        equipment[2] = new Gear("Hair","Head",2, 100, 0, 0);
-        equipment[3] = new Gear("T-Shirt","Torso",3, 100, 0, 0);
-        equipment[4] = new Gear("Underwear","Leggings",4, 100, 0, 0);
-        equipment[5] = new Gear("Bare Feet","Boots",5, 100, 0, 0);
-        equipment[6] = new Gear("Hands","Gloves",6, 100, 0, 0);
-        equipment[7] = new Gear("N/A","Acc1",7, 100, 0, 0);
-        equipment[8] = new Gear("N/A","Acc2",8, 100, 0, 0);
+        equipment[0] = new Gear("Fist","MainWeapon",0, 100, 0, 0, 0);
+        equipment[1] = new Gear("Fist","SubWeapon",1, 100, 0, 0, 0);
+        equipment[2] = new Gear("Hair","Head",2, 100, 0, 0, 0);
+        equipment[3] = new Gear("T-Shirt","Torso",3, 100, 0, 0, 0);
+        equipment[4] = new Gear("Underwear","Leggings",4, 100, 0, 0, 0);
+        equipment[5] = new Gear("Bare Feet","Boots",5, 100, 0, 0, 0);
+        equipment[6] = new Gear("Hands","Gloves",6, 100, 0, 0, 0);
+        equipment[7] = new Gear("N/A","Acc1",7, 100, 0, 0, 0);
+        equipment[8] = new Gear("N/A","Acc2",8, 100, 0, 0, 0);
 
 
     }
@@ -92,69 +92,80 @@ public class Actor {
         }
     }
 
-    public void use(Usable itemToUse){
-        if (itemToUse.name.equals("health potion")){
+    public void use(Usable itemToUse) throws NonExistentObjectException {
+        if (itemToUse.type.equals("Health")){
             this.curHealth+=itemToUse.getValue();
-            itemToUse.setValue(0);
+            inventory.removeItem(itemToUse);
         }
 
-         if (itemToUse.name.equals("damage potion")){
-            this.modAttack+=itemToUse.getValue();
-            itemToUse.setValue(0);
-         }
+//         if (itemToUse.name.equals("damage potion")){
+//            this.modAttack+=itemToUse.getValue();
+//            itemToUse.setValue(0);
+//         }
 
     }
 
-    public void equip(Gear equipment){
+    public void equip(Gear equipment) throws NonExistentObjectException{
         String type = equipment.getType();
         int slot;
         switch(type){
             case "MainWeapon":
                 slot= 0;
+                this.inventory.addItem(this.equipment[slot]);
                 this.equipment[slot]=equipment;
                 this.modAttack+=equipment.getDamage();
                 break;
             case "SubWeapon":
                 slot= 1;
+                this.inventory.addItem(this.equipment[slot]);
                 this.equipment[slot]=equipment;
                 this.modAttack+=equipment.getDamage();
                 break;
             case "Head":
                 slot= 2;
+                this.inventory.addItem(this.equipment[slot]);
                 this.equipment[slot]=equipment;
                 this.modDefense+=equipment.getDefense();
                 break;
             case "Torso":
                 slot= 3;
+                this.inventory.addItem(this.equipment[slot]);
                 this.equipment[slot]=equipment;
                 this.modDefense+=equipment.getDefense();
                 break;
             case "Leggings":
                 slot= 4;
+                this.inventory.addItem(this.equipment[slot]);
                 this.equipment[slot]=equipment;
                 this.modDefense+=equipment.getDefense();
                 break;
             case "Boots":
                 slot= 5;
+                this.inventory.addItem(this.equipment[slot]);
                 this.equipment[slot]=equipment;
                 this.modDefense+=equipment.getDefense();
                 break;
             case "Gloves":
                 slot= 6;
+                this.inventory.addItem(this.equipment[slot]);
                 this.equipment[slot]=equipment;
                 this.modDefense+=equipment.getDefense();
                 break;
             case "Acc1":
                 slot= 7;
+                this.inventory.addItem(this.equipment[slot]);
                 this.equipment[slot]=equipment;
                 break;
             case "Acc2":
                 slot= 8;
+                this.inventory.addItem(this.equipment[slot]);
                 this.equipment[slot]=equipment;
                 break;
             default:
                 System.out.println("[ERROR][Equip failed, invalid type?]");
         }
+        inventory.removeItem(equipment);
+
 
     }
 
@@ -211,8 +222,13 @@ public class Actor {
         if(currencyAmount < 0){
             throw new IllegalArgumentException("What are you trying to do? STEAL my money?");
         }
-
         this.currency += currencyAmount;
+    }
+    public void subtractFromCurrency(int toTake) throws InsufficentCurrencyException {
+        if((this.currency - toTake) < 0){
+            throw new InsufficentCurrencyException("You do not have sufficient funds.");
+        }
+        else { this.currency-=toTake; }
     }
 
     public void levelDown(){
@@ -309,18 +325,6 @@ public class Actor {
     }
 
     public ItemList getInventory() { return inventory; }
-
-    public void addToCurrency(int toAdd){
-        this.currency+=toAdd;
-    }
-    public void subtractFromCurrency(int toTake) throws InsufficentCurrencyException {
-        if((this.currency-toTake)<0){
-            throw new InsufficentCurrencyException("You do not have sufficient funds.");
-        }
-        else {
-            this.currency-=toTake;
-        }
-    }
 
     public int getModAttack(){
         return modAttack;
