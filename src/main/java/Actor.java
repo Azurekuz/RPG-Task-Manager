@@ -20,7 +20,7 @@ public class Actor {
 
     private int currency;
     private ItemList inventory;
-    private Item[] equipment; //MainWeapon, SubWeapon, Head, Torso, Leggings, Boots, Gloves, Acc1, Acc2
+    private Gear[] equipment; //MainWeapon, SubWeapon, Head, Torso, Leggings, Boots, Gloves, Acc1, Acc2
 
     public Actor(){
         name = "Empty Husk";
@@ -74,7 +74,7 @@ public class Actor {
     private void initialiseItems(){
         currency = 0;
         inventory = new ItemList();
-        equipment = new Item[9];
+        equipment = new Gear[9];
         //MainWeapon, SubWeapon, Head, Torso, Leggings, Boots, Gloves, Acc1, Acc2
         //String name, String type, int id, int durability, int damage, int defense
         equipment[0] = new Gear("Fist","MainWeapon",0, 100, 0, 0);
@@ -110,57 +110,70 @@ public class Actor {
 
     }
 
+    private void checkUnequip(int slotID){
+        if(this.equipment[slotID] != null){
+            this.inventory.addItem(this.equipment[slotID]);
+        }
+    }
+
     public void equip(Gear equipment){
         String type = equipment.getType();
         int slot;
         switch(type){
             case "MainWeapon":
                 slot= 0;
+                checkUnequip(slot);
                 this.equipment[slot]=equipment;
-                this.modAttack+=equipment.getDamage();
                 break;
             case "SubWeapon":
                 slot= 1;
+                checkUnequip(slot);
                 this.equipment[slot]=equipment;
-                this.modAttack+=equipment.getDamage();
                 break;
             case "Head":
                 slot= 2;
+                checkUnequip(slot);
                 this.equipment[slot]=equipment;
-                this.modDefense+=equipment.getDefense();
                 break;
             case "Torso":
                 slot= 3;
+                checkUnequip(slot);
                 this.equipment[slot]=equipment;
-                this.modDefense+=equipment.getDefense();
                 break;
             case "Leggings":
                 slot= 4;
+                checkUnequip(slot);
                 this.equipment[slot]=equipment;
-                this.modDefense+=equipment.getDefense();
                 break;
             case "Boots":
                 slot= 5;
+                checkUnequip(slot);
                 this.equipment[slot]=equipment;
-                this.modDefense+=equipment.getDefense();
                 break;
             case "Gloves":
                 slot= 6;
+                checkUnequip(slot);
                 this.equipment[slot]=equipment;
-                this.modDefense+=equipment.getDefense();
                 break;
             case "Acc1":
                 slot= 7;
+                checkUnequip(slot);
                 this.equipment[slot]=equipment;
                 break;
             case "Acc2":
                 slot= 8;
+                checkUnequip(slot);
                 this.equipment[slot]=equipment;
                 break;
             default:
                 System.out.println("[ERROR][Equip failed, invalid type?]");
         }
+        updateModStats();
+    }
 
+    private void updateModStats(){
+        this.modAttack = this.baseAttack + calcModAttack();
+        this.modDefense = this.baseDefense + calcModDefense();
     }
 
     public void pickUp(Item newItem){
@@ -242,8 +255,29 @@ public class Actor {
                 baseAttack+=levelGain;
                 baseDefense+=levelGain;
             }
+            updateModStats();
         }
 
+    }
+
+    public int calcModAttack(){
+        int modAttack = 0;
+        for(int slot=0; slot<this.equipment.length;slot++){
+            if(this.equipment[slot]!=null){
+                modAttack += this.equipment[slot].getDamage();
+            }
+        }
+        return modAttack;
+    }
+
+    public int calcModDefense(){
+        int modDefense = 0;
+        for(int slot=0; slot<this.equipment.length;slot++){
+            if(this.equipment[slot]!=null){
+                modDefense += this.equipment[slot].getDefense();
+            }
+        }
+        return modDefense;
     }
 
     public void setMaxHealth(int newMaxHP){
@@ -278,7 +312,7 @@ public class Actor {
         this.inventory = newInventory;
     }
 
-    public void setEquipment(Item[] newEquipment){
+    public void setEquipment(Gear[] newEquipment){
         this.equipment = newEquipment;
     }
 
@@ -323,9 +357,9 @@ public class Actor {
     public void addToCurrency(int toAdd){
         this.currency+=toAdd;
     }
-    public void subtractFromCurrency(int toTake) throws InsufficentCurrencyException {
+    public void subtractFromCurrency(int toTake) throws InsufficientCurrencyException {
         if((this.currency-toTake)<0){
-            throw new InsufficentCurrencyException("You do not have sufficient funds.");
+            throw new InsufficientCurrencyException("You do not have sufficient funds.");
         }
         else {
             this.currency-=toTake;
@@ -360,8 +394,8 @@ public class Actor {
         toString += "\t[NEXT][ " + (EXP_TO_LEVEL) + " ]\n";
         toString += "\n";
         toString += "\t[HP][ " + this.curHealth + "/" + this.maxHealth + " " + displayAlive() + " ]\n";
-        toString += "\t[ATK][ " + this.baseAttack + " + " + (this.modAttack - this.baseAttack) + " ]\n";
-        toString += "\t[DEF][ " + this.baseDefense + " + " + (this.modDefense - this.baseDefense) + " ]\n";
+        toString += "\t[ATK][ " + this.baseAttack + " + " + (this.calcModAttack()) + " ]\n";
+        toString += "\t[DEF][ " + this.baseDefense + " + " + (this.calcModDefense()) + " ]\n";
         toString += "\n";
         toString += "\t[CURRENCY][ " + this.currency + " Gold" + " ]\n";
         toString += "\t[EQUIPMENT]" +

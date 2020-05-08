@@ -1,5 +1,5 @@
-public class InsufficentCurrencyException extends Exception {
-    public InsufficentCurrencyException(String message){
+public class InsufficientCurrencyException extends Exception {
+    public InsufficientCurrencyException(String message){
         super(message);
     }
 }

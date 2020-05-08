@@ -1,14 +1,13 @@
 {
   "player" : {
-    "name" : "Player",
-    "level" : 36,
-    "experience" : 3585.0,
-    "maxHealth" : 68,
+    "level" : 10,
+    "experience" : 1000.0,
+    "maxHealth" : 170,
     "curHealth" : 8,
-    "baseAttack" : 33,
-    "baseDefense" : 32,
-    "modAttack" : 3,
-    "modDefense" : 2,
+    "baseAttack" : 84,
+    "baseDefense" : 83,
+    "modAttack" : 84,
+    "modDefense" : 83,
     "currency" : 0,
     "inventory" : {
       "itemList" : [ ]
@@ -31,7 +30,7 @@
           "type" : "gear",
           "name" : "Wooden Club",
           "type" : "MainWeapon",
-          "durability" : 100,
+          "durability" : 0,
           "damage" : 2,
           "defense" : 0,
           "id" : 9
@@ -39,7 +38,7 @@
           "type" : "gear",
           "name" : "Shoddy Helm",
           "type" : "Head",
-          "durability" : 100,
+          "durability" : 0,
           "damage" : 0,
           "defense" : 2,
           "id" : 10
@@ -47,22 +46,21 @@
       },
       "alive" : true
     }, {
-      "name" : "Bandit",
-      "level" : 36,
+      "level" : 1,
       "experience" : 0.0,
-      "maxHealth" : 68,
-      "curHealth" : 68,
-      "baseAttack" : 33,
-      "baseDefense" : 16,
-      "modAttack" : 33,
-      "modDefense" : 16,
+      "maxHealth" : 8,
+      "curHealth" : 8,
+      "baseAttack" : 3,
+      "baseDefense" : 1,
+      "modAttack" : 3,
+      "modDefense" : 1,
       "currency" : 10,
       "inventory" : {
         "itemList" : [ {
           "type" : "gear",
           "name" : "Leather Boots",
           "type" : "Boots",
-          "durability" : 100,
+          "durability" : 0,
           "damage" : 0,
           "defense" : 1,
           "id" : 11
@@ -70,7 +68,7 @@
           "type" : "gear",
           "name" : "Gold Ring",
           "type" : "Acc2",
-          "durability" : 100,
+          "durability" : 0,
           "damage" : 0,
           "defense" : 1,
           "id" : 12
@@ -92,7 +90,7 @@
           "type" : "gear",
           "name" : "Dragon Scale Shield",
           "type" : "SubWeapon",
-          "durability" : 100,
+          "durability" : 0,
           "damage" : 1,
           "defense" : 4,
           "id" : 13
@@ -100,7 +98,7 @@
           "type" : "gear",
           "name" : "Dragon Scale Armor",
           "type" : "Torso",
-          "durability" : 100,
+          "durability" : 0,
           "damage" : 0,
           "defense" : 5,
           "id" : 14
@@ -108,7 +106,7 @@
           "type" : "gear",
           "name" : "Dragon Scale Leggings",
           "type" : "Leggings",
-          "durability" : 100,
+          "durability" : 0,
           "damage" : 0,
           "defense" : 4,
           "id" : 15
@@ -136,10 +134,62 @@
           "type" : "gear",
           "name" : "Spectral Ring",
           "type" : "Acc1",
-          "durability" : 100,
+          "durability" : 0,
           "damage" : 1,
           "defense" : 1,
           "id" : 17
+        } ]
+      },
+      "alive" : true
+    }, {
+      "level" : 2,
+      "experience" : 0.0,
+      "maxHealth" : 5,
+      "curHealth" : 5,
+      "baseAttack" : 2,
+      "baseDefense" : 2,
+      "modAttack" : 2,
+      "modDefense" : 2,
+      "currency" : 4,
+      "inventory" : {
+        "itemList" : [ {
+          "type" : "gear",
+          "name" : "Spider Fang",
+          "type" : "SubWeapon",
+          "durability" : 0,
+          "damage" : 4,
+          "defense" : 0,
+          "id" : 18
+        } ]
+      },
+      "alive" : true
+    }, {
+      "level" : 100,
+      "experience" : 0.0,
+      "maxHealth" : 300,
+      "curHealth" : 300,
+      "baseAttack" : 50,
+      "baseDefense" : 40,
+      "modAttack" : 50,
+      "modDefense" : 40,
+      "currency" : 400,
+      "inventory" : {
+        "itemList" : [ {
+          "type" : "gear",
+          "name" : "Legendary Sword",
+          "type" : "MainWeapon",
+          "durability" : 0,
+          "damage" : 20,
+          "defense" : 3,
+          "id" : 19
+        }, {
+          "type" : "gear",
+          "name" : "Demon's Armor",
+          "type" : "Torso",
+          "durability" : 0,
+          "damage" : 3,
+          "defense" : 20,
+          "id" : 20
         } ]
       },
       "alive" : true

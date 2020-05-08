@@ -117,7 +117,7 @@ public class CombatUI {
         System.out.println("\nHey! Are you ok? Let's get you back to town. Maybe you should do some tasks to level up?\n[NOTICE][ You have lost " + lostCur + " gold.]");
         try {
             player.subtractFromCurrency(lostCur);
-        } catch (InsufficentCurrencyException ignored) {} //This won't happen anyway
+        } catch (InsufficientCurrencyException ignored) {} //This won't happen anyway
     }
 
     public void eventEnemyDeath(){
