@@ -130,6 +130,7 @@ public class RPGManager {
         int worth = item.getWorth();
         merchantInv.addItem(item);
         player.grantCurrency(worth);
+        player.getInventory().removeItem(item);
         System.out.println("[SUCCESS] [Item sold for " + worth + " gold!]");
 
     }
@@ -164,7 +165,7 @@ public class RPGManager {
         Random random = new Random();
         int randIdx = random.nextInt(defaultMonsters.getSize());
         Actor monster = defaultMonsters.getActorAt(randIdx);
-
+        monster.resurrect();
         System.out.println("The " + monster.getName() + " stares at you menacingly.");
         CombatUI combat = new CombatUI(this.player, (Monster) monster);
         combat.handleTurn();
