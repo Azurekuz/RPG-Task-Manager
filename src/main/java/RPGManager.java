@@ -115,11 +115,11 @@ public class RPGManager {
 
     /************* NPCs *************/
 
-    public void buy(String name) throws InsufficentCurrencyException, NonExistentObjectException{
+    public void buy(String name) throws InsufficientCurrencyException, NonExistentObjectException{
         Item item = merchantInv.getItem(name);
         int worth = item.getWorth();
         if (worth > player.getCurrency()){
-            throw new InsufficentCurrencyException("Sorry, you don't have enough money to buy that.");
+            throw new InsufficientCurrencyException("Sorry, you don't have enough money to buy that.");
         }
         player.getInventory().addItem(item);
         player.subtractFromCurrency(worth);
@@ -131,7 +131,7 @@ public class RPGManager {
         int worth = item.getWorth();
         merchantInv.addItem(item);
         player.grantCurrency(worth);
-        System.out.println("[SUCCESS] [Item sold for " + worth + "gold!]");
+        System.out.println("[SUCCESS] [Item sold for " + worth + " gold!]");
 
     }
 

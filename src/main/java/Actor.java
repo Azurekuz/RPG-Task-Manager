@@ -2,10 +2,12 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 
 public class Actor {
     @JsonIgnore
-    final double EXP_TO_LEVEL = 100.0;
 
     private String name;
     private int level;
+
+    final double BASE_EXP = 100.0;
+    private double EXP_TO_LEVEL;
     private double experience;
     private int maxHealth;
     private int curHealth;
@@ -18,9 +20,9 @@ public class Actor {
 
     private int currency;
     private ItemList inventory;
-    private Item[] equipment; //MainWeapon, SubWeapon, Head, Torso, Leggings, Boots, Gloves, Acc1, Acc2
+    private Gear[] equipment; //MainWeapon, SubWeapon, Head, Torso, Leggings, Boots, Gloves, Acc1, Acc2
 
-    public Actor(){
+    public Actor() {
         name = "Empty Husk";
         level = 1;
         experience = 0;
@@ -34,9 +36,10 @@ public class Actor {
         isAlive = true;
 
         initialiseItems();
+        EXP_TO_LEVEL = (int) (BASE_EXP * Math.pow(1.15, ((double) this.level - 1)));
     }
 
-    public Actor(String name, int level, int health, int baseAttack, int baseDefense) throws IllegalArgumentException{
+    public Actor(String name, int level, int health, int baseAttack, int baseDefense) throws IllegalArgumentException {
         verifyConstructorInput(name, level, health, baseAttack, baseDefense);
         this.name = name;
         this.level = level;
@@ -51,50 +54,52 @@ public class Actor {
         isAlive = true;
 
         initialiseItems();
+        EXP_TO_LEVEL = (int) (BASE_EXP * Math.pow(1.15, ((double) this.level - 1)));
     }
 
-    private void verifyConstructorInput(String name, int level, int health, int baseAttack, int baseDefense){
-        if(name.length() <= 0){
+    private void verifyConstructorInput(String name, int level, int health, int baseAttack, int baseDefense) {
+        if (name.length() <= 0) {
             throw new IllegalArgumentException("Name of Improper Length provided!");
-        }else if(level < 0){
+        } else if (level < 0) {
             throw new IllegalArgumentException("Illegal level provided!");
-        }else if(health <= 0){
+        } else if (health <= 0) {
             throw new IllegalArgumentException("Illegal health value provided!");
-        }else if(baseAttack < 0){
+        } else if (baseAttack < 0) {
             throw new IllegalArgumentException("Illegal attack value provided!");
-        }else if(baseDefense < 0){
+        } else if (baseDefense < 0) {
             throw new IllegalArgumentException("Illegal defense value provided!");
         }
     }
 
-    private void initialiseItems(){
+    private void initialiseItems() {
         currency = 0;
         inventory = new ItemList();
-        equipment = new Item[9];
+        equipment = new Gear[9];
         //MainWeapon, SubWeapon, Head, Torso, Leggings, Boots, Gloves, Acc1, Acc2
         //String name, String type, int id, int durability, int damage, int defense
-        equipment[0] = new Gear("Fist","MainWeapon",0, 100, 0, 0, 0);
-        equipment[1] = new Gear("Fist","SubWeapon",1, 100, 0, 0, 0);
-        equipment[2] = new Gear("Hair","Head",2, 100, 0, 0, 0);
-        equipment[3] = new Gear("T-Shirt","Torso",3, 100, 0, 0, 0);
-        equipment[4] = new Gear("Underwear","Leggings",4, 100, 0, 0, 0);
-        equipment[5] = new Gear("Bare Feet","Boots",5, 100, 0, 0, 0);
-        equipment[6] = new Gear("Hands","Gloves",6, 100, 0, 0, 0);
-        equipment[7] = new Gear("N/A","Acc1",7, 100, 0, 0, 0);
-        equipment[8] = new Gear("N/A","Acc2",8, 100, 0, 0, 0);
+        equipment[0] = new Gear("Fist", "MainWeapon", 0, 100, 0, 0, 0);
+        equipment[1] = new Gear("Fist", "SubWeapon", 1, 100, 0, 0, 0);
+        equipment[2] = new Gear("Hair", "Head", 2, 100, 0, 0, 0);
+        equipment[3] = new Gear("T-Shirt", "Torso", 3, 100, 0, 0, 0);
+        equipment[4] = new Gear("Underwear", "Leggings", 4, 100, 0, 0, 0);
+        equipment[5] = new Gear("Bare Feet", "Boots", 5, 100, 0, 0, 0);
+        equipment[6] = new Gear("Hands", "Gloves", 6, 100, 0, 0, 0);
+        equipment[7] = new Gear("N/A", "Acc1", 7, 100, 0, 0, 0);
+        equipment[8] = new Gear("N/A", "Acc2", 8, 100, 0, 0, 0);
 
 
     }
 
-    public void attack(Actor target){
-        if(isAlive) {
-            target.damage(NumTools.intLowerBorder(0, getModAttack(), -target.getModDefense()));
+    public int attack(Actor target) {
+        if (isAlive) {
+            return target.damage(NumTools.intLowerBorder(0, getModAttack(), -target.getModDefense()));
         }
+        return 0;
     }
 
     public void use(Usable itemToUse) throws NonExistentObjectException {
-        if (itemToUse.type.equals("Health")){
-            this.curHealth+=itemToUse.getValue();
+        if (itemToUse.type.equals("Health")) {
+            this.curHealth += itemToUse.getValue();
             inventory.removeItem(itemToUse);
         }
 
@@ -105,68 +110,71 @@ public class Actor {
 
     }
 
-    public void equip(Gear equipment) throws NonExistentObjectException{
+    private void checkUnequip(int slotID) {
+        if (this.equipment[slotID] != null) {
+            this.inventory.addItem(this.equipment[slotID]);
+        }
+    }
+
+    public void equip(Gear equipment) throws NonExistentObjectException {
         String type = equipment.getType();
         int slot;
-        switch(type){
+        switch (type) {
             case "MainWeapon":
-                slot= 0;
-                this.inventory.addItem(this.equipment[slot]);
-                this.equipment[slot]=equipment;
-                this.modAttack+=equipment.getDamage();
+                slot = 0;
+                checkUnequip(slot);
+                this.equipment[slot] = equipment;
                 break;
             case "SubWeapon":
-                slot= 1;
-                this.inventory.addItem(this.equipment[slot]);
-                this.equipment[slot]=equipment;
-                this.modAttack+=equipment.getDamage();
+                slot = 1;
+                checkUnequip(slot);
+                this.equipment[slot] = equipment;
                 break;
             case "Head":
-                slot= 2;
-                this.inventory.addItem(this.equipment[slot]);
-                this.equipment[slot]=equipment;
-                this.modDefense+=equipment.getDefense();
+                slot = 2;
+                checkUnequip(slot);
+                this.equipment[slot] = equipment;
                 break;
             case "Torso":
-                slot= 3;
-                this.inventory.addItem(this.equipment[slot]);
-                this.equipment[slot]=equipment;
-                this.modDefense+=equipment.getDefense();
+                slot = 3;
+                checkUnequip(slot);
+                this.equipment[slot] = equipment;
                 break;
             case "Leggings":
-                slot= 4;
-                this.inventory.addItem(this.equipment[slot]);
-                this.equipment[slot]=equipment;
-                this.modDefense+=equipment.getDefense();
+                slot = 4;
+                checkUnequip(slot);
+                this.equipment[slot] = equipment;
                 break;
             case "Boots":
-                slot= 5;
-                this.inventory.addItem(this.equipment[slot]);
-                this.equipment[slot]=equipment;
-                this.modDefense+=equipment.getDefense();
+                slot = 5;
+                checkUnequip(slot);
+                this.equipment[slot] = equipment;
                 break;
             case "Gloves":
-                slot= 6;
-                this.inventory.addItem(this.equipment[slot]);
-                this.equipment[slot]=equipment;
-                this.modDefense+=equipment.getDefense();
+                slot = 6;
+                checkUnequip(slot);
+                this.equipment[slot] = equipment;
                 break;
             case "Acc1":
-                slot= 7;
-                this.inventory.addItem(this.equipment[slot]);
-                this.equipment[slot]=equipment;
+                slot = 7;
+                checkUnequip(slot);
+                this.equipment[slot] = equipment;
                 break;
             case "Acc2":
-                slot= 8;
-                this.inventory.addItem(this.equipment[slot]);
-                this.equipment[slot]=equipment;
+                slot = 8;
+                checkUnequip(slot);
+                this.equipment[slot] = equipment;
                 break;
             default:
                 System.out.println("[ERROR][Equip failed, invalid type?]");
         }
+        updateModStats();
         inventory.removeItem(equipment);
+    }
 
-
+    private void updateModStats(){
+        this.modAttack = this.baseAttack + calcModAttack();
+        this.modDefense = this.baseDefense + calcModDefense();
     }
 
     public void pickUp(Item newItem){
@@ -188,9 +196,10 @@ public class Actor {
         }
     }
 
-    public void damage(int healthDeduction){
+    public int damage(int healthDeduction){
         this.curHealth = NumTools.intClamp(0,this.maxHealth, this.curHealth, -healthDeduction);
         checkForDeath();
+        return healthDeduction;
     }
 
     public void heal(int healthAddition){
@@ -224,9 +233,10 @@ public class Actor {
         }
         this.currency += currencyAmount;
     }
-    public void subtractFromCurrency(int toTake) throws InsufficentCurrencyException {
+
+    public void subtractFromCurrency(int toTake) throws InsufficientCurrencyException {
         if((this.currency - toTake) < 0){
-            throw new InsufficentCurrencyException("You do not have sufficient funds.");
+            throw new InsufficientCurrencyException("You do not have sufficient funds.");
         }
         else { this.currency-=toTake; }
     }
@@ -240,16 +250,45 @@ public class Actor {
     }
 
     public void checkLevelUp(){
-        double curExperience =  experience - EXP_TO_LEVEL * (level-1);
+        double curExperience =  experience - EXP_TO_LEVEL;
         if (curExperience >= EXP_TO_LEVEL){
-            int levelGain= 0;
-            levelGain+= curExperience / EXP_TO_LEVEL;
-            this.level+= levelGain;
-            maxHealth+=levelGain*2;
-            baseAttack+=levelGain;
-            baseDefense+=levelGain;
+            double EXPLeft = curExperience;
+            for(int levelUp = 0; EXPLeft > 0; levelUp++){
+                if(EXPLeft >= EXP_TO_LEVEL) {
+                    EXPLeft -= EXP_TO_LEVEL;
+                    this.level += 1;
+                    setEXP_TO_LEVEL(getEXP_TO_LEVEL() + ((int) (BASE_EXP * Math.pow(1.15, ((double) this.level - 1)))));
+                    System.out.println("NEXT: " + EXP_TO_LEVEL);
+                    maxHealth += 2;
+                    baseAttack += 1;
+                    baseDefense += 1;
+                }else{
+                    break;
+                }
+            }
+            updateModStats();
         }
 
+    }
+
+    public int calcModAttack(){
+        int modAttack = 0;
+        for(int slot=0; slot<this.equipment.length;slot++){
+            if(this.equipment[slot]!=null){
+                modAttack += this.equipment[slot].getDamage();
+            }
+        }
+        return modAttack;
+    }
+
+    public int calcModDefense(){
+        int modDefense = 0;
+        for(int slot=0; slot<this.equipment.length;slot++){
+            if(this.equipment[slot]!=null){
+                modDefense += this.equipment[slot].getDefense();
+            }
+        }
+        return modDefense;
     }
 
     public void setMaxHealth(int newMaxHP){
@@ -284,7 +323,7 @@ public class Actor {
         this.inventory = newInventory;
     }
 
-    public void setEquipment(Item[] newEquipment){
+    public void setEquipment(Gear[] newEquipment){
         this.equipment = newEquipment;
     }
 
@@ -338,6 +377,14 @@ public class Actor {
         return isAlive;
     }
 
+    public double getEXP_TO_LEVEL(){
+        return EXP_TO_LEVEL;
+    }
+
+    public void setEXP_TO_LEVEL(double nextLevel){
+        EXP_TO_LEVEL = nextLevel;
+    }
+
     public String displayAlive(){
         if(isAlive){
             return "";
@@ -351,10 +398,11 @@ public class Actor {
         toString += "\t[NAME][ " + this.name + " ]\n";
         toString += "\t[LVL][ " + this.level + " ]\n";
         toString += "\t[EXP][ " + this.experience + " ]\n";
+        toString += "\t[NEXT][ " + getEXP_TO_LEVEL() + " ]\n";
         toString += "\n";
         toString += "\t[HP][ " + this.curHealth + "/" + this.maxHealth + " " + displayAlive() + " ]\n";
-        toString += "\t[ATK][ " + this.baseAttack + " + " + (this.modAttack - this.baseAttack) + " ]\n";
-        toString += "\t[DEF][ " + this.baseDefense + " + " + (this.modDefense - this.baseDefense) + " ]\n";
+        toString += "\t[ATK][ " + this.baseAttack + " + " + (this.calcModAttack()) + " ]\n";
+        toString += "\t[DEF][ " + this.baseDefense + " + " + (this.calcModDefense()) + " ]\n";
         toString += "\n";
         toString += "\t[CURRENCY][ " + this.currency + " Gold" + " ]\n";
         toString += "\t[EQUIPMENT]" +

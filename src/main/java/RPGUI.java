@@ -161,7 +161,7 @@ public class RPGUI {
             name = input.nextLine();
             try {
                 rpgManager.buy(name);
-            } catch (InsufficentCurrencyException e) {
+            } catch (InsufficientCurrencyException e) {
                 System.out.println(e.getMessage());
             } catch (NonExistentObjectException e) {
                 System.out.println("Sorry, I don't have anything like that.");
