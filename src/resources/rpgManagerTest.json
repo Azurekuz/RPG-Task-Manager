@@ -217,6 +217,24 @@
   "merchantInv" : {
     "itemList" : [ {
       "type" : "gear",
+      "name" : "Lumberjack's Axe",
+      "type" : "MainWeapon",
+      "worth" : 21,
+      "durability" : 100,
+      "damage" : 3,
+      "defense" : 0,
+      "id" : 0
+    }, {
+      "type" : "gear",
+      "name" : "Steel Dagger",
+      "type" : "SubWeapon",
+      "worth" : 21,
+      "durability" : 100,
+      "damage" : 2,
+      "defense" : 0,
+      "id" : 0
+    }, {
+      "type" : "gear",
       "name" : "Leather Jacket",
       "type" : "Torso",
       "worth" : 16,
@@ -232,6 +250,42 @@
       "durability" : 100,
       "damage" : 0,
       "defense" : 1,
+      "id" : 0
+    }, {
+      "type" : "gear",
+      "name" : "Combat Pants",
+      "type" : "Leggings",
+      "worth" : 16,
+      "durability" : 100,
+      "damage" : 0,
+      "defense" : 2,
+      "id" : 0
+    }, {
+      "type" : "gear",
+      "name" : "Leather Grips",
+      "type" : "Gloves",
+      "worth" : 12,
+      "durability" : 100,
+      "damage" : 0,
+      "defense" : 1,
+      "id" : 0
+    }, {
+      "type" : "gear",
+      "name" : "Bone Charm",
+      "type" : "Acc1",
+      "worth" : 12,
+      "durability" : 100,
+      "damage" : 0,
+      "defense" : 1,
+      "id" : 0
+    }, {
+      "type" : "gear",
+      "name" : "Obsidian Band",
+      "type" : "Acc2",
+      "worth" : 16,
+      "durability" : 100,
+      "damage" : 0,
+      "defense" : 2,
       "id" : 0
     } ]
   }

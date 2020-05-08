@@ -1,13 +1,13 @@
 {
   "player" : {
-    "level" : 14,
-    "experience" : 4030.0,
-    "maxHealth" : 34,
+    "level" : 15,
+    "experience" : 4535.0,
+    "maxHealth" : 36,
     "curHealth" : 10,
-    "baseAttack" : 16,
-    "baseDefense" : 15,
-    "modAttack" : 16,
-    "modDefense" : 15,
+    "baseAttack" : 17,
+    "baseDefense" : 16,
+    "modAttack" : 17,
+    "modDefense" : 16,
     "currency" : 90,
     "inventory" : {
       "itemList" : [ {
@@ -101,7 +101,7 @@
       } ]
     },
     "alive" : true,
-    "exp_TO_LEVEL" : 4045.0
+    "exp_TO_LEVEL" : 4752.0
   },
   "defaultMonsters" : {
     "actorList" : [ {

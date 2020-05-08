@@ -42,7 +42,7 @@ public class RPGManager {
         defaultMonsters.addActor(orcGrunt);
 
         //bandit scales off of player stats, might not work well
-        Monster bandit = new Monster("Bandit", player.getLevel(), player.getMaxHealth(), player.getBaseDefense(), player.getBaseAttack()/2, 10);
+        Monster bandit = new Monster("Undead Bandit", player.getLevel(), player.getMaxHealth(), player.getBaseDefense(), player.getBaseAttack()/2, 10);
         Gear boots = new Gear("Leather Boots", "Boots",11,100,0,1, 3);
         Gear goldRing = new Gear("Gold Ring", "Acc2",12,100,0,1, 3);
         bandit.pickUp(boots); bandit.pickUp(goldRing);

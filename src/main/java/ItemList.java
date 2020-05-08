@@ -43,7 +43,7 @@ public class ItemList {
             return result.concat("\t*No items.*\n");
         }
         for(int i = 0; i < itemList.size(); i++){
-            result = result.concat(itemList.get(i).toString());
+            result = result.concat("\t"+itemList.get(i).toString());
             result = result.concat("\n");
         }
         return result;

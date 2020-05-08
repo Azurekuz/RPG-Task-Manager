@@ -88,6 +88,7 @@ public class CombatUI {
                     break;
                 case 2:
                     if(!actionUse(this.player)){ action=-1; continue outer;} //if the use didn't work, repeat the loop so player doesn't lose turn
+                    break;
                 case 3:
                     actionFlee(this.player);
                     break;
@@ -107,6 +108,7 @@ public class CombatUI {
     }
 
     public boolean actionUse(Actor attacker){
+        input.nextLine(); //clears the newline after entering an int for action
         System.out.println("What usable do you want to use?");
         ItemList inventory = attacker.getInventory();
         System.out.println("Your inventory: \n" + inventory.toString());
