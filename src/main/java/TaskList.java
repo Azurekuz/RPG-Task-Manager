@@ -13,55 +13,55 @@ public class TaskList{
         taskList = taskListIn;
     }
 
-    public void addTask(Task newTask) throws DuplicateTaskException{
+    public void addTask(Task newTask) throws DuplicateObjectException {
         try {
             if(newTask.getTimeLimit() != 0){
                 newTask.startTime();
             }
             taskList.add(checkDuplicate(newTask));
-        }catch(DuplicateTaskException e){
-            throw new DuplicateTaskException(e.getMessage());
+        }catch(DuplicateObjectException e){
+            throw new DuplicateObjectException(e.getMessage());
         }
     }
   
-    public void addTask(String title, String desc, int quality, int timeLimit, int type) throws DuplicateTaskException{
+    public void addTask(String title, String desc, int quality, int timeLimit, int type) throws DuplicateObjectException {
         try {
             int id = this.getSize();
             Task newTask = checkDuplicate(new Task(id, title, desc,quality, timeLimit, type, false));
             taskList.add(newTask);
-        }catch(DuplicateTaskException e){
-            throw new DuplicateTaskException(e.getMessage());
+        }catch(DuplicateObjectException e){
+            throw new DuplicateObjectException(e.getMessage());
         }
     }
 
-    public Task checkDuplicate(Task newTask) throws DuplicateTaskException{
+    public Task checkDuplicate(Task newTask) throws DuplicateObjectException {
         for(int taskID = 0; taskID < taskList.size(); taskID++){
             if(taskList.get(taskID).title.toLowerCase().equals(newTask.title.toLowerCase())){
-                throw new DuplicateTaskException("You already have a task with this name!");
+                throw new DuplicateObjectException("You already have a task with this name!");
             }
         }
         return newTask;
     }
 
-    public void removeTask(int id) throws NonExistentTaskException{
+    public void removeTask(int id) throws NonExistentObjectException {
         int index = findTask(id);
         if(index >= taskList.size() || index < 0){
-            throw new NonExistentTaskException("Nonexistent or Invalid Task Requested!");
+            throw new NonExistentObjectException("Nonexistent or Invalid Task Requested!");
         }
         taskList.remove(index);
     }
 
-    public void removeTask(String title) throws NonExistentTaskException{
+    public void removeTask(String title) throws NonExistentObjectException {
         int index = findTask(title);
         if(index >= taskList.size() || index < 0){
-            throw new NonExistentTaskException("Nonexistent or Invalid Task Requested!");
+            throw new NonExistentObjectException("Nonexistent or Invalid Task Requested!");
         }
         taskList.remove(index);
     }
 
-    public void editTask(int id, Task updatedTask) throws NonExistentTaskException{
+    public void editTask(int id, Task updatedTask) throws NonExistentObjectException {
         if(id > taskList.size() || id < 0){
-            throw new NonExistentTaskException("Nonexistent or Invalid Task Requested!");
+            throw new NonExistentObjectException("Nonexistent or Invalid Task Requested!");
         }
         taskList.set(id, updatedTask);
     }
@@ -82,18 +82,18 @@ public class TaskList{
         }
         return -1;
     }
-    public Task getTask(String title) throws NonExistentTaskException{
+    public Task getTask(String title) throws NonExistentObjectException {
         int index = findTask(title);
         if(index >= taskList.size() || index < 0){
-            throw new NonExistentTaskException("Nonexistent or Invalid Task Requested!");
+            throw new NonExistentObjectException("Nonexistent or Invalid Task Requested!");
         }
         return taskList.get(index);
     }
 
-    public Task getTask(int id) throws NonExistentTaskException{
+    public Task getTask(int id) throws NonExistentObjectException {
         int index = findTask(id);
         if(index >= taskList.size() || index < 0){
-            throw new NonExistentTaskException("Nonexistent or Invalid Task Requested!");
+            throw new NonExistentObjectException("Nonexistent or Invalid Task Requested!");
         }
         return taskList.get(index);
     }

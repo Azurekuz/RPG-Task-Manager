@@ -3,9 +3,9 @@ import static org.junit.jupiter.api.Assertions.*;
 
 import java.time.LocalDateTime;
 
-public class TaskManagerTests { //TODO test new tests added by Elias
+public class TaskManagerTests {
     @Test
-    public void findTaskTest() throws NonExistentTaskException, DuplicateTaskException{
+    public void findTaskTest() throws NonExistentObjectException, DuplicateObjectException {
         TaskManager testManager = new TaskManager(true);
         Task testTask = new Task(0, "Test1", "A test task", 5, 20, 0, false);
         testManager.addCurrentTask(testTask);
@@ -14,18 +14,18 @@ public class TaskManagerTests { //TODO test new tests added by Elias
     }
 
     @Test
-    public void addTaskTest() throws NonExistentTaskException, DuplicateTaskException{
+    public void addTaskTest() throws NonExistentObjectException, DuplicateObjectException {
         TaskManager testManager = new TaskManager(true);
         Task testTask = new Task(0, "Test1", "A test task", 5, 20, 0, false);
         testManager.addCurrentTask(testTask);
 
         assertEquals("Test1", testManager.findCurrentTask(0).getTitle());
-        assertThrows(DuplicateTaskException.class, ()->testManager.addCurrentTask(testTask));
+        assertThrows(DuplicateObjectException.class, ()->testManager.addCurrentTask(testTask));
 
     }
 
     @Test
-    public void editTaskTest() throws NonExistentTaskException, DuplicateTaskException{
+    public void editTaskTest() throws NonExistentObjectException, DuplicateObjectException {
         TaskManager testManager = new TaskManager(true);
         Task testTask = new Task(0, "Test1", "A test task", 5, 20, 0, false);
         testManager.addCurrentTask(testTask);
@@ -36,7 +36,7 @@ public class TaskManagerTests { //TODO test new tests added by Elias
     }
 
     @Test
-    public void completeTaskTest() throws NonExistentTaskException, DuplicateTaskException{
+    public void completeTaskTest() throws NonExistentObjectException, DuplicateObjectException {
         TaskManager testManager = new TaskManager(true);
         Task testTask = new Task(0, "Test1", "A test task", 5, 20, 0, false);
         testManager.addCurrentTask(testTask);
@@ -50,7 +50,7 @@ public class TaskManagerTests { //TODO test new tests added by Elias
     }
 
     @Test
-    public void getCurrentTasksTest() throws NonExistentTaskException, DuplicateTaskException{
+    public void getCurrentTasksTest() throws NonExistentObjectException, DuplicateObjectException {
         TaskManager testManager = new TaskManager(true);
         Task testTask1 = new Task(0, "Test1", "A test task", 5, 20, 0, false);
         Task testTask2 = new Task(1, "Test2", "Another test task", 4, 25, 0, false);
@@ -64,8 +64,8 @@ public class TaskManagerTests { //TODO test new tests added by Elias
         for(int taskID = 0; taskID < currentTasks.getSize();taskID++){
             assertEquals(currentTasks.getTaskAt(taskID), testManager.findCurrentTask(taskID));
         }
-        assertThrows(NonExistentTaskException.class, ()-> currentTasks.getTask(currentTasks.getSize()));
-        assertThrows(NonExistentTaskException.class, ()-> currentTasks.getTask(-1));
+        assertThrows(NonExistentObjectException.class, ()-> currentTasks.getTask(currentTasks.getSize()));
+        assertThrows(NonExistentObjectException.class, ()-> currentTasks.getTask(-1));
     }
 
     @Test
@@ -108,7 +108,7 @@ public class TaskManagerTests { //TODO test new tests added by Elias
     }
 
     @Test
-    public void timeTests() throws NonExistentTaskException, DuplicateTaskException {
+    public void timeTests() throws NonExistentObjectException, DuplicateObjectException {
         TaskManager testManager = new TaskManager(true);
         //Testing one timed task
         testManager.addCustomTask("Do Homework Before Class", "Due in an hour!", 10, 60, 0);
@@ -117,7 +117,6 @@ public class TaskManagerTests { //TODO test new tests added by Elias
         LocalDateTime currentTime = LocalDateTime.now();
         assertEquals("[NOTICE][ No tasks failed.]", testManager.checkTimedTasks(currentTime));
 
-        //currentTime.setTime(currentTime.getTime() + 65*60000);
         currentTime = currentTime.plusMinutes(65);
 
         assertEquals(testManager.checkTimedTasks(currentTime),"FAILED: Do Homework Before Class");
@@ -134,7 +133,6 @@ public class TaskManagerTests { //TODO test new tests added by Elias
         currentTime = LocalDateTime.now();
 
         assertEquals("[NOTICE][ No tasks failed.]", testManager2.checkTimedTasks(currentTime));
-        //currentTime.setTime(currentTime.getTime() + 65*60000); //faking time passage
         currentTime = currentTime.plusMinutes(65);
 
         assertEquals(testManager2.checkTimedTasks(currentTime),"FAILED: Do Homework Before Class, Email Teacher");
@@ -144,14 +142,14 @@ public class TaskManagerTests { //TODO test new tests added by Elias
     }
 
     @Test
-    public void mainTaskTests() throws NonExistentTaskException {
+    public void mainTaskTests() throws NonExistentObjectException {
        TaskManager testManager = new TaskManager(true);
 
        //Trying to do things with main task while none is selected
        assertTrue(testManager.getMainTask().getTitle().isEmpty());
        assertEquals(testManager.stopMainTask(), "ERROR: No main task selected to stop.");
-       assertEquals(testManager.completeMain(),"ERROR: No main task selected to complete.");
-       assertThrows(NonExistentTaskException.class, () -> testManager.incMainProgress(1));
+       assertEquals(testManager.completeMain(),"[ERROR: No main task selected to complete.]");
+       assertThrows(NonExistentObjectException.class, () -> testManager.incMainProgress(1));
 
        //Selecting a main task and trying to select a second one
        assertEquals(testManager.selectTask("Finish 1st Semester"),"Task started!");
@@ -176,9 +174,9 @@ public class TaskManagerTests { //TODO test new tests added by Elias
 
         testManager.incMainProgress(89);
         assertEquals(testManager.getMainTask().getProgress(), 99);
-        assertEquals(testManager.completeMain(),"ERROR: Main task not at 100% progress, can't complete.");
+        assertEquals(testManager.completeMain(),"[ERROR: Main task not at 100% progress, can't complete.]");
         testManager.incMainProgress(1);
-        assertEquals(testManager.completeMain(),"Main task completed!");
+        assertEquals(testManager.completeMain(),"[SUCCESS: Main task completed!]");
 
     }
 }

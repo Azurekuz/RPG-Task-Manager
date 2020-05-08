@@ -31,7 +31,7 @@
       "type" : 0,
       "completionQuality" : 0.0,
       "complete" : false,
-      "startTime" : "2020-04-22T08:53:04.6906556",
+      "startTime" : null,
       "progress" : 0
     }, {
       "id" : 3,
@@ -88,59 +88,103 @@
       "complete" : false,
       "startTime" : null,
       "progress" : 0
+    }, {
+      "id" : 8,
+      "title" : "Feed your pet",
+      "desc" : "Or we will call the ASPCA",
+      "baseQuality" : 55,
+      "timeLimit" : 0,
+      "type" : 2,
+      "completionQuality" : 0.0,
+      "complete" : false,
+      "startTime" : null,
+      "progress" : 0
+    }, {
+      "id" : 9,
+      "title" : "Garbage Day",
+      "desc" : "Or we will call the ASPCA",
+      "baseQuality" : 55,
+      "timeLimit" : 0,
+      "type" : 3,
+      "completionQuality" : 0.0,
+      "complete" : false,
+      "startTime" : null,
+      "progress" : 0
+    }, {
+      "id" : 10,
+      "title" : "Sweep your Home",
+      "desc" : "The less dust, the better.",
+      "baseQuality" : 35,
+      "timeLimit" : 0,
+      "type" : 3,
+      "completionQuality" : 0.0,
+      "complete" : false,
+      "startTime" : null,
+      "progress" : 0
+    }, {
+      "id" : 11,
+      "title" : "Cook a Meal",
+      "desc" : "Don't starve, make yourself something good!",
+      "baseQuality" : 45,
+      "timeLimit" : 0,
+      "type" : 2,
+      "completionQuality" : 0.0,
+      "complete" : false,
+      "startTime" : null,
+      "progress" : 0
+    }, {
+      "id" : 12,
+      "title" : "Make your Bed",
+      "desc" : "Don't be lazy, make it look comfy.",
+      "baseQuality" : 5,
+      "timeLimit" : 0,
+      "type" : 2,
+      "completionQuality" : 0.0,
+      "complete" : false,
+      "startTime" : null,
+      "progress" : 0
+    }, {
+      "id" : 13,
+      "title" : "Clean Bathroom",
+      "desc" : "Don't be gross. You'll thank yourself later.",
+      "baseQuality" : 15,
+      "timeLimit" : 0,
+      "type" : 3,
+      "completionQuality" : 0.0,
+      "complete" : false,
+      "startTime" : null,
+      "progress" : 0
+    }, {
+      "id" : 14,
+      "title" : "Organize Mail",
+      "desc" : "Sift through your mail and sort it!",
+      "baseQuality" : 10,
+      "timeLimit" : 0,
+      "type" : 2,
+      "completionQuality" : 0.0,
+      "complete" : false,
+      "startTime" : null,
+      "progress" : 0
     } ]
   },
   "currentTaskList" : {
     "taskList" : [ ]
   },
   "completedTaskList" : {
-    "taskList" : [ {
-      "id" : 8,
-      "title" : "Finish 1st Semester",
-      "desc" : "Ithaca College",
-      "baseQuality" : 1000,
-      "timeLimit" : 0,
-      "type" : 1,
-      "completionQuality" : 0.75,
-      "complete" : true,
-      "startTime" : null,
-      "progress" : 0
-    }, {
-      "id" : 9,
-      "title" : "Clean your room",
-      "desc" : "Organize and dust off your room.",
-      "baseQuality" : 10,
-      "timeLimit" : 3,
-      "type" : 0,
-      "completionQuality" : 0.75,
-      "complete" : true,
-      "startTime" : "2020-04-22T10:23:57.9608448",
-      "progress" : 0
-    }, {
-      "id" : 12,
-      "title" : "Finish Sprint2",
-      "desc" : "Finish this sprint.",
-      "baseQuality" : 1000,
-      "timeLimit" : 0,
-      "type" : 1,
-      "completionQuality" : 0.0,
-      "complete" : true,
-      "startTime" : "2020-04-22T12:23:22.8903752",
-      "progress" : 100
-    } ]
+    "taskList" : [ ]
   },
   "customTaskList" : {
     "taskList" : [ {
-      "id" : 12,
-      "title" : "Finish Sprint2",
-      "desc" : "Finish this sprint.",
-      "baseQuality" : 1000,
+      "id" : 19,
+      "title" : "Sprint3",
+      "desc" : "Finish Sprint3 Review",
+      "baseQuality" : 450,
       "timeLimit" : 0,
       "type" : 1,
       "completionQuality" : 0.0,
-      "complete" : true,
-      "startTime" : "2020-04-22T12:23:22.8903752",
-      "progress" : 100
+      "complete" : false,
+      "startTime" : null,
+      "progress" : 0
     } ]
   },
   "failedTaskList" : {
@@ -158,5 +202,5 @@
     "startTime" : null,
     "progress" : 0
   },
-  "startTime" : "2020-04-22T08:53:04.6906556"
+  "startTime" : "2020-04-22T12:57:22.8540057"
 }

@@ -3,14 +3,14 @@ import java.util.Iterator;
 public class User {
     private String ID;
     private TaskList currentTasks,customTasks,completedTasks;
-    private PlayerCharacter character;
+   // private PlayerCharacter character;
 
     public User(String ID){
         this.ID=ID;
         this.currentTasks = new TaskList();
         this.customTasks = new TaskList();
         this.completedTasks = new TaskList();
-        this.character = new PlayerCharacter();
+        //this.character = new PlayerCharacter();
     }
 
     //getters:
@@ -19,9 +19,9 @@ public class User {
         return ID;
     }
 
-    public PlayerCharacter getCharacter() {
-        return character;
-    }
+//    public PlayerCharacter getCharacter() {
+//        return character;
+//    }
 
     public TaskList getCompletedTasks() {
         return completedTasks;

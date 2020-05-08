@@ -4,7 +4,7 @@
       "id" : 0,
       "title" : "Do the Dishes",
       "desc" : "Clean all your unwashed dishes.",
-      "baseQuality" : 0,
+      "baseQuality" : 10,
       "timeLimit" : 0,
       "type" : 0,
       "completionQuality" : 0.0,
@@ -15,7 +15,7 @@
       "id" : 1,
       "title" : "Do your Laundry",
       "desc" : "Clean your clothes.",
-      "baseQuality" : 0,
+      "baseQuality" : 10,
       "timeLimit" : 0,
       "type" : 3,
       "completionQuality" : 0.0,
@@ -26,12 +26,12 @@
       "id" : 2,
       "title" : "Clean your room",
       "desc" : "Organize and dust off your room.",
-      "baseQuality" : 0,
+      "baseQuality" : 10,
       "timeLimit" : 3,
       "type" : 0,
       "completionQuality" : 0.0,
       "complete" : false,
-      "startTime" : null,
+      "startTime" : "2020-05-08T11:53:20.4144659",
       "progress" : 0
     }, {
       "id" : 3,
@@ -59,7 +59,7 @@
       "id" : 5,
       "title" : "Floss your teeth",
       "desc" : "Floss under your gums too.",
-      "baseQuality" : 0,
+      "baseQuality" : 10,
       "timeLimit" : 0,
       "type" : 2,
       "completionQuality" : 0.0,
@@ -70,7 +70,7 @@
       "id" : 6,
       "title" : "Check your email",
       "desc" : "Sift through work and spam mail.",
-      "baseQuality" : 0,
+      "baseQuality" : 5,
       "timeLimit" : 0,
       "type" : 2,
       "completionQuality" : 0.0,
@@ -81,7 +81,84 @@
       "id" : 7,
       "title" : "Walk or Exercise",
       "desc" : "Keep yourself in good shape.",
-      "baseQuality" : 0,
+      "baseQuality" : 20,
+      "timeLimit" : 0,
+      "type" : 2,
+      "completionQuality" : 0.0,
+      "complete" : false,
+      "startTime" : null,
+      "progress" : 0
+    }, {
+      "id" : 8,
+      "title" : "Feed your pet",
+      "desc" : "Or we will call the ASPCA",
+      "baseQuality" : 55,
+      "timeLimit" : 0,
+      "type" : 2,
+      "completionQuality" : 0.0,
+      "complete" : false,
+      "startTime" : null,
+      "progress" : 0
+    }, {
+      "id" : 9,
+      "title" : "Garbage Day",
+      "desc" : "Or we will call the ASPCA",
+      "baseQuality" : 55,
+      "timeLimit" : 0,
+      "type" : 3,
+      "completionQuality" : 0.0,
+      "complete" : false,
+      "startTime" : null,
+      "progress" : 0
+    }, {
+      "id" : 10,
+      "title" : "Sweep your Home",
+      "desc" : "The less dust, the better.",
+      "baseQuality" : 35,
+      "timeLimit" : 0,
+      "type" : 3,
+      "completionQuality" : 0.0,
+      "complete" : false,
+      "startTime" : null,
+      "progress" : 0
+    }, {
+      "id" : 11,
+      "title" : "Cook a Meal",
+      "desc" : "Don't starve, make yourself something good!",
+      "baseQuality" : 45,
+      "timeLimit" : 0,
+      "type" : 2,
+      "completionQuality" : 0.0,
+      "complete" : false,
+      "startTime" : null,
+      "progress" : 0
+    }, {
+      "id" : 12,
+      "title" : "Make your Bed",
+      "desc" : "Don't be lazy, make it look comfy.",
+      "baseQuality" : 5,
+      "timeLimit" : 0,
+      "type" : 2,
+      "completionQuality" : 0.0,
+      "complete" : false,
+      "startTime" : null,
+      "progress" : 0
+    }, {
+      "id" : 13,
+      "title" : "Clean Bathroom",
+      "desc" : "Don't be gross. You'll thank yourself later.",
+      "baseQuality" : 15,
+      "timeLimit" : 0,
+      "type" : 3,
+      "completionQuality" : 0.0,
+      "complete" : false,
+      "startTime" : null,
+      "progress" : 0
+    }, {
+      "id" : 14,
+      "title" : "Organize Mail",
+      "desc" : "Sift through your mail and sort it!",
+      "baseQuality" : 10,
       "timeLimit" : 0,
       "type" : 2,
       "completionQuality" : 0.0,
@@ -92,7 +169,7 @@
   },
   "currentTaskList" : {
     "taskList" : [ {
-      "id" : 0,
+      "id" : 16,
       "title" : "Do Homework Before Class",
       "desc" : "Due in an hour!",
       "baseQuality" : 10,
@@ -100,7 +177,7 @@
       "type" : 0,
       "completionQuality" : 0.0,
       "complete" : false,
-      "startTime" : "2020-04-19T17:29:36.3897021",
+      "startTime" : "2020-05-08T11:53:20.4154659",
       "progress" : 0
     } ]
   },
@@ -109,7 +186,7 @@
   },
   "customTaskList" : {
     "taskList" : [ {
-      "id" : 0,
+      "id" : 15,
       "title" : "Do Homework Before Class",
       "desc" : "Due in an hour!",
       "baseQuality" : 10,
@@ -117,7 +194,7 @@
       "type" : 0,
       "completionQuality" : 0.0,
       "complete" : false,
-      "startTime" : "2020-04-19T17:29:36.3897021",
+      "startTime" : "2020-05-08T11:53:20.4144659",
       "progress" : 0
     } ]
   },
@@ -136,5 +213,5 @@
     "startTime" : null,
     "progress" : 0
   },
-  "startTime" : "2020-04-19T17:29:36.388702"
+  "startTime" : "2020-05-08T11:53:20.4144659"
 }

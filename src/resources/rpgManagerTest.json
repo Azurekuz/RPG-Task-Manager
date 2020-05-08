@@ -1,7 +1,7 @@
 {
   "player" : {
     "level" : 1,
-    "experience" : 0.0,
+    "experience" : 50.0,
     "maxHealth" : 8,
     "curHealth" : 8,
     "baseAttack" : 3,
@@ -50,14 +50,14 @@
       "alive" : true,
       "exp_TO_LEVEL" : 100.0
     }, {
-      "level" : 6,
+      "level" : 1,
       "experience" : 0.0,
-      "maxHealth" : 18,
-      "curHealth" : 18,
-      "baseAttack" : 7,
-      "baseDefense" : 4,
-      "modAttack" : 7,
-      "modDefense" : 4,
+      "maxHealth" : 8,
+      "curHealth" : 8,
+      "baseAttack" : 2,
+      "baseDefense" : 1,
+      "modAttack" : 2,
+      "modDefense" : 1,
       "currency" : 10,
       "inventory" : {
         "itemList" : [ {
@@ -81,7 +81,7 @@
         } ]
       },
       "alive" : true,
-      "exp_TO_LEVEL" : 201.0
+      "exp_TO_LEVEL" : 100.0
     }, {
       "level" : 10,
       "experience" : 0.0,

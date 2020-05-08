@@ -98,11 +98,11 @@ public class Task {
             return "NO";
         }
     }
-    public String toString(){ //TODO could make this a little more complicated if needed
+    public String toString(){
         String result = "";
         if (!title.isEmpty()) {
-            result += "TASK\nid: " + id + "  title: " + title + "\ndesc: " + desc + "\nbaseQuality: " + baseQuality + "  timelimit: " + timeLimit +
-                    "  type: " + type + "  complete: " + complete + "  progress: " + progress;
+            result += "TASK\n[ID: " + id + "]  [TITLE: " + title + "]\n[DESC: " + desc + "]\n[BASEQUALITY: " + baseQuality + "]  [TIMELIMIT:  " + timeLimit +
+                    "]  [TYPE: " + type + "]  [COMPLETE: " + displayComplete() + "]  [PROGRESS: " + progress + "]";
             return result;
         }
         else{ return "Empty task object."; }
