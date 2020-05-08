@@ -21,7 +21,6 @@ public class Actor {
     private int currency;
     private ItemList inventory;
     private Item[] equipment; //MainWeapon, SubWeapon, Head, Torso, Leggings, Boots, Gloves, Acc1, Acc2
-    public ItemList items;
 
     public Actor(){
         name = "Empty Husk";
@@ -75,7 +74,20 @@ public class Actor {
     private void initialiseItems(){
         currency = 0;
         inventory = new ItemList();
-        equipment = new Item[10];
+        equipment = new Item[9];
+        //MainWeapon, SubWeapon, Head, Torso, Leggings, Boots, Gloves, Acc1, Acc2
+        //String name, String type, int id, int durability, int damage, int defense
+        equipment[0] = new Gear("Fist","MainWeapon",0, 100, 0, 0);
+        equipment[1] = new Gear("Fist","SubWeapon",1, 100, 0, 0);
+        equipment[2] = new Gear("Hair","Head",2, 100, 0, 0);
+        equipment[3] = new Gear("T-Shirt","Torso",3, 100, 0, 0);
+        equipment[4] = new Gear("Underwear","Leggings",4, 100, 0, 0);
+        equipment[5] = new Gear("Bare Feet","Boots",5, 100, 0, 0);
+        equipment[6] = new Gear("Hands","Gloves",6, 100, 0, 0);
+        equipment[7] = new Gear("N/A","Acc1",7, 100, 0, 0);
+        equipment[8] = new Gear("N/A","Acc2",8, 100, 0, 0);
+
+
     }
 
     public int attack(Actor target){
@@ -85,19 +97,77 @@ public class Actor {
         return 0;
     }
 
-    public void use(Item itemToUse){
-        //TODO
+    public void use(Usable itemToUse){
+        if (itemToUse.name.equals("health potion")){
+            this.curHealth+=itemToUse.getValue();
+            itemToUse.setValue(0);
+        }
+
+         if (itemToUse.name.equals("damage potion")){
+            this.modAttack+=itemToUse.getValue();
+            itemToUse.setValue(0);
+         }
+
     }
 
-    public void equip(Item equipment){
-        //TODO
+    public void equip(Gear equipment){
+        String type = equipment.getType();
+        int slot;
+        switch(type){
+            case "MainWeapon":
+                slot= 0;
+                this.equipment[slot]=equipment;
+                this.modAttack+=equipment.getDamage();
+                break;
+            case "SubWeapon":
+                slot= 1;
+                this.equipment[slot]=equipment;
+                this.modAttack+=equipment.getDamage();
+                break;
+            case "Head":
+                slot= 2;
+                this.equipment[slot]=equipment;
+                this.modDefense+=equipment.getDefense();
+                break;
+            case "Torso":
+                slot= 3;
+                this.equipment[slot]=equipment;
+                this.modDefense+=equipment.getDefense();
+                break;
+            case "Leggings":
+                slot= 4;
+                this.equipment[slot]=equipment;
+                this.modDefense+=equipment.getDefense();
+                break;
+            case "Boots":
+                slot= 5;
+                this.equipment[slot]=equipment;
+                this.modDefense+=equipment.getDefense();
+                break;
+            case "Gloves":
+                slot= 6;
+                this.equipment[slot]=equipment;
+                this.modDefense+=equipment.getDefense();
+                break;
+            case "Acc1":
+                slot= 7;
+                this.equipment[slot]=equipment;
+                break;
+            case "Acc2":
+                slot= 8;
+                this.equipment[slot]=equipment;
+                break;
+            default:
+                System.out.println("[ERROR][Equip failed, invalid type?]");
+        }
+
     }
 
-    private void findProperSlot(){
-        //TODO
+    public void pickUp(Item newItem){
+        inventory.addItem(newItem);
     }
 
-    private void die(){
+    public void die(){
         setAlive(false);
     }
 
@@ -168,8 +238,10 @@ public class Actor {
                 this.level+= 1;
                 EXP_TO_LEVEL += ((int) (BASE_EXP * Math.pow(1.15, ((double) this.level-1))));
                 System.out.println("NEXT: " + EXP_TO_LEVEL);
+                maxHealth+=levelGain*2;
+                baseAttack+=levelGain;
+                baseDefense+=levelGain;
             }
-            //TODO stat gain?
         }
 
     }
@@ -242,11 +314,11 @@ public class Actor {
         return baseDefense;
     }
 
-    public ItemList getItems() { return items; }
-
     public int getCurrency() {
         return currency;
     }
+
+    public ItemList getInventory() { return inventory; }
 
     public void addToCurrency(int toAdd){
         this.currency+=toAdd;
@@ -280,7 +352,7 @@ public class Actor {
         }
     }
 
-    public String toString(){ //TODO show items
+    public String toString(){
         String toString = "";
         toString += "\t[NAME][ " + this.name + " ]\n";
         toString += "\t[LVL][ " + this.level + " ]\n";
@@ -292,6 +364,18 @@ public class Actor {
         toString += "\t[DEF][ " + this.baseDefense + " + " + (this.modDefense - this.baseDefense) + " ]\n";
         toString += "\n";
         toString += "\t[CURRENCY][ " + this.currency + " Gold" + " ]\n";
+        toString += "\t[EQUIPMENT]" +
+                "\n\t\t[Main Weapon: " + this.equipment[0].toString() + "]" +
+                "\n\t\t[Sub Weapon:  " + this.equipment[1].toString() + "]" +
+                "\n\t\t[Head:   " + this.equipment[2].toString() + "]" +
+                "\n\t\t[Torso:  " + this.equipment[3].toString() + "] " +
+                "\n\t\t[Legs:   " + this.equipment[4].toString() + "]" +
+                "\n\t\t[Boots:  " + this.equipment[5].toString() + "]" +
+                "\n\t\t[Gloves: " + this.equipment[6].toString() + "]" +
+                "\n\t\t[Acc1:   " + this.equipment[7].toString() + "]" +
+                "\n\t\t[Acc2:   " + this.equipment[8].toString() + "]";
+
+        toString += "\n\t[INVENTORY]\n\t" + this.inventory.toString();
         return toString;
     }
 }

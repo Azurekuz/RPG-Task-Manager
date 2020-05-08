@@ -1,15 +1,18 @@
 {
   "player" : {
-    "level" : 10,
-    "experience" : 1000.0,
-    "maxHealth" : 8,
+    "name" : "Player",
+    "level" : 36,
+    "experience" : 3585.0,
+    "maxHealth" : 68,
     "curHealth" : 8,
-    "baseAttack" : 3,
-    "baseDefense" : 2,
+    "baseAttack" : 33,
+    "baseDefense" : 32,
     "modAttack" : 3,
     "modDefense" : 2,
     "currency" : 0,
-    "items" : null,
+    "inventory" : {
+      "itemList" : [ ]
+    },
     "alive" : true
   },
   "defaultMonsters" : {
@@ -23,19 +26,56 @@
       "modAttack" : 1,
       "modDefense" : 2,
       "currency" : 3,
-      "items" : null,
+      "inventory" : {
+        "itemList" : [ {
+          "type" : "gear",
+          "name" : "Wooden Club",
+          "type" : "MainWeapon",
+          "durability" : 100,
+          "damage" : 2,
+          "defense" : 0,
+          "id" : 9
+        }, {
+          "type" : "gear",
+          "name" : "Shoddy Helm",
+          "type" : "Head",
+          "durability" : 100,
+          "damage" : 0,
+          "defense" : 2,
+          "id" : 10
+        } ]
+      },
       "alive" : true
     }, {
-      "level" : 1,
+      "name" : "Bandit",
+      "level" : 36,
       "experience" : 0.0,
-      "maxHealth" : 8,
-      "curHealth" : 8,
-      "baseAttack" : 3,
-      "baseDefense" : 1,
-      "modAttack" : 3,
-      "modDefense" : 1,
+      "maxHealth" : 68,
+      "curHealth" : 68,
+      "baseAttack" : 33,
+      "baseDefense" : 16,
+      "modAttack" : 33,
+      "modDefense" : 16,
       "currency" : 10,
-      "items" : null,
+      "inventory" : {
+        "itemList" : [ {
+          "type" : "gear",
+          "name" : "Leather Boots",
+          "type" : "Boots",
+          "durability" : 100,
+          "damage" : 0,
+          "defense" : 1,
+          "id" : 11
+        }, {
+          "type" : "gear",
+          "name" : "Gold Ring",
+          "type" : "Acc2",
+          "durability" : 100,
+          "damage" : 0,
+          "defense" : 1,
+          "id" : 12
+        } ]
+      },
       "alive" : true
     }, {
       "level" : 10,
@@ -47,7 +87,33 @@
       "modAttack" : 10,
       "modDefense" : 15,
       "currency" : 100,
-      "items" : null,
+      "inventory" : {
+        "itemList" : [ {
+          "type" : "gear",
+          "name" : "Dragon Scale Shield",
+          "type" : "SubWeapon",
+          "durability" : 100,
+          "damage" : 1,
+          "defense" : 4,
+          "id" : 13
+        }, {
+          "type" : "gear",
+          "name" : "Dragon Scale Armor",
+          "type" : "Torso",
+          "durability" : 100,
+          "damage" : 0,
+          "defense" : 5,
+          "id" : 14
+        }, {
+          "type" : "gear",
+          "name" : "Dragon Scale Leggings",
+          "type" : "Leggings",
+          "durability" : 100,
+          "damage" : 0,
+          "defense" : 4,
+          "id" : 15
+        } ]
+      },
       "alive" : true
     }, {
       "level" : 4,
@@ -55,11 +121,27 @@
       "maxHealth" : 10,
       "curHealth" : 10,
       "baseAttack" : 3,
-      "baseDefense" : 10,
+      "baseDefense" : 5,
       "modAttack" : 3,
-      "modDefense" : 10,
+      "modDefense" : 5,
       "currency" : 10,
-      "items" : null,
+      "inventory" : {
+        "itemList" : [ {
+          "type" : "usable",
+          "name" : "Health Potion",
+          "type" : "Usable",
+          "value" : 5,
+          "id" : 16
+        }, {
+          "type" : "gear",
+          "name" : "Spectral Ring",
+          "type" : "Acc1",
+          "durability" : 100,
+          "damage" : 1,
+          "defense" : 1,
+          "id" : 17
+        } ]
+      },
       "alive" : true
     } ]
   }

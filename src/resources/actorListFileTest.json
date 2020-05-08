@@ -10,7 +10,9 @@
     "modAttack" : 3,
     "modDefense" : 2,
     "currency" : 0,
-    "items" : null,
+    "inventory" : {
+      "itemList" : [ ]
+    },
     "alive" : true
   }, {
     "name" : "Sarah",
@@ -23,7 +25,9 @@
     "modAttack" : 8,
     "modDefense" : 0,
     "currency" : 0,
-    "items" : null,
+    "inventory" : {
+      "itemList" : [ ]
+    },
     "alive" : true
   }, {
     "name" : "Morty",
@@ -36,7 +40,9 @@
     "modAttack" : 3,
     "modDefense" : 2,
     "currency" : 0,
-    "items" : null,
+    "inventory" : {
+      "itemList" : [ ]
+    },
     "alive" : true
   }, {
     "name" : "Link",
@@ -49,7 +55,9 @@
     "modAttack" : 0,
     "modDefense" : 0,
     "currency" : 0,
-    "items" : null,
+    "inventory" : {
+      "itemList" : [ ]
+    },
     "alive" : true
   }, {
     "name" : "John",
@@ -62,7 +70,9 @@
     "modAttack" : 30,
     "modDefense" : 25,
     "currency" : 0,
-    "items" : null,
+    "inventory" : {
+      "itemList" : [ ]
+    },
     "alive" : true
   }, {
     "name" : "Riley",
@@ -75,7 +85,9 @@
     "modAttack" : 32,
     "modDefense" : 26,
     "currency" : 0,
-    "items" : null,
+    "inventory" : {
+      "itemList" : [ ]
+    },
     "alive" : true
   } ]
 }
