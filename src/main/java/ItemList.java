@@ -15,8 +15,8 @@ public class ItemList {
         itemList.add(item);
     }
 
-    public void addItem(String name, String type, int id) {
-        Item newItem = new Item(name, type, id);
+    public void addItem(String name, String type, int id, int worth) {
+        Item newItem = new Item(name, type, id, worth);
         itemList.add(newItem);
     }
 
@@ -38,7 +38,7 @@ public class ItemList {
     }
 
     public String toString(){
-        String result = "{ Name \t|\t Type \t |\t Damage/Value \t |\t Defense }\n";
+        String result = "{ Name \t|\t Type \t |\t Worth \t |\t Damage/Value \t |\t Defense }\n";
         if (itemList.size() == 0){
             return result.concat("\t*No items.*\n");
         }

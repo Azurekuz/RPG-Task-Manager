@@ -20,6 +20,6 @@ public class Player extends Actor{
 
     public void die(){
         setAlive(false);
-        setCurrency((int) (((double) getCurrency())*0.75));
+        //setCurrency((int) (((double) getCurrency())*0.75)); //currency penalty already present in combatUI
     }
 }
