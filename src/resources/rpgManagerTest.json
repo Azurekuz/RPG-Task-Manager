@@ -287,6 +287,27 @@
       "damage" : 0,
       "defense" : 2,
       "id" : 0
+    }, {
+      "type" : "usable",
+      "name" : "Small Health Potion",
+      "type" : "Health",
+      "worth" : 16,
+      "value" : 8,
+      "id" : 0
+    }, {
+      "type" : "usable",
+      "name" : "Medium Health Potion",
+      "type" : "Health",
+      "worth" : 32,
+      "value" : 16,
+      "id" : 0
+    }, {
+      "type" : "usable",
+      "name" : "Elixir",
+      "type" : "Health",
+      "worth" : 200,
+      "value" : 100,
+      "id" : 0
     } ]
   }
 }

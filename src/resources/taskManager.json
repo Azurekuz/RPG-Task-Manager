@@ -9,7 +9,7 @@
       "type" : 0,
       "completionQuality" : 0.0,
       "complete" : false,
-      "startTime" : "2020-04-22T13:11:20.2181881",
+      "startTime" : null,
       "progress" : 0
     }, {
       "id" : 1,
@@ -31,7 +31,7 @@
       "type" : 0,
       "completionQuality" : 0.0,
       "complete" : false,
-      "startTime" : "2020-04-22T12:57:22.8540057",
+      "startTime" : null,
       "progress" : 0
     }, {
       "id" : 3,
@@ -42,7 +42,7 @@
       "type" : 1,
       "completionQuality" : 0.0,
       "complete" : false,
-      "startTime" : "2020-04-22T13:07:30.1503689",
+      "startTime" : null,
       "progress" : 0
     }, {
       "id" : 4,
@@ -53,7 +53,7 @@
       "type" : 1,
       "completionQuality" : 0.0,
       "complete" : false,
-      "startTime" : "2020-04-22T13:12:57.6527077",
+      "startTime" : null,
       "progress" : 0
     }, {
       "id" : 5,
@@ -171,31 +171,20 @@
     "taskList" : [ ]
   },
   "completedTaskList" : {
-    "taskList" : [ {
-      "id" : 17,
-      "title" : "Get a Job",
-      "desc" : "Money can be exchanged for goods & services",
-      "baseQuality" : 500,
-      "timeLimit" : 0,
-      "type" : 1,
-      "completionQuality" : 1.0,
-      "complete" : true,
-      "startTime" : "2020-04-22T13:12:57.6527077",
-      "progress" : 100
-    } ]
+    "taskList" : [ ]
   },
   "customTaskList" : {
     "taskList" : [ {
       "id" : 19,
-      "title" : "Sprint2",
-      "desc" : "Finish Sprint2 Review",
+      "title" : "Sprint3",
+      "desc" : "Finish Sprint3 Review",
       "baseQuality" : 450,
       "timeLimit" : 0,
       "type" : 1,
       "completionQuality" : 0.0,
-      "complete" : true,
-      "startTime" : "2020-04-22T13:08:43.3411631",
-      "progress" : 100
+      "complete" : false,
+      "startTime" : null,
+      "progress" : 0
     } ]
   },
   "failedTaskList" : {

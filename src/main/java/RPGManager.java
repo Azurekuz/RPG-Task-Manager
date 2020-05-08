@@ -87,6 +87,11 @@ public class RPGManager {
         Gear oband = new Gear("Obsidian Band", "Acc2", 0, 100, 0, 2, 16);
         merchantInv.addItem(laxe); merchantInv.addItem(dagger); merchantInv.addItem(ljacket); merchantInv.addItem(sandals);
         merchantInv.addItem(cpants); merchantInv.addItem(lgrips); merchantInv.addItem(bcharm); merchantInv.addItem(oband);
+
+        Usable potion1 = new Usable("Small Health Potion", "Health", 0, 8, 16);
+        Usable potion2 = new Usable("Medium Health Potion", "Health", 0, 16, 32);
+        Usable potion3 = new Usable("Elixir", "Health", 0, 100, 200);
+        merchantInv.addItem(potion1); merchantInv.addItem(potion2); merchantInv.addItem(potion3);
     }
 
         //    public LocationList getLocations() {
@@ -153,7 +158,7 @@ public class RPGManager {
 
     /************* COMBAT *************/
 
-    public void fight(String name){
+    public void fight(String name){ //arena
         CombatUI combat = new CombatUI(this.player, new Monster(name, 1, 10, (int) (Math.floor(Math.random() * 3) + 1), (int) (Math.floor(Math.random() * 3) + 1), (int) (Math.floor(Math.random() * 15) + 10)));
         combat.handleTurn();
         if(!player.getAlive()){
@@ -161,7 +166,7 @@ public class RPGManager {
         }
     }
 
-    public void fightrand(){
+    public void fightrand(){ //explore
         Random random = new Random();
         int randIdx = random.nextInt(defaultMonsters.getSize());
         Actor monster = defaultMonsters.getActorAt(randIdx);

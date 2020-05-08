@@ -1,114 +1,26 @@
 {
   "player" : {
-    "level" : 15,
-    "experience" : 4535.0,
-    "maxHealth" : 36,
-    "curHealth" : 10,
-    "baseAttack" : 17,
-    "baseDefense" : 16,
-    "modAttack" : 17,
-    "modDefense" : 16,
-    "currency" : 90,
+    "level" : 1,
+    "experience" : 0.0,
+    "maxHealth" : 8,
+    "curHealth" : 8,
+    "baseAttack" : 3,
+    "baseDefense" : 2,
+    "modAttack" : 3,
+    "modDefense" : 2,
+    "currency" : 0,
     "inventory" : {
-      "itemList" : [ {
-        "type" : "usable",
-        "name" : "Wraith Essence",
-        "type" : "Health",
-        "worth" : 12,
-        "value" : 12,
-        "id" : 16
-      }, {
-        "type" : "gear",
-        "name" : "Bare Feet",
-        "type" : "Boots",
-        "worth" : 0,
-        "durability" : 0,
-        "damage" : 0,
-        "defense" : 0,
-        "id" : 5
-      }, {
-        "type" : "gear",
-        "name" : "Leather Boots",
-        "type" : "Boots",
-        "worth" : 3,
-        "durability" : 0,
-        "damage" : 0,
-        "defense" : 1,
-        "id" : 11
-      }, {
-        "type" : "gear",
-        "name" : "Fist",
-        "type" : "MainWeapon",
-        "worth" : 0,
-        "durability" : 0,
-        "damage" : 0,
-        "defense" : 0,
-        "id" : 0
-      }, {
-        "type" : "gear",
-        "name" : "Fist",
-        "type" : "SubWeapon",
-        "worth" : 0,
-        "durability" : 0,
-        "damage" : 0,
-        "defense" : 0,
-        "id" : 1
-      }, {
-        "type" : "gear",
-        "name" : "N/A",
-        "type" : "Acc2",
-        "worth" : 0,
-        "durability" : 0,
-        "damage" : 0,
-        "defense" : 0,
-        "id" : 8
-      }, {
-        "type" : "gear",
-        "name" : "Gold Ring",
-        "type" : "Acc2",
-        "worth" : 3,
-        "durability" : 0,
-        "damage" : 0,
-        "defense" : 1,
-        "id" : 12
-      }, {
-        "type" : "gear",
-        "name" : "N/A",
-        "type" : "Acc1",
-        "worth" : 0,
-        "durability" : 0,
-        "damage" : 0,
-        "defense" : 0,
-        "id" : 7
-      }, {
-        "type" : "gear",
-        "name" : "Wooden Club",
-        "type" : "MainWeapon",
-        "worth" : 0,
-        "durability" : 0,
-        "damage" : 2,
-        "defense" : 0,
-        "id" : 9
-      }, {
-        "type" : "gear",
-        "name" : "Spectral Ring",
-        "type" : "Acc1",
-        "worth" : 4,
-        "durability" : 0,
-        "damage" : 1,
-        "defense" : 1,
-        "id" : 17
-      } ]
+      "itemList" : [ ]
     },
     "alive" : true,
-    "exp_TO_LEVEL" : 4752.0
+    "exp_TO_LEVEL" : 100.0
   },
   "defaultMonsters" : {
     "actorList" : [ {
       "level" : 1,
       "experience" : 0.0,
       "maxHealth" : 4,
-      "curHealth" : 0,
+      "curHealth" : 4,
       "baseAttack" : 1,
       "baseDefense" : 2,
       "modAttack" : 1,
@@ -120,7 +32,7 @@
           "name" : "Wooden Club",
           "type" : "MainWeapon",
           "worth" : 0,
-          "durability" : 0,
+          "durability" : 100,
           "damage" : 2,
           "defense" : 0,
           "id" : 9
@@ -129,23 +41,23 @@
           "name" : "Shoddy Helm",
           "type" : "Head",
           "worth" : 0,
-          "durability" : 0,
+          "durability" : 100,
           "damage" : 0,
           "defense" : 2,
           "id" : 10
         } ]
       },
-      "alive" : false,
+      "alive" : true,
       "exp_TO_LEVEL" : 100.0
     }, {
-      "level" : 4,
+      "level" : 16,
       "experience" : 0.0,
-      "maxHealth" : 14,
-      "curHealth" : 0,
-      "baseAttack" : 5,
-      "baseDefense" : 3,
-      "modAttack" : 5,
-      "modDefense" : 3,
+      "maxHealth" : 38,
+      "curHealth" : 38,
+      "baseAttack" : 17,
+      "baseDefense" : 9,
+      "modAttack" : 17,
+      "modDefense" : 9,
       "currency" : 10,
       "inventory" : {
         "itemList" : [ {
@@ -153,7 +65,7 @@
           "name" : "Leather Boots",
           "type" : "Boots",
           "worth" : 3,
-          "durability" : 0,
+          "durability" : 100,
           "damage" : 0,
           "defense" : 1,
           "id" : 11
@@ -162,14 +74,14 @@
           "name" : "Gold Ring",
           "type" : "Acc2",
           "worth" : 3,
-          "durability" : 0,
+          "durability" : 100,
           "damage" : 0,
           "defense" : 1,
           "id" : 12
         } ]
       },
-      "alive" : false,
-      "exp_TO_LEVEL" : 152.0
+      "alive" : true,
+      "exp_TO_LEVEL" : 813.0
     }, {
       "level" : 10,
       "experience" : 0.0,
@@ -186,7 +98,7 @@
           "name" : "Dragon Scale Shield",
           "type" : "SubWeapon",
           "worth" : 10,
-          "durability" : 0,
+          "durability" : 100,
           "damage" : 1,
           "defense" : 4,
           "id" : 13
@@ -195,7 +107,7 @@
           "name" : "Dragon Scale Armor",
           "type" : "Torso",
           "worth" : 10,
-          "durability" : 0,
+          "durability" : 100,
           "damage" : 0,
           "defense" : 5,
           "id" : 14
@@ -204,7 +116,7 @@
           "name" : "Dragon Scale Leggings",
           "type" : "Leggings",
           "worth" : 8,
-          "durability" : 0,
+          "durability" : 100,
           "damage" : 0,
           "defense" : 4,
           "id" : 15
@@ -216,7 +128,7 @@
       "level" : 4,
       "experience" : 0.0,
       "maxHealth" : 10,
-      "curHealth" : 0,
+      "curHealth" : 10,
       "baseAttack" : 3,
       "baseDefense" : 5,
       "modAttack" : 3,
@@ -235,19 +147,19 @@
           "name" : "Spectral Ring",
           "type" : "Acc1",
           "worth" : 4,
-          "durability" : 0,
+          "durability" : 100,
           "damage" : 1,
           "defense" : 1,
           "id" : 17
         } ]
       },
-      "alive" : false,
+      "alive" : true,
       "exp_TO_LEVEL" : 152.0
     }, {
       "level" : 2,
       "experience" : 0.0,
       "maxHealth" : 5,
-      "curHealth" : 0,
+      "curHealth" : 5,
       "baseAttack" : 2,
       "baseDefense" : 2,
       "modAttack" : 2,
@@ -259,13 +171,13 @@
           "name" : "Spider Fang",
           "type" : "SubWeapon",
           "worth" : 8,
-          "durability" : 0,
+          "durability" : 100,
           "damage" : 4,
           "defense" : 0,
           "id" : 18
         } ]
       },
-      "alive" : false,
+      "alive" : true,
       "exp_TO_LEVEL" : 114.0
     }, {
       "level" : 100,
@@ -283,7 +195,7 @@
           "name" : "Legendary Sword",
           "type" : "MainWeapon",
           "worth" : 50,
-          "durability" : 0,
+          "durability" : 100,
           "damage" : 20,
           "defense" : 3,
           "id" : 19
@@ -292,7 +204,7 @@
           "name" : "Demon's Armor",
           "type" : "Torso",
           "worth" : 50,
-          "durability" : 0,
+          "durability" : 100,
           "damage" : 3,
           "defense" : 20,
           "id" : 20
@@ -305,10 +217,28 @@
   "merchantInv" : {
     "itemList" : [ {
       "type" : "gear",
+      "name" : "Lumberjack's Axe",
+      "type" : "MainWeapon",
+      "worth" : 21,
+      "durability" : 100,
+      "damage" : 3,
+      "defense" : 0,
+      "id" : 0
+    }, {
+      "type" : "gear",
+      "name" : "Steel Dagger",
+      "type" : "SubWeapon",
+      "worth" : 21,
+      "durability" : 100,
+      "damage" : 2,
+      "defense" : 0,
+      "id" : 0
+    }, {
+      "type" : "gear",
       "name" : "Leather Jacket",
       "type" : "Torso",
       "worth" : 16,
-      "durability" : 0,
+      "durability" : 100,
       "damage" : 0,
       "defense" : 2,
       "id" : 0
@@ -317,26 +247,67 @@
       "name" : "Sandals",
       "type" : "Boots",
       "worth" : 12,
-      "durability" : 0,
+      "durability" : 100,
       "damage" : 0,
       "defense" : 1,
       "id" : 0
     }, {
-      "type" : "usable",
-      "name" : "Wraith Essence",
-      "type" : "Health",
-      "worth" : 12,
-      "value" : 12,
-      "id" : 16
+      "type" : "gear",
+      "name" : "Combat Pants",
+      "type" : "Leggings",
+      "worth" : 16,
+      "durability" : 100,
+      "damage" : 0,
+      "defense" : 2,
+      "id" : 0
     }, {
       "type" : "gear",
-      "name" : "Bare Feet",
-      "type" : "Boots",
-      "worth" : 0,
-      "durability" : 0,
+      "name" : "Leather Grips",
+      "type" : "Gloves",
+      "worth" : 12,
+      "durability" : 100,
       "damage" : 0,
-      "defense" : 0,
-      "id" : 5
+      "defense" : 1,
+      "id" : 0
+    }, {
+      "type" : "gear",
+      "name" : "Bone Charm",
+      "type" : "Acc1",
+      "worth" : 12,
+      "durability" : 100,
+      "damage" : 0,
+      "defense" : 1,
+      "id" : 0
+    }, {
+      "type" : "gear",
+      "name" : "Obsidian Band",
+      "type" : "Acc2",
+      "worth" : 16,
+      "durability" : 100,
+      "damage" : 0,
+      "defense" : 2,
+      "id" : 0
+    }, {
+      "type" : "usable",
+      "name" : "Small Health Potion",
+      "type" : "Health",
+      "worth" : 16,
+      "value" : 8,
+      "id" : 0
+    }, {
+      "type" : "usable",
+      "name" : "Medium Health Potion",
+      "type" : "Health",
+      "worth" : 32,
+      "value" : 16,
+      "id" : 0
+    }, {
+      "type" : "usable",
+      "name" : "Elixir",
+      "type" : "Health",
+      "worth" : 200,
+      "value" : 100,
+      "id" : 0
     } ]
   }
 }
