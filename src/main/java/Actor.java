@@ -100,6 +100,9 @@ public class Actor {
     public void use(Usable itemToUse) throws NonExistentObjectException {
         if (itemToUse.type.equals("Health")) {
             this.curHealth += itemToUse.getValue();
+            if (curHealth > maxHealth){
+                curHealth = maxHealth;
+            }
             inventory.removeItem(itemToUse);
         }
 

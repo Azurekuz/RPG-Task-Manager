@@ -65,12 +65,15 @@ public class CombatUI {
     }
 
     public void commandPrompt(){
-            int action = -1;
+
+        int action = -1;
+        outer: //goto label used if an action fails for an internal reason and the player shouldn't lose a turn
         while(action==-1) {
             System.out.println();
             System.out.println("What will you do?");
             System.out.println("[1] ATTACK");
-            System.out.println("[2] FLEE");
+            System.out.println("[2] USE ITEM");
+            System.out.println("[3] FLEE");
             System.out.print("[ACTION][> ");
             try {
                 action = input.nextInt();
@@ -84,6 +87,8 @@ public class CombatUI {
                     actionAttack(this.player, this.enemy);
                     break;
                 case 2:
+                    if(!actionUse(this.player)){ action=-1; continue outer;} //if the use didn't work, repeat the loop so player doesn't lose turn
+                case 3:
                     actionFlee(this.player);
                     break;
                 default:
@@ -99,6 +104,30 @@ public class CombatUI {
         System.out.println("\t"+attacker.getName()+" attacks " + target.getName() + "!");
         int damageOutput = attacker.attack(target);
         System.out.println("\t"+attacker.getName()+" dealt " + damageOutput + " damage to " + target.getName() + ".");
+    }
+
+    public boolean actionUse(Actor attacker){
+        System.out.println("What usable do you want to use?");
+        ItemList inventory = attacker.getInventory();
+        System.out.println("Your inventory: \n" + inventory.toString());
+        System.out.print("[ITEM NAME][> ");
+        String name = input.nextLine();
+        Item itemToUse;
+        try {
+            itemToUse = inventory.getItem(name);
+            if (!itemToUse.getType().equals("Health")){
+                System.out.println("[ERROR: You can't use that item!]");
+                return false;
+            }
+            attacker.use((Usable) itemToUse);
+            System.out.println("\t"+attacker.getName()+" uses " + itemToUse.getName() +"!");
+            System.out.println("\t"+attacker.getName()+" regained " + ((Usable) itemToUse).getValue() + "health!");
+
+            return true;
+        } catch (NonExistentObjectException e) {
+            System.out.println("[ERROR: You don't own that item. "+ e.getMessage() +"]");
+            return false;
+        }
     }
 
     public void actionFlee(Actor runner){
