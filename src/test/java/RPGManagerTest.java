@@ -10,12 +10,12 @@ public class RPGManagerTest {
         assertThrows(NonExistentObjectException.class, () -> r.sell("klhnknlhg"));
 
         assertThrows(InsufficientCurrencyException.class, () -> r.buy("Leather Jacket"));
-        p.grantCurrency(15);
+        p.grantCurrency(16);
         r.buy("Leather Jacket");
         assertTrue(p.getInventory().findItem("Leather Jacket") != -1); //if it was found, means successfully bought
-        assertEquals(10, p.getCurrency());
+        assertEquals(0, p.getCurrency());
 
         r.sell("Leather Jacket");
-        assertEquals(15, p.getCurrency());
+        assertEquals(16, p.getCurrency());
     }
 }

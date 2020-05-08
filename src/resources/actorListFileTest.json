@@ -1,6 +1,5 @@
 {
   "actorList" : [ {
-    "name" : "Eric",
     "level" : 1,
     "experience" : 0.0,
     "maxHealth" : 4,
@@ -13,9 +12,9 @@
     "inventory" : {
       "itemList" : [ ]
     },
-    "alive" : true
+    "alive" : true,
+    "exp_TO_LEVEL" : 100.0
   }, {
-    "name" : "Sarah",
     "level" : 0,
     "experience" : 0.0,
     "maxHealth" : 9,
@@ -28,9 +27,9 @@
     "inventory" : {
       "itemList" : [ ]
     },
-    "alive" : true
+    "alive" : true,
+    "exp_TO_LEVEL" : 86.0
   }, {
-    "name" : "Morty",
     "level" : 1,
     "experience" : 0.0,
     "maxHealth" : 4,
@@ -43,9 +42,9 @@
     "inventory" : {
       "itemList" : [ ]
     },
-    "alive" : true
+    "alive" : true,
+    "exp_TO_LEVEL" : 100.0
   }, {
-    "name" : "Link",
     "level" : 0,
     "experience" : 0.0,
     "maxHealth" : 9,
@@ -58,9 +57,9 @@
     "inventory" : {
       "itemList" : [ ]
     },
-    "alive" : true
+    "alive" : true,
+    "exp_TO_LEVEL" : 86.0
   }, {
-    "name" : "John",
     "level" : 91,
     "experience" : 0.0,
     "maxHealth" : 4,
@@ -73,9 +72,9 @@
     "inventory" : {
       "itemList" : [ ]
     },
-    "alive" : true
+    "alive" : true,
+    "exp_TO_LEVEL" : 2.9027232E7
   }, {
-    "name" : "Riley",
     "level" : 12,
     "experience" : 0.0,
     "maxHealth" : 42,
@@ -88,6 +87,7 @@
     "inventory" : {
       "itemList" : [ ]
     },
-    "alive" : true
+    "alive" : true,
+    "exp_TO_LEVEL" : 465.0
   } ]
 }
