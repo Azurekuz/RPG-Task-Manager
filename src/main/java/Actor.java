@@ -256,14 +256,14 @@ public class Actor {
     public void checkLevelUp(){
         double EXPLeft =  experience - EXP_TO_LEVEL;
             while(EXPLeft >= 0){
-                EXPLeft -= EXP_TO_LEVEL;
                 this.level += 1;
-                setEXP_TO_LEVEL(getEXP_TO_LEVEL() + ((int) (BASE_EXP * Math.pow(1.15, ((double) this.level - 1)))));
                 //System.out.println("NEXT: " + EXP_TO_LEVEL);
                 maxHealth += 2;
                 baseAttack += 1;
                 baseDefense += 1;
                 updateModStats();
+                EXPLeft -= EXP_TO_LEVEL;
+                setEXP_TO_LEVEL(getEXP_TO_LEVEL() + ((int) (BASE_EXP * Math.pow(1.15, ((double) this.level - 1)))));
         }
 
     }
