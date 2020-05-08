@@ -42,7 +42,7 @@ public class RPGManager {
         defaultMonsters.addActor(orcGrunt);
 
         //bandit scales off of player stats, might not work well
-        Monster bandit = new Monster("Bandit", player.getLevel(), player.getMaxHealth(), player.getBaseDefense()+1, player.getBaseAttack()/2, 10);
+        Monster bandit = new Monster("Bandit", player.getLevel(), player.getMaxHealth(), player.getBaseDefense(), player.getBaseAttack()/2, 10);
         Gear boots = new Gear("Leather Boots", "Boots",11,100,0,1, 3);
         Gear goldRing = new Gear("Gold Ring", "Acc2",12,100,0,1, 3);
         bandit.pickUp(boots); bandit.pickUp(goldRing);
@@ -75,16 +75,16 @@ public class RPGManager {
     }
 
     public void generateMerchantInventory() {
+        //MainWeapon, SubWeapon, Head, Torso, Leggings, Boots, Gloves, Acc1, Acc2
         this.merchantInv = new ItemList();
-        Gear ljacket = new Gear("Leather Jacket", "Torso", 0, 100, 0, 2, 5);
-        Gear sandals = new Gear("Sandals", "Boots", 0, 100, 0, 1, 3);
-//        Gear gear1 = new Gear("Leather Jacket", "Torso", 0, 100, 0, 2, 5);
-//        Gear gear1 = new Gear("Leather Jacket", "Torso", 0, 100, 0, 2, 5);
-//        Gear gear1 = new Gear("Leather Jacket", "Torso", 0, 100, 0, 2, 5);
-//        Gear gear1 = new Gear("Leather Jacket", "Torso", 0, 100, 0, 2, 5);
-//        Gear gear1 = new Gear("Leather Jacket", "Torso", 0, 100, 0, 2, 5);
-//        Gear gear1 = new Gear("Leather Jacket", "Torso", 0, 100, 0, 2, 5);
-//        Gear gear1 = new Gear("Leather Jacket", "Torso", 0, 100, 0, 2, 5);
+        Gear a = new Gear("Lumberjack's Axe", "MainWeapon", 0, 100, 3, 0, 21);
+        Gear dagger = new Gear("Steel Dagger", "SubWeapon", 0, 100, 2, 0, 21);
+        Gear ljacket = new Gear("Leather Jacket", "Torso", 0, 100, 0, 2, 16);
+        Gear sandals = new Gear("Sandals", "Boots", 0, 100, 0, 1, 12);
+        Gear cpants = new Gear("Combat Pants", "Leggings", 0, 100, 0, 2, 16);
+        Gear lgrips = new Gear("Leather Grips", "Gloves", 0, 100, 0, 1, 12);
+        Gear bcharm = new Gear("Bone Charm", "Acc1", 0, 100, 0, 1, 12);
+        Gear oband = new Gear("Obsidian Band", "Acc2", 0, 100, 0, 2, 16);
         merchantInv.addItem(ljacket); merchantInv.addItem(sandals);
     }
 
