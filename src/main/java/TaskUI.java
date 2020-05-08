@@ -1,5 +1,3 @@
-import org.codehaus.stax2.ri.evt.NamespaceEventImpl;
-
 import java.io.IOException;
 import java.time.LocalDateTime;
 import java.util.InputMismatchException;
@@ -32,7 +30,7 @@ public class TaskUI {
             boolean byID = true;
             try {
                 failedTasks = taskManager.checkTimedTasks(currentTime);
-            } catch (NonExistentTaskException | DuplicateTaskException e) {
+            } catch (NonExistentObjectException | DuplicateObjectException e) {
                 System.out.println("[ERROR][ " + e.getMessage() + "]");
                 failedTasks="Some tasks may have failed but were unsuccessfully handled. Please review your current and failed tasks.";
             }
@@ -103,7 +101,7 @@ public class TaskUI {
                         }
                         System.out.println("[SUCCESS][ Task completed! ]");
                         System.out.println("[EXP][ "+xp+" experience gained.]");
-                    }catch(NonExistentTaskException e){
+                    }catch(NonExistentObjectException e){
                         System.out.println("[ERROR][ " + e.getMessage() + " ]");
                     }catch(IllegalArgumentException e){
                         System.out.println("[ERROR][ Invalid input entered! ]");
@@ -124,7 +122,7 @@ public class TaskUI {
                                 taskManager.incMainProgress(progress);
                             } catch(IllegalArgumentException e){
                                 System.out.println("[ERROR][ Please only enter a number from 1-100. ]"); break;
-                            } catch (NonExistentTaskException e){
+                            } catch (NonExistentObjectException e){
                                 System.out.println("[ERROR][ " + e.getMessage() + " ]"); break;
                             }
                             System.out.println("[NOTICE][ Progress added! ]");
@@ -167,7 +165,7 @@ public class TaskUI {
                             taskManager.selectTask(title);
                         }
                         System.out.println("[NOTICE][ Task started! ]");
-                    }catch(NonExistentTaskException e){
+                    }catch(NonExistentObjectException e){
                         System.out.println("[ERROR][ " + e.getMessage() + " ]");
                     }
                     break;
@@ -194,7 +192,7 @@ public class TaskUI {
                             taskManager.stopTask(title);
                             System.out.println("[NOTICE][ Task stopped! ]");
                         }
-                    }catch(NonExistentTaskException e){
+                    }catch(NonExistentObjectException e){
                         System.out.println("[ERROR][ " + e.getMessage() + " ]");
                     }
                     break;
@@ -267,7 +265,7 @@ public class TaskUI {
                                 taskManager.editTask(title, newTitle, desc, quality, timeLimit, type);
                             }
                             System.out.println("[SUCCESS][ Task edited! ]");
-                        }catch(NonExistentTaskException e){
+                        }catch(NonExistentObjectException e){
                             System.out.println("[ERROR][ " + e.getMessage() + " ]");
                         }
                     }catch(InputMismatchException e){
@@ -337,7 +335,7 @@ public class TaskUI {
         }
     }
 
-    public void selectListPrompt(int id, Scanner input) throws NonExistentTaskException{
+    public void selectListPrompt(int id, Scanner input) throws NonExistentObjectException {
         try {
             /*System.out.println("[?][Which tasklist are you selecting from? ]");
             System.out.println("[1] Default");
@@ -349,8 +347,8 @@ public class TaskUI {
                 choice = input.nextInt();
             }*/
             taskManager.selectTask(id, 1);
-        }catch(NonExistentTaskException e){
-            throw new NonExistentTaskException(e.getMessage());
+        }catch(NonExistentObjectException e){
+            throw new NonExistentObjectException(e.getMessage());
         }
     }
 

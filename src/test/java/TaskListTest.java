@@ -3,7 +3,7 @@ import static org.junit.jupiter.api.Assertions.*;
 
 public class TaskListTest {
     @Test
-    public void TaskListTest() throws NonExistentTaskException, DuplicateTaskException{
+    public void TaskListTest() throws NonExistentObjectException, DuplicateObjectException {
 
         //TODO test toString and new addTask
         Task testTasks = new Task(0, "title1", "desc1", 0, 0, 0, false);
@@ -20,7 +20,7 @@ public class TaskListTest {
         testTaskList.addTask(testTasks5);
 
 //        testTaskList.removeTask("title1");
-//        assertThrows(NonExistentTaskException.class, ()-> testTaskList.editTask(4, testTasks));
+//        assertThrows(NonExistentObjectException.class, ()-> testTaskList.editTask(4, testTasks));
 //        testTaskList.addTask(testTasks);
 
         assertEquals(0, testTasks.getId());

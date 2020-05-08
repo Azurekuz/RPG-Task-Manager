@@ -5,3 +5,9 @@
 /compiler.xml
 /modules.xml
 /shelf/
+/RPG-Task-Manager.iml
+
+#compiled class files
+*.class
+/target/classes/
+/target/test-classes/
