@@ -252,15 +252,19 @@ public class Actor {
     public void checkLevelUp(){
         double curExperience =  experience - EXP_TO_LEVEL;
         if (curExperience >= EXP_TO_LEVEL){
-            int levelGain= 0;
-            levelGain+= curExperience / EXP_TO_LEVEL;
-            for(int levelUp = 0; levelUp < levelGain; levelUp++){
-                this.level+= 1;
-                EXP_TO_LEVEL += ((int) (BASE_EXP * Math.pow(1.15, ((double) this.level-1))));
-                System.out.println("NEXT: " + EXP_TO_LEVEL);
-                maxHealth+=levelGain*2;
-                baseAttack+=levelGain;
-                baseDefense+=levelGain;
+            double EXPLeft = curExperience;
+            for(int levelUp = 0; EXPLeft > 0; levelUp++){
+                if(EXPLeft >= EXP_TO_LEVEL) {
+                    EXPLeft -= EXP_TO_LEVEL;
+                    this.level += 1;
+                    setEXP_TO_LEVEL(getEXP_TO_LEVEL() + ((int) (BASE_EXP * Math.pow(1.15, ((double) this.level - 1)))));
+                    System.out.println("NEXT: " + EXP_TO_LEVEL);
+                    maxHealth += 2;
+                    baseAttack += 1;
+                    baseDefense += 1;
+                }else{
+                    break;
+                }
             }
             updateModStats();
         }
@@ -373,6 +377,14 @@ public class Actor {
         return isAlive;
     }
 
+    public double getEXP_TO_LEVEL(){
+        return EXP_TO_LEVEL;
+    }
+
+    public void setEXP_TO_LEVEL(double nextLevel){
+        EXP_TO_LEVEL = nextLevel;
+    }
+
     public String displayAlive(){
         if(isAlive){
             return "";
@@ -386,7 +398,7 @@ public class Actor {
         toString += "\t[NAME][ " + this.name + " ]\n";
         toString += "\t[LVL][ " + this.level + " ]\n";
         toString += "\t[EXP][ " + this.experience + " ]\n";
-        toString += "\t[NEXT][ " + (EXP_TO_LEVEL) + " ]\n";
+        toString += "\t[NEXT][ " + getEXP_TO_LEVEL() + " ]\n";
         toString += "\n";
         toString += "\t[HP][ " + this.curHealth + "/" + this.maxHealth + " " + displayAlive() + " ]\n";
         toString += "\t[ATK][ " + this.baseAttack + " + " + (this.calcModAttack()) + " ]\n";

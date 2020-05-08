@@ -131,7 +131,7 @@ public class RPGManager {
         int worth = item.getWorth();
         merchantInv.addItem(item);
         player.grantCurrency(worth);
-        System.out.println("[SUCCESS] [Item sold for " + worth + "gold!]");
+        System.out.println("[SUCCESS] [Item sold for " + worth + " gold!]");
 
     }
 
