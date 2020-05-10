@@ -123,6 +123,7 @@ public class RPGUI {
                 case "admin_reset_player":
                     rpgManager.player = new Player();
                     System.out.println("Player character reset.");
+                    break;
                 case "quit": break; //avoids triggering default case
                 default:
                     System.out.println("[ERROR][ Command not recognized. ]");

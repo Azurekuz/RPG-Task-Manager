@@ -39,19 +39,33 @@ class JsonUtilTest {
 
     }
     @Test
-    void rpgExperienceTest() throws IOException{
+    void rpgExperienceItemTest() throws IOException, NonExistentObjectException {
         RPGManager testRPG = new RPGManager(true);
         testRPG.transferEXP(50);
-        assertEquals(50, testRPG.getPlayer().getExperience());
-        assertEquals(1, testRPG.getPlayer().getLevel());
+        Player player = testRPG.getPlayer();
+
+        player.initialiseItems();
+        Gear test1 = new Gear("test1","MainWeapon",0,0,1,1,1);
+        Usable test2 = new Usable("test2","Health",0,1,1);
+        player.pickUp(test1); player.equip(test1); player.pickUp(test2);
+
+        assertEquals(50, player.getExperience());
+        assertEquals(1, player.getLevel());
+
+        assertEquals("test1", player.getEquipment()[0].getName());
+        assertTrue(player.getInventory().contains(test2));
 
         JsonUtil.toJsonFile("src/resources/rpgManagerTest.json", testRPG);
 
+
         RPGManager testRPG2;
         testRPG2 = JsonUtil.fromJsonFile("src/resources/rpgManagerTest.json", RPGManager.class);
+        player = testRPG2.getPlayer();
+        assertEquals(50, player.getExperience());
+        assertEquals(1, player.getLevel());
 
-        assertEquals(50, testRPG2.getPlayer().getExperience());
-        assertEquals(1, testRPG2.getPlayer().getLevel());
+        assertEquals(test1.getName(), player.getEquipment()[0].getName());
+        assertTrue(player.getInventory().findItem(test2.getName()) != -1);
     }
     @Test
     void ActorListTest() throws IOException, DuplicateObjectException {
