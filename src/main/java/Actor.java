@@ -1,8 +1,4 @@
-import com.fasterxml.jackson.annotation.JsonIgnore;
-
 public class Actor {
-    @JsonIgnore
-
     private String name;
     private int level;
 
