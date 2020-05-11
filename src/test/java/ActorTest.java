@@ -38,12 +38,12 @@ public class ActorTest {
         assertEquals(2, a.getBaseAttack());
         assertEquals(2, a.getBaseDefense());
 
-        a.grantExperience(899);
-        assertEquals(5, a.getLevel());
-        assertEquals(999.1, a.getExperience());
-        assertEquals(9, a.getMaxHealth());
-        assertEquals(5, a.getBaseAttack());
-        assertEquals(5, a.getBaseDefense());
+        a.grantExperience(773);
+        assertEquals(7, a.getLevel());
+        assertEquals(873.1, a.getExperience());
+        assertEquals(13, a.getMaxHealth());
+        assertEquals(7, a.getBaseAttack());
+        assertEquals(7, a.getBaseDefense());
 
     }
 

@@ -34,16 +34,16 @@
       "startTime" : null,
       "progress" : 0
     }, {
-      "id" : 3,
+      "id" : 18,
       "title" : "Finish 1st Semester",
       "desc" : "Ithaca College",
       "baseQuality" : 1000,
       "timeLimit" : 0,
       "type" : 1,
-      "completionQuality" : 0.0,
-      "complete" : false,
-      "startTime" : null,
-      "progress" : 0
+      "completionQuality" : 1.0,
+      "complete" : true,
+      "startTime" : "2020-05-11T11:43:00.4312769",
+      "progress" : 100
     }, {
       "id" : 4,
       "title" : "Get a Job",
@@ -171,7 +171,18 @@
     "taskList" : [ ]
   },
   "completedTaskList" : {
-    "taskList" : [ ]
+    "taskList" : [ {
+      "id" : 18,
+      "title" : "Finish 1st Semester",
+      "desc" : "Ithaca College",
+      "baseQuality" : 1000,
+      "timeLimit" : 0,
+      "type" : 1,
+      "completionQuality" : 1.0,
+      "complete" : true,
+      "startTime" : "2020-05-11T11:43:00.4312769",
+      "progress" : 100
+    } ]
   },
   "customTaskList" : {
     "taskList" : [ {
