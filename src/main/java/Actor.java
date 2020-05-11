@@ -1,8 +1,4 @@
-import com.fasterxml.jackson.annotation.JsonIgnore;
-
 public class Actor {
-    @JsonIgnore
-
     private String name;
     private int level;
 
@@ -71,7 +67,7 @@ public class Actor {
         }
     }
 
-    private void initialiseItems() {
+    public void initialiseItems() {
         currency = 0;
         inventory = new ItemList();
         equipment = new Gear[9];
@@ -181,6 +177,10 @@ public class Actor {
         this.modDefense = this.baseDefense + calcModDefense();
     }
 
+    private void updateEXPTOLEVEL(){
+        EXP_TO_LEVEL+=(int) (BASE_EXP * Math.pow(1.15, ((double) this.level - 1)));
+    }
+
     public void pickUp(Item newItem){
         inventory.addItem(newItem);
     }
@@ -254,16 +254,15 @@ public class Actor {
     }
 
     public void checkLevelUp(){
-            while(EXP_TO_LEVEL <= getExperience()){
-                    this.level += 1;
-                    //System.out.println("NEXT: " + EXP_TO_LEVEL);
-                    maxHealth += 2;
-                    baseAttack += 1;
-                    baseDefense += 1;
-                    updateModStats();
-                    setEXP_TO_LEVEL(getEXP_TO_LEVEL() + ((int) (BASE_EXP * Math.pow(1.15, ((double) this.level - 1)))));
+            while(EXP_TO_LEVEL <= getExperience()) {
+                this.level += 1;
+                //System.out.println("NEXT: " + EXP_TO_LEVEL);
+                maxHealth += 2;
+                baseAttack += 1;
+                baseDefense += 1;
+                updateModStats();
+                setEXP_TO_LEVEL(getEXP_TO_LEVEL() + ((int) (BASE_EXP * Math.pow(1.15, ((double) this.level - 1)))));
             }
-
     }
 
     public int calcModAttack(){
@@ -368,6 +367,8 @@ public class Actor {
         return modDefense;
     }
 
+    public Gear[] getEquipment(){ return equipment; }
+
     public boolean getAlive(){
         return isAlive;
     }
@@ -389,6 +390,7 @@ public class Actor {
     }
 
     public String toString(){
+        checkLevelUp();
         String toString = "";
         toString += "\t[NAME][ " + this.name + " ]\n";
         toString += "\t[LVL][ " + this.level + " ]\n";

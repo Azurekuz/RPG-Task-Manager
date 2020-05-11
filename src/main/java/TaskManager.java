@@ -555,7 +555,7 @@ public class TaskManager {
         try {
             mainTask.setCompletionQuality(1);
             rpg.transferEXP(mainTask.calcExp());
-            System.out.println("[EXPERIENCE: You gained " + mainTask.calcExp() + "experience!]");
+            System.out.println("[EXPERIENCE: You gained " + mainTask.calcExp() + " experience!]");
         } catch (IOException e) {
             System.out.println("[ERROR][ EXP transfer failed (load/save error).]");
             System.out.println("[ "+ e +"]");

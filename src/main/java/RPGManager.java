@@ -42,7 +42,7 @@ public class RPGManager {
         defaultMonsters.addActor(orcGrunt);
 
         //bandit scales off of player stats, might not work well
-        Monster bandit = new Monster("Undead Bandit", player.getLevel(), player.getMaxHealth(), player.getBaseDefense(), player.getBaseAttack()/2, 10);
+        Monster bandit = new Monster("Undead Bandit", player.getLevel(), player.getMaxHealth(), player.getBaseDefense()+1, player.getBaseAttack()/2, 10);
         Gear boots = new Gear("Leather Boots", "Boots",11,100,0,1, 3);
         Gear goldRing = new Gear("Gold Ring", "Acc2",12,100,0,1, 3);
         bandit.pickUp(boots); bandit.pickUp(goldRing);
@@ -55,13 +55,13 @@ public class RPGManager {
         dragon.pickUp(dragonShield); dragon.pickUp(dragonArmor); dragon.pickUp(dragonLeggings);
         defaultMonsters.addActor(dragon);
 
-        Monster wraith = new Monster("Wraith", 4, 10, 3, 5, 10);
+        Monster wraith = new Monster("Wraith", 4, 12, 5, 5, 10);
         Usable wraithEssence = new Usable("Wraith Essence","Health",16,12, 12);
         Gear spectralRing = new Gear("Spectral Ring", "Acc1", 17, 100, 1, 1, 4);
         wraith.pickUp(wraithEssence); wraith.pickUp(spectralRing);
         defaultMonsters.addActor(wraith);
 
-        Monster giantSpider = new Monster("Giant Spider", 2, 5, 2, 2, 4);
+        Monster giantSpider = new Monster("Giant Spider", 2, 8, 3, 3, 6);
         Gear spiderFang = new Gear("Spider Fang", "SubWeapon",18,100,4,0, 8);
         giantSpider.pickUp(spiderFang);
         defaultMonsters.addActor(giantSpider);
@@ -85,8 +85,10 @@ public class RPGManager {
         Gear lgrips = new Gear("Leather Grips", "Gloves", 0, 100, 0, 1, 12);
         Gear bcharm = new Gear("Bone Charm", "Acc1", 0, 100, 0, 1, 12);
         Gear oband = new Gear("Obsidian Band", "Acc2", 0, 100, 0, 2, 16);
+        Gear flipflops = new Gear("Toby's Flip Flops", "Boots", 0, 100, 0 , 10, 500);
         merchantInv.addItem(laxe); merchantInv.addItem(dagger); merchantInv.addItem(ljacket); merchantInv.addItem(sandals);
         merchantInv.addItem(cpants); merchantInv.addItem(lgrips); merchantInv.addItem(bcharm); merchantInv.addItem(oband);
+        merchantInv.addItem(flipflops);
 
         Usable potion1 = new Usable("Small Health Potion", "Health", 0, 8, 16);
         Usable potion2 = new Usable("Medium Health Potion", "Health", 0, 16, 32);
